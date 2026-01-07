@@ -304,7 +304,7 @@ END:VCARD`;
             >✕</button>
             
             <h3 className="text-lg font-bold text-gray-800 mb-2">Compartir Perfil</h3>
-            <p className="text-sm text-gray-500 mb-6">Escanea para guardar el contacto</p>
+            <p className="text-sm text-gray-500 mb-6">Escanea para abrir el contacto</p>
             
             <div className="bg-white p-4 rounded-xl border-2 border-dashed border-gray-300 inline-block mb-6">
               {/* EL CÓDIGO QR SE GENERA AQUÍ AUTOMÁTICAMENTE */}
