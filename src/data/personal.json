@@ -1,26 +1,26 @@
 [
   {
     "id": 1,
-    "slug": "rodrigo-dev-saenz",
-    "nombre": "Rodrigo",
-    "apellidos": "Dev Sáenz",
-    "puesto": "Jefe de Desarrollo",
-    "area": "Coordinación de Informática",
+    "slug": "rodrigo-hdez",
+    "nombre": "Irving Rodrigo",
+    "apellidos": "Hernández Tesillos",
+    "puesto": "Supervisor de Procesos",
+    "area": "Equipo de Datos",
     "foto": "https://ui-avatars.com/api/?name=Rodrigo+Hernandez&background=9D2449&color=fff",
-    "telefono": "555-000-1111",
-    "correo": "rodrigo.dev@imssbienestar.gob.mx",
-    "ubicacion": "Edificio Central, Piso 3"
+    "telefono": "55-4547-6654",
+    "correo": "irving.hernandez@imssbienestar.gob.mx",
+    "ubicacion": "Av. Insurgentes Centro 1940, Florida, Álvaro Obregón, 01020 Ciudad de México, CDMX, Piso 3"
   },
   {
     "id": 2,
-    "slug": "laura-mendez",
-    "nombre": "Laura",
-    "apellidos": "Méndez Cruz",
-    "puesto": "Coordinadora Médica",
-    "area": "Supervisión Zonal",
-    "foto": "https://ui-avatars.com/api/?name=Laura+Mendez&background=9D2449&color=fff",
-    "telefono": "555-999-8888",
-    "correo": "laura.mendez@imssbienestar.gob.mx",
-    "ubicacion": "Hospital General"
+    "slug": "ned-romero",
+    "nombre": "Dr. Ned I.",
+    "apellidos": "Romero Morales",
+    "puesto": "Divisionario",
+    "area": "Coordinación Unidades Segundo Nivel",
+    "foto": "https://ui-avatars.com/api/?name=Ned+Romero&background=9D2449&color=fff",
+    "telefono": "55-5438-6861",
+    "correo": "ned.romero@imssbienestar.gob.mx",
+    "ubicacion": "Av. Insurgentes Centro 1940, Florida, Álvaro Obregón, 01020 Ciudad de México, CDMX, Piso 3"
   }
 ]
