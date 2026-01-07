@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { HashRouter, Routes, Route, Link, useParams } from 'react-router-dom';
 import personalData from './data/personal.json';
+import QRCode from "react-qr-code";
 
 // --- PALETA DE COLORES OFICIAL (Extraída de tu imagen) ---
 const COLORS = {
