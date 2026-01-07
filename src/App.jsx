@@ -293,7 +293,7 @@ END:VCARD`;
               <QRCode 
                 value={window.location.href} 
                 size={180}
-                fgColor={COLORS.guinda} // El QR será color Guinda Institucional
+                fgColor="#000000" // El QR será color Guinda Institucional
               />
             </div>
 
