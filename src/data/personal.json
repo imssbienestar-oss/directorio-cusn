@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "slug": "rodrigo-dev-saenz",
+    "nombre": "Rodrigo",
+    "apellidos": "Dev Sáenz",
+    "puesto": "Jefe de Desarrollo",
+    "area": "Coordinación de Informática",
+    "foto": "https://ui-avatars.com/api/?name=Rodrigo+Hernandez&background=9D2449&color=fff",
+    "telefono": "555-000-1111",
+    "correo": "rodrigo.dev@imssbienestar.gob.mx",
+    "ubicacion": "Edificio Central, Piso 3"
+  },
+  {
+    "id": 2,
+    "slug": "laura-mendez",
+    "nombre": "Laura",
+    "apellidos": "Méndez Cruz",
+    "puesto": "Coordinadora Médica",
+    "area": "Supervisión Zonal",
+    "foto": "https://ui-avatars.com/api/?name=Laura+Mendez&background=9D2449&color=fff",
+    "telefono": "555-999-8888",
+    "correo": "laura.mendez@imssbienestar.gob.mx",
+    "ubicacion": "Hospital General"
+  }
+]
