@@ -149,100 +149,107 @@ END:VCARD`;
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center p-4 bg-gray-100 relative">
-      
+
       {/* Fondo verde */}
       <div className="absolute top-0 w-full h-64 z-0" style={{ backgroundColor: COLORS.verde }}></div>
 
       <div className="bg-white w-full max-w-sm shadow-2xl rounded-2xl overflow-hidden z-10 relative animate-fade-in-up">
-        
+
         {/* Cabecera */}
         <div className="h-32 relative overflow-hidden" style={{ backgroundColor: COLORS.verde }}>
-           <div className="absolute -right-10 -top-10 w-40 h-40 rounded-full opacity-20" style={{ backgroundColor: COLORS.dorado }}></div>
-           <div className="absolute left-4 top-4 text-white/90 text-sm font-light tracking-widest">TARJETA DIGITAL</div>
+          <div className="absolute -right-10 -top-10 w-40 h-40 rounded-full opacity-20" style={{ backgroundColor: COLORS.dorado }}></div>
+          <div className="absolute left-4 top-4 text-white/90 text-sm font-light tracking-widest">TARJETA DIGITAL</div>
         </div>
 
         {/* Foto y Nombre */}
         <div className="px-6 flex flex-col items-center">
           <div className="-mt-16 mb-4 p-1 bg-white rounded-full shadow-lg relative z-10">
-             <img 
-              src={person.foto} 
-              alt={person.nombre} 
+            <img
+              src={person.foto}
+              alt={person.nombre}
               className="w-32 h-32 rounded-full object-cover bg-gray-200"
-             />
+            />
           </div>
-          
+
           <div className="text-center w-full pb-6">
             <h1 className="text-2xl font-bold text-gray-900 leading-tight mb-2">
-              {person.nombre} <br/> {person.apellidos}
+              {person.nombre} <br /> {person.apellidos}
             </h1>
             <span className="inline-block px-3 py-1 text-xs font-bold text-white rounded-full uppercase tracking-wider shadow-sm" style={{ backgroundColor: COLORS.guinda }}>
               {person.puesto}
             </span>
             <p className="text-sm text-gray-500 mt-3 font-medium">{person.area}</p>
-            
+
             {/* NUEVO: Horario de Atención */}
             <div className="mt-3 text-xs text-gray-400 bg-gray-50 py-1 px-3 rounded-full inline-flex items-center gap-1">
-              🕒 Lun-Vie: 09:00 - 18:00 hrs
+              🕒 Lun-Vie: 09:00 - 19:00 hrs
             </div>
           </div>
         </div>
 
         {/* --- BOTONES DE ACCIÓN --- */}
         <div className="p-6 space-y-3 bg-gray-50 border-t border-gray-100">
-           
-           {/* 1. BOTÓN ESTRELLA: GUARDAR CONTACTO */}
-           <button 
-             onClick={descargarVCard}
-             className="w-full py-3 bg-gray-900 text-white rounded-xl shadow-lg hover:bg-black transition-all flex items-center justify-center gap-2 font-bold transform hover:-translate-y-1"
-           >
-             💾 Guardar Contacto
-           </button>
 
-           <div className="grid grid-cols-2 gap-3 pt-2">
-             {/* 2. WHATSAPP (Si tienes el dato en el JSON) */}
-             <a href={`https://wa.me/52${person.telefono.replace(/\D/g,'')}`} target="_blank" rel="noreferrer" className="flex flex-col items-center justify-center p-3 bg-white border border-gray-200 rounded-xl hover:border-green-500 hover:text-green-600 transition-all shadow-sm">
-               <span className="text-2xl mb-1">💬</span>
-               <span className="text-[10px] font-bold uppercase">WhatsApp</span>
-             </a>
+          {/* 1. BOTÓN ESTRELLA: GUARDAR CONTACTO */}
+          <button
+            onClick={descargarVCard}
+            className="w-full py-3 bg-gray-900 text-white rounded-xl shadow-lg hover:bg-black transition-all flex items-center justify-center gap-2 font-bold transform hover:-translate-y-1"
+          >
+            💾 Guardar Contacto
+          </button>
 
-             {/* LLAMAR */}
-             <a href={`tel:${person.telefono}`} className="flex flex-col items-center justify-center p-3 bg-white border border-gray-200 rounded-xl hover:border-blue-500 hover:text-blue-600 transition-all shadow-sm">
-               <span className="text-2xl mb-1">📞</span>
-               <span className="text-[10px] font-bold uppercase">Llamar</span>
-             </a>
-           </div>
+          <div className="grid grid-cols-2 gap-3 pt-2">
+            {/* 2. WHATSAPP (Si tienes el dato en el JSON) */}
+            <a href={`https://wa.me/52${person.telefono.replace(/\D/g, '')}`} target="_blank" rel="noreferrer" className="flex flex-col items-center justify-center p-3 bg-white border border-gray-200 rounded-xl hover:border-green-500 hover:text-green-600 transition-all shadow-sm">
+              <span className="text-2xl mb-1">💬</span>
+              <span className="text-[10px] font-bold uppercase">WhatsApp</span>
+            </a>
 
-           {/* CORREO (Barra completa) */}
-           <a href={`mailto:${person.correo}`} className="flex items-center p-3 bg-white border border-gray-200 rounded-xl hover:border-red-800 transition-all group">
-             <div className="w-8 h-8 rounded-full flex items-center justify-center text-white mr-3 shadow-sm shrink-0" style={{ backgroundColor: COLORS.guinda }}>
-               ✉️
-             </div>
-             <div className="overflow-hidden">
-               <p className="text-[10px] text-gray-400 uppercase font-bold">Correo Institucional</p>
-               <p className="text-gray-800 font-medium truncate group-hover:text-red-900 text-sm">{person.correo}</p>
-             </div>
-           </a>
+            {/* LLAMAR */}
+            <a href={`tel:${person.telefono}`} className="flex flex-col items-center justify-center p-3 bg-white border border-gray-200 rounded-xl hover:border-blue-500 hover:text-blue-600 transition-all shadow-sm">
+              <span className="text-2xl mb-1">📞</span>
+              <span className="text-[10px] font-bold uppercase">Llamar</span>
+            </a>
+          </div>
 
-           {/* UBICACIÓN */}
-           <div className="flex items-center p-3 bg-white border border-gray-200 rounded-xl">
-             <div className="w-8 h-8 rounded-full bg-gray-200 flex items-center justify-center text-gray-600 mr-3 shrink-0">
-               📍
-             </div>
-             <div>
-               <p className="text-[10px] text-gray-400 uppercase font-bold">Ubicación</p>
-               <p className="text-gray-800 font-medium text-sm">{person.ubicacion}</p>
-             </div>
-           </div>
+          {/* CORREO (Barra completa) */}
+          <a href={`mailto:${person.correo}`} className="flex items-center p-3 bg-white border border-gray-200 rounded-xl hover:border-red-800 transition-all group">
+            <div className="w-8 h-8 rounded-full flex items-center justify-center text-white mr-3 shadow-sm shrink-0" style={{ backgroundColor: COLORS.guinda }}>
+              ✉️
+            </div>
+            <div className="overflow-hidden">
+              <p className="text-[10px] text-gray-400 uppercase font-bold">Correo Institucional</p>
+              <p className="text-gray-800 font-medium truncate group-hover:text-red-900 text-sm">{person.correo}</p>
+            </div>
+          </a>
+
+          {/* UBICACIÓN */}
+          <a
+            href={person.link_mapa || `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(person.ubicacion)}`}
+            target="_blank"
+            rel="noreferrer"
+            className="flex items-center p-3 bg-white border border-gray-200 rounded-xl hover:border-blue-500 hover:shadow-md transition-all group cursor-pointer"
+          >
+            <div className="w-8 h-8 rounded-full bg-gray-200 flex items-center justify-center text-gray-600 mr-3 shrink-0 group-hover:bg-blue-100 group-hover:text-blue-600 transition-colors">
+              📍
+            </div>
+            <div>
+              <p className="text-[10px] text-gray-400 uppercase font-bold group-hover:text-blue-600 transition-colors">Ubicación (Ver Mapa)</p>
+              <p className="text-gray-800 font-medium text-sm group-hover:text-blue-800 transition-colors">
+                {person.ubicacion}
+              </p>
+            </div>
+          </a>
         </div>
 
         {/* Footer */}
         <div className="p-4 bg-gray-100 text-center border-t border-gray-200">
-           <Link to="/" className="text-xs font-bold text-gray-500 hover:text-green-800 transition-colors">
-             ← Volver al Directorio
-           </Link>
+          <Link to="/" className="text-xs font-bold text-gray-500 hover:text-green-800 transition-colors">
+            ← Volver al Directorio
+          </Link>
         </div>
       </div>
-      
+
       <div className="mt-8 opacity-50 grayscale flex gap-4">
         <span className="text-xs font-bold text-gray-500">IMSS BIENESTAR 2026</span>
       </div>
