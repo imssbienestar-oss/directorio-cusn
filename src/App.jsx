@@ -122,6 +122,7 @@ function Directorio() {
 function PerfilFuncionario() {
   const { slug } = useParams();
   const person = personalData.find(p => p.slug === slug);
+  const [showQr, setShowQr] = useState(false);
 
   if (!person) return <div className="p-10 text-center text-red-800 font-bold">Funcionario no encontrado.</div>;
 
@@ -147,6 +148,11 @@ END:VCARD`;
     document.body.removeChild(link);
   };
 
+  const copiarEnlace = () => {
+    navigator.clipboard.writeText(window.location.href);
+    alert("¡Enlace copiado al portapapeles!");
+  };
+
   return (
     <div className="min-h-screen flex flex-col items-center justify-center p-4 bg-gray-100 relative">
 
@@ -159,6 +165,15 @@ END:VCARD`;
         <div className="h-32 relative overflow-hidden" style={{ backgroundColor: COLORS.verde }}>
           <div className="absolute -right-10 -top-10 w-40 h-40 rounded-full opacity-20" style={{ backgroundColor: COLORS.dorado }}></div>
           <div className="absolute left-4 top-4 text-white/90 text-sm font-light tracking-widest">TARJETA DIGITAL</div>
+          <button 
+             onClick={() => setShowQr(true)}
+             className="absolute right-4 top-4 bg-white/20 hover:bg-white/40 text-white p-2 rounded-full transition-all"
+             title="Mostrar QR para compartir"
+           >
+             <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v1m6 11h2m-6 0h-2v4h2v-4zM5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4" />
+             </svg>
+           </button>
         </div>
 
         {/* Foto y Nombre */}
@@ -197,6 +212,17 @@ END:VCARD`;
           >
             💾 Guardar Contacto
           </button>
+
+          {person.cv && (
+             <a 
+               href={person.cv} 
+               target="_blank" 
+               rel="noreferrer"
+               className="block w-full text-center text-xs font-bold text-gray-500 hover:text-gray-800 hover:underline py-1"
+             >
+               📄 Ver Semblanza Curricular (PDF)
+             </a>
+           )}
 
           <div className="grid grid-cols-2 gap-3 pt-2">
             {/* 2. WHATSAPP (Si tienes el dato en el JSON) */}
@@ -249,6 +275,36 @@ END:VCARD`;
           </Link>
         </div>
       </div>
+
+      {showQr && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4 animate-fade-in">
+          <div className="bg-white rounded-2xl p-6 max-w-sm w-full text-center shadow-2xl relative">
+            <button 
+              onClick={() => setShowQr(false)}
+              className="absolute top-4 right-4 text-gray-400 hover:text-gray-800 text-xl"
+            >✕</button>
+            
+            <h3 className="text-lg font-bold text-gray-800 mb-2">Compartir Perfil</h3>
+            <p className="text-sm text-gray-500 mb-6">Escanea para guardar el contacto</p>
+            
+            <div className="bg-white p-4 rounded-xl border-2 border-dashed border-gray-300 inline-block mb-6">
+              {/* EL CÓDIGO QR SE GENERA AQUÍ AUTOMÁTICAMENTE */}
+              <QRCode 
+                value={window.location.href} 
+                size={180}
+                fgColor={COLORS.guinda} // El QR será color Guinda Institucional
+              />
+            </div>
+
+            <button 
+              onClick={copiarEnlace}
+              className="w-full py-3 bg-gray-100 text-gray-700 rounded-xl font-bold hover:bg-gray-200 transition-colors flex items-center justify-center gap-2"
+            >
+              🔗 Copiar Enlace
+            </button>
+          </div>
+        </div>
+      )}
 
       <div className="mt-8 opacity-50 grayscale flex gap-4">
         <span className="text-xs font-bold text-gray-500">IMSS BIENESTAR 2026</span>
