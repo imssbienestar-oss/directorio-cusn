@@ -149,10 +149,28 @@ END:VCARD`;
     document.body.removeChild(link);
   };
 
-  const copiarEnlace = () => {
-    navigator.clipboard.writeText(window.location.href);
-    alert("¡Enlace copiado al portapapeles!");
+  const compartirPerfil = async () => {
+    const shareData = {
+      title: `Tarjeta Digital: ${person.nombre} ${person.apellidos}`,
+      text: `Te comparto el contacto oficial de ${person.nombre} ${person.apellidos} - IMSS Bienestar`,
+      url: window.location.href,
+    };
+
+    // Verificamos si el navegador soporta compartir nativo (Celulares)
+    if (navigator.share) {
+      try {
+        await navigator.share(shareData);
+      } catch (err) {
+        console.log('Cancelado por el usuario');
+      }
+    } else {
+      // Fallback para PC de escritorio: Copiar al portapapeles
+      navigator.clipboard.writeText(window.location.href);
+      alert("Enlace copiado al portapapeles (Tu dispositivo no tiene menú de compartir)");
+    }
   };
+
+
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center p-4 bg-gray-100 relative">
@@ -293,15 +311,19 @@ END:VCARD`;
               <QRCode 
                 value={window.location.href} 
                 size={180}
-                fgColor="#000000" // El QR será color Guinda Institucional
+                fgColor="#000000" 
               />
             </div>
 
             <button 
-              onClick={copiarEnlace}
-              className="w-full py-3 bg-gray-100 text-gray-700 rounded-xl font-bold hover:bg-gray-200 transition-colors flex items-center justify-center gap-2"
+              onClick={compartirPerfil}
+              className="w-full py-3 bg-blue-600 text-white rounded-xl font-bold hover:bg-blue-700 transition-colors flex items-center justify-center gap-2 shadow-md"
             >
-              🔗 Copiar Enlace
+              {/* Icono de compartir genérico */}
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" />
+              </svg>
+              Compartir Tarjeta
             </button>
           </div>
         </div>
