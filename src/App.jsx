@@ -313,7 +313,7 @@ END:VCARD`;
                 size={180}
                 fgColor="#000000"
                 bgColor="#FFFFFF"
-                level="M"
+                level="Q"
               />
             </div>
 
