@@ -189,8 +189,8 @@ END:VCARD`;
              className="absolute right-4 top-4 bg-white/20 hover:bg-white/40 text-white p-2 rounded-full transition-all"
              title="Mostrar QR para compartir"
            >
-             <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v1m6 11h2m-6 0h-2v4h2v-4zM5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4" />
+             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+               <path strokeLinecap="round" strokeLinejoin="round" d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5m-13.5-9L12 3m0 0 4.5 4.5M12 3v13.5" />
              </svg>
            </button>
         </div>
@@ -311,7 +311,9 @@ END:VCARD`;
               <QRCode 
                 value={window.location.href} 
                 size={180}
-                fgColor="#000000" 
+                fgColor="#000000"
+                bgColor="#FFFFFF"
+                level="M"
               />
             </div>
 
