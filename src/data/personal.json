@@ -27,5 +27,19 @@
     "correo": "ned.romero@imssbienestar.gob.mx",
     "link_mapa": "https://maps.app.goo.gl/GoVtqX5uj4LJmfpb7",
     "ubicacion": "Av. Insurgentes Centro 1940, Florida, Álvaro Obregón, 01020 Ciudad de México, CDMX, Piso 3"
+  },
+
+  {
+    "id": 3,
+    "slug": "said-vazquez",
+    "nombre": "Dr. Said",
+    "apellidos": "Vázquez Valle",
+    "puesto": "Titular de la Coordinación de Unidades de Segundo Nivel",
+    "area": "Coordinación Unidades Segundo Nivel",
+    "foto": "https://ui-avatars.com/api/?name=Said+Vazquez&background=9D2449&color=fff",
+    "telefono": "55-2573-6884",
+    "correo": "said.vazquez@imssbienestar.gob.mx",
+    "link_mapa": "https://maps.app.goo.gl/GoVtqX5uj4LJmfpb7",
+    "ubicacion": "Av. Insurgentes Centro 1940, Florida, Álvaro Obregón, 01020 Ciudad de México, CDMX, Piso 3"
   }
 ]
