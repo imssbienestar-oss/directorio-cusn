@@ -187,7 +187,7 @@ END:VCARD`;
            <div className="w-full h-14 flex items-center justify-between px-4 relative z-20" style={{ backgroundColor: COLORS.guinda }}>
               {/* AQUÍ VA TU LOGO (Asegúrate de tener la imagen en public) */}
               <img 
-                src="/fotos/logo_tarjeta.jpeg" /* <--- Cambia esto por la ruta de tu logo blanco */
+                src="/fotos/gobierno.png" /* <--- Cambia esto por la ruta de tu logo blanco */
                 alt="Logo Institucional" 
                 className="h-8 object-contain"
               />
