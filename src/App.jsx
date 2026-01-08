@@ -181,18 +181,34 @@ END:VCARD`;
       <div className="bg-white w-full max-w-sm shadow-2xl rounded-2xl overflow-hidden z-10 relative animate-fade-in-up">
 
         {/* Cabecera */}
-        <div className="h-32 relative overflow-hidden" style={{ backgroundColor: COLORS.verde }}>
-          <div className="absolute -right-10 -top-10 w-40 h-40 rounded-full opacity-20" style={{ backgroundColor: COLORS.dorado }}></div>
-          <div className="absolute left-4 top-4 text-white/90 text-sm font-light tracking-widest">TARJETA DIGITAL</div>
-          <button 
-             onClick={() => setShowQr(true)}
-             className="absolute right-4 top-4 bg-white/20 hover:bg-white/40 text-white p-2 rounded-full transition-all"
-             title="Mostrar QR para compartir"
-           >
-             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
-               <path strokeLinecap="round" strokeLinejoin="round" d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5m-13.5-9L12 3m0 0 4.5 4.5M12 3v13.5" />
-             </svg>
-           </button>
+        <div className="relative overflow-hidden">
+           
+           {/* 1. Franja Guinda Superior (Para el Logo) */}
+           <div className="w-full h-14 flex items-center justify-between px-4 relative z-20" style={{ backgroundColor: COLORS.guinda }}>
+              {/* AQUÍ VA TU LOGO (Asegúrate de tener la imagen en public) */}
+              <img 
+                src="/fotos/gobierno.png" /* <--- Cambia esto por la ruta de tu logo blanco */
+                alt="Logo Institucional" 
+                className="h-8 object-contain"
+              />
+              
+              {/* Botón Compartir (Ahora alineado en la franja) */}
+              <button 
+                 onClick={() => setShowQr(true)}
+                 className="text-white p-2 rounded-full hover:bg-white/10 transition-all"
+                 title="Compartir Tarjeta"
+               >
+                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+                   <path strokeLinecap="round" strokeLinejoin="round" d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5m-13.5-9L12 3m0 0 4.5 4.5M12 3v13.5" />
+                 </svg>
+               </button>
+           </div>
+
+           {/* 2. Área Verde (Resto de la decoración) */}
+           <div className="h-20 relative" style={{ backgroundColor: COLORS.verde }}>
+               {/* Decoración dorada */}
+               <div className="absolute -right-10 -top-10 w-40 h-40 rounded-full opacity-20" style={{ backgroundColor: COLORS.dorado }}></div>
+           </div>
         </div>
 
         {/* Foto y Nombre */}
