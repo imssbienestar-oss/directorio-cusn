@@ -9,7 +9,8 @@ const COLORS = {
   verde: '#10312B',     // Barra navegación "IMSS Bienestar"
   dorado: '#DDC9A3',    // Detalles y separadores
   crema: '#FDFBF7',     // Fondo suave
-  texto: '#333333'
+  texto: '#333333',
+  blanco: '#fffff'
 };
 
 // --- HEADER ---
@@ -181,7 +182,7 @@ END:VCARD`;
         <div className="relative overflow-hidden">
            
            {/* 1. Franja Guinda Superior (Para el Logo) */}
-           <div className="w-full h-14 flex items-center justify-between px-4 relative z-20" style={{ backgroundColor: COLORS.guinda }}>
+           <div className="w-full h-14 flex items-center justify-between px-4 relative z-20" style={{ backgroundColor: COLORS.blanco }}>
               
               <img 
                 src="/fotos/logo_gobierno_imb.png" 
