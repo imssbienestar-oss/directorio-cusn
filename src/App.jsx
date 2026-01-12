@@ -32,7 +32,6 @@ const HeaderOficial = () => (
       <div className="absolute top-0 right-0 w-64 h-full opacity-10 bg-white transform skew-x-12"></div>
 
       <div className="container mx-auto flex items-center gap-4">
-        {/* Logo Simulado (Texto por ahora) */}
         <div className="border-r border-white/20 pr-4 mr-2">
           <h1 className="text-white font-bold text-2xl leading-none tracking-tight">IMSS</h1>
           <p className="text-white text-[10px] tracking-widest">BIENESTAR</p>
@@ -72,7 +71,6 @@ function Directorio() {
               placeholder="Escribe el nombre o apellido..."
               className="w-full p-4 pl-12 border-2 border-gray-200 rounded-lg shadow-sm focus:outline-none transition-colors text-lg"
               style={{ caretColor: COLORS.verde }} // Cursor verde
-              // Truco para cambiar el color del borde al enfocar usando style dinámico
               onFocus={(e) => e.target.style.borderColor = COLORS.verde}
               onBlur={(e) => e.target.style.borderColor = '#e5e7eb'}
               onChange={(e) => setSearchTerm(e.target.value)}
@@ -156,7 +154,6 @@ END:VCARD`;
       url: window.location.href,
     };
 
-    // Verificamos si el navegador soporta compartir nativo (Celulares)
     if (navigator.share) {
       try {
         await navigator.share(shareData);
@@ -164,7 +161,7 @@ END:VCARD`;
         console.log('Cancelado por el usuario');
       }
     } else {
-      // Fallback para PC de escritorio: Copiar al portapapeles
+      // Fallback para PC de escritorio
       navigator.clipboard.writeText(window.location.href);
       alert("Enlace copiado al portapapeles (Tu dispositivo no tiene menú de compartir)");
     }
@@ -185,14 +182,14 @@ END:VCARD`;
            
            {/* 1. Franja Guinda Superior (Para el Logo) */}
            <div className="w-full h-14 flex items-center justify-between px-4 relative z-20" style={{ backgroundColor: COLORS.guinda }}>
-              {/* AQUÍ VA TU LOGO (Asegúrate de tener la imagen en public) */}
+              
               <img 
-                src="/fotos/gobierno.png" /* <--- Cambia esto por la ruta de tu logo blanco */
+                src="/fotos/logo_gobierno_imb.png" 
                 alt="Logo Institucional" 
                 className="h-8 object-contain"
               />
               
-              {/* Botón Compartir (Ahora alineado en la franja) */}
+              {/* Botón Compartir */}
               <button 
                  onClick={() => setShowQr(true)}
                  className="text-white p-2 rounded-full hover:bg-white/10 transition-all"
@@ -204,7 +201,7 @@ END:VCARD`;
                </button>
            </div>
 
-           {/* 2. Área Verde (Resto de la decoración) */}
+           {/* 2. Área Verde */}
            <div className="h-20 relative" style={{ backgroundColor: COLORS.verde }}>
                {/* Decoración dorada */}
                <div className="absolute -right-10 -top-10 w-40 h-40 rounded-full opacity-20" style={{ backgroundColor: COLORS.dorado }}></div>
@@ -230,7 +227,7 @@ END:VCARD`;
             </span>
             <p className="text-sm text-gray-500 mt-3 font-medium">{person.area}</p>
 
-            {/* NUEVO: Horario de Atención */}
+            {/* Horario de Atención */}
             <div className="mt-3 text-xs text-gray-400 bg-gray-50 py-1 px-3 rounded-full inline-flex items-center gap-1">
               🕒 Lun-Vie: 09:00 - 19:00 hrs
             </div>
@@ -240,7 +237,7 @@ END:VCARD`;
         {/* --- BOTONES DE ACCIÓN --- */}
         <div className="p-6 space-y-3 bg-gray-50 border-t border-gray-100">
 
-          {/* 1. BOTÓN ESTRELLA: GUARDAR CONTACTO */}
+          {/* 1. GUARDAR CONTACTO */}
           <button
             onClick={descargarVCard}
             className="w-full py-3 bg-gray-900 text-white rounded-xl shadow-lg hover:bg-black transition-all flex items-center justify-center gap-2 font-bold transform hover:-translate-y-1"
@@ -260,7 +257,7 @@ END:VCARD`;
            )}
 
           <div className="grid grid-cols-2 gap-3 pt-2">
-            {/* 2. WHATSAPP (Si tienes el dato en el JSON) */}
+            {/* 2. WHATSAPP */}
             <a href={`https://wa.me/52${person.telefono.replace(/\D/g, '')}`} target="_blank" rel="noreferrer" className="flex flex-col items-center justify-center p-3 bg-white border border-gray-200 rounded-xl hover:border-green-500 hover:text-green-600 transition-all shadow-sm">
               <span className="text-2xl mb-1">💬</span>
               <span className="text-[10px] font-bold uppercase">WhatsApp</span>
@@ -273,7 +270,7 @@ END:VCARD`;
             </a>
           </div>
 
-          {/* CORREO (Barra completa) */}
+          {/* CORREO */}
           <a href={`mailto:${person.correo}`} className="flex items-center p-3 bg-white border border-gray-200 rounded-xl hover:border-red-800 transition-all group">
             <div className="w-8 h-8 rounded-full flex items-center justify-center text-white mr-3 shadow-sm shrink-0" style={{ backgroundColor: COLORS.guinda }}>
               ✉️
@@ -323,7 +320,7 @@ END:VCARD`;
             <p className="text-sm text-gray-500 mb-6">Escanea para abrir el contacto</p>
             
             <div className="bg-white p-4 rounded-xl border-2 border-dashed border-gray-300 inline-block mb-6">
-              {/* EL CÓDIGO QR SE GENERA AQUÍ AUTOMÁTICAMENTE */}
+              {/* CÓDIGO QR */}
               <QRCode 
                 value={window.location.href} 
                 size={180}
@@ -337,7 +334,7 @@ END:VCARD`;
               onClick={compartirPerfil}
               className="w-full py-3 bg-blue-600 text-white rounded-xl font-bold hover:bg-blue-700 transition-colors flex items-center justify-center gap-2 shadow-md"
             >
-              {/* Icono de compartir genérico */}
+              {/* Icono de compartir */}
               <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" />
               </svg>
