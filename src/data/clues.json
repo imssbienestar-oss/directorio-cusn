@@ -1,30 +1,5577 @@
-[
-  {
-    "clues": "GTSSA002030",
-    "nombre": "HOSPITAL COMUNITARIO APASEO EL ALTO",
-    "municipio": "APASEO EL ALTO",
-    "jurisdiccion": "JURISDICCIÓN SANITARIA III",
-    "nivel": "Av. 16 de Septiembre S/N"
-  },
-  {
-    "clues": "GTSSA002042",
-    "nombre": "HOSPITAL GENERAL DE CELAYA",
-    "municipio": "CELAYA",
-    "jurisdiccion": "JURISDICCIÓN SANITARIA III",
-    "nivel": "Eje Vial Norponiente #120"
-  },
-  {
-    "clues": "GTSSA015005",
-    "nombre": "UMAPS SAN JUAN DE LA VEGA",
-    "municipio": "CELAYA",
-    "jurisdiccion": "JURISDICCIÓN SANITARIA III",
-    "nivel": "Calle Hidalgo #45"
-  },
-  {
-    "clues": "PLIMB006885", 
-    "nombre": "HOSPITAL GENERAL HUAUCHINANGO",
-    "municipio": "HUAUCHINANGO",
-    "jurisdiccion": "HUAUCHINANGO",
-    "nivel": "SEGUNDO NIVEL"
-  }
+[{
+  "clues": "BCIMB000010",
+  "entidad": "BAJA CALIFORNIA",
+  "nombre": "HOSPITAL GENERAL DE ENSENADA",
+  "municipio": "ENSENADA",
+  "jurisdiccion": "ENSENADA",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "BCIMB000355",
+  "entidad": "BAJA CALIFORNIA",
+  "nombre": "HOSPITAL GENERAL DE MEXICALI",
+  "municipio": "MEXICALI",
+  "jurisdiccion": "MEXICALI",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "BCIMB000623",
+  "entidad": "BAJA CALIFORNIA",
+  "nombre": "HOSPITAL COMUNITARIO SAN FELIPE",
+  "municipio": "SAN FELIPE",
+  "jurisdiccion": "MEXICALI",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "BCIMB000676",
+  "entidad": "BAJA CALIFORNIA",
+  "nombre": "HOSPITAL GENERAL DE TECATE",
+  "municipio": "TECATE",
+  "jurisdiccion": "TIJUANA",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "BCIMB000734",
+  "entidad": "BAJA CALIFORNIA",
+  "nombre": "HOSPITAL GENERAL TIJUANA",
+  "municipio": "TIJUANA",
+  "jurisdiccion": "TIJUANA",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "BCIMB001282",
+  "entidad": "BAJA CALIFORNIA",
+  "nombre": "CLINICA DE ESPECIALIDADES DENTALES EL FLORIDO",
+  "municipio": "TIJUANA",
+  "jurisdiccion": "TIJUANA",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "BCIMB001352",
+  "entidad": "BAJA CALIFORNIA",
+  "nombre": "HOSPITAL MATERNO INFANTIL DE TIJUANA",
+  "municipio": "TIJUANA",
+  "jurisdiccion": "TIJUANA",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "BCIMB001422",
+  "entidad": "BAJA CALIFORNIA",
+  "nombre": "HOSPITAL GENERAL PLAYAS DE ROSARITO",
+  "municipio": "PLAYAS DE ROSARITO",
+  "jurisdiccion": "TIJUANA",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "BCIMB001574",
+  "entidad": "BAJA CALIFORNIA",
+  "nombre": "UNIDAD DE ESPECIALIDADES MEDICAS DE BC ENSENADA (UNEME - CIRUGÍA AMBULATORIA)",
+  "municipio": "ENSENADA",
+  "jurisdiccion": "ENSENADA",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "BCIMB001702",
+  "entidad": "BAJA CALIFORNIA",
+  "nombre": "HOSPITAL MATERNO INFANTIL",
+  "municipio": "MEXICALI",
+  "jurisdiccion": "MEXICALI",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "BCIMB001726",
+  "entidad": "BAJA CALIFORNIA",
+  "nombre": "UNEME DE ONCOLOGÍA",
+  "municipio": "MEXICALI",
+  "jurisdiccion": "MEXICALI",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "BCIMB001784",
+  "entidad": "BAJA CALIFORNIA",
+  "nombre": "UNIDAD QUIRURGICA AMBULATORIA DE MEXICALI",
+  "municipio": "MEXICALI",
+  "jurisdiccion": "MEXICALI",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "BCIMB001796",
+  "entidad": "BAJA CALIFORNIA",
+  "nombre": "HOSPITAL GENERAL TIJUANA ZONA ESTE",
+  "municipio": "TIJUANA",
+  "jurisdiccion": "TIJUANA",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "BSIMB000346",
+  "entidad": "BAJA CALIFORNIA SUR",
+  "nombre": "HOSPITAL GENERAL RAÚL A. CARRILLO",
+  "municipio": "LOS CABOS",
+  "jurisdiccion": "LOS CABOS",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "BSIMB000503",
+  "entidad": "BAJA CALIFORNIA SUR",
+  "nombre": "HOSPITAL COMUNITARIO DE LORETO",
+  "municipio": "LORETO",
+  "jurisdiccion": "COMONDÚ",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "BSIMB000520",
+  "entidad": "BAJA CALIFORNIA SUR",
+  "nombre": "UNEME HEMODIÁLISIS",
+  "municipio": "LA PAZ",
+  "jurisdiccion": "LA PAZ",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "BSIMB000643",
+  "entidad": "BAJA CALIFORNIA SUR",
+  "nombre": "HOSPITAL GENERAL DE CABO SAN LUCAS",
+  "municipio": "LOS CABOS",
+  "jurisdiccion": "LOS CABOS",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "BSIMB000672",
+  "entidad": "BAJA CALIFORNIA SUR",
+  "nombre": "B. HOSPITAL GENERAL CON ESPECIALIDADES JUAN MARÍA DE SALVATIERRA",
+  "municipio": "LA PAZ",
+  "jurisdiccion": "LA PAZ",
+  "nivel": "TERCER NIVEL"
+},
+{
+  "clues": "BSIMB000754",
+  "entidad": "BAJA CALIFORNIA SUR",
+  "nombre": "HOSPITAL GENERAL DE CIUDAD CONSTITUCIÓN",
+  "municipio": "COMONDU",
+  "jurisdiccion": "COMONDÚ",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "BSIMB000766",
+  "entidad": "BAJA CALIFORNIA SUR",
+  "nombre": "CENTRO ESTATAL DE ONCOLOGÍA 'DR. RUBÉN CARDOZA MACÍAS'",
+  "municipio": "LA PAZ",
+  "jurisdiccion": "LA PAZ",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "BSIMB000783",
+  "entidad": "BAJA CALIFORNIA SUR",
+  "nombre": "HOSPITAL PSIQUIÁTRICO DE BAJA CALIFORNIA SUR",
+  "municipio": "LA PAZ",
+  "jurisdiccion": "LA PAZ",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "BSIMB000795",
+  "entidad": "BAJA CALIFORNIA SUR",
+  "nombre": "HOSPITAL MODULAR MÓVIL DE BAJA CALIFORNIA SUR",
+  "municipio": "LOS CABOS",
+  "jurisdiccion": "LOS CABOS",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "BSIMB000812",
+  "entidad": "BAJA CALIFORNIA SUR",
+  "nombre": "HOSPITAL GENERAL DE SANTA ROSALÍA",
+  "municipio": "MULEGE",
+  "jurisdiccion": "MULEGÉ",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "CCIMB000073",
+  "entidad": "CAMPECHE",
+  "nombre": "HOSPITAL DR. MANUEL CAMPOS",
+  "municipio": "CAMPECHE",
+  "jurisdiccion": "CAMPECHE",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "CCIMB000143",
+  "entidad": "CAMPECHE",
+  "nombre": "HOSPITAL PSIQUIÁTRICO DE CAMPECHE",
+  "municipio": "CAMPECHE",
+  "jurisdiccion": "CAMPECHE",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "CCIMB000172",
+  "entidad": "CAMPECHE",
+  "nombre": "H.G. MA. SOCORRO QUIROGA AGUILAR",
+  "municipio": "CARMEN",
+  "jurisdiccion": "CARMEN",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "CCIMB000266",
+  "entidad": "CAMPECHE",
+  "nombre": "HOSPITAL COMUNITARIO DE CHAMPOTÓN 'DR.JOSÉ E. NAZAR RAIDEN'",
+  "municipio": "CHAMPOTON",
+  "jurisdiccion": "CAMPECHE",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "CCIMB000674",
+  "entidad": "CAMPECHE",
+  "nombre": "HOSPITAL COMUNITARIO DE CANDELARIA",
+  "municipio": "CANDELARIA",
+  "jurisdiccion": "ESCÁRCEGA",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "CCIMB000831",
+  "entidad": "CAMPECHE",
+  "nombre": "HOSPITAL COMUNITARIO DE HOPELCHEN",
+  "municipio": "HOPELCHEN",
+  "jurisdiccion": "CAMPECHE",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "CCIMB000942",
+  "entidad": "CAMPECHE",
+  "nombre": "HOSPITAL DE PALIZADA",
+  "municipio": "PALIZADA",
+  "jurisdiccion": "CARMEN",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "CCIMB000966",
+  "entidad": "CAMPECHE",
+  "nombre": "HOSPITAL DE SABANCUY",
+  "municipio": "CARMEN",
+  "jurisdiccion": "CARMEN",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "CCIMB001164",
+  "entidad": "CAMPECHE",
+  "nombre": "HOSPITAL INTEGRAL XPUJIL",
+  "municipio": "CALAKMUL",
+  "jurisdiccion": "ESCÁRCEGA",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "CCIMB001362",
+  "entidad": "CAMPECHE",
+  "nombre": "HOSPITAL INTEGRAL DE CALKINÍ",
+  "municipio": "CALKINI",
+  "jurisdiccion": "CAMPECHE",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "CCIMB001432",
+  "entidad": "CAMPECHE",
+  "nombre": "CEO: CENTRO ESTATAL DE ONCOLOGÍA DE CAMPECHE",
+  "municipio": "CAMPECHE",
+  "jurisdiccion": "CAMPECHE",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "CCIMB001526",
+  "entidad": "CAMPECHE",
+  "nombre": "HOSPITAL GENERAL DE ESPECIALIDADES DR. JAVIER BUENFIL OSORIO",
+  "municipio": "CAMPECHE",
+  "jurisdiccion": "CAMPECHE",
+  "nivel": "TERCER NIVEL"
+},
+{
+  "clues": "CCIMB001531",
+  "entidad": "CAMPECHE",
+  "nombre": "HOSPITAL GENERAL DE ESCARCEGA DR. JANELL ROMERO AGUILAR",
+  "municipio": "ESCARCEGA",
+  "jurisdiccion": "ESCÁRCEGA",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "CCIMB001543",
+  "entidad": "CAMPECHE",
+  "nombre": "UNEME DEDICAM",
+  "municipio": "CAMPECHE",
+  "jurisdiccion": "CAMPECHE",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "CMIMB000103",
+  "entidad": "COLIMA",
+  "nombre": "HOSPITAL REGIONAL UNIVERSITARIO",
+  "municipio": "COLIMA",
+  "jurisdiccion": "COLIMA",
+  "nivel": "TERCER NIVEL"
+},
+{
+  "clues": "CMIMB000470",
+  "entidad": "COLIMA",
+  "nombre": "HOSPITAL GENERAL IXTLÁHUACAN",
+  "municipio": "IXTLAHUACAN",
+  "jurisdiccion": "TECOMÁN",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "CMIMB000844",
+  "entidad": "COLIMA",
+  "nombre": "HOSPITAL GENERAL TECOMÁN DR. JOSÉ F. RIVAS GUZMÁN",
+  "municipio": "TECOMAN",
+  "jurisdiccion": "TECOMÁN",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "CMIMB001141",
+  "entidad": "COLIMA",
+  "nombre": "HOSPITAL GENERAL DE MANZANILLO",
+  "municipio": "MANZANILLO",
+  "jurisdiccion": "MANZANILLO",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "CMIMB001153",
+  "entidad": "COLIMA",
+  "nombre": "HOSPITAL MATERNO INFANTIL",
+  "municipio": "VILLA DE ALVAREZ",
+  "jurisdiccion": "COLIMA",
+  "nivel": "TERCER NIVEL"
+},
+{
+  "clues": "CMIMB001310",
+  "entidad": "COLIMA",
+  "nombre": "CLÍNICA DE ATENCIÓN RESIDENCIAL EN ADICCIONES VARONIL",
+  "municipio": "TECOMAN",
+  "jurisdiccion": "TECOMÁN",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "CMIMB001404",
+  "entidad": "COLIMA",
+  "nombre": "CLÍNICA DE ATENCIÓN RESIDENCIAL EN ADICCIONES FEMENIL",
+  "municipio": "MANZANILLO",
+  "jurisdiccion": "MANZANILLO",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "CMIMB001445",
+  "entidad": "COLIMA",
+  "nombre": "INSTITUTO ESTATAL DE CANCEROLOGÍA LIC. CARLOS DE LA MADRID VIRGEN",
+  "municipio": "COLIMA",
+  "jurisdiccion": "COLIMA",
+  "nivel": "TERCER NIVEL"
+},
+{
+  "clues": "CMIMB001462",
+  "entidad": "COLIMA",
+  "nombre": "CENTRO ESTATAL DE HEMODIALISIS",
+  "municipio": "COLIMA",
+  "jurisdiccion": "COLIMA",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "CSIMB000023",
+  "entidad": "CHIAPAS",
+  "nombre": "H. B. C. MANUEL VELASCO SUAREZ ACALA",
+  "municipio": "ACALA",
+  "jurisdiccion": "TUXTLA GUTIERREZ",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "CSIMB000151",
+  "entidad": "CHIAPAS",
+  "nombre": "H. B. C. DE ÁNGEL ALBINO CORZO",
+  "municipio": "ANGEL ALBINO CORZO",
+  "jurisdiccion": "VILLAFLORES",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "CSIMB000175",
+  "entidad": "CHIAPAS",
+  "nombre": "HOSPITAL GENERAL JUÁREZ ARRIAGA",
+  "municipio": "ARRIAGA",
+  "jurisdiccion": "TONALÁ",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "CSIMB000373",
+  "entidad": "CHIAPAS",
+  "nombre": "H. B. C. DE CINTALAPA DE FIGUEROA",
+  "municipio": "CINTALAPA DE FIGUEROA",
+  "jurisdiccion": "TUXTLA GUTIERREZ",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "CSIMB000460",
+  "entidad": "CHIAPAS",
+  "nombre": "HOSPITAL GENERAL MARÍA IGNACIA GANDULFO COMITAN",
+  "municipio": "COMITAN DE DOMINGUEZ",
+  "jurisdiccion": "COMITÁN",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "CSIMB001073",
+  "entidad": "CHIAPAS",
+  "nombre": "HOSPITAL GENERAL HUIXTLA",
+  "municipio": "HUIXTLA",
+  "jurisdiccion": "TAPACHULA",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "CSIMB001300",
+  "entidad": "CHIAPAS",
+  "nombre": "H. B. C. DE LAS MARGARITAS",
+  "municipio": "LAS MARGARITAS",
+  "jurisdiccion": "COMITÁN",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "CSIMB001732",
+  "entidad": "CHIAPAS",
+  "nombre": "HOSPITAL GENERAL PALENQUE",
+  "municipio": "PALENQUE",
+  "jurisdiccion": "PALENQUE",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "CSIMB001884",
+  "entidad": "CHIAPAS",
+  "nombre": "HOSPITAL GENERAL PICHUCALCO",
+  "municipio": "PICHUCALCO",
+  "jurisdiccion": "PICHUCALCO",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "CSIMB002152",
+  "entidad": "CHIAPAS",
+  "nombre": "HOSPITAL BÁSICO COMUNITARIO SALTO DE AGUA",
+  "municipio": "SALTO DE AGUA",
+  "jurisdiccion": "PALENQUE",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "CSIMB002234",
+  "entidad": "CHIAPAS",
+  "nombre": "HOSPITAL DE LA MUJER SAN CRISTÓBAL DE LAS CASAS",
+  "municipio": "SAN CRISTOBAL DE LAS CASAS",
+  "jurisdiccion": "SAN CRISTÓBAL DE LAS CASAS",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "CSIMB002683",
+  "entidad": "CHIAPAS",
+  "nombre": "H. B. C. DE TILA",
+  "municipio": "TILA",
+  "jurisdiccion": "PALENQUE",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "CSIMB002753",
+  "entidad": "CHIAPAS",
+  "nombre": "HOSPITAL GENERAL DR. JUAN C. CORZO TONALÁ",
+  "municipio": "TONALA",
+  "jurisdiccion": "TONALÁ",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "CSIMB002980",
+  "entidad": "CHIAPAS",
+  "nombre": "HOSPITAL REGIONAL DR. RAFAEL PASCASIO GAMBOA TUXTLA",
+  "municipio": "TUXTLA GUTIERREZ",
+  "jurisdiccion": "TUXTLA GUTIERREZ",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "CSIMB003506",
+  "entidad": "CHIAPAS",
+  "nombre": "HOSPITAL REGIONAL DE ALTA ESPECIALIDAD CIUDAD SALUD",
+  "municipio": "TAPACHULA",
+  "jurisdiccion": "TAPACHULA",
+  "nivel": "TERCER NIVEL"
+},
+{
+  "clues": "CSIMB003511",
+  "entidad": "CHIAPAS",
+  "nombre": "HOSPITAL DE ESPECIALIDADES PEDIÁTRICAS",
+  "municipio": "TUXTLA GUTIERREZ",
+  "jurisdiccion": "TUXTLA GUTIERREZ",
+  "nivel": "TERCER NIVEL"
+},
+{
+  "clues": "CSIMB003605",
+  "entidad": "CHIAPAS",
+  "nombre": "UNIDAD DE ATENCIÓN A LA SALUD MENTAL SAN AGUSTÍN",
+  "municipio": "TUXTLA GUTIERREZ",
+  "jurisdiccion": "TUXTLA GUTIERREZ",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "CSIMB003622",
+  "entidad": "CHIAPAS",
+  "nombre": "HOSPITAL GENERAL DE REFORMA",
+  "municipio": "REFORMA",
+  "jurisdiccion": "PICHUCALCO",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "CSIMB003646",
+  "entidad": "CHIAPAS",
+  "nombre": "HOSPITAL BÁSICO COMUNITARIO 12 CAMAS 'BERRIOZABAL'",
+  "municipio": "BERRIOZABAL",
+  "jurisdiccion": "TUXTLA GUTIERREZ",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "CSIMB003675",
+  "entidad": "CHIAPAS",
+  "nombre": "HOSPITAL GENERAL YAJALÓN 'DR. JOSE MANUEL VELASCO SILES'",
+  "municipio": "YAJALON",
+  "jurisdiccion": "PALENQUE",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "CSIMB003680",
+  "entidad": "CHIAPAS",
+  "nombre": "HOSPITAL GENERAL DE TAPACHULA",
+  "municipio": "TAPACHULA",
+  "jurisdiccion": "TAPACHULA",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "CSIMB003692",
+  "entidad": "CHIAPAS",
+  "nombre": "HOSPITAL BASICO COMUNITARIO SIMOJOVEL",
+  "municipio": "SIMOJOVEL",
+  "jurisdiccion": "PICHUCALCO",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "CSIMB003704",
+  "entidad": "CHIAPAS",
+  "nombre": "HOSPITAL BÁSICO COMUNITARIO LAS ROSAS",
+  "municipio": "LAS ROSAS",
+  "jurisdiccion": "SAN CRISTÓBAL DE LAS CASAS",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "CSIMB003716",
+  "entidad": "CHIAPAS",
+  "nombre": "HOSPITAL BASICO COMUNITARIO DE CHIAPA DE CORZO",
+  "municipio": "CHIAPA DE CORZO",
+  "jurisdiccion": "TUXTLA GUTIERREZ",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "CSIMB003890",
+  "entidad": "CHIAPAS",
+  "nombre": "CLINICA PARA LA ATENCION DE PARTO HUMANIZADO PICHUCALCO",
+  "municipio": "PICHUCALCO",
+  "jurisdiccion": "PICHUCALCO",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "CSIMB003902",
+  "entidad": "CHIAPAS",
+  "nombre": "",
+  "municipio": "SAN CRISTOBAL DE LAS CASAS",
+  "jurisdiccion": "SAN CRISTÓBAL DE LAS CASAS",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "CSIMB003926",
+  "entidad": "CHIAPAS",
+  "nombre": "HOSPITAL BÁSICO COMUNITARIO DE AMATÁN",
+  "municipio": "AMATAN",
+  "jurisdiccion": "PICHUCALCO",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "CSIMB003943",
+  "entidad": "CHIAPAS",
+  "nombre": "CLÍNICA PARA LA ATENCIÓN DE PARTO HUMANIZADO",
+  "municipio": "TUXTLA GUTIERREZ",
+  "jurisdiccion": "TUXTLA GUTIERREZ",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "CSIMB003955",
+  "entidad": "CHIAPAS",
+  "nombre": "CLINICA DE LA MUJER Y PARTO HUMANIZADO",
+  "municipio": "HUIXTLA",
+  "jurisdiccion": "TAPACHULA",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "CSIMB003972",
+  "entidad": "CHIAPAS",
+  "nombre": "",
+  "municipio": "BOCHIL",
+  "jurisdiccion": "PICHUCALCO",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "CSIMB003984",
+  "entidad": "CHIAPAS",
+  "nombre": "",
+  "municipio": "COMITAN DE DOMINGUEZ",
+  "jurisdiccion": "COMITÁN",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "CSIMB003996",
+  "entidad": "CHIAPAS",
+  "nombre": "",
+  "municipio": "TONALA",
+  "jurisdiccion": "TONALÁ",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "CSIMB004001",
+  "entidad": "CHIAPAS",
+  "nombre": "",
+  "municipio": "TAPACHULA",
+  "jurisdiccion": "TAPACHULA",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "CSIMB004626",
+  "entidad": "CHIAPAS",
+  "nombre": "H. B. C. DEL PORVENIR",
+  "municipio": "EL PORVENIR",
+  "jurisdiccion": "MOTOZINTLA",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "CSIMB004631",
+  "entidad": "CHIAPAS",
+  "nombre": "H. B. C. DE REVOLUCIÓN MEXICANA",
+  "municipio": "VILLA CORZO",
+  "jurisdiccion": "VILLAFLORES",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "CSIMB004643",
+  "entidad": "CHIAPAS",
+  "nombre": "HOSPITAL BÁSICO COMUNITARIO, TAPILULA",
+  "municipio": "TAPILULA",
+  "jurisdiccion": "PICHUCALCO",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "CSIMB004713",
+  "entidad": "CHIAPAS",
+  "nombre": "H. B. C. DE LARRAINZAR",
+  "municipio": "LARRAINZAR",
+  "jurisdiccion": "SAN CRISTÓBAL DE LAS CASAS",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "CSIMB004725",
+  "entidad": "CHIAPAS",
+  "nombre": "H. B. C. DE SANTO DOMINGO",
+  "municipio": "OCOSINGO",
+  "jurisdiccion": "PALENQUE",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "CSIMB005483",
+  "entidad": "CHIAPAS",
+  "nombre": "H. B. C. DR. RAFAEL ALFARO GONZÁLEZ PIJIJIAPAN",
+  "municipio": "PIJIJIAPAN",
+  "jurisdiccion": "TONALÁ",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "CSIMB005495",
+  "entidad": "CHIAPAS",
+  "nombre": "H. B. C. DE TEOPISCA",
+  "municipio": "TEOPISCA",
+  "jurisdiccion": "SAN CRISTÓBAL DE LAS CASAS",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "CSIMB005500",
+  "entidad": "CHIAPAS",
+  "nombre": "HOSPITAL DE LAS CULTURAS SAN CRISTOBAL DE LAS CASAS",
+  "municipio": "SAN CRISTOBAL DE LAS CASAS",
+  "jurisdiccion": "SAN CRISTÓBAL DE LAS CASAS",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "CSIMB005512",
+  "entidad": "CHIAPAS",
+  "nombre": "HOSPITAL DE LA MUJER COMITÁN",
+  "municipio": "COMITAN DE DOMINGUEZ",
+  "jurisdiccion": "COMITÁN",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "CSIMB005524",
+  "entidad": "CHIAPAS",
+  "nombre": "H. B. C. DE FRONTERA COMALAPA",
+  "municipio": "FRONTERA COMALAPA",
+  "jurisdiccion": "COMITÁN",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "CSIMB005536",
+  "entidad": "CHIAPAS",
+  "nombre": "H. B. C. DE CHALCHIHUITÁN",
+  "municipio": "CHALCHIHUITAN",
+  "jurisdiccion": "SAN CRISTÓBAL DE LAS CASAS",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "CSIMB005582",
+  "entidad": "CHIAPAS",
+  "nombre": "HOSPITAL GENERAL BICENTENARIO VILLAFLORES",
+  "municipio": "VILLAFLORES",
+  "jurisdiccion": "VILLAFLORES",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "CSIMB005891",
+  "entidad": "CHIAPAS",
+  "nombre": "HOSPITAL BÁSICO COMUNITARIO OSTUACAN, CHIAPAS",
+  "municipio": "OSTUACAN",
+  "jurisdiccion": "PICHUCALCO",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "CSIMB006113",
+  "entidad": "CHIAPAS",
+  "nombre": "HOSPITAL BÁSICO COMUNITARIO DE OXCHUC",
+  "municipio": "OXCHUC",
+  "jurisdiccion": "SAN CRISTÓBAL DE LAS CASAS",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "CSIMB006125",
+  "entidad": "CHIAPAS",
+  "nombre": "H. B. C. DE SAN JUAN CHAMULA",
+  "municipio": "CHAMULA",
+  "jurisdiccion": "SAN CRISTÓBAL DE LAS CASAS",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "CSIMB006142",
+  "entidad": "CHIAPAS",
+  "nombre": "CLINICA PARA LA ATENCION DE PARTO HUMANIZADO PALENQUE",
+  "municipio": "PALENQUE",
+  "jurisdiccion": "PALENQUE",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "CSIMB006241",
+  "entidad": "CHIAPAS",
+  "nombre": "H. B. C. DE OCOSINGO",
+  "municipio": "OCOSINGO",
+  "jurisdiccion": "OCOSINGO",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "CSIMB006533",
+  "entidad": "CHIAPAS",
+  "nombre": "HOSPITAL CHIAPAS NOS UNE DR. JESUS GILBERTO GOMEZ MAZA",
+  "municipio": "TUXTLA GUTIERREZ",
+  "jurisdiccion": "TUXTLA GUTIERREZ",
+  "nivel": "TERCER NIVEL"
+},
+{
+  "clues": "DFIMB000026",
+  "entidad": "CIUDAD DE MEXICO",
+  "nombre": "HOSPITAL PEDIÁTRICO AZCAPOTZALCO",
+  "municipio": "AZCAPOTZALCO",
+  "jurisdiccion": "AZCAPOTZALCO",
+  "nivel": "TERCER NIVEL"
+},
+{
+  "clues": "DFIMB000031",
+  "entidad": "CIUDAD DE MEXICO",
+  "nombre": "HOSPITAL MATERNO INFANTIL DR. NICOLÁS M. CEDILLO",
+  "municipio": "AZCAPOTZALCO",
+  "jurisdiccion": "AZCAPOTZALCO",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "DFIMB000183",
+  "entidad": "CIUDAD DE MEXICO",
+  "nombre": "HOSPITAL PEDIÁTRICO COYOACÁN",
+  "municipio": "COYOACAN",
+  "jurisdiccion": "COYOACÁN",
+  "nivel": "TERCER NIVEL"
+},
+{
+  "clues": "DFIMB000410",
+  "entidad": "CIUDAD DE MEXICO",
+  "nombre": "HOSPITAL PEDIÁTRICO SAN JUAN DE ARAGÓN",
+  "municipio": "GUSTAVO A. MADERO",
+  "jurisdiccion": "GUSTAVO A. MADERO",
+  "nivel": "TERCER NIVEL"
+},
+{
+  "clues": "DFIMB000422",
+  "entidad": "CIUDAD DE MEXICO",
+  "nombre": "HOSPITAL PEDIÁTRICO VILLA",
+  "municipio": "GUSTAVO A. MADERO",
+  "jurisdiccion": "GUSTAVO A. MADERO",
+  "nivel": "TERCER NIVEL"
+},
+{
+  "clues": "DFIMB000434",
+  "entidad": "CIUDAD DE MEXICO",
+  "nombre": "HOSPITAL MATERNO INFANTIL CUAUTEPEC",
+  "municipio": "GUSTAVO A. MADERO",
+  "jurisdiccion": "GUSTAVO A. MADERO",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "DFIMB000446",
+  "entidad": "CIUDAD DE MEXICO",
+  "nombre": "HOSPITAL GENERAL DE TICOMÁN",
+  "municipio": "GUSTAVO A. MADERO",
+  "jurisdiccion": "GUSTAVO A. MADERO",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "DFIMB000451",
+  "entidad": "CIUDAD DE MEXICO",
+  "nombre": "HOSPITAL GENERAL VILLA",
+  "municipio": "GUSTAVO A. MADERO",
+  "jurisdiccion": "GUSTAVO A. MADERO",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "DFIMB000760",
+  "entidad": "CIUDAD DE MEXICO",
+  "nombre": "HOSPITAL PEDIÁTRICO IZTACALCO",
+  "municipio": "IZTACALCO",
+  "jurisdiccion": "IZTACALCO",
+  "nivel": "TERCER NIVEL"
+},
+{
+  "clues": "DFIMB000825",
+  "entidad": "CIUDAD DE MEXICO",
+  "nombre": "CLÍNICA DE DISPLACIAS SANTA MARTHA",
+  "municipio": "IZTAPALAPA",
+  "jurisdiccion": "IZTAPALAPA",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "DFIMB000830",
+  "entidad": "CIUDAD DE MEXICO",
+  "nombre": "HOSPITAL PEDIÁTRICO IZTAPALAPA",
+  "municipio": "IZTAPALAPA",
+  "jurisdiccion": "IZTAPALAPA",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "DFIMB000842",
+  "entidad": "CIUDAD DE MEXICO",
+  "nombre": "HOSPITAL GENERAL IZTAPALAPA",
+  "municipio": "IZTAPALAPA",
+  "jurisdiccion": "IZTAPALAPA",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "DFIMB001064",
+  "entidad": "CIUDAD DE MEXICO",
+  "nombre": "HOSPITAL MATERNO INFANTIL MAGDALENA CONTRERAS",
+  "municipio": "LA MAGDALENA CONTRERAS",
+  "jurisdiccion": "MAGDALENA CONTRERAS",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "DFIMB001151",
+  "entidad": "CIUDAD DE MEXICO",
+  "nombre": "HOSPITAL GENERAL MILPA ALTA",
+  "municipio": "MILPA ALTA",
+  "jurisdiccion": "MILPA ALTA",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "DFIMB001385",
+  "entidad": "CIUDAD DE MEXICO",
+  "nombre": "HOSPITAL MATERNO INFANTIL TLÁHUAC",
+  "municipio": "TLAHUAC",
+  "jurisdiccion": "TLÁHUAC",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "DFIMB001694",
+  "entidad": "CIUDAD DE MEXICO",
+  "nombre": "CLÍNICA HOSPITAL DE ESPECIALIDADES TOXICOLÓGICAS XOCHIMILCO",
+  "municipio": "XOCHIMILCO",
+  "jurisdiccion": "XOCHIMILCO",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "DFIMB001706",
+  "entidad": "CIUDAD DE MEXICO",
+  "nombre": "HOSPITAL MATERNO PEDIÁTRICO XOCHIMILCO",
+  "municipio": "XOCHIMILCO",
+  "jurisdiccion": "XOCHIMILCO",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "DFIMB001822",
+  "entidad": "CIUDAD DE MEXICO",
+  "nombre": "HOSPITAL GENERAL XOCO",
+  "municipio": "BENITO JUAREZ",
+  "jurisdiccion": "BENITO JUÁREZ",
+  "nivel": "TERCER NIVEL"
+},
+{
+  "clues": "DFIMB001921",
+  "entidad": "CIUDAD DE MEXICO",
+  "nombre": "HOSPITAL PEDIÁTRICO PERALVILLO",
+  "municipio": "CUAUHTEMOC",
+  "jurisdiccion": "CUAUHTÉMOC",
+  "nivel": "TERCER NIVEL"
+},
+{
+  "clues": "DFIMB001933",
+  "entidad": "CIUDAD DE MEXICO",
+  "nombre": "HOSPITAL GENERAL DR. GREGORIO SALAS FLORES",
+  "municipio": "CUAUHTEMOC",
+  "jurisdiccion": "CUAUHTÉMOC",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "DFIMB002003",
+  "entidad": "CIUDAD DE MEXICO",
+  "nombre": "HOSPITAL PEDIÁTRICO TACUBAYA",
+  "municipio": "MIGUEL HIDALGO",
+  "jurisdiccion": "MIGUEL HIDALGO",
+  "nivel": "TERCER NIVEL"
+},
+{
+  "clues": "DFIMB002015",
+  "entidad": "CIUDAD DE MEXICO",
+  "nombre": "HOSPITAL PEDIÁTRICO LEGARIA",
+  "municipio": "MIGUEL HIDALGO",
+  "jurisdiccion": "MIGUEL HIDALGO",
+  "nivel": "TERCER NIVEL"
+},
+{
+  "clues": "DFIMB002020",
+  "entidad": "CIUDAD DE MEXICO",
+  "nombre": "HOSPITAL GENERAL DR. RUBÉN LEÑERO",
+  "municipio": "MIGUEL HIDALGO",
+  "jurisdiccion": "MIGUEL HIDALGO",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "DFIMB002085",
+  "entidad": "CIUDAD DE MEXICO",
+  "nombre": "CLÍNICA HOSPITAL DE ESPECIALIDADES TOXICOLÓGICAS VENUSTIANO CARRANZA",
+  "municipio": "VENUSTIANO CARRANZA",
+  "jurisdiccion": "VENUSTIANO CARRANZA",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "DFIMB002090",
+  "entidad": "CIUDAD DE MEXICO",
+  "nombre": "HOSPITAL MATERNO INFANTIL INGUARÁN",
+  "municipio": "VENUSTIANO CARRANZA",
+  "jurisdiccion": "VENUSTIANO CARRANZA",
+  "nivel": "TERCER NIVEL"
+},
+{
+  "clues": "DFIMB002102",
+  "entidad": "CIUDAD DE MEXICO",
+  "nombre": "HOSPITAL PEDIÁTRICO MOCTEZUMA",
+  "municipio": "VENUSTIANO CARRANZA",
+  "jurisdiccion": "VENUSTIANO CARRANZA",
+  "nivel": "TERCER NIVEL"
+},
+{
+  "clues": "DFIMB002114",
+  "entidad": "CIUDAD DE MEXICO",
+  "nombre": "HOSPITAL GENERAL BALBUENA",
+  "municipio": "VENUSTIANO CARRANZA",
+  "jurisdiccion": "VENUSTIANO CARRANZA",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "DFIMB002266",
+  "entidad": "CIUDAD DE MEXICO",
+  "nombre": "HOSPITAL DE ESPECIALIDADES DE LA CIUDAD DE MEXICO DR. BELISARIO DOMÍNGUEZ",
+  "municipio": "IZTAPALAPA",
+  "jurisdiccion": "IZTAPALAPA",
+  "nivel": "TERCER NIVEL"
+},
+{
+  "clues": "DFIMB002283",
+  "entidad": "CIUDAD DE MEXICO",
+  "nombre": "CLÍNICA DE GERIATRIA",
+  "municipio": "IZTACALCO",
+  "jurisdiccion": "IZTACALCO",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "DFIMB002341",
+  "entidad": "CIUDAD DE MEXICO",
+  "nombre": "HOSPITAL GENERAL TOPILEJO",
+  "municipio": "TLALPAN",
+  "jurisdiccion": "TLALPAN",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "DFIMB002353",
+  "entidad": "CIUDAD DE MEXICO",
+  "nombre": "HOSPITAL ONCOLÓGICO PARA LA MUJER DE LA CIUDAD DE MÉXICO",
+  "municipio": "GUSTAVO A. MADERO",
+  "jurisdiccion": "GUSTAVO A. MADERO",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "DFIMB002435",
+  "entidad": "CIUDAD DE MEXICO",
+  "nombre": "HOSPITAL GENERAL DE CUAJIMALPA",
+  "municipio": "CUAJIMALPA DE MORELOS",
+  "jurisdiccion": "CUAJIMALPA",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "DFIMB002575",
+  "entidad": "CIUDAD DE MEXICO",
+  "nombre": "HOSPITAL GENERAL DR. ENRIQUE CABRERA",
+  "municipio": "ALVARO OBREGON",
+  "jurisdiccion": "ÁLVARO OBREGÓN",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "DFIMB002650",
+  "entidad": "CIUDAD DE MEXICO",
+  "nombre": "CLÍNICA HOSPITAL EMILIANO ZAPATA",
+  "municipio": "IZTAPALAPA",
+  "jurisdiccion": "IZTAPALAPA",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "DFIMB002662",
+  "entidad": "CIUDAD DE MEXICO",
+  "nombre": "HOSPITAL GENERAL TLÁHUAC",
+  "municipio": "TLAHUAC",
+  "jurisdiccion": "TLÁHUAC",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "DFIMB002674",
+  "entidad": "CIUDAD DE MEXICO",
+  "nombre": "HOSPITAL GENERAL AJUSCO MEDIO",
+  "municipio": "TLALPAN",
+  "jurisdiccion": "TLALPAN",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "GRIMB000012",
+  "entidad": "GUERRERO",
+  "nombre": "HG. COL. PROGRESO (CAAPS)",
+  "municipio": "ACAPULCO DE JUAREZ",
+  "jurisdiccion": "ACAPULCO",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "GRIMB000024",
+  "entidad": "GUERRERO",
+  "nombre": "HOSP. GRAL. RENACIMIENTO",
+  "municipio": "ACAPULCO DE JUAREZ",
+  "jurisdiccion": "ACAPULCO",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "GRIMB000934",
+  "entidad": "GUERRERO",
+  "nombre": "HOSPITAL BÁSICO COMUNITARIO ALCOZAUCA DE GUERRERO",
+  "municipio": "ALCOZAUCA DE GUERRERO",
+  "jurisdiccion": "MONTAÑA",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "GRIMB001120",
+  "entidad": "GUERRERO",
+  "nombre": "HOSPITAL BÁSICO COMUNITARIO ARCELIA",
+  "municipio": "ARCELIA",
+  "jurisdiccion": "TIERRA CALIENTE",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "GRIMB001436",
+  "entidad": "GUERRERO",
+  "nombre": "DR. JUVENTINO RODRÍGUEZ GARCÍA",
+  "municipio": "ATOYAC DE ALVAREZ",
+  "jurisdiccion": "COSTA GRANDE",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "GRIMB001680",
+  "entidad": "GUERRERO",
+  "nombre": "HOSPITAL GENERAL DE AYUTLA",
+  "municipio": "AYUTLA DE LOS LIBRES",
+  "jurisdiccion": "COSTA CHICA",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "GRIMB002030",
+  "entidad": "GUERRERO",
+  "nombre": "HOSPITAL BÁSICO COMUNITARIO COAHUAYUTLA DE GUERRERO",
+  "municipio": "COAHUAYUTLA DE JOSE MARIA IZAZAGA",
+  "jurisdiccion": "COSTA GRANDE",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "GRIMB002170",
+  "entidad": "GUERRERO",
+  "nombre": "HOSPITAL BÁSICO COMUNITARIO COPALA",
+  "municipio": "COPALA",
+  "jurisdiccion": "COSTA CHICA",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "GRIMB002812",
+  "entidad": "GUERRERO",
+  "nombre": "HOSPITAL BÁSICO COMUNITARIO CUAJINICUILAPA",
+  "municipio": "CUAJINICUILAPA",
+  "jurisdiccion": "COSTA CHICA",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "GRIMB003705",
+  "entidad": "GUERRERO",
+  "nombre": "HOSPITAL BÁSICO COMUNITARIO TLACOTEPEC",
+  "municipio": "GENERAL HELIODORO CASTILLO",
+  "jurisdiccion": "CENTRO",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "GRIMB003961",
+  "entidad": "GUERRERO",
+  "nombre": "HOSPITAL GENERAL DE HUITZUCO",
+  "municipio": "HUITZUCO DE LOS FIGUEROA",
+  "jurisdiccion": "NORTE",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "GRIMB004096",
+  "entidad": "GUERRERO",
+  "nombre": "DR. JORGE SOBERON ACEVEDO",
+  "municipio": "IGUALA DE LA INDEPENDENCIA",
+  "jurisdiccion": "NORTE",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "GRIMB004311",
+  "entidad": "GUERRERO",
+  "nombre": "DR. BERNARDO SEPULVEDA GUTIÉRREZ",
+  "municipio": "ZIHUATANEJO DE AZUETA",
+  "jurisdiccion": "COSTA GRANDE",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "GRIMB004562",
+  "entidad": "GUERRERO",
+  "nombre": "HOSPITAL BÁSICO COMUNITARIO FILO DE CABALLOS",
+  "municipio": "LEONARDO BRAVO",
+  "jurisdiccion": "CENTRO",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "GRIMB004574",
+  "entidad": "GUERRERO",
+  "nombre": "HOSPITAL BÁSICO COMUNITARIO MALINALTEPEC",
+  "municipio": "MALINALTEPEC",
+  "jurisdiccion": "MONTAÑA",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "GRIMB005052",
+  "entidad": "GUERRERO",
+  "nombre": "HOSPITAL BÁSICO COMUNITARIO OLINALA",
+  "municipio": "OLINALA",
+  "jurisdiccion": "MONTAÑA",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "GRIMB005163",
+  "entidad": "GUERRERO",
+  "nombre": "HOSPITAL GENERAL OMETEPEC",
+  "municipio": "OMETEPEC",
+  "jurisdiccion": "COSTA CHICA",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "GRIMB005320",
+  "entidad": "GUERRERO",
+  "nombre": "HOSPITAL BÁSICO COMUNITARIO PETATLAN",
+  "municipio": "PETATLAN",
+  "jurisdiccion": "COSTA GRANDE",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "GRIMB005566",
+  "entidad": "GUERRERO",
+  "nombre": "HOSPITAL BÁSICO COMUNITARIO QUECHULTENANGO",
+  "municipio": "QUECHULTENANGO",
+  "jurisdiccion": "CENTRO",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "GRIMB005653",
+  "entidad": "GUERRERO",
+  "nombre": "HOSPITAL BÁSICO COMUNITARIO SAN LUIS ACATLÁN",
+  "municipio": "SAN LUIS ACATLAN",
+  "jurisdiccion": "COSTA CHICA",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "GRIMB006370",
+  "entidad": "GUERRERO",
+  "nombre": "HOSPITAL BÁSICO COMUNITARIO TECPAN DE GALEANA",
+  "municipio": "TECPAN DE GALEANA",
+  "jurisdiccion": "COSTA GRANDE",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "GRIMB006930",
+  "entidad": "GUERRERO",
+  "nombre": "HOSPITAL BÁSICO COMUNITARIO XALITLA",
+  "municipio": "TEPECOACUILCO DE TRUJANO",
+  "jurisdiccion": "NORTE",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "GRIMB006983",
+  "entidad": "GUERRERO",
+  "nombre": "HOSPITAL BÁSICO COMUNITARIO TIXTLA DE GUERRERO",
+  "municipio": "TIXTLA DE GUERRERO",
+  "jurisdiccion": "CENTRO",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "GRIMB007292",
+  "entidad": "GUERRERO",
+  "nombre": "HOSPITAL DE TLAPA",
+  "municipio": "TLAPA DE COMONFORT",
+  "jurisdiccion": "MONTAÑA",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "GRIMB007712",
+  "entidad": "GUERRERO",
+  "nombre": "HOSPITAL BÁSICO COMUNITARIO XOCHIHUEHUETLAN",
+  "municipio": "XOCHIHUEHUETLAN",
+  "jurisdiccion": "MONTAÑA",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "GRIMB007753",
+  "entidad": "GUERRERO",
+  "nombre": "HOSPITAL BÁSICO COMUNITARIO XOCHISTLÁHUACA",
+  "municipio": "XOCHISTLAHUACA",
+  "jurisdiccion": "COSTA CHICA",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "GRIMB007980",
+  "entidad": "GUERRERO",
+  "nombre": "HOSPITAL BÁSICO COMUNITARIO ZUMPANGO JOSÉ PONIENTE",
+  "municipio": "EDUARDO NERI",
+  "jurisdiccion": "CENTRO",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "GRIMB008120",
+  "entidad": "GUERRERO",
+  "nombre": "HOSPITAL BÁSICO COMUNITARIO ACATEPEC",
+  "municipio": "ACATEPEC",
+  "jurisdiccion": "MONTAÑA",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "GRIMB008890",
+  "entidad": "GUERRERO",
+  "nombre": "HOSPITAL DE LA MADRE Y DEL NIÑO DE TLAPA",
+  "municipio": "TLAPA DE COMONFORT",
+  "jurisdiccion": "MONTAÑA",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "GRIMB008902",
+  "entidad": "GUERRERO",
+  "nombre": "HOSPITAL DE LA MADRE Y DEL NIÑO DE CHILPANCINGO",
+  "municipio": "CHILPANCINGO DE LOS BRAVO",
+  "jurisdiccion": "CENTRO",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "GRIMB008926",
+  "entidad": "GUERRERO",
+  "nombre": "HOSPITAL GENERAL DE ACAPULCO",
+  "municipio": "ACAPULCO DE JUAREZ",
+  "jurisdiccion": "ACAPULCO",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "GRIMB008931",
+  "entidad": "GUERRERO",
+  "nombre": "HOSPITAL GENERAL DE CHILPANCINGO",
+  "municipio": "EDUARDO NERI",
+  "jurisdiccion": "CENTRO",
+  "nivel": "TERCER NIVEL"
+},
+{
+  "clues": "GRIMB009030",
+  "entidad": "GUERRERO",
+  "nombre": "HOSPITAL DE LA COMUNIDAD DE SAN MARCOS",
+  "municipio": "SAN MARCOS",
+  "jurisdiccion": "COSTA CHICA",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "GRIMB009042",
+  "entidad": "GUERRERO",
+  "nombre": "HOSPITAL GENERAL DE COYUCA DE CATALÁN",
+  "municipio": "COYUCA DE CATALAN",
+  "jurisdiccion": "TIERRA CALIENTE",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "GRIMB009054",
+  "entidad": "GUERRERO",
+  "nombre": "HOSPITAL BÁSICO COMUNITARIO DE ZAPOTITLÁN TABLAS",
+  "municipio": "ZAPOTITLAN TABLAS",
+  "jurisdiccion": "MONTAÑA",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "GRIMB009083",
+  "entidad": "GUERRERO",
+  "nombre": "CENTRO DE SALUD URBANO PARA ATENCIÓN DE PARTOS EUTÓCICOS, PROYECTO PILOTO",
+  "municipio": "CHILPANCINGO DE LOS BRAVO",
+  "jurisdiccion": "CENTRO",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "GRIMB009486",
+  "entidad": "GUERRERO",
+  "nombre": "HOSPITAL GENERAL CHILAPA DE ÁLVAREZ PZC",
+  "municipio": "CHILAPA DE ALVAREZ",
+  "jurisdiccion": "CENTRO",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "GRIMB009491",
+  "entidad": "GUERRERO",
+  "nombre": "HOSPITAL DE LA COMUNIDAD DE TLACOAPA",
+  "municipio": "TLACOAPA",
+  "jurisdiccion": "MONTAÑA",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "GRIMB009520",
+  "entidad": "GUERRERO",
+  "nombre": "UNEME DEDICAM",
+  "municipio": "CHILPANCINGO DE LOS BRAVO",
+  "jurisdiccion": "CENTRO",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "GRIMB009532",
+  "entidad": "GUERRERO",
+  "nombre": "CLÍNICA DE LA MUJER",
+  "municipio": "ATOYAC DE ALVAREZ",
+  "jurisdiccion": "COSTA GRANDE",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "GRIMB009730",
+  "entidad": "GUERRERO",
+  "nombre": "INSTITUTO ESTATAL DE OFTALMOLOGÍA",
+  "municipio": "ACAPULCO DE JUAREZ",
+  "jurisdiccion": "ACAPULCO",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "GRIMB009742",
+  "entidad": "GUERRERO",
+  "nombre": "INSTITUTO ESTATAL DE CANCEROLOGÍA DR ARTURO BELTRÁN ORTEGA ",
+  "municipio": "ACAPULCO DE JUAREZ",
+  "jurisdiccion": "ACAPULCO",
+  "nivel": "TERCER NIVEL"
+},
+{
+  "clues": "GRIMB009906",
+  "entidad": "GUERRERO",
+  "nombre": "H.B.C. TELOLOAPAN",
+  "municipio": "TELOLOAPAN",
+  "jurisdiccion": "NORTE",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "GRIMB010285",
+  "entidad": "GUERRERO",
+  "nombre": "HOSPITAL DE LA COMUNIDAD DE HUAMUXTITLÁN",
+  "municipio": "HUAMUXTITLAN",
+  "jurisdiccion": "MONTAÑA",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "GRIMB010290",
+  "entidad": "GUERRERO",
+  "nombre": "HOSPITAL DE LA COMUNIDAD DE COYUCA DE BENITEZ",
+  "municipio": "COYUCA DE BENITEZ",
+  "jurisdiccion": "COSTA GRANDE",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "GRIMB010401",
+  "entidad": "GUERRERO",
+  "nombre": "HG ADOLFO PRIETO",
+  "municipio": "TAXCO DE ALARCON",
+  "jurisdiccion": "NORTE",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "GRIMB010495",
+  "entidad": "GUERRERO",
+  "nombre": "HOSPITAL IMSS BIENESTAR SAN LUIS ACATLAN",
+  "municipio": "SAN LUIS ACATLAN",
+  "jurisdiccion": "COSTA CHICA",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "GRIMB010512",
+  "entidad": "GUERRERO",
+  "nombre": "HOSPITAL COMUNITARIO DE OLINALÁ",
+  "municipio": "OLINALA",
+  "jurisdiccion": "MONTAÑA",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "GRIMB010524",
+  "entidad": "GUERRERO",
+  "nombre": "HOSPITAL IMSS BIENESTAR AYUTLA",
+  "municipio": "AYUTLA DE LOS LIBRES",
+  "jurisdiccion": "COSTA CHICA",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "GRIMB010536",
+  "entidad": "GUERRERO",
+  "nombre": "HOSPITAL IMSS BIENESTAR TLAPA",
+  "municipio": "TLAPA DE COMONFORT",
+  "jurisdiccion": "MONTAÑA",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "GTIMB000015",
+  "entidad": "GUANAJUATO",
+  "nombre": "HOSPITAL REGIONAL DE ALTA ESPECIALIDAD DEL BAJÍO",
+  "municipio": "LEON",
+  "jurisdiccion": "VII LEÓN",
+  "nivel": "TERCER NIVEL"
+},
+{
+  "clues": "HGIMB000151",
+  "entidad": "HIDALGO",
+  "nombre": "HOSPITAL GENERAL ACTOPAN",
+  "municipio": "ACTOPAN",
+  "jurisdiccion": "ACTOPAN",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "HGIMB000431",
+  "entidad": "HIDALGO",
+  "nombre": "HOSPITAL INTEGRAL ATLAPEXCO",
+  "municipio": "ATLAPEXCO",
+  "jurisdiccion": "HUEJUTLA DE REYES",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "HGIMB001394",
+  "entidad": "HIDALGO",
+  "nombre": "HOSPITAL GENERAL HUICHAPAN",
+  "municipio": "HUICHAPAN",
+  "jurisdiccion": "HUICHAPAN",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "HGIMB001481",
+  "entidad": "HIDALGO",
+  "nombre": "HOSPITAL GENERAL DEL VALLE DEL MEZQUITAL IXMIQUILPAN",
+  "municipio": "IXMIQUILPAN",
+  "jurisdiccion": "IXMIQUILPAN",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "HGIMB001686",
+  "entidad": "HIDALGO",
+  "nombre": "HOSPITAL INTEGRAL JACALA",
+  "municipio": "JACALA DE LEDEZMA",
+  "jurisdiccion": "JACALA DE LEDEZMA",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "HGIMB002036",
+  "entidad": "HIDALGO",
+  "nombre": "HOSPITAL INTEGRAL CINTA LARGA",
+  "municipio": "MIXQUIAHUALA DE JUAREZ",
+  "jurisdiccion": "ACTOPAN",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "HGIMB002304",
+  "entidad": "HIDALGO",
+  "nombre": "HOSPITAL GENERAL PACHUCA",
+  "municipio": "PACHUCA DE SOTO",
+  "jurisdiccion": "PACHUCA DE SOTO",
+  "nivel": "TERCER NIVEL"
+},
+{
+  "clues": "HGIMB002572",
+  "entidad": "HIDALGO",
+  "nombre": "HOSPITAL REGIONAL OTOMI TEPEHUA",
+  "municipio": "SAN BARTOLO TUTOTEPEC",
+  "jurisdiccion": "TULANCINGO DE BRAVO",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "HGIMB004561",
+  "entidad": "HIDALGO",
+  "nombre": "HOSPITAL ZIMAPÁN",
+  "municipio": "ZIMAPAN",
+  "jurisdiccion": "IXMIQUILPAN",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "HGIMB004573",
+  "entidad": "HIDALGO",
+  "nombre": "HOSPITAL MATERNO INFANTIL",
+  "municipio": "PACHUCA DE SOTO",
+  "jurisdiccion": "PACHUCA DE SOTO",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "HGIMB004795",
+  "entidad": "HIDALGO",
+  "nombre": "HOSPITAL INTEGRAL DE TLANCHINOL",
+  "municipio": "TLANCHINOL",
+  "jurisdiccion": "HUEJUTLA DE REYES",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "HGIMB004800",
+  "entidad": "HIDALGO",
+  "nombre": "HOSPITAL GENERAL DE APAN",
+  "municipio": "APAN",
+  "jurisdiccion": "APAN",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "HGIMB004812",
+  "entidad": "HIDALGO",
+  "nombre": "HOSPITAL GENERAL DE LA HUASTECA",
+  "municipio": "HUEJUTLA DE REYES",
+  "jurisdiccion": "HUEJUTLA DE REYES",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "HGIMB004824",
+  "entidad": "HIDALGO",
+  "nombre": "HOSPITAL GENERAL TULA",
+  "municipio": "TULA DE ALLENDE",
+  "jurisdiccion": "TULA DE ALLENDE",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "HGIMB004841",
+  "entidad": "HIDALGO",
+  "nombre": "HOSPITAL BÁSICO COMUNITARIO HUEHUETLA",
+  "municipio": "HUEHUETLA",
+  "jurisdiccion": "TULANCINGO DE BRAVO",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "HGIMB004952",
+  "entidad": "HIDALGO",
+  "nombre": "HOSPITAL IMSS BIENESTAR METZTITLÁN",
+  "municipio": "METZTITLAN",
+  "jurisdiccion": "ZACUALTIPÁN DE ÁNGELES",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "HGIMB005005",
+  "entidad": "HIDALGO",
+  "nombre": "HOSPITAL GENERAL DE TULANCINGO",
+  "municipio": "SANTIAGO TULANTEPEC DE LUGO GUERRERO",
+  "jurisdiccion": "TULANCINGO DE BRAVO",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "HGIMB005034",
+  "entidad": "HIDALGO",
+  "nombre": "VILLA OCARANZA",
+  "municipio": "TOLCAYUCA",
+  "jurisdiccion": "TIZAYUCA",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "MCIMB000226",
+  "entidad": "MEXICO",
+  "nombre": "TEPEXPAN DR. GUSTAVO BAZ PRADA",
+  "municipio": "ACOLMAN",
+  "jurisdiccion": "TEOTIHUACÁN",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "MCIMB000231",
+  "entidad": "MEXICO",
+  "nombre": "HOSPITAL PSIQUIÁTRICO DR. ADOLFO M. NIETO TEPEXPAN",
+  "municipio": "ACOLMAN",
+  "jurisdiccion": "TEOTIHUACÁN",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "MCIMB000243",
+  "entidad": "MEXICO",
+  "nombre": "HOSPITAL PSIQUIÁTRICO JOSÉ SAYAGO",
+  "municipio": "ACOLMAN",
+  "jurisdiccion": "TEOTIHUACÁN",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "MCIMB000890",
+  "entidad": "MEXICO",
+  "nombre": "HOSPITAL MUNICIPAL SANTA CRUZ ATIZAPÁN BICENTENARIO",
+  "municipio": "ATIZAPAN",
+  "jurisdiccion": "TENANGO DEL VALLE",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "MCIMB000914",
+  "entidad": "MEXICO",
+  "nombre": "H.G. DR.SALVADOR GONZÁLEZ HERREJON",
+  "municipio": "ATIZAPAN DE ZARAGOZA",
+  "jurisdiccion": "ATIZAPÁN DE ZARAGOZA",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "MCIMB001013",
+  "entidad": "MEXICO",
+  "nombre": "CENTRO DE ATENCIÓN ESTOMATOLÓGICA ATLACOMULCO",
+  "municipio": "ATLACOMULCO",
+  "jurisdiccion": "ATLACOMULCO",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "MCIMB001351",
+  "entidad": "MEXICO",
+  "nombre": "HOSPITAL RAMÓN LÓPEZ RAYÓN BICENTENARIO COATEPEC HARINAS",
+  "municipio": "COATEPEC HARINAS",
+  "jurisdiccion": "TENANCINGO",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "MCIMB001486",
+  "entidad": "MEXICO",
+  "nombre": "H.G. JOSÉ VICENTE VILLADA",
+  "municipio": "CUAUTITLAN",
+  "jurisdiccion": "CUAUTITLÁN",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "MCIMB001491",
+  "entidad": "MEXICO",
+  "nombre": "CENTRO DE ATENCIÓN ESTOMATOLÓGICA CUAUTITLÁN",
+  "municipio": "CUAUTITLAN",
+  "jurisdiccion": "CUAUTITLÁN",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "MCIMB001515",
+  "entidad": "MEXICO",
+  "nombre": "HOSPITAL GENERAL DE CHALCO",
+  "municipio": "CHALCO",
+  "jurisdiccion": "AMECAMECA",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "MCIMB001841",
+  "entidad": "MEXICO",
+  "nombre": "H.G. CHIMALHUACÁN",
+  "municipio": "CHIMALHUACAN",
+  "jurisdiccion": "TEXCOCO",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "MCIMB002005",
+  "entidad": "MEXICO",
+  "nombre": "H.G. DR. JOSÉ MARÍA RODRÍGUEZ",
+  "municipio": "ECATEPEC DE MORELOS",
+  "jurisdiccion": "ECATEPEC",
+  "nivel": "TERCER NIVEL"
+},
+{
+  "clues": "MCIMB002244",
+  "entidad": "MEXICO",
+  "nombre": "HOSPITAL MUNICIPAL HUEHUETOCA",
+  "municipio": "HUEHUETOCA",
+  "jurisdiccion": "ZUMPANGO",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "MCIMB002331",
+  "entidad": "MEXICO",
+  "nombre": "HOSPITAL SANTOS DEGOLLADO BICENTENARIO",
+  "municipio": "HUIXQUILUCAN",
+  "jurisdiccion": "XONACATLÁN",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "MCIMB002565",
+  "entidad": "MEXICO",
+  "nombre": "ZOQUIAPAN DR. PEDRO LÓPEZ",
+  "municipio": "IXTAPALUCA",
+  "jurisdiccion": "AMECAMECA",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "MCIMB002570",
+  "entidad": "MEXICO",
+  "nombre": "H. ZOQUIAPAN GRANJA LA SALUD",
+  "municipio": "IXTAPALUCA",
+  "jurisdiccion": "AMECAMECA",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "MCIMB002640",
+  "entidad": "MEXICO",
+  "nombre": "HOSPITAL GENERAL IXTLAHUACA VALENTIN GÓMEZ FARÍAS",
+  "municipio": "IXTLAHUACA",
+  "jurisdiccion": "IXTLAHUACA",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "MCIMB002874",
+  "entidad": "MEXICO",
+  "nombre": "HOSPITAL MUNICIPAL XALATLACO MARIANO MATAMOROS",
+  "municipio": "XALATLACO",
+  "jurisdiccion": "TENANGO DEL VALLE",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "MCIMB003731",
+  "entidad": "MEXICO",
+  "nombre": "SAN RAFAEL CHAMAPA MODULO ODONTOPEDIATRICO",
+  "municipio": "NAUCALPAN DE JUAREZ",
+  "jurisdiccion": "NAUCALPAN",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "MCIMB003743",
+  "entidad": "MEXICO",
+  "nombre": "H.G. DR. MAXIMILIANO RUÍZ CASTAÑEDA",
+  "municipio": "NAUCALPAN DE JUAREZ",
+  "jurisdiccion": "NAUCALPAN",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "MCIMB003895",
+  "entidad": "MEXICO",
+  "nombre": "H.G. DR. GUSTAVO BAZ PRADA",
+  "municipio": "NEZAHUALCOYOTL",
+  "jurisdiccion": "NEZAHUALCÓYOTL",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "MCIMB004344",
+  "entidad": "MEXICO",
+  "nombre": "HOSPITAL IGNACIO LÓPEZ RAYÓN BICENTENARIO",
+  "municipio": "EL ORO",
+  "jurisdiccion": "ATLACOMULCO",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "MCIMB004443",
+  "entidad": "MEXICO",
+  "nombre": "HOSPITAL MUNICIPAL OTUMBA BICENTENARIO",
+  "municipio": "OTUMBA",
+  "jurisdiccion": "TEOTIHUACÁN",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "MCIMB004694",
+  "entidad": "MEXICO",
+  "nombre": "HOSPITAL GENERAL SAN FELIPE DEL PROGRESO",
+  "municipio": "SAN FELIPE DEL PROGRESO",
+  "jurisdiccion": "IXTLAHUACA",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "MCIMB005102",
+  "entidad": "MEXICO",
+  "nombre": "HOSPITAL JOSÉ MARÍA COSS BICENTENARIO",
+  "municipio": "SULTEPEC",
+  "jurisdiccion": "TENANCINGO",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "MCIMB005225",
+  "entidad": "MEXICO",
+  "nombre": "HOSPITAL GENERAL MIGUEL HIDALGO Y COSTILLA BICENTENARIO",
+  "municipio": "TEJUPILCO",
+  "jurisdiccion": "TEJUPILCO",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "MCIMB005860",
+  "entidad": "MEXICO",
+  "nombre": "H.G. TENANCINGO",
+  "municipio": "TENANCINGO",
+  "jurisdiccion": "TENANCINGO",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "MCIMB005942",
+  "entidad": "MEXICO",
+  "nombre": "HOSPITAL MUNICIPAL MARIANO MATAMOROS BICENTENARIO TENANGO DEL VALLE",
+  "municipio": "TENANGO DEL VALLE",
+  "jurisdiccion": "TENANGO DEL VALLE",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "MCIMB006181",
+  "entidad": "MEXICO",
+  "nombre": "HM TEPETLIXPA HERMENEGILDO GALEANA, BICENTENARIO",
+  "municipio": "TEPETLIXPA",
+  "jurisdiccion": "AMECAMECA",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "MCIMB006275",
+  "entidad": "MEXICO",
+  "nombre": "HOSPITAL JUAN ALDAMA BICENTENARIO",
+  "municipio": "TEXCALTITLAN",
+  "jurisdiccion": "TENANCINGO",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "MCIMB006893",
+  "entidad": "MEXICO",
+  "nombre": "HOSPITAL MUNICIPAL SAN PEDRO LIMÓN",
+  "municipio": "TLATLAYA",
+  "jurisdiccion": "TEJUPILCO",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "MCIMB006946",
+  "entidad": "MEXICO",
+  "nombre": "H.G. DR. NICOLÁS SAN JUAN",
+  "municipio": "TOLUCA",
+  "jurisdiccion": "TOLUCA",
+  "nivel": "TERCER NIVEL"
+},
+{
+  "clues": "MCIMB006951",
+  "entidad": "MEXICO",
+  "nombre": "HOSPITAL MATERNO PERINATAL MÓNICA PRETELINI SÁENZ",
+  "municipio": "TOLUCA",
+  "jurisdiccion": "TOLUCA",
+  "nivel": "TERCER NIVEL"
+},
+{
+  "clues": "MCIMB007231",
+  "entidad": "MEXICO",
+  "nombre": "HOSPITAL GENERAL VALLE DE BRAVO",
+  "municipio": "VALLE DE BRAVO",
+  "jurisdiccion": "VALLE DE BRAVO",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "MCIMB007465",
+  "entidad": "MEXICO",
+  "nombre": "HOSPITAL MUNICIPAL BICENTENARIO HERMENEGILDO GALEANA VILLA GUERRERO",
+  "municipio": "VILLA GUERRERO",
+  "jurisdiccion": "TENANCINGO",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "MCIMB007540",
+  "entidad": "MEXICO",
+  "nombre": "HOSPITAL GUADALUPE VICTORIA BICENTENARIO",
+  "municipio": "VILLA VICTORIA",
+  "jurisdiccion": "VALLE DE BRAVO",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "MCIMB007960",
+  "entidad": "MEXICO",
+  "nombre": "HOSPITAL MUNICIPAL SAN JUAN ZITLALTEPEC",
+  "municipio": "ZUMPANGO",
+  "jurisdiccion": "ZUMPANGO",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "MCIMB008042",
+  "entidad": "MEXICO",
+  "nombre": "H.G. DR. FERNANDO QUIROZ GUTIÉRREZ",
+  "municipio": "VALLE DE CHALCO SOLIDARIDAD",
+  "jurisdiccion": "AMECAMECA",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "MCIMB008556",
+  "entidad": "MEXICO",
+  "nombre": "HOSPITAL VALERIO TRUJANO BICENTENARIO",
+  "municipio": "LUVIANOS",
+  "jurisdiccion": "TEJUPILCO",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "MCIMB008824",
+  "entidad": "MEXICO",
+  "nombre": "HOSPITAL MUNICIPAL TECAMAC LIC. CÉSAR CAMACHO QUIROZ",
+  "municipio": "TECAMAC",
+  "jurisdiccion": "ZUMPANGO",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "MCIMB009022",
+  "entidad": "MEXICO",
+  "nombre": "H.G. JILOTEPEC",
+  "municipio": "JILOTEPEC",
+  "jurisdiccion": "JILOTEPEC",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "MCIMB009051",
+  "entidad": "MEXICO",
+  "nombre": "HOSPITAL MUNICIPAL ACAMBAY IGNACIO ALLENDE BICENTENARIO",
+  "municipio": "ACAMBAY DE RUIZ CASTAÑEDA",
+  "jurisdiccion": "ATLACOMULCO",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "MCIMB009063",
+  "entidad": "MEXICO",
+  "nombre": "HOSPITAL GENERAL ATLACOMULCO",
+  "municipio": "ATLACOMULCO",
+  "jurisdiccion": "ATLACOMULCO",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "MCIMB009145",
+  "entidad": "MEXICO",
+  "nombre": "CENTRO MÉDICO LIC. ADOLFO LÓPEZ MATEOS",
+  "municipio": "TOLUCA",
+  "jurisdiccion": "TOLUCA",
+  "nivel": "TERCER NIVEL"
+},
+{
+  "clues": "MCIMB009162",
+  "entidad": "MEXICO",
+  "nombre": "HOSPITAL MUNICIPAL TEMOAYA",
+  "municipio": "TEMOAYA",
+  "jurisdiccion": "XONACATLÁN",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "MCIMB009174",
+  "entidad": "MEXICO",
+  "nombre": "HOSPITAL GENERAL IXTAPAN DE LA SAL",
+  "municipio": "IXTAPAN DE LA SAL",
+  "jurisdiccion": "TENANCINGO",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "MCIMB009186",
+  "entidad": "MEXICO",
+  "nombre": "HOSPITAL MUNICIPAL ZACUALPAN",
+  "municipio": "ZACUALPAN",
+  "jurisdiccion": "TENANCINGO",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "MCIMB009203",
+  "entidad": "MEXICO",
+  "nombre": "HOSPITAL GENERAL LAS AMÉRICAS",
+  "municipio": "ECATEPEC DE MORELOS",
+  "jurisdiccion": "ECATEPEC",
+  "nivel": "TERCER NIVEL"
+},
+{
+  "clues": "MCIMB009215",
+  "entidad": "MEXICO",
+  "nombre": "HOSPITAL GENERAL LA PERLA NEZAHUALCOYOTL",
+  "municipio": "NEZAHUALCOYOTL",
+  "jurisdiccion": "NEZAHUALCÓYOTL",
+  "nivel": "TERCER NIVEL"
+},
+{
+  "clues": "MCIMB009261",
+  "entidad": "MEXICO",
+  "nombre": "HOSPITAL GENERAL TULTITLAN SAN PABLO DE LAS SALINAS",
+  "municipio": "TULTITLAN",
+  "jurisdiccion": "CUAUTITLÁN",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "MCIMB009302",
+  "entidad": "MEXICO",
+  "nombre": "UNIDAD DE ESPECIALIDAD MEDICA DETECCIÓN Y DIAGNÓSTICO DEL CANCER DE MAMA HUIXQUILUCAN",
+  "municipio": "HUIXQUILUCAN",
+  "jurisdiccion": "XONACATLÁN",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "MCIMB009425",
+  "entidad": "MEXICO",
+  "nombre": "HOSPITAL MUNICIPAL LERMA",
+  "municipio": "LERMA",
+  "jurisdiccion": "XONACATLÁN",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "MCIMB009536",
+  "entidad": "MEXICO",
+  "nombre": "HOSPITAL GENERAL CHIMALHUACÁN SAN AGUSTÍN",
+  "municipio": "CHIMALHUACAN",
+  "jurisdiccion": "TEXCOCO",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "MCIMB009606",
+  "entidad": "MEXICO",
+  "nombre": "MATERNIDAD HUIXQUILUCAN",
+  "municipio": "HUIXQUILUCAN",
+  "jurisdiccion": "XONACATLÁN",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "MCIMB009676",
+  "entidad": "MEXICO",
+  "nombre": "HOSPITAL MATERNO DE TEXCOCO",
+  "municipio": "TEXCOCO",
+  "jurisdiccion": "TEXCOCO",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "MCIMB009734",
+  "entidad": "MEXICO",
+  "nombre": "HOSPITAL MUNICIPAL VILLA DEL CARBON",
+  "municipio": "VILLA DEL CARBON",
+  "jurisdiccion": "JILOTEPEC",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "MCIMB009775",
+  "entidad": "MEXICO",
+  "nombre": "HOSPITAL GENERAL DE AXAPUSCO",
+  "municipio": "AXAPUSCO",
+  "jurisdiccion": "TEOTIHUACÁN",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "MCIMB009932",
+  "entidad": "MEXICO",
+  "nombre": "MATERNIDAD CUAUTITLÁN",
+  "municipio": "CUAUTITLAN",
+  "jurisdiccion": "CUAUTITLÁN",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "MCIMB009944",
+  "entidad": "MEXICO",
+  "nombre": "UNIDAD DE ESPECIALIDAD MEDICA DETECCIÓN Y DIAGNÓSTICO DEL CANCER DE MAMA CUAUTITLÁN",
+  "municipio": "CUAUTITLAN",
+  "jurisdiccion": "CUAUTITLÁN",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "MCIMB010212",
+  "entidad": "MEXICO",
+  "nombre": "CENTRO ESTATAL DE REHABILITACIÓN Y EDUCACIÓN ESPECIAL DE TOLUCA",
+  "municipio": "TOLUCA",
+  "jurisdiccion": "TOLUCA",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "MCIMB010224",
+  "entidad": "MEXICO",
+  "nombre": "HOSPITAL MUNICIPAL DE CHICONCUAC",
+  "municipio": "CHICONCUAC",
+  "jurisdiccion": "TEXCOCO",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "MCIMB010236",
+  "entidad": "MEXICO",
+  "nombre": "CENTRO ESPECIALIZADO DE ATENCIÓN A PERSONAS CON DISCAPACIDAD VISUAL",
+  "municipio": "NAUCALPAN DE JUAREZ",
+  "jurisdiccion": "NAUCALPAN",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "MCIMB010294",
+  "entidad": "MEXICO",
+  "nombre": "HOSPITAL MUNICIPAL MALINALCO PEDRO ASCENCIO DE ALQUISIRAS",
+  "municipio": "MALINALCO",
+  "jurisdiccion": "TENANCINGO",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "MCIMB010825",
+  "entidad": "MEXICO",
+  "nombre": "HOSPITAL MUNICIPAL IXTAPALUCA LEONA VICARIO BICENTENARIO",
+  "municipio": "IXTAPALUCA",
+  "jurisdiccion": "AMECAMECA",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "MCIMB010842",
+  "entidad": "MEXICO",
+  "nombre": "SANTA MARÍA TETITLA",
+  "municipio": "OTZOLOTEPEC",
+  "jurisdiccion": "XONACATLÁN",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "MCIMB011694",
+  "entidad": "MEXICO",
+  "nombre": "HOSPITAL MUNICIPAL XONACATLÁN VICENTE GUERRERO BICENTENARIO",
+  "municipio": "XONACATLAN",
+  "jurisdiccion": "XONACATLÁN",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "MCIMB011904",
+  "entidad": "MEXICO",
+  "nombre": "MATERNIDAD ATLACOMULCO",
+  "municipio": "ATLACOMULCO",
+  "jurisdiccion": "ATLACOMULCO",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "MCIMB011945",
+  "entidad": "MEXICO",
+  "nombre": "H.G. TEXCOCO GUADALUPE VICTORIA BICENTENARIO",
+  "municipio": "TEXCOCO",
+  "jurisdiccion": "TEXCOCO",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "MCIMB011986",
+  "entidad": "MEXICO",
+  "nombre": "HOSPITAL MATERNO INFANTIL CHALCO JOSÉFA ORTÍZ DE DOMÍNGUEZ",
+  "municipio": "CHALCO",
+  "jurisdiccion": "AMECAMECA",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "MCIMB012073",
+  "entidad": "MEXICO",
+  "nombre": "HOSPITAL GENERAL HUEYPOXTLA HERMENEGILDO GALEANA BICENTENARIO",
+  "municipio": "HUEYPOXTLA",
+  "jurisdiccion": "ZUMPANGO",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "MCIMB012085",
+  "entidad": "MEXICO",
+  "nombre": "HOSPITAL MATERNO INFANTIL JOSÉ MARÍA MORELOS Y PAVÓN BICENTENARIO SAN JOSÉ DEL RINCÓN",
+  "municipio": "SAN JOSE DEL RINCON",
+  "jurisdiccion": "IXTLAHUACA",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "MCIMB012114",
+  "entidad": "MEXICO",
+  "nombre": "HOSPITAL MUNICIPAL TEMASCALTEPEC",
+  "municipio": "TEMASCALTEPEC",
+  "jurisdiccion": "TEJUPILCO",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "MCIMB012131",
+  "entidad": "MEXICO",
+  "nombre": "HOSPITAL MUNICIPAL HERMENEGILDO GALEANA JIQUIPILCO",
+  "municipio": "JIQUIPILCO",
+  "jurisdiccion": "IXTLAHUACA",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "MCIMB012143",
+  "entidad": "MEXICO",
+  "nombre": "HOSPITAL MATERNO INFANTIL MIGUEL HIDALGO Y COSTILLA LOS REYES LA PAZ",
+  "municipio": "LA PAZ",
+  "jurisdiccion": "NEZAHUALCÓYOTL",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "MCIMB012196",
+  "entidad": "MEXICO",
+  "nombre": "HOSPITAL MUNICIPAL JUAN ALDAMA VILLA NICOLÁS ROMERO",
+  "municipio": "NICOLAS ROMERO",
+  "jurisdiccion": "ATIZAPÁN DE ZARAGOZA",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "MCIMB012201",
+  "entidad": "MEXICO",
+  "nombre": "HOSPITAL MATERNO INFANTIL VICENTE GUERRERO CHIMALHUACÁN",
+  "municipio": "CHIMALHUACAN",
+  "jurisdiccion": "TEXCOCO",
+  "nivel": "TERCER NIVEL"
+},
+{
+  "clues": "MCIMB012254",
+  "entidad": "MEXICO",
+  "nombre": "HOSPITAL MATERNO INFANTIL GUADALUPE VICTORIA ATIZAPÁN DE ZARAGOZA",
+  "municipio": "ATIZAPAN DE ZARAGOZA",
+  "jurisdiccion": "ATIZAPÁN DE ZARAGOZA",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "MCIMB012271",
+  "entidad": "MEXICO",
+  "nombre": "H.G. VALENTÍN GÓMEZ FARÍAS (SAN FRANCISCO ZENTLALPAN)",
+  "municipio": "AMECAMECA",
+  "jurisdiccion": "AMECAMECA",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "MCIMB012283",
+  "entidad": "MEXICO",
+  "nombre": "HOSPITAL REGIONAL DE ALTA ESPECIALIDAD DE ZUMPANGO",
+  "municipio": "ZUMPANGO",
+  "jurisdiccion": "ZUMPANGO",
+  "nivel": "TERCER NIVEL"
+},
+{
+  "clues": "MCIMB012295",
+  "entidad": "MEXICO",
+  "nombre": "HOSPITAL REGIONAL DE ALTA ESPECIALIDAD IXTAPALUCA",
+  "municipio": "IXTAPALUCA",
+  "jurisdiccion": "AMECAMECA",
+  "nivel": "TERCER NIVEL"
+},
+{
+  "clues": "MCIMB012341",
+  "entidad": "MEXICO",
+  "nombre": "MÓDULO ODONTOPEDIÁTRICO LAS ALAMEDAS",
+  "municipio": "ATIZAPAN DE ZARAGOZA",
+  "jurisdiccion": "ATIZAPÁN DE ZARAGOZA",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "MCIMB012411",
+  "entidad": "MEXICO",
+  "nombre": "UNIDAD DE ESPECIALIDAD MEDICA DETECCIÓN Y DIAGNÓSTICO DEL CANCER DE MAMA TOLUCA",
+  "municipio": "TOLUCA",
+  "jurisdiccion": "TOLUCA",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "MCIMB012440",
+  "entidad": "MEXICO",
+  "nombre": "HOSPITAL PARA EL NIÑO IMIEM",
+  "municipio": "TOLUCA",
+  "jurisdiccion": "TOLUCA",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "MCIMB012452",
+  "entidad": "MEXICO",
+  "nombre": "CENTRO DE ESPECIALIDADES ODONTOLÓGICAS IMIEM",
+  "municipio": "TOLUCA",
+  "jurisdiccion": "TOLUCA",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "MCIMB012464",
+  "entidad": "MEXICO",
+  "nombre": "HOSPITAL DE GINECOLOGÍA Y OBSTETRICÍA IMIEM",
+  "municipio": "TOLUCA",
+  "jurisdiccion": "TOLUCA",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "MCIMB012476",
+  "entidad": "MEXICO",
+  "nombre": "HOSPITAL GENERAL ATENCO “FRANCISCO ALTAMIRANO NÚÑEZ”",
+  "municipio": "ATENCO",
+  "jurisdiccion": "TEXCOCO",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "MNIMB000230",
+  "entidad": "MICHOACAN DE OCAMPO",
+  "nombre": "HI ARTEAGA",
+  "municipio": "ARTEAGA",
+  "jurisdiccion": "LÁZARO CÁRDENAS",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "MNIMB000353",
+  "entidad": "MICHOACAN DE OCAMPO",
+  "nombre": "HI COAHUAYANA",
+  "municipio": "COAHUAYANA",
+  "jurisdiccion": "LÁZARO CÁRDENAS",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "MNIMB000650",
+  "entidad": "MICHOACAN DE OCAMPO",
+  "nombre": "HI CHERAN",
+  "municipio": "CHERAN",
+  "jurisdiccion": "URUAPAN",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "MNIMB001292",
+  "entidad": "MICHOACAN DE OCAMPO",
+  "nombre": "HOSPITAL GENERAL LÁZARO CÁRDENAS",
+  "municipio": "LAZARO CARDENAS",
+  "jurisdiccion": "LÁZARO CÁRDENAS",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "MNIMB001403",
+  "entidad": "MICHOACAN DE OCAMPO",
+  "nombre": "HOSPITAL DE LA MUJER",
+  "municipio": "MORELIA",
+  "jurisdiccion": "MORELIA",
+  "nivel": "TERCER NIVEL"
+},
+{
+  "clues": "MNIMB001415",
+  "entidad": "MICHOACAN DE OCAMPO",
+  "nombre": "CENTRO ESTATAL DE ATENCION ONCOLOGICA",
+  "municipio": "MORELIA",
+  "jurisdiccion": "MORELIA",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "MNIMB001420",
+  "entidad": "MICHOACAN DE OCAMPO",
+  "nombre": "H PSIQ DR. JOSÉ TORRES OROZCO",
+  "municipio": "MORELIA",
+  "jurisdiccion": "MORELIA",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "MNIMB001601",
+  "entidad": "MICHOACAN DE OCAMPO",
+  "nombre": "HI NUEVA ITALIA",
+  "municipio": "MUGICA",
+  "jurisdiccion": "APATZINGÁN",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "MNIMB002091",
+  "entidad": "MICHOACAN DE OCAMPO",
+  "nombre": "HOSPITAL GENERAL SAHUAYO",
+  "municipio": "SAHUAYO",
+  "jurisdiccion": "ZAMORA",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "MNIMB002190",
+  "entidad": "MICHOACAN DE OCAMPO",
+  "nombre": "HOSPITAL GENERAL DE TACAMBARO MARIA ZENDEJAS",
+  "municipio": "TACAMBARO",
+  "jurisdiccion": "PÁTZCUARO",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "MNIMB002774",
+  "entidad": "MICHOACAN DE OCAMPO",
+  "nombre": "HOSPITAL GENERAL DR. PEDRO DANIEL MARTÍNEZ",
+  "municipio": "URUAPAN",
+  "jurisdiccion": "URUAPAN",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "MNIMB002931",
+  "entidad": "MICHOACAN DE OCAMPO",
+  "nombre": "HG ZAMORA",
+  "municipio": "ZAMORA",
+  "jurisdiccion": "ZAMORA",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "MNIMB003013",
+  "entidad": "MICHOACAN DE OCAMPO",
+  "nombre": "HG ZITACUARO",
+  "municipio": "ZITACUARO",
+  "jurisdiccion": "ZITÁCUARO",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "MNIMB003532",
+  "entidad": "MICHOACAN DE OCAMPO",
+  "nombre": "HOSPITAL GENERAL ZACAPU",
+  "municipio": "ZACAPU",
+  "jurisdiccion": "PÁTZCUARO",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "MNIMB003544",
+  "entidad": "MICHOACAN DE OCAMPO",
+  "nombre": "HOSPITAL GENERAL PATZCUARO",
+  "municipio": "PATZCUARO",
+  "jurisdiccion": "PÁTZCUARO",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "MNIMB003590",
+  "entidad": "MICHOACAN DE OCAMPO",
+  "nombre": "HOSPITAL GENERAL DR MIGUEL SILVA",
+  "municipio": "MORELIA",
+  "jurisdiccion": "MORELIA",
+  "nivel": "TERCER NIVEL"
+},
+{
+  "clues": "MNIMB003660",
+  "entidad": "MICHOACAN DE OCAMPO",
+  "nombre": "HOSPITAL INFANTIL DE MORELIA 'EVA SAMANO DE LÓPEZ MATEOS'",
+  "municipio": "MORELIA",
+  "jurisdiccion": "MORELIA",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "MNIMB003725",
+  "entidad": "MICHOACAN DE OCAMPO",
+  "nombre": "UNEME DEDICAM",
+  "municipio": "MORELIA",
+  "jurisdiccion": "MORELIA",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "MNIMB003911",
+  "entidad": "MICHOACAN DE OCAMPO",
+  "nombre": "HG MARAVATIO",
+  "municipio": "MARAVATIO",
+  "jurisdiccion": "MORELIA",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "MNIMB003923",
+  "entidad": "MICHOACAN DE OCAMPO",
+  "nombre": "HOSPITAL GENERAL PURUANDIRO",
+  "municipio": "PURUANDIRO",
+  "jurisdiccion": "LA PIEDAD",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "MNIMB003935",
+  "entidad": "MICHOACAN DE OCAMPO",
+  "nombre": "HG CIUDAD HIDALGO",
+  "municipio": "HIDALGO",
+  "jurisdiccion": "ZITÁCUARO",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "MNIMB003940",
+  "entidad": "MICHOACAN DE OCAMPO",
+  "nombre": "HC TUZANTLA",
+  "municipio": "TUZANTLA",
+  "jurisdiccion": "ZITÁCUARO",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "MNIMB003952",
+  "entidad": "MICHOACAN DE OCAMPO",
+  "nombre": "HC CARACUARO-NOCUPETARO",
+  "municipio": "NOCUPETARO",
+  "jurisdiccion": "PÁTZCUARO",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "MNIMB003964",
+  "entidad": "MICHOACAN DE OCAMPO",
+  "nombre": "HG LOS REYES",
+  "municipio": "LOS REYES",
+  "jurisdiccion": "URUAPAN",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "MNIMB003976",
+  "entidad": "MICHOACAN DE OCAMPO",
+  "nombre": "HG LA PIEDAD",
+  "municipio": "LA PIEDAD",
+  "jurisdiccion": "LA PIEDAD",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "MNIMB003981",
+  "entidad": "MICHOACAN DE OCAMPO",
+  "nombre": "HOSPITAL COMUNITARIO DE LA HUACANA",
+  "municipio": "LA HUACANA",
+  "jurisdiccion": "APATZINGÁN",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "MNIMB003993",
+  "entidad": "MICHOACAN DE OCAMPO",
+  "nombre": "HC MARUATA",
+  "municipio": "AQUILA",
+  "jurisdiccion": "LÁZARO CÁRDENAS",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "MNIMB004734",
+  "entidad": "MICHOACAN DE OCAMPO",
+  "nombre": "HG APATZINGAN",
+  "municipio": "APATZINGAN",
+  "jurisdiccion": "APATZINGÁN",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "MNIMB004746",
+  "entidad": "MICHOACAN DE OCAMPO",
+  "nombre": "HOSPITAL COMUNITARIO ARANTEPACUA",
+  "municipio": "NAHUATZEN",
+  "jurisdiccion": "URUAPAN",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "MNIMB004751",
+  "entidad": "MICHOACAN DE OCAMPO",
+  "nombre": "HOSPITAL COMUNITARIO MARUATA",
+  "municipio": "AQUILA",
+  "jurisdiccion": "LÁZARO CÁRDENAS",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "MSIMB000292",
+  "entidad": "MORELOS",
+  "nombre": "HOSPITAL GENERAL DE CUAUTLA",
+  "municipio": "CUAUTLA",
+  "jurisdiccion": "CUAUTLA",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "MSIMB000386",
+  "entidad": "MORELOS",
+  "nombre": "HG DE CUERNAVACA DR. JOSE G. PARRES",
+  "municipio": "CUERNAVACA",
+  "jurisdiccion": "CUERNAVACA",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "MSIMB000806",
+  "entidad": "MORELOS",
+  "nombre": "HG DE JOJUTLA DR. ERNESTO MEANA SAN ROMÁN",
+  "municipio": "JOJUTLA",
+  "jurisdiccion": "JOJUTLA",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "MSIMB001243",
+  "entidad": "MORELOS",
+  "nombre": "HG DE TETECALA DR. RODOLFO BECERRIL DE LA PAZ",
+  "municipio": "TETECALA",
+  "jurisdiccion": "CUERNAVACA",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "MSIMB001820",
+  "entidad": "MORELOS",
+  "nombre": "HC PUENTE DE IXTLA DR. FERNANDO R. VIZCARRA",
+  "municipio": "PUENTE DE IXTLA",
+  "jurisdiccion": "JOJUTLA",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "MSIMB001844",
+  "entidad": "MORELOS",
+  "nombre": "HOSPITAL DE LA MUJER",
+  "municipio": "YAUTEPEC",
+  "jurisdiccion": "CUAUTLA",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "MSIMB001856",
+  "entidad": "MORELOS",
+  "nombre": "HOSPITAL GENERAL DE TEMIXCO",
+  "municipio": "TEMIXCO",
+  "jurisdiccion": "CUERNAVACA",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "MSIMB001861",
+  "entidad": "MORELOS",
+  "nombre": "HC DE OCUITUCO",
+  "municipio": "OCUITUCO",
+  "jurisdiccion": "CUAUTLA",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "MSIMB002112",
+  "entidad": "MORELOS",
+  "nombre": "HC DE JONACATEPEC",
+  "municipio": "JONACATEPEC DE LEANDRO VALLE",
+  "jurisdiccion": "CUAUTLA",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "MSIMB002124",
+  "entidad": "MORELOS",
+  "nombre": "UNIDAD DE ESPECIALIDADES MEDICAS DE CIRUGIA AMBULATORIA",
+  "municipio": "JOJUTLA",
+  "jurisdiccion": "JOJUTLA",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "MSIMB002235",
+  "entidad": "MORELOS",
+  "nombre": "HOSPITAL DEL NIÑO MORELENSE",
+  "municipio": "EMILIANO ZAPATA",
+  "jurisdiccion": "CUERNAVACA",
+  "nivel": "TERCER NIVEL"
+},
+{
+  "clues": "MSIMB002346",
+  "entidad": "MORELOS",
+  "nombre": "UNEME DE HEMODIALISIS CUERNAVACA",
+  "municipio": "CUERNAVACA",
+  "jurisdiccion": "CUERNAVACA",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "MSIMB002351",
+  "entidad": "MORELOS",
+  "nombre": "HOSPITAL GENERAL DE AXOCHIAPAN",
+  "municipio": "AXOCHIAPAN",
+  "jurisdiccion": "CUAUTLA",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "MSIMB002416",
+  "entidad": "MORELOS",
+  "nombre": "UNIDAD DE EVALUACIÓN Y DIAGNÓSTICO DE OBESIDAD INFANTIL",
+  "municipio": "CUERNAVACA",
+  "jurisdiccion": "CUERNAVACA",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "NTIMB000015",
+  "entidad": "NAYARIT",
+  "nombre": "HOSPITAL DE LA MUJER",
+  "municipio": "TEPIC",
+  "jurisdiccion": "TEPIC",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "NTIMB000020",
+  "entidad": "NAYARIT",
+  "nombre": "HOSPITAL INTEGRAL ACAPONETA",
+  "municipio": "ACAPONETA",
+  "jurisdiccion": "TUXPAN",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "NTIMB000353",
+  "entidad": "NAYARIT",
+  "nombre": "HOSPITAL INTEGRAL IXTLÁN DEL RÍO",
+  "municipio": "IXTLAN DEL RIO",
+  "jurisdiccion": "COMPOSTELA",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "NTIMB000510",
+  "entidad": "NAYARIT",
+  "nombre": "HOSPITAL MIXTO JESÚS MARÍA",
+  "municipio": "DEL NAYAR",
+  "jurisdiccion": "TEPIC",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "NTIMB000551",
+  "entidad": "NAYARIT",
+  "nombre": "HOSPITAL GENERAL ROSAMORADA",
+  "municipio": "ROSAMORADA",
+  "jurisdiccion": "TUXPAN",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "NTIMB001246",
+  "entidad": "NAYARIT",
+  "nombre": "HOSPITAL CIVIL DR. ANTONIO GONZÁLEZ GUEVARA",
+  "municipio": "TEPIC",
+  "jurisdiccion": "TEPIC",
+  "nivel": "TERCER NIVEL"
+},
+{
+  "clues": "NTIMB001485",
+  "entidad": "NAYARIT",
+  "nombre": "HOSPITAL INTEGRAL TUXPAN",
+  "municipio": "TUXPAN",
+  "jurisdiccion": "TUXPAN",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "NTIMB001654",
+  "entidad": "NAYARIT",
+  "nombre": "HOSPITAL GENERAL SAN FRANCISCO",
+  "municipio": "BAHIA DE BANDERAS",
+  "jurisdiccion": "COMPOSTELA",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "NTIMB001724",
+  "entidad": "NAYARIT",
+  "nombre": "HOSPITAL GENERAL SANTIAGO IXCUINTLA",
+  "municipio": "SANTIAGO IXCUINTLA",
+  "jurisdiccion": "TUXPAN",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "NTIMB001765",
+  "entidad": "NAYARIT",
+  "nombre": "CENTRO ESTATAL DE CANCEROLOGÍA",
+  "municipio": "TEPIC",
+  "jurisdiccion": "TEPIC",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "NTIMB002086",
+  "entidad": "NAYARIT",
+  "nombre": "CIRUGÍA AMBULATORIA (TEPIC)",
+  "municipio": "TEPIC",
+  "jurisdiccion": "TEPIC",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "NTIMB002202",
+  "entidad": "NAYARIT",
+  "nombre": "HOSPITAL INTEGRAL PUENTE DE CAMOTLÁN",
+  "municipio": "LA YESCA",
+  "jurisdiccion": "TEPIC",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "NTIMB002523",
+  "entidad": "NAYARIT",
+  "nombre": "HOSPITAL BASICO COMUNITARIO DE TONDOROQUE",
+  "municipio": "BAHIA DE BANDERAS",
+  "jurisdiccion": "COMPOSTELA",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "NTIMB002540",
+  "entidad": "NAYARIT",
+  "nombre": "UNIDAD DE HEMODIALISIS",
+  "municipio": "TEPIC",
+  "jurisdiccion": "TEPIC",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "NTIMB002622",
+  "entidad": "NAYARIT",
+  "nombre": "HOSPITAL BÁSICO COMUNITARIO DE COMPOSTELA",
+  "municipio": "COMPOSTELA",
+  "jurisdiccion": "COMPOSTELA",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "NTIMB002634",
+  "entidad": "NAYARIT",
+  "nombre": "HOSPITAL BASICO COMUNITARIO DE TECUALA",
+  "municipio": "TECUALA",
+  "jurisdiccion": "TUXPAN",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "NTIMB002646",
+  "entidad": "NAYARIT",
+  "nombre": "HOSPITAL BASICO COMUNITARIO LAS VARAS",
+  "municipio": "COMPOSTELA",
+  "jurisdiccion": "COMPOSTELA",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "NTIMB002745",
+  "entidad": "NAYARIT",
+  "nombre": "HOSPITAL COMUNITARIO TUXPAN",
+  "municipio": "TUXPAN",
+  "jurisdiccion": "TUXPAN",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "OCIMB000135",
+  "entidad": "OAXACA",
+  "nombre": "HC NOCHIXTLAN",
+  "municipio": "ASUNCION NOCHIXTLAN",
+  "jurisdiccion": "MIXTECA",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "OCIMB000350",
+  "entidad": "OAXACA",
+  "nombre": "HC HOSPITAL INTEGRAL COMUNITARIO CHALCATONGO",
+  "municipio": "CHALCATONGO DE HIDALGO",
+  "jurisdiccion": "MIXTECA",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "OCIMB000386",
+  "entidad": "OAXACA",
+  "nombre": "HC TAMAZULAPAN",
+  "municipio": "TAMAZULAPAM DEL ESPIRITU SANTO",
+  "jurisdiccion": "SIERRA",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "OCIMB000490",
+  "entidad": "OAXACA",
+  "nombre": "HG HUAJUAPAN ENF. MARÍA DEL PILAR SÁNCHEZ VILLAVICENCIO",
+  "municipio": "HEROICA CIUDAD DE HUAJUAPAN DE LEON",
+  "jurisdiccion": "MIXTECA",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "OCIMB000560",
+  "entidad": "OAXACA",
+  "nombre": "HC IXTLAN DE JUÁREZ",
+  "municipio": "IXTLAN DE JUAREZ",
+  "jurisdiccion": "SIERRA",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "OCIMB000876",
+  "entidad": "OAXACA",
+  "nombre": "CENTRO DE ONCOLOGÍA Y RADIOTERAPIA DE OAXACA, S.S.O.",
+  "municipio": "OAXACA DE JUAREZ",
+  "jurisdiccion": "VALLES CENTRALES",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "OCIMB000881",
+  "entidad": "OAXACA",
+  "nombre": "HG OAXACA DR. AURELIO VALDIVIESO",
+  "municipio": "OAXACA DE JUAREZ",
+  "jurisdiccion": "VALLES CENTRALES",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "OCIMB001313",
+  "entidad": "OAXACA",
+  "nombre": "HE DE LA NIÑEZ OAXAQUEÑA",
+  "municipio": "SAN BARTOLO COYOTEPEC",
+  "jurisdiccion": "VALLES CENTRALES",
+  "nivel": "TERCER NIVEL"
+},
+{
+  "clues": "OCIMB001330",
+  "entidad": "OAXACA",
+  "nombre": "H PSIQUIÁTRICO GRANJA CRUZ DEL SUR",
+  "municipio": "SAN BARTOLO COYOTEPEC",
+  "jurisdiccion": "VALLES CENTRALES",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "OCIMB001844",
+  "entidad": "OAXACA",
+  "nombre": "HG CUICATLAN DR. ALBERTO VARGAS MERINO",
+  "municipio": "SAN JUAN BAUTISTA CUICATLAN",
+  "jurisdiccion": "VALLES CENTRALES",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "OCIMB001931",
+  "entidad": "OAXACA",
+  "nombre": "HG TUXTEPEC",
+  "municipio": "SAN JUAN BAUTISTA TUXTEPEC",
+  "jurisdiccion": "TUXTEPEC",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "OCIMB002100",
+  "entidad": "OAXACA",
+  "nombre": "HG MARÍA LOMBARDO DE CASO",
+  "municipio": "SAN JUAN COTZOCON",
+  "jurisdiccion": "ISTMO",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "OCIMB003133",
+  "entidad": "OAXACA",
+  "nombre": "HG SAN PABLO HUIXTEPEC DR. MANUEL VELASCO SUÁREZ",
+  "municipio": "SAN PABLO HUIXTEPEC",
+  "jurisdiccion": "VALLES CENTRALES",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "OCIMB003401",
+  "entidad": "OAXACA",
+  "nombre": "HG POCHUTLA",
+  "municipio": "SAN PEDRO POCHUTLA",
+  "jurisdiccion": "COSTA",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "OCIMB003500",
+  "entidad": "OAXACA",
+  "nombre": "HC SAN PEDRO TAPANATEPEC",
+  "municipio": "SAN PEDRO TAPANATEPEC",
+  "jurisdiccion": "ISTMO",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "OCIMB003816",
+  "entidad": "OAXACA",
+  "nombre": "HC SANTA CATARINA JUQUILA",
+  "municipio": "SANTA CATARINA JUQUILA",
+  "jurisdiccion": "COSTA",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "OCIMB004912",
+  "entidad": "OAXACA",
+  "nombre": "HG PINOTEPA PEDRO ESPINOZA RUEDA",
+  "municipio": "SANTIAGO PINOTEPA NACIONAL",
+  "jurisdiccion": "COSTA",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "OCIMB006650",
+  "entidad": "OAXACA",
+  "nombre": "CLINICA DE LA MUJER",
+  "municipio": "OAXACA DE JUAREZ",
+  "jurisdiccion": "VALLES CENTRALES",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "OCIMB006826",
+  "entidad": "OAXACA",
+  "nombre": "HOSPITAL REGIONAL DE ALTA ESPECIALIDAD",
+  "municipio": "SAN BARTOLO COYOTEPEC",
+  "jurisdiccion": "VALLES CENTRALES",
+  "nivel": "TERCER NIVEL"
+},
+{
+  "clues": "OCIMB007012",
+  "entidad": "OAXACA",
+  "nombre": "HOSPITAL GENERAL DR MACEDONIO BENITEZ FUENTES",
+  "municipio": "HEROICA CIUDAD DE JUCHITAN DE ZARAGOZA",
+  "jurisdiccion": "ISTMO",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "OCIMB007181",
+  "entidad": "OAXACA",
+  "nombre": "HOSPITAL ESPECIALIZADO DE 30 CAMAS DE JUCHITAN",
+  "municipio": "HEROICA CIUDAD DE JUCHITAN DE ZARAGOZA",
+  "jurisdiccion": "ISTMO",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "OCIMB007193",
+  "entidad": "OAXACA",
+  "nombre": "HOSPITAL MOVIL",
+  "municipio": "SAN BARTOLO COYOTEPEC",
+  "jurisdiccion": "VALLES CENTRALES",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "OCIMB007572",
+  "entidad": "OAXACA",
+  "nombre": "HG CIUDAD IXTEPEC",
+  "municipio": "CIUDAD IXTEPEC",
+  "jurisdiccion": "ISTMO",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "OCIMB007625",
+  "entidad": "OAXACA",
+  "nombre": "HG TEHUANTEPEC",
+  "municipio": "SANTO DOMINGO TEHUANTEPEC",
+  "jurisdiccion": "ISTMO",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "OCIMB007864",
+  "entidad": "OAXACA",
+  "nombre": "HC TLACOTEPEC",
+  "municipio": "SAN JACINTO TLACOTEPEC",
+  "jurisdiccion": "VALLES CENTRALES",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "OCIMB008016",
+  "entidad": "OAXACA",
+  "nombre": "CLÍNICA DE ESPECIALIDADES ODONTOLOGICAS",
+  "municipio": "SAN BARTOLO COYOTEPEC",
+  "jurisdiccion": "VALLES CENTRALES",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "OCIMB008045",
+  "entidad": "OAXACA",
+  "nombre": "HC LA PAZ TEOJOMULCO-TECMECULAN",
+  "municipio": "SANTO DOMINGO TEOJOMULCO",
+  "jurisdiccion": "VALLES CENTRALES",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "OCIMB008190",
+  "entidad": "OAXACA",
+  "nombre": "HC TAMAZOLA",
+  "municipio": "SANTIAGO TAMAZOLA",
+  "jurisdiccion": "MIXTECA",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "OCIMB008634",
+  "entidad": "OAXACA",
+  "nombre": "HC LOMA BONITA",
+  "municipio": "LOMA BONITA",
+  "jurisdiccion": "TUXTEPEC",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "OCIMB008651",
+  "entidad": "OAXACA",
+  "nombre": "HG SALINA CRUZ",
+  "municipio": "SALINA CRUZ",
+  "jurisdiccion": "ISTMO",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "OCIMB008774",
+  "entidad": "OAXACA",
+  "nombre": "HC NEJAPA DE MADERO",
+  "municipio": "NEJAPA DE MADERO",
+  "jurisdiccion": "SIERRA",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "OCIMB008803",
+  "entidad": "OAXACA",
+  "nombre": "HC VALLE NACIONAL",
+  "municipio": "SAN JUAN BAUTISTA VALLE NACIONAL",
+  "jurisdiccion": "TUXTEPEC",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "OCIMB008815",
+  "entidad": "OAXACA",
+  "nombre": "HG PUERTO ESCONDIDO",
+  "municipio": "SAN PEDRO MIXTEPEC",
+  "jurisdiccion": "COSTA",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "OCIMB008861",
+  "entidad": "OAXACA",
+  "nombre": "HC TEMASCAL",
+  "municipio": "SAN MIGUEL SOYALTEPEC",
+  "jurisdiccion": "TUXTEPEC",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "OCIMB008873",
+  "entidad": "OAXACA",
+  "nombre": "HC SANTOS REYES NOPALA",
+  "municipio": "SANTOS REYES NOPALA",
+  "jurisdiccion": "COSTA",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "OCIMB009071",
+  "entidad": "OAXACA",
+  "nombre": "HG PUTLA AMIGO DE LA NIÑEZ Y DE LA MADRE",
+  "municipio": "PUTLA VILLA DE GUERRERO",
+  "jurisdiccion": "MIXTECA",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "OCIMB009100",
+  "entidad": "OAXACA",
+  "nombre": "HC RÍO GRANDE",
+  "municipio": "VILLA DE TUTUTEPEC",
+  "jurisdiccion": "COSTA",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "OCIMB009416",
+  "entidad": "OAXACA",
+  "nombre": "HC TEOTITLÁN DE FLORES MAGÓN",
+  "municipio": "TEOTITLAN DE FLORES MAGON",
+  "jurisdiccion": "VALLES CENTRALES",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "OCIMB009445",
+  "entidad": "OAXACA",
+  "nombre": "HC VILLA SOLA VEGA",
+  "municipio": "VILLA SOLA DE VEGA",
+  "jurisdiccion": "VALLES CENTRALES",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "OCIMB009462",
+  "entidad": "OAXACA",
+  "nombre": "HC SANTA MARIA HUATULCO",
+  "municipio": "SANTA MARIA HUATULCO",
+  "jurisdiccion": "COSTA",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "OCIMB009561",
+  "entidad": "OAXACA",
+  "nombre": "HC SAN PEDRO HUAMELULA",
+  "municipio": "SAN PEDRO HUAMELULA",
+  "jurisdiccion": "ISTMO",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "OCIMB009631",
+  "entidad": "OAXACA",
+  "nombre": "HOSPITAL GENERAL DE LA MUJER Y LA NIÑEZ OAXAQUEÑA",
+  "municipio": "SAN BARTOLO COYOTEPEC",
+  "jurisdiccion": "VALLES CENTRALES",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "OCIMB009643",
+  "entidad": "OAXACA",
+  "nombre": "IXTLÁN DE JUÁREZ",
+  "municipio": "IXTLAN DE JUAREZ",
+  "jurisdiccion": "SIERRA",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "OCIMB009660",
+  "entidad": "OAXACA",
+  "nombre": "HOSPITAL GENERAL DE SAN JUAN BAUTISTA TUXTEPEC",
+  "municipio": "SAN JUAN BAUTISTA TUXTEPEC",
+  "jurisdiccion": "TUXTEPEC",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "OCIMB009684",
+  "entidad": "OAXACA",
+  "nombre": "HOSPITAL INTEGRAL DE SAN FELIPE JALAPA DE DIAZ",
+  "municipio": "SAN FELIPE JALAPA DE DIAZ",
+  "jurisdiccion": "TUXTEPEC",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "PLIMB000100",
+  "entidad": "PUEBLA",
+  "nombre": "HOSPITAL COMUNITARIO AHUACATLÁN",
+  "municipio": "AHUACATLAN",
+  "jurisdiccion": "CHIGNAHUAPAN",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "PLIMB000351",
+  "entidad": "PUEBLA",
+  "nombre": "HOSPITAL COMUNITARIO DE AYOTOXCO",
+  "municipio": "AYOTOXCO DE GUERRERO",
+  "jurisdiccion": "ZACAPOAXTLA",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "PLIMB000433",
+  "entidad": "PUEBLA",
+  "nombre": "HOSPITAL COMUNITARIO COXCATLAN",
+  "municipio": "COXCATLAN",
+  "jurisdiccion": "TEHUACÁN",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "PLIMB000602",
+  "entidad": "PUEBLA",
+  "nombre": "HOSPITAL COMUNITARIO CUYOACO",
+  "municipio": "CUYOACO",
+  "jurisdiccion": "SAN SALVADOR EL SECO",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "PLIMB000626",
+  "entidad": "PUEBLA",
+  "nombre": "HOSPITAL GENERAL CIUDAD SERDÁN",
+  "municipio": "CHALCHICOMULA DE SESMA",
+  "jurisdiccion": "SAN SALVADOR EL SECO",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "PLIMB001121",
+  "entidad": "PUEBLA",
+  "nombre": "HOSPITAL COMUNITARIO HUEHUETLA",
+  "municipio": "HUEHUETLA",
+  "jurisdiccion": "ZACAPOAXTLA",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "PLIMB001285",
+  "entidad": "PUEBLA",
+  "nombre": "HOSPITAL COMUNITARIO IXTACAMAXTITLAN",
+  "municipio": "IXTACAMAXTITLAN",
+  "jurisdiccion": "CHIGNAHUAPAN",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "PLIMB001536",
+  "entidad": "PUEBLA",
+  "nombre": "HOSPITAL GENERAL DE LIBRES",
+  "municipio": "LIBRES",
+  "jurisdiccion": "SAN SALVADOR EL SECO",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "PLIMB001710",
+  "entidad": "PUEBLA",
+  "nombre": "HOSPITAL COMUNITARIO CUACNOPALAN",
+  "municipio": "PALMAR DE BRAVO",
+  "jurisdiccion": "TEPEXI DE RODRÍGUEZ",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "PLIMB001780",
+  "entidad": "PUEBLA",
+  "nombre": "HOSPITAL GENERAL DR EDUARDO VAZQUEZ N",
+  "municipio": "PUEBLA",
+  "jurisdiccion": "PUEBLA",
+  "nivel": "TERCER NIVEL"
+},
+{
+  "clues": "PLIMB001792",
+  "entidad": "PUEBLA",
+  "nombre": "HOSPITAL PSIQUIÁTRICO DR. RAFAEL SERRANO",
+  "municipio": "PUEBLA",
+  "jurisdiccion": "PUEBLA",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "PLIMB002154",
+  "entidad": "PUEBLA",
+  "nombre": "HOSPITAL COMUNITARIO SAN MARTÍN TEXMELUCAN (EL MORAL)",
+  "municipio": "SAN MARTIN TEXMELUCAN",
+  "jurisdiccion": "HUEJOTZINGO",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "PLIMB002492",
+  "entidad": "PUEBLA",
+  "nombre": "HOSPITAL COMUNITARIO TECOMATLAN",
+  "municipio": "TECOMATLAN",
+  "jurisdiccion": "ACATLÁN",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "PLIMB002516",
+  "entidad": "PUEBLA",
+  "nombre": "HOSPITAL GENERAL TEHUACAN",
+  "municipio": "TEHUACAN",
+  "jurisdiccion": "TEHUACÁN",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "PLIMB003093",
+  "entidad": "PUEBLA",
+  "nombre": "HOSPITAL COMUNITARIO TULCINGO DE VALLE",
+  "municipio": "TULCINGO",
+  "jurisdiccion": "ACATLÁN",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "PLIMB003571",
+  "entidad": "PUEBLA",
+  "nombre": "HOSPITAL COMUNITARIO ZAPOTITLAN DE MENDEZ",
+  "municipio": "ZAPOTITLAN DE MENDEZ",
+  "jurisdiccion": "ZACAPOAXTLA",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "PLIMB003706",
+  "entidad": "PUEBLA",
+  "nombre": "HOSPITAL COMUNITARIO ZOQUITLAN",
+  "municipio": "ZOQUITLAN",
+  "jurisdiccion": "TEHUACÁN",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "PLIMB004020",
+  "entidad": "PUEBLA",
+  "nombre": "HOSPITAL COMUNITARIO TLAOLA",
+  "municipio": "TLAOLA",
+  "jurisdiccion": "HUAUCHINANGO",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "PLIMB004056",
+  "entidad": "PUEBLA",
+  "nombre": "HOSPITAL COMUNITARIO ACATZINGO",
+  "municipio": "ACATZINGO",
+  "jurisdiccion": "TEPEXI DE RODRÍGUEZ",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "PLIMB004073",
+  "entidad": "PUEBLA",
+  "nombre": "HOSPITAL COMUNITARIO AJALPAN",
+  "municipio": "AJALPAN",
+  "jurisdiccion": "TEHUACÁN",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "PLIMB004085",
+  "entidad": "PUEBLA",
+  "nombre": "HOSPITAL COMUNITARIO TLACOTEPEC DE BENITO JUÁREZ",
+  "municipio": "TLACOTEPEC DE BENITO JUAREZ",
+  "jurisdiccion": "TEHUACÁN",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "PLIMB004102",
+  "entidad": "PUEBLA",
+  "nombre": "HOSPITAL COMUNITARIO MECAPALAPA",
+  "municipio": "PANTEPEC",
+  "jurisdiccion": "HUAUCHINANGO",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "PLIMB004126",
+  "entidad": "PUEBLA",
+  "nombre": "HOSPITAL DE LA MUJER",
+  "municipio": "PUEBLA",
+  "jurisdiccion": "PUEBLA",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "PLIMB004131",
+  "entidad": "PUEBLA",
+  "nombre": "HOSPITAL COMUNITARIO VICENTE GUERRERO",
+  "municipio": "VICENTE GUERRERO",
+  "jurisdiccion": "TEHUACÁN",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "PLIMB004143",
+  "entidad": "PUEBLA",
+  "nombre": "HOSPITAL COMUNITARIO TLACOTEPEC DE PORFIRÍO DÍAZ",
+  "municipio": "SAN SEBASTIAN TLACOTEPEC",
+  "jurisdiccion": "TEHUACÁN",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "PLIMB004160",
+  "entidad": "PUEBLA",
+  "nombre": "CENTRO ESTATAL DE SALUD MENTAL",
+  "municipio": "PUEBLA",
+  "jurisdiccion": "PUEBLA",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "PLIMB004172",
+  "entidad": "PUEBLA",
+  "nombre": "UNIDAD DE ONCOLOGÍA",
+  "municipio": "PUEBLA",
+  "jurisdiccion": "PUEBLA",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "PLIMB004242",
+  "entidad": "PUEBLA",
+  "nombre": "HOSPITAL INTEGRAL GUADALUPE VICTORIA",
+  "municipio": "GUADALUPE VICTORIA",
+  "jurisdiccion": "SAN SALVADOR EL SECO",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "PLIMB004703",
+  "entidad": "PUEBLA",
+  "nombre": "HOSPITAL DE CAMPAÑA MÓVIL",
+  "municipio": "PUEBLA",
+  "jurisdiccion": "PUEBLA",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "PLIMB004720",
+  "entidad": "PUEBLA",
+  "nombre": "HOSPITAL DE LA MUJER Y NEONATOLOGÍA",
+  "municipio": "TEHUACAN",
+  "jurisdiccion": "TEHUACÁN",
+  "nivel": "TERCER NIVEL"
+},
+{
+  "clues": "PLIMB004732",
+  "entidad": "PUEBLA",
+  "nombre": "HOSPITAL INTEGRAL ZACAPOAXTLA",
+  "municipio": "ZACAPOAXTLA",
+  "jurisdiccion": "ZACAPOAXTLA",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "PLIMB004860",
+  "entidad": "PUEBLA",
+  "nombre": "HOSPITAL GENERAL DE CHOLULA",
+  "municipio": "SAN ANDRES CHOLULA",
+  "jurisdiccion": "HUEJOTZINGO",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "PLIMB004925",
+  "entidad": "PUEBLA",
+  "nombre": "HOSPITAL GENERAL DE TEZIUTLÁN",
+  "municipio": "TEZIUTLAN",
+  "jurisdiccion": "ZACAPOAXTLA",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "PLIMB004954",
+  "entidad": "PUEBLA",
+  "nombre": "HOSPITAL INTEGRAL SAN JOSÉ CHIAPA",
+  "municipio": "SAN JOSE CHIAPA",
+  "jurisdiccion": "SAN SALVADOR EL SECO",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "PLIMB005012",
+  "entidad": "PUEBLA",
+  "nombre": "HOSPITAL GENERAL DE ACATLÁN DE OSORIO",
+  "municipio": "ACATLAN",
+  "jurisdiccion": "ACATLÁN",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "PLIMB005070",
+  "entidad": "PUEBLA",
+  "nombre": "HOSPITAL GENERAL TLATLAUQUITEPEC",
+  "municipio": "TLATLAUQUITEPEC",
+  "jurisdiccion": "ZACAPOAXTLA",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "PLIMB005205",
+  "entidad": "PUEBLA",
+  "nombre": "HOSPITAL DE LA NIÑEZ POBLANA",
+  "municipio": "SAN ANDRES CHOLULA",
+  "jurisdiccion": "HUEJOTZINGO",
+  "nivel": "TERCER NIVEL"
+},
+{
+  "clues": "PLIMB005263",
+  "entidad": "PUEBLA",
+  "nombre": "HOSPITAL INTEGRAL ACAJETE-TEPETZALA",
+  "municipio": "ACAJETE",
+  "jurisdiccion": "TEPEXI DE RODRÍGUEZ",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "PLIMB005321",
+  "entidad": "PUEBLA",
+  "nombre": "HOSPITAL GENERAL DE HUEJOTZINGO",
+  "municipio": "HUEJOTZINGO",
+  "jurisdiccion": "HUEJOTZINGO",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "PLIMB005555",
+  "entidad": "PUEBLA",
+  "nombre": "HOSPITAL INTEGRAL PALMAR DE BRAVO",
+  "municipio": "PALMAR DE BRAVO",
+  "jurisdiccion": "TEPEXI DE RODRÍGUEZ",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "PLIMB005601",
+  "entidad": "PUEBLA",
+  "nombre": "HOSPITAL INTEGRAL DE XICOTEPEC",
+  "municipio": "XICOTEPEC",
+  "jurisdiccion": "HUAUCHINANGO",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "PLIMB005613",
+  "entidad": "PUEBLA",
+  "nombre": "HOSPITAL GENERAL DE ATLIXCO GONZALO RÍO ARRONTE",
+  "municipio": "ATLIXCO",
+  "jurisdiccion": "HUEJOTZINGO",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "PLIMB005700",
+  "entidad": "PUEBLA",
+  "nombre": "HOSPITAL DE TRAUMATOLOGÍA Y ORTOPEDIA DOCTOR Y GENERAL RAFAEL MORENO VALLE",
+  "municipio": "PUEBLA",
+  "jurisdiccion": "PUEBLA",
+  "nivel": "TERCER NIVEL"
+},
+{
+  "clues": "PLIMB005794",
+  "entidad": "PUEBLA",
+  "nombre": "HOSPITAL COMUNITARIO QUIMIXTLAN",
+  "municipio": "QUIMIXTLAN",
+  "jurisdiccion": "SAN SALVADOR EL SECO",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "PLIMB005910",
+  "entidad": "PUEBLA",
+  "nombre": "HOSPITAL GENERAL DE LA ZONA NORTE BICENTENARIO DE LA INDEPENDENCIA",
+  "municipio": "PUEBLA",
+  "jurisdiccion": "PUEBLA",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "PLIMB006004",
+  "entidad": "PUEBLA",
+  "nombre": "HOSPITAL COMUNITARIO DR. MIGUEL ANGEL COBOS MARIN",
+  "municipio": "IXCAQUIXTLA",
+  "jurisdiccion": "TEPEXI DE RODRÍGUEZ",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "PLIMB006016",
+  "entidad": "PUEBLA",
+  "nombre": "HOSPITAL GENERAL DE TEPEACA",
+  "municipio": "TEPEACA",
+  "jurisdiccion": "TEPEXI DE RODRÍGUEZ",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "PLIMB006091",
+  "entidad": "PUEBLA",
+  "nombre": "UNIDAD DE QUEMADOS (ANEXO AL HOSPITAL DEL NIÑO POBLANO)",
+  "municipio": "PUEBLA",
+  "jurisdiccion": "PUEBLA",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "PLIMB006103",
+  "entidad": "PUEBLA",
+  "nombre": "HOSPITAL GENERAL DE ZACATLÁN",
+  "municipio": "ZACATLAN",
+  "jurisdiccion": "CHIGNAHUAPAN",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "PLIMB006885",
+  "entidad": "PUEBLA",
+  "nombre": "HOSPITAL GENERAL HUAUCHINANGO",
+  "municipio": "HUAUCHINANGO",
+  "jurisdiccion": "HUAUCHINANGO",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "PLIMB007083",
+  "entidad": "PUEBLA",
+  "nombre": "HOSPITAL GENERAL DE IZUCAR DE MATAMOROS",
+  "municipio": "IZUCAR DE MATAMOROS",
+  "jurisdiccion": "IZÚCAR DE MATAMOROS",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "PLIMB007095",
+  "entidad": "PUEBLA",
+  "nombre": "HOSPITAL COMUNITARIO ZACAPALA",
+  "municipio": "ZACAPALA",
+  "jurisdiccion": "TEPEXI DE RODRÍGUEZ",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "PLIMB007112",
+  "entidad": "PUEBLA",
+  "nombre": "HOSPITAL GENERAL DE CUETZALAN",
+  "municipio": "CUETZALAN DEL PROGRESO",
+  "jurisdiccion": "ZACAPOAXTLA",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "PLIMB007136",
+  "entidad": "PUEBLA",
+  "nombre": "HOSPITAL COMUNITARIO DE TETELA DE OCAMPO",
+  "municipio": "TETELA DE OCAMPO",
+  "jurisdiccion": "CHIGNAHUAPAN",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "PLIMB007170",
+  "entidad": "PUEBLA",
+  "nombre": "HOSPITAL GENERAL TECAMACHALCO",
+  "municipio": "TECAMACHALCO",
+  "jurisdiccion": "TEPEXI DE RODRÍGUEZ",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "PLIMB007305",
+  "entidad": "PUEBLA",
+  "nombre": "HOSPITAL COMUNITARIO PAHUATLÁN DE VALLE",
+  "municipio": "PAHUATLAN",
+  "jurisdiccion": "HUAUCHINANGO",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "PLIMB007416",
+  "entidad": "PUEBLA",
+  "nombre": "HOSPITAL INTEGRAL VENUSTIANO CARRANZA",
+  "municipio": "VENUSTIANO CARRANZA",
+  "jurisdiccion": "HUAUCHINANGO",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "QRIMB000013",
+  "entidad": "QUINTANA ROO",
+  "nombre": "HOSPITAL GENERAL DE COZUMEL",
+  "municipio": "COZUMEL",
+  "jurisdiccion": "CANCÚN",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "QRIMB000025",
+  "entidad": "QUINTANA ROO",
+  "nombre": "HOSPITAL GENERAL DE FELIPE CARRILLO PUERTO",
+  "municipio": "FELIPE CARRILLO PUERTO",
+  "jurisdiccion": "FELIPE CARRILLO PUERTO",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "QRIMB000346",
+  "entidad": "QUINTANA ROO",
+  "nombre": "HOSPITAL MATERNO INFANTIL MORELOS",
+  "municipio": "OTHON P. BLANCO",
+  "jurisdiccion": "CHETUMAL",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "QRIMB000351",
+  "entidad": "QUINTANA ROO",
+  "nombre": "HOSPITAL GENERAL DE CHETUMAL",
+  "municipio": "OTHON P. BLANCO",
+  "jurisdiccion": "CHETUMAL",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "QRIMB000421",
+  "entidad": "QUINTANA ROO",
+  "nombre": "HOSPITAL INTEGRAL DE BACALAR",
+  "municipio": "BACALAR",
+  "jurisdiccion": "CHETUMAL",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "QRIMB001174",
+  "entidad": "QUINTANA ROO",
+  "nombre": "HOSPITAL INTEGRAL DE JOSÉ MARÍA MORELOS",
+  "municipio": "JOSE MARIA MORELOS",
+  "jurisdiccion": "FELIPE CARRILLO PUERTO",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "QRIMB001285",
+  "entidad": "QUINTANA ROO",
+  "nombre": "HOSPITAL INTEGRAL DE KANTUNILKÍN",
+  "municipio": "LAZARO CARDENAS",
+  "jurisdiccion": "CANCÚN",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "QRIMB001582",
+  "entidad": "QUINTANA ROO",
+  "nombre": "HOSPITAL INTEGRAL DE ISLA MUJERES",
+  "municipio": "ISLA MUJERES",
+  "jurisdiccion": "CANCÚN",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "QRIMB001606",
+  "entidad": "QUINTANA ROO",
+  "nombre": "HOSPITAL DE ONCOLOGÍA IMSS-BIENESTAR CHETUMAL",
+  "municipio": "OTHON P. BLANCO",
+  "jurisdiccion": "CHETUMAL",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "QRIMB001611",
+  "entidad": "QUINTANA ROO",
+  "nombre": "HOSPITAL IMSS-BIENESTAR NICOLÁS BRAVO",
+  "municipio": "OTHON P. BLANCO",
+  "jurisdiccion": "CHETUMAL",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "QRIMB001623",
+  "entidad": "QUINTANA ROO",
+  "nombre": "HOSPITAL IMSS-BIENESTAR TULUM",
+  "municipio": "TULUM",
+  "jurisdiccion": "CANCÚN",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "QRIMB001956",
+  "entidad": "QUINTANA ROO",
+  "nombre": "HOSPITAL GENERAL DE PLAYA DEL CARMEN",
+  "municipio": "SOLIDARIDAD",
+  "jurisdiccion": "CANCÚN",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "QRIMB001973",
+  "entidad": "QUINTANA ROO",
+  "nombre": "HOSPITAL GENERAL DE CANCÚN DR. JESÚS KUMATE RODRÍGUEZ",
+  "municipio": "BENITO JUAREZ",
+  "jurisdiccion": "CANCÚN",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "SLIMB000014",
+  "entidad": "SINALOA",
+  "nombre": "HOSPITAL GENERAL DE CULIACÁN",
+  "municipio": "CULIACAN",
+  "jurisdiccion": "CULIACAN",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "SLIMB000026",
+  "entidad": "SINALOA",
+  "nombre": "HOSPITAL GENERAL CULIACÁN BERNARDO J. GASTELUM",
+  "municipio": "CULIACAN",
+  "jurisdiccion": "CULIACAN",
+  "nivel": "TERCER NIVEL"
+},
+{
+  "clues": "SLIMB000031",
+  "entidad": "SINALOA",
+  "nombre": "HOSPITAL GENERAL LOS MOCHIS",
+  "municipio": "AHOME",
+  "jurisdiccion": "LOS MOCHIS",
+  "nivel": "TERCER NIVEL"
+},
+{
+  "clues": "SLIMB000195",
+  "entidad": "SINALOA",
+  "nombre": "HOSPITAL INTEGRAL ANGOSTURA",
+  "municipio": "ANGOSTURA",
+  "jurisdiccion": "GUAMUCHIL",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "SLIMB000241",
+  "entidad": "SINALOA",
+  "nombre": "HOSPITAL INTEGRAL BADIRAGUATO",
+  "municipio": "BADIRAGUATO",
+  "jurisdiccion": "CULIACAN",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "SLIMB000446",
+  "entidad": "SINALOA",
+  "nombre": "HOSPITAL INTEGRAL CONCORDIA",
+  "municipio": "CONCORDIA",
+  "jurisdiccion": "MAZATLAN",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "SLIMB000545",
+  "entidad": "SINALOA",
+  "nombre": "HOSPITAL INTEGRAL COSALA",
+  "municipio": "COSALA",
+  "jurisdiccion": "CULIACAN",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "SLIMB000603",
+  "entidad": "SINALOA",
+  "nombre": "CENTRO DERMATOLOGICO DE SINALOA",
+  "municipio": "CULIACAN",
+  "jurisdiccion": "CULIACAN",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "SLIMB000615",
+  "entidad": "SINALOA",
+  "nombre": "HOSPITAL PSIQUIÁTRICO",
+  "municipio": "CULIACAN",
+  "jurisdiccion": "CULIACAN",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "SLIMB000673",
+  "entidad": "SINALOA",
+  "nombre": "CENTRO DE ESPECIALIDADES ODONTOLOGICAS",
+  "municipio": "CULIACAN",
+  "jurisdiccion": "CULIACAN",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "SLIMB000895",
+  "entidad": "SINALOA",
+  "nombre": "HOSPITAL INTEGRAL CHOIX",
+  "municipio": "CHOIX",
+  "jurisdiccion": "LOS MOCHIS",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "SLIMB001134",
+  "entidad": "SINALOA",
+  "nombre": "HOSPITAL GENERAL GUASAVE",
+  "municipio": "GUASAVE",
+  "jurisdiccion": "GUASAVE",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "SLIMB001554",
+  "entidad": "SINALOA",
+  "nombre": "HOSPITAL INTEGRAL MOCORITO",
+  "municipio": "MOCORITO",
+  "jurisdiccion": "GUAMUCHIL",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "SLIMB001711",
+  "entidad": "SINALOA",
+  "nombre": "HOSPITAL INTEGRAL DE EL ROSARIO",
+  "municipio": "ROSARIO",
+  "jurisdiccion": "ESCUINAPA",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "SLIMB001950",
+  "entidad": "SINALOA",
+  "nombre": "HOSPITAL INTEGRAL DE SINALOA DE LEYVA",
+  "municipio": "SINALOA",
+  "jurisdiccion": "GUASAVE",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "SLIMB002184",
+  "entidad": "SINALOA",
+  "nombre": "HOSPITAL INTEGRAL NAVOLATO",
+  "municipio": "NAVOLATO",
+  "jurisdiccion": "CULIACAN",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "SLIMB002230",
+  "entidad": "SINALOA",
+  "nombre": "HOSPITAL PEDIÁTRICO DE SINALOA",
+  "municipio": "CULIACAN",
+  "jurisdiccion": "CULIACAN",
+  "nivel": "TERCER NIVEL"
+},
+{
+  "clues": "SLIMB002242",
+  "entidad": "SINALOA",
+  "nombre": "HOSPITAL INTEGRAL VALLE DEL CARRIZO",
+  "municipio": "AHOME",
+  "jurisdiccion": "LOS MOCHIS",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "SLIMB002254",
+  "entidad": "SINALOA",
+  "nombre": "HOSPITAL GENERAL DE MAZATLÁN",
+  "municipio": "MAZATLAN",
+  "jurisdiccion": "MAZATLAN",
+  "nivel": "TERCER NIVEL"
+},
+{
+  "clues": "SLIMB002341",
+  "entidad": "SINALOA",
+  "nombre": "UNIDAD DE ESPECIALIDADES MEDICAS Y DE DIAGNOSTICO DE CANCER DE MAMA UNEME DEDICAM",
+  "municipio": "CULIACAN",
+  "jurisdiccion": "CULIACAN",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "SLIMB002411",
+  "entidad": "SINALOA",
+  "nombre": "UNIDAD MÉDICA ESPECIALIZADA DE HEMODIÁLISIS CULIACÁN",
+  "municipio": "CULIACAN",
+  "jurisdiccion": "CULIACAN",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "SLIMB002423",
+  "entidad": "SINALOA",
+  "nombre": "UNIDAD MÉDICA ESPECIALIZADA DE IMAGENOLOGIA",
+  "municipio": "CULIACAN",
+  "jurisdiccion": "CULIACAN",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "SLIMB002435",
+  "entidad": "SINALOA",
+  "nombre": "UNIDAD MÉDICA ESPECIALIZADA DE HEMODIALISIS LOS MOCHIS",
+  "municipio": "AHOME",
+  "jurisdiccion": "LOS MOCHIS",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "SLIMB002464",
+  "entidad": "SINALOA",
+  "nombre": "HOSPITAL INTEGRAL SAN IGNACIO",
+  "municipio": "SAN IGNACIO",
+  "jurisdiccion": "MAZATLAN",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "SLIMB002476",
+  "entidad": "SINALOA",
+  "nombre": "HOSPITAL INTEGRAL VALLE DE SAN LORENZO",
+  "municipio": "CULIACAN",
+  "jurisdiccion": "CULIACAN",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "SLIMB002481",
+  "entidad": "SINALOA",
+  "nombre": "HOSPITAL GENERAL LA CRUZ",
+  "municipio": "ELOTA",
+  "jurisdiccion": "MAZATLAN",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "SLIMB002493",
+  "entidad": "SINALOA",
+  "nombre": "HOSPITAL DE LA MUJER",
+  "municipio": "CULIACAN",
+  "jurisdiccion": "CULIACAN",
+  "nivel": "TERCER NIVEL"
+},
+{
+  "clues": "SLIMB002505",
+  "entidad": "SINALOA",
+  "nombre": "UNIDAD MÉDICA ESPECIALIZADA HEMODIALISIS MAZATLÁN",
+  "municipio": "MAZATLAN",
+  "jurisdiccion": "MAZATLAN",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "SLIMB002930",
+  "entidad": "SINALOA",
+  "nombre": "HOSPITAL GENERAL DE GUAMUCHIL",
+  "municipio": "SALVADOR ALVARADO",
+  "jurisdiccion": "GUAMUCHIL",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "SLIMB002971",
+  "entidad": "SINALOA",
+  "nombre": "INSTITUTO SINALOENSE DE CANCEROLOGÍA",
+  "municipio": "CULIACAN",
+  "jurisdiccion": "CULIACAN",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "SLIMB003053",
+  "entidad": "SINALOA",
+  "nombre": "HOSPITAL GENERAL ESCUINAPA",
+  "municipio": "ESCUINAPA",
+  "jurisdiccion": "ESCUINAPA",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "SLIMB003065",
+  "entidad": "SINALOA",
+  "nombre": "HOSPITAL GENERAL EL DORADO",
+  "municipio": "ELDORADO",
+  "jurisdiccion": "CULIACAN",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "SLIMB003222",
+  "entidad": "SINALOA",
+  "nombre": "CENTRO DE ESPECIALIDADES ODONTOLÓGICAS DE NAVOLATO",
+  "municipio": "NAVOLATO",
+  "jurisdiccion": "CULIACAN",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "SPIMB000042",
+  "entidad": "SAN LUIS POTOSI",
+  "nombre": "HOSPITAL COMUNITARIO AQUISMON",
+  "municipio": "AQUISMON",
+  "jurisdiccion": "TANCANHUITZ",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "SPIMB000170",
+  "entidad": "SAN LUIS POTOSI",
+  "nombre": "HOSPITAL COMUNITARIO CIUDAD DEL MAÍZ",
+  "municipio": "CIUDAD DEL MAIZ",
+  "jurisdiccion": "RIOVERDE",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "SPIMB000240",
+  "entidad": "SAN LUIS POTOSI",
+  "nombre": "HOSPITAL GENERAL CD. VALLES",
+  "municipio": "CIUDAD VALLES",
+  "jurisdiccion": "CIUDAD VALLES",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "SPIMB000585",
+  "entidad": "SAN LUIS POTOSI",
+  "nombre": "HOSPITAL GENERAL DE RÍOVERDE",
+  "municipio": "RIOVERDE",
+  "jurisdiccion": "RIOVERDE",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "SPIMB000643",
+  "entidad": "SAN LUIS POTOSI",
+  "nombre": "HOSPITAL COMUNITARIO SALINAS DE HIDALGO",
+  "municipio": "SALINAS",
+  "jurisdiccion": "SOLEDAD DE GRACIANO SÁNCHEZ",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "SPIMB000976",
+  "entidad": "SAN LUIS POTOSI",
+  "nombre": "CLÍNICA PSIQUIÁTRICA DR. EVERARDO NEUMANN PEÑA",
+  "municipio": "SOLEDAD DE GRACIANO SANCHEZ",
+  "jurisdiccion": "SAN LUIS POTOSÍ",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "SPIMB001063",
+  "entidad": "SAN LUIS POTOSI",
+  "nombre": "HOSPITAL COMUNITARIO TAMAZUNCHALE",
+  "municipio": "TAMAZUNCHALE",
+  "jurisdiccion": "TAMAZUNCHALE",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "SPIMB001804",
+  "entidad": "SAN LUIS POTOSI",
+  "nombre": "HOSPITAL COMUNITARIO VILLA DE ARISTA",
+  "municipio": "VILLA DE ARISTA",
+  "jurisdiccion": "SOLEDAD DE GRACIANO SÁNCHEZ",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "SPIMB001920",
+  "entidad": "SAN LUIS POTOSI",
+  "nombre": "HOSPITAL COMUNITARIO EBANO",
+  "municipio": "EBANO",
+  "jurisdiccion": "CIUDAD VALLES",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "SPIMB002125",
+  "entidad": "SAN LUIS POTOSI",
+  "nombre": "HOSPITAL GENERAL DE MATEHUALA",
+  "municipio": "MATEHUALA",
+  "jurisdiccion": "MATEHUALA",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "SPIMB002294",
+  "entidad": "SAN LUIS POTOSI",
+  "nombre": "UNIDAD DE COLPOSCOPÍA",
+  "municipio": "CIUDAD FERNANDEZ",
+  "jurisdiccion": "RIOVERDE",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "SPIMB002574",
+  "entidad": "SAN LUIS POTOSI",
+  "nombre": "HOSPITAL REGIONAL DE ALTA ESPECIALIDAD DR.IGNACIO MORONES PRIETO",
+  "municipio": "SAN LUIS POTOSI",
+  "jurisdiccion": "SAN LUIS POTOSÍ",
+  "nivel": "TERCER NIVEL"
+},
+{
+  "clues": "SPIMB002796",
+  "entidad": "SAN LUIS POTOSI",
+  "nombre": "UNIDAD DE CIRUGÍA AMBULATORIA VALLES",
+  "municipio": "CIUDAD VALLES",
+  "jurisdiccion": "CIUDAD VALLES",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "SPIMB002801",
+  "entidad": "SAN LUIS POTOSI",
+  "nombre": "HOSPITAL COMUNITARIO DE TAMUIN",
+  "municipio": "TAMUIN",
+  "jurisdiccion": "CIUDAD VALLES",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "SPIMB002813",
+  "entidad": "SAN LUIS POTOSI",
+  "nombre": "HOSPITAL BASICO COMUNITARIO DE XILITLA",
+  "municipio": "XILITLA",
+  "jurisdiccion": "TAMAZUNCHALE",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "SPIMB002965",
+  "entidad": "SAN LUIS POTOSI",
+  "nombre": "HOSPITAL DE LA NIÑEZ Y LA MUJER DR. ALBERTO LÓPEZ HERMOSA",
+  "municipio": "SAN LUIS POTOSI",
+  "jurisdiccion": "SAN LUIS POTOSÍ",
+  "nivel": "TERCER NIVEL"
+},
+{
+  "clues": "SPIMB002970",
+  "entidad": "SAN LUIS POTOSI",
+  "nombre": "HOSPITAL GENERAL DE SOLEDAD DE GRACIANO SÁNCHEZ",
+  "municipio": "SOLEDAD DE GRACIANO SANCHEZ",
+  "jurisdiccion": "SAN LUIS POTOSÍ",
+  "nivel": "TERCER NIVEL"
+},
+{
+  "clues": "SRIMB000016",
+  "entidad": "SONORA",
+  "nombre": "HOSPITAL COMUNITARIO VICAM SWITCH",
+  "municipio": "GUAYMAS",
+  "jurisdiccion": "CIUDAD OBREGÓN",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "SRIMB000033",
+  "entidad": "SONORA",
+  "nombre": "UNIDAD DE DESINTOXICACION AGUA PRIETA",
+  "municipio": "AGUA PRIETA",
+  "jurisdiccion": "SANTA ANA",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "SRIMB000050",
+  "entidad": "SONORA",
+  "nombre": "HOSPITAL COMUNITARIO ALAMOS",
+  "municipio": "ALAMOS",
+  "jurisdiccion": "NAVOJOA",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "SRIMB000453",
+  "entidad": "SONORA",
+  "nombre": "HOSPITAL GENERAL CD. OBREGÓN",
+  "municipio": "CAJEME",
+  "jurisdiccion": "CIUDAD OBREGÓN",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "SRIMB000844",
+  "entidad": "SONORA",
+  "nombre": "HOSPITAL GENERAL GUAYMAS",
+  "municipio": "GUAYMAS",
+  "jurisdiccion": "CIUDAD OBREGÓN",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "SRIMB000902",
+  "entidad": "SONORA",
+  "nombre": "CENTRO ESTATAL DE ONCOLOGÍA DR. ERNESTO RIVERA CLAISSE",
+  "municipio": "HERMOSILLO",
+  "jurisdiccion": "HERMOSILLO",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "SRIMB000914",
+  "entidad": "SONORA",
+  "nombre": "HOSPITAL INFANTIL DEL ESTADO DE SONORA",
+  "municipio": "HERMOSILLO",
+  "jurisdiccion": "HERMOSILLO",
+  "nivel": "TERCER NIVEL"
+},
+{
+  "clues": "SRIMB000926",
+  "entidad": "SONORA",
+  "nombre": "HOSPITAL PSIQUIÁTRICO CRUZ DEL NORTE HILLO",
+  "municipio": "HERMOSILLO",
+  "jurisdiccion": "HERMOSILLO",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "SRIMB000931",
+  "entidad": "SONORA",
+  "nombre": "CENTRO DE HIGIENE MENTAL DR. CARLOS NAVA MUÑOZ",
+  "municipio": "HERMOSILLO",
+  "jurisdiccion": "HERMOSILLO",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "SRIMB001351",
+  "entidad": "SONORA",
+  "nombre": "HOSPITAL COMUNITARIO MOCTEZUMA",
+  "municipio": "MOCTEZUMA",
+  "jurisdiccion": "HERMOSILLO",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "SRIMB001404",
+  "entidad": "SONORA",
+  "nombre": "HOSPITAL GENERAL NAVOJOA",
+  "municipio": "NAVOJOA",
+  "jurisdiccion": "NAVOJOA",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "SRIMB001556",
+  "entidad": "SONORA",
+  "nombre": "UNIDAD DE DESINTOXICACION DE NOGALES",
+  "municipio": "NOGALES",
+  "jurisdiccion": "SANTA ANA",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "SRIMB001561",
+  "entidad": "SONORA",
+  "nombre": "HOSPITAL GENERAL NOGALES",
+  "municipio": "NOGALES",
+  "jurisdiccion": "SANTA ANA",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "SRIMB001766",
+  "entidad": "SONORA",
+  "nombre": "HOSPITAL GENERAL DE SAN LUIS RÍO COLORADO",
+  "municipio": "SAN LUIS RIO COLORADO",
+  "jurisdiccion": "SAN LUIS RIO COLORADO",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "SRIMB001964",
+  "entidad": "SONORA",
+  "nombre": "HOSPITAL COMUNITARIO URES",
+  "municipio": "URES",
+  "jurisdiccion": "HERMOSILLO",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "SRIMB002174",
+  "entidad": "SONORA",
+  "nombre": "HOSPITAL GENERAL DE CABORCA",
+  "municipio": "CABORCA",
+  "jurisdiccion": "CABORCA",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "SRIMB002186",
+  "entidad": "SONORA",
+  "nombre": "HOSPITAL GENERAL DE CANANEA",
+  "municipio": "CANANEA",
+  "jurisdiccion": "SANTA ANA",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "SRIMB002191",
+  "entidad": "SONORA",
+  "nombre": "HOSPITAL COMUNITARIO DE MAGDALENA",
+  "municipio": "MAGDALENA",
+  "jurisdiccion": "SANTA ANA",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "SRIMB002203",
+  "entidad": "SONORA",
+  "nombre": "HOSPITAL GENERAL DEL ESTADO DE SONORA",
+  "municipio": "HERMOSILLO",
+  "jurisdiccion": "HERMOSILLO",
+  "nivel": "TERCER NIVEL"
+},
+{
+  "clues": "SRIMB002355",
+  "entidad": "SONORA",
+  "nombre": "HOSPITAL INTEGRAL PUERTO PEÑASCO",
+  "municipio": "PUERTO PEÑASCO",
+  "jurisdiccion": "SAN LUIS RIO COLORADO",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "SRIMB002360",
+  "entidad": "SONORA",
+  "nombre": "HOSPITAL GENERAL DE AGUA PRIETA",
+  "municipio": "AGUA PRIETA",
+  "jurisdiccion": "SANTA ANA",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "SRIMB002442",
+  "entidad": "SONORA",
+  "nombre": "UNIDAD DE ATENCIÓN INTEGRAL A LAS ADICCIONES DEL ESTADO DE SONORA (UNAIDES-OBREGÓN)",
+  "municipio": "CAJEME",
+  "jurisdiccion": "CIUDAD OBREGÓN",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "SRIMB002594",
+  "entidad": "SONORA",
+  "nombre": "HOSPITAL GENERAL DEL BAJO RIO MAYO",
+  "municipio": "HUATABAMPO",
+  "jurisdiccion": "NAVOJOA",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "SRIMB002606",
+  "entidad": "SONORA",
+  "nombre": "CENTRO INFANTIL PARA EL DESARROLLO NEUROCONDUCTUAL",
+  "municipio": "HERMOSILLO",
+  "jurisdiccion": "HERMOSILLO",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "SRIMB002734",
+  "entidad": "SONORA",
+  "nombre": "UNIDAD DE ESPECIALIDADES MÉDICAS DE CIRUGÍA AMBULATORIA",
+  "municipio": "HERMOSILLO",
+  "jurisdiccion": "HERMOSILLO",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "TCIMB000016",
+  "entidad": "TABASCO",
+  "nombre": "HOSPITAL GENERAL DE BALANCÁN",
+  "municipio": "BALANCAN",
+  "jurisdiccion": "BALANCÁN",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "TCIMB000190",
+  "entidad": "TABASCO",
+  "nombre": "HOSPITAL GENERAL DE CÁRDENAS",
+  "municipio": "CARDENAS",
+  "jurisdiccion": "CÁRDENAS",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "TCIMB000762",
+  "entidad": "TABASCO",
+  "nombre": "UNIDAD DE APOYO CREO",
+  "municipio": "CENTRO",
+  "jurisdiccion": "CENTRO",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "TCIMB000774",
+  "entidad": "TABASCO",
+  "nombre": "HOSPITAL REGIONAL DE ALTA ESPECIALIDAD DEL NIÑO 'DR. RODOLFO NIETO PADRÓN'",
+  "municipio": "CENTRO",
+  "jurisdiccion": "CENTRO",
+  "nivel": "TERCER NIVEL"
+},
+{
+  "clues": "TCIMB000786",
+  "entidad": "TABASCO",
+  "nombre": "HOSPITAL REGIONAL DE ALTA ESPECIALIDAD DR. GUSTAVO A. ROVIROSA PÉREZ",
+  "municipio": "CENTRO",
+  "jurisdiccion": "CENTRO",
+  "nivel": "TERCER NIVEL"
+},
+{
+  "clues": "TCIMB000791",
+  "entidad": "TABASCO",
+  "nombre": "HOSPITAL REGIONAL DE ALTA ESPECIALIDAD DR. JUAN GRAHAM CASASUS",
+  "municipio": "CENTRO",
+  "jurisdiccion": "CENTRO",
+  "nivel": "TERCER NIVEL"
+},
+{
+  "clues": "TCIMB000803",
+  "entidad": "TABASCO",
+  "nombre": "HOSPITAL REGIONAL DE ALTA ESPECIALIDAD DE LA MUJER",
+  "municipio": "CENTRO",
+  "jurisdiccion": "CENTRO",
+  "nivel": "TERCER NIVEL"
+},
+{
+  "clues": "TCIMB000815",
+  "entidad": "TABASCO",
+  "nombre": "HOSPITAL REGIONAL DE ALTA ESPECIALIDAD DE SALUD MENTAL VILLAHERMOSA",
+  "municipio": "CENTRO",
+  "jurisdiccion": "CENTRO",
+  "nivel": "TERCER NIVEL"
+},
+{
+  "clues": "TCIMB001561",
+  "entidad": "TABASCO",
+  "nombre": "HOSPITAL GENERAL DE CUNDUACAN",
+  "municipio": "CUNDUACAN",
+  "jurisdiccion": "CUNDUACÁN",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "TCIMB001841",
+  "entidad": "TABASCO",
+  "nombre": "HOSPITAL GENERAL DE EMILIANO ZAPATA",
+  "municipio": "EMILIANO ZAPATA",
+  "jurisdiccion": "EMILIANO ZAPATA",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "TCIMB001870",
+  "entidad": "TABASCO",
+  "nombre": "HOSPITAL GENERAL DE HUIMANGUILLO DR. ADELFO S. AGUIRRE",
+  "municipio": "HUIMANGUILLO",
+  "jurisdiccion": "HUIMANGUILLO",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "TCIMB002273",
+  "entidad": "TABASCO",
+  "nombre": "HOSPITAL COMUNITARIO DE JALAPA",
+  "municipio": "JALAPA",
+  "jurisdiccion": "JALAPA",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "TCIMB002396",
+  "entidad": "TABASCO",
+  "nombre": "HOSPITAL COMUNITARIO DE JALPA DE MÈNDEZ",
+  "municipio": "JALPA DE MENDEZ",
+  "jurisdiccion": "JALPA DE MÉNDEZ",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "TCIMB002611",
+  "entidad": "TABASCO",
+  "nombre": "HOSPITAL GENERAL DE MACUSPANA",
+  "municipio": "MACUSPANA",
+  "jurisdiccion": "MACUSPANA",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "TCIMB002920",
+  "entidad": "TABASCO",
+  "nombre": "HOSPITAL GENERAL DE VILLA BENITO JUÁREZ",
+  "municipio": "MACUSPANA",
+  "jurisdiccion": "MACUSPANA",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "TCIMB002961",
+  "entidad": "TABASCO",
+  "nombre": "HOSPITAL COMUNITARIO DE NACAJUCA",
+  "municipio": "NACAJUCA",
+  "jurisdiccion": "NACAJUCA",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "TCIMB003253",
+  "entidad": "TABASCO",
+  "nombre": "HOSPITAL GENERAL DE PARAÍSO",
+  "municipio": "PARAISO",
+  "jurisdiccion": "PARAÍSO",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "TCIMB003265",
+  "entidad": "TABASCO",
+  "nombre": "HOSPITAL COMUNITARIO DE TACOTALPA DR. RAMÓN MEDINA",
+  "municipio": "TACOTALPA",
+  "jurisdiccion": "TACOTALPA",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "TCIMB003446",
+  "entidad": "TABASCO",
+  "nombre": "HOSPITAL GENERAL DE TEAPA DR. NICANDRO L. MELO",
+  "municipio": "TEAPA",
+  "jurisdiccion": "TEAPA",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "TCIMB003586",
+  "entidad": "TABASCO",
+  "nombre": "HOSPITAL GENERAL DE TENOSIQUE",
+  "municipio": "TENOSIQUE",
+  "jurisdiccion": "TENOSIQUE",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "TCIMB004875",
+  "entidad": "TABASCO",
+  "nombre": "DOMOS HOSPITALARIOS TEMPORALES COVID-19",
+  "municipio": "CENTRO",
+  "jurisdiccion": "CENTRO",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "TCIMB004945",
+  "entidad": "TABASCO",
+  "nombre": "UNIDAD DE ESPECIALIDADES MÉDICAS DE IMAGENOLOGÍA DE VILLAHERMOSA",
+  "municipio": "CENTRO",
+  "jurisdiccion": "CENTRO",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "TCIMB005020",
+  "entidad": "TABASCO",
+  "nombre": "HOSPITAL COMUNITARIO VILLA LA VENTA",
+  "municipio": "HUIMANGUILLO",
+  "jurisdiccion": "HUIMANGUILLO",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "TCIMB005266",
+  "entidad": "TABASCO",
+  "nombre": "HOSPITAL GENERAL 'DR. DESIDERIO G. ROSADO CARBAJAL'",
+  "municipio": "COMALCALCO",
+  "jurisdiccion": "COMALCALCO",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "TCIMB005271",
+  "entidad": "TABASCO",
+  "nombre": "HOSPITAL DR. ARCENIO FILIGRANA ZUBIETA",
+  "municipio": "JONUTA",
+  "jurisdiccion": "JONUTA",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "TCIMB005505",
+  "entidad": "TABASCO",
+  "nombre": "HOSPITAL COMUNITARIO DE FRONTERA",
+  "municipio": "CENTLA",
+  "jurisdiccion": "CENTLA",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "TLIMB000181",
+  "entidad": "TLAXCALA",
+  "nombre": "HOSPITAL COMUNITARIO EL CARMEN TEQUEXQUITLA",
+  "municipio": "EL CARMEN TEQUEXQUITLA",
+  "jurisdiccion": "HUAMANTLA",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "TLIMB000555",
+  "entidad": "TLAXCALA",
+  "nombre": "HOSPITAL COMUNITARIO SAN BERNARDINO CONTLA",
+  "municipio": "CONTLA DE JUAN CUAMATZI",
+  "jurisdiccion": "TLAXCALA",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "TLIMB000794",
+  "entidad": "TLAXCALA",
+  "nombre": "CLINICA DE ESPECIALIDADES DENTALES DE TLAXCALA",
+  "municipio": "TLAXCALA",
+  "jurisdiccion": "TLAXCALA",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "TLIMB000975",
+  "entidad": "TLAXCALA",
+  "nombre": "H.G.R. EMILIO SÁNCHEZ PIEDRAS",
+  "municipio": "TZOMPANTEPEC",
+  "jurisdiccion": "HUAMANTLA",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "TLIMB001050",
+  "entidad": "TLAXCALA",
+  "nombre": "HOSPITAL COMUNITARIO ZACATELCO",
+  "municipio": "ZACATELCO",
+  "jurisdiccion": "TLAXCALA",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "TLIMB001395",
+  "entidad": "TLAXCALA",
+  "nombre": "HOSPITAL GENERAL DE SAN PABLO DEL MONTE",
+  "municipio": "SAN PABLO DEL MONTE",
+  "jurisdiccion": "TLAXCALA",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "TLIMB001412",
+  "entidad": "TLAXCALA",
+  "nombre": "HOSPITAL COMUNITARIO TLAXCO",
+  "municipio": "TLAXCO",
+  "jurisdiccion": "APIZACO",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "TLIMB001815",
+  "entidad": "TLAXCALA",
+  "nombre": "CLINICA DE ESPECIALIDADES DENTALES DE APIZACO",
+  "municipio": "APIZACO",
+  "jurisdiccion": "APIZACO",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "TLIMB001820",
+  "entidad": "TLAXCALA",
+  "nombre": "HOSPITAL GENERAL TLAXCALA LIC. ANSELMO CERVANTES HERNANDEZ",
+  "municipio": "APETATITLAN DE ANTONIO CARVAJAL",
+  "jurisdiccion": "TLAXCALA",
+  "nivel": "TERCER NIVEL"
+},
+{
+  "clues": "TLIMB001832",
+  "entidad": "TLAXCALA",
+  "nombre": "UNEME DE CIRUGIA AMBULATORIA",
+  "municipio": "APETATITLAN DE ANTONIO CARVAJAL",
+  "jurisdiccion": "TLAXCALA",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "TLIMB001844",
+  "entidad": "TLAXCALA",
+  "nombre": "UNEME DE HEMODIALISIS",
+  "municipio": "APETATITLAN DE ANTONIO CARVAJAL",
+  "jurisdiccion": "TLAXCALA",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "TLIMB001890",
+  "entidad": "TLAXCALA",
+  "nombre": "HOSPITAL INFANTIL DE TLAXCALA",
+  "municipio": "APETATITLAN DE ANTONIO CARVAJAL",
+  "jurisdiccion": "TLAXCALA",
+  "nivel": "TERCER NIVEL"
+},
+{
+  "clues": "TLIMB002025",
+  "entidad": "TLAXCALA",
+  "nombre": "HOSPITAL GENERAL DE CALPULALPAN",
+  "municipio": "CALPULALPAN",
+  "jurisdiccion": "APIZACO",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "TLIMB002095",
+  "entidad": "TLAXCALA",
+  "nombre": "HOSPITAL DE LA MUJER",
+  "municipio": "APETATITLAN DE ANTONIO CARVAJAL",
+  "jurisdiccion": "TLAXCALA",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "TLIMB002100",
+  "entidad": "TLAXCALA",
+  "nombre": "HOSPITAL GENERAL DE NATIVITAS",
+  "municipio": "NATIVITAS",
+  "jurisdiccion": "TLAXCALA",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "TLIMB002136",
+  "entidad": "TLAXCALA",
+  "nombre": "HOSPITAL GENERAL DE HUAMANTLA",
+  "municipio": "HUAMANTLA",
+  "jurisdiccion": "HUAMANTLA",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "TLIMB002165",
+  "entidad": "TLAXCALA",
+  "nombre": "DETECCIÓN Y DIAGNÓSTICO DE CANCER DE MAMA",
+  "municipio": "APETATITLAN DE ANTONIO CARVAJAL",
+  "jurisdiccion": "TLAXCALA",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "TSIMB000012",
+  "entidad": "TAMAULIPAS",
+  "nombre": "HOSPITAL INTEGRAL ABASOLO",
+  "municipio": "ABASOLO",
+  "jurisdiccion": "PADILLA",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "TSIMB000082",
+  "entidad": "TAMAULIPAS",
+  "nombre": "HOSPITAL INTEGRAL ALDAMA",
+  "municipio": "ALDAMA",
+  "jurisdiccion": "ALTAMIRA",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "TSIMB000316",
+  "entidad": "TAMAULIPAS",
+  "nombre": "HOSPITAL GENERAL CIVIL CIUDAD MADERO",
+  "municipio": "CIUDAD MADERO",
+  "jurisdiccion": "TAMPICO",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "TSIMB000630",
+  "entidad": "TAMAULIPAS",
+  "nombre": "CAIRRS MANTE",
+  "municipio": "EL MANTE",
+  "jurisdiccion": "MANTE",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "TSIMB001091",
+  "entidad": "TAMAULIPAS",
+  "nombre": "HOSPITAL GENERAL NUEVO LAREDO",
+  "municipio": "NUEVO LAREDO",
+  "jurisdiccion": "NUEVO LAREDO",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "TSIMB001103",
+  "entidad": "TAMAULIPAS",
+  "nombre": "HOSPITAL GENERAL CIVIL NUEVO LAREDO",
+  "municipio": "NUEVO LAREDO",
+  "jurisdiccion": "NUEVO LAREDO",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "TSIMB001260",
+  "entidad": "TAMAULIPAS",
+  "nombre": "HOSPITAL GENERAL REYNOSA DR. JOSÉ MARÍA CANTÚ GARZA",
+  "municipio": "REYNOSA",
+  "jurisdiccion": "REYNOSA",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "TSIMB001535",
+  "entidad": "TAMAULIPAS",
+  "nombre": "HOSPITAL GENERAL SAN FERNANDO",
+  "municipio": "SAN FERNANDO",
+  "jurisdiccion": "SAN FERNANDO",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "TSIMB001704",
+  "entidad": "TAMAULIPAS",
+  "nombre": "CAIRRS TAMPICO",
+  "municipio": "TAMPICO",
+  "jurisdiccion": "TAMPICO",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "TSIMB001926",
+  "entidad": "TAMAULIPAS",
+  "nombre": "CENTRO ONCOLÓGICO DE TAMAULIPAS",
+  "municipio": "VICTORIA",
+  "jurisdiccion": "VICTORIA",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "TSIMB001931",
+  "entidad": "TAMAULIPAS",
+  "nombre": "HOSPITAL INFANTIL DE TAMAULIPAS",
+  "municipio": "VICTORIA",
+  "jurisdiccion": "VICTORIA",
+  "nivel": "TERCER NIVEL"
+},
+{
+  "clues": "TSIMB001943",
+  "entidad": "TAMAULIPAS",
+  "nombre": "HOSPITAL GENERAL CIVIL VICTORIA DR. JOSÉ MACÍAS HERNÁNDEZ",
+  "municipio": "VICTORIA",
+  "jurisdiccion": "VICTORIA",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "TSIMB001955",
+  "entidad": "TAMAULIPAS",
+  "nombre": "HOSPITAL GENERAL DR. NORBERTO TREVIÑO ZAPATA",
+  "municipio": "VICTORIA",
+  "jurisdiccion": "VICTORIA",
+  "nivel": "TERCER NIVEL"
+},
+{
+  "clues": "TSIMB002170",
+  "entidad": "TAMAULIPAS",
+  "nombre": "CENTRO ESTATAL SALUD MENTAL LAS VILLAS DE LA ESPERANZA",
+  "municipio": "MATAMOROS",
+  "jurisdiccion": "MATAMOROS",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "TSIMB002264",
+  "entidad": "TAMAULIPAS",
+  "nombre": "UNEME DEDICAM TAMPICO",
+  "municipio": "TAMPICO",
+  "jurisdiccion": "TAMPICO",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "TSIMB002363",
+  "entidad": "TAMAULIPAS",
+  "nombre": "CAIRRS VALLE HERMOSO",
+  "municipio": "VALLE HERMOSO",
+  "jurisdiccion": "VALLE HERMOSO",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "TSIMB002416",
+  "entidad": "TAMAULIPAS",
+  "nombre": "HOSPITAL GENERAL DE MATAMOROS",
+  "municipio": "MATAMOROS",
+  "jurisdiccion": "MATAMOROS",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "TSIMB002520",
+  "entidad": "TAMAULIPAS",
+  "nombre": "HOSPITAL GENERAL DE TAMPICO DR. CARLOS CANSECO",
+  "municipio": "TAMPICO",
+  "jurisdiccion": "TAMPICO",
+  "nivel": "TERCER NIVEL"
+},
+{
+  "clues": "TSIMB002532",
+  "entidad": "TAMAULIPAS",
+  "nombre": "HOSPITAL PSIQUIÁTRICO DE TAMPICO",
+  "municipio": "TAMPICO",
+  "jurisdiccion": "TAMPICO",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "TSIMB002602",
+  "entidad": "TAMAULIPAS",
+  "nombre": "UNIDAD DE CIRUGÍA AMBULATORIA DE TAMPICO",
+  "municipio": "TAMPICO",
+  "jurisdiccion": "TAMPICO",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "TSIMB002614",
+  "entidad": "TAMAULIPAS",
+  "nombre": "UNIDAD DE HEMODIÁLISIS TAMPICO",
+  "municipio": "TAMPICO",
+  "jurisdiccion": "TAMPICO",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "TSIMB002626",
+  "entidad": "TAMAULIPAS",
+  "nombre": "UNIDAD DE HEMODIÁLISIS MATAMOROS",
+  "municipio": "MATAMOROS",
+  "jurisdiccion": "MATAMOROS",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "TSIMB002631",
+  "entidad": "TAMAULIPAS",
+  "nombre": "UNIDAD DE HEMODIÁLISIS NUEVO LAREDO",
+  "municipio": "NUEVO LAREDO",
+  "jurisdiccion": "NUEVO LAREDO",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "TSIMB002643",
+  "entidad": "TAMAULIPAS",
+  "nombre": "HOSPITAL GENERAL DE CD. MANTE DR. EMILIO MARTÍNEZ MANAUTOU",
+  "municipio": "EL MANTE",
+  "jurisdiccion": "MANTE",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "TSIMB002713",
+  "entidad": "TAMAULIPAS",
+  "nombre": "HOSPITAL GENERAL MATERNO INFANTIL DE REYNOSA",
+  "municipio": "REYNOSA",
+  "jurisdiccion": "REYNOSA",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "TSIMB002865",
+  "entidad": "TAMAULIPAS",
+  "nombre": "HOSPITAL REGIONAL DE ALTA ESPECIALIDAD EN CD VICTORIA BICENTENARIO 2010",
+  "municipio": "VICTORIA",
+  "jurisdiccion": "VICTORIA",
+  "nivel": "TERCER NIVEL"
+},
+{
+  "clues": "TSIMB003075",
+  "entidad": "TAMAULIPAS",
+  "nombre": "HOSPITAL GENERAL RÍO BRAVO",
+  "municipio": "RIO BRAVO",
+  "jurisdiccion": "VALLE HERMOSO",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "TSIMB003466",
+  "entidad": "TAMAULIPAS",
+  "nombre": "HOSPITAL GENERAL VALLE HERMOSO DR. RODOLFO TORRE CANTÙ",
+  "municipio": "VALLE HERMOSO",
+  "jurisdiccion": "VALLE HERMOSO",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "TSIMB003483",
+  "entidad": "TAMAULIPAS",
+  "nombre": "HOSPITAL INTEGRAL MIGUEL ALEMÁN",
+  "municipio": "MIGUEL ALEMAN",
+  "jurisdiccion": "MIGUEL ALEMÁN",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "TSIMB003536",
+  "entidad": "TAMAULIPAS",
+  "nombre": "CENTRO DE INTERNAMIENTO Y REHABILITACIÓN RENACER",
+  "municipio": "VICTORIA",
+  "jurisdiccion": "VICTORIA",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "TSIMB003582",
+  "entidad": "TAMAULIPAS",
+  "nombre": "CENTRO ONCOLÓGICO NUEVO LAREDO DR. RODOLFO TORRE CANTÚ",
+  "municipio": "NUEVO LAREDO",
+  "jurisdiccion": "NUEVO LAREDO",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "TSIMB003594",
+  "entidad": "TAMAULIPAS",
+  "nombre": "UNIDAD MÉDICA ESPECIALIZADA PARA LA DETECCIÓN Y DIAGNÓSTICO DE CÁNCER DE MAMA",
+  "municipio": "VICTORIA",
+  "jurisdiccion": "VICTORIA",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "VZIMB000230",
+  "entidad": "VERACRUZ DE IGNACIO DE LA LLAVE",
+  "nombre": "HOSPITAL GENERAL ALTOTONGA EUFROSINA CAMACHO",
+  "municipio": "ALTOTONGA",
+  "jurisdiccion": "XALAPA",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "VZIMB000254",
+  "entidad": "VERACRUZ DE IGNACIO DE LA LLAVE",
+  "nombre": "HOSPITAL DE LA COMUNIDAD DE ALVARADO",
+  "municipio": "ALVARADO",
+  "jurisdiccion": "VERACRUZ",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "VZIMB000691",
+  "entidad": "VERACRUZ DE IGNACIO DE LA LLAVE",
+  "nombre": "HOSPITAL DE LA COMUNIDAD CATEMACO",
+  "municipio": "CATEMACO",
+  "jurisdiccion": "SAN ANDRÉS TUXTLA",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "VZIMB000790",
+  "entidad": "VERACRUZ DE IGNACIO DE LA LLAVE",
+  "nombre": "HOSPITAL DE LA COMUNIDAD COATEPEC",
+  "municipio": "COATEPEC",
+  "jurisdiccion": "XALAPA",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "VZIMB000826",
+  "entidad": "VERACRUZ DE IGNACIO DE LA LLAVE",
+  "nombre": "HOSPITAL REGIONAL DE COATZACOALCOS DR.VALENTIN GÓMEZ FARIAS",
+  "municipio": "COATZACOALCOS",
+  "jurisdiccion": "COATZACOALCOS",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "VZIMB000983",
+  "entidad": "VERACRUZ DE IGNACIO DE LA LLAVE",
+  "nombre": "HOSPITAL GENERAL CORDOBA YANGA",
+  "municipio": "CORDOBA",
+  "jurisdiccion": "CÓRDOBA",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "VZIMB001000",
+  "entidad": "VERACRUZ DE IGNACIO DE LA LLAVE",
+  "nombre": "HOSPITAL GENERAL COSAMALOAPAN DR. VÍCTOR MANUEL PITALUA GONZÁLEZ",
+  "municipio": "COSAMALOAPAN DE CARPIO",
+  "jurisdiccion": "COSAMALOAPAN",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "VZIMB001794",
+  "entidad": "VERACRUZ DE IGNACIO DE LA LLAVE",
+  "nombre": "HOSPITAL DE LA COMUNIDAD DE GUTIÉRREZ ZAMORA",
+  "municipio": "GUTIERREZ ZAMORA",
+  "jurisdiccion": "MARTÍNEZ DE LA TORRE",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "VZIMB001881",
+  "entidad": "VERACRUZ DE IGNACIO DE LA LLAVE",
+  "nombre": "HOSPITAL GENERAL HUATUSCO DR. DARÍO MENDEZ LIMA",
+  "municipio": "HUATUSCO",
+  "jurisdiccion": "CÓRDOBA",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "VZIMB001922",
+  "entidad": "VERACRUZ DE IGNACIO DE LA LLAVE",
+  "nombre": "HOSPITAL DE LA COMUNIDAD DE HUAYACOCOTLA",
+  "municipio": "HUAYACOCOTLA",
+  "jurisdiccion": "POZA RICA",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "VZIMB002120",
+  "entidad": "VERACRUZ DE IGNACIO DE LA LLAVE",
+  "nombre": "HOSPITAL COMUNITARIO DE IXHUATLAN DEL SURESTE",
+  "municipio": "IXHUATLAN DEL SURESTE",
+  "jurisdiccion": "COATZACOALCOS",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "VZIMB002325",
+  "entidad": "VERACRUZ DE IGNACIO DE LA LLAVE",
+  "nombre": "CENTRO ESTATAL DE CANCEROLOGÍA DR. MIGUEL DORANTES MESA",
+  "municipio": "XALAPA",
+  "jurisdiccion": "XALAPA",
+  "nivel": "TERCER NIVEL"
+},
+{
+  "clues": "VZIMB002330",
+  "entidad": "VERACRUZ DE IGNACIO DE LA LLAVE",
+  "nombre": "CENTRO DE ALTA ESPECIALIDAD DR. RAFAEL LUCIO",
+  "municipio": "XALAPA",
+  "jurisdiccion": "XALAPA",
+  "nivel": "TERCER NIVEL"
+},
+{
+  "clues": "VZIMB002342",
+  "entidad": "VERACRUZ DE IGNACIO DE LA LLAVE",
+  "nombre": "HOSPITAL REGIONAL DE XALAPA DR. LUIS F. NACHÓN",
+  "municipio": "XALAPA",
+  "jurisdiccion": "XALAPA",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "VZIMB002354",
+  "entidad": "VERACRUZ DE IGNACIO DE LA LLAVE",
+  "nombre": "INSTITUTO VERACRUZANO DE SALUD MENTAL DR. RAFAEL VELASCO FERNANDEZ",
+  "municipio": "XALAPA",
+  "jurisdiccion": "XALAPA",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "VZIMB002511",
+  "entidad": "VERACRUZ DE IGNACIO DE LA LLAVE",
+  "nombre": "HOSPITAL DE LA COMUNIDAD SUCHILAPAN DEL RÍO. CARMEN BOUZAS DE LÓPEZ ARIAS",
+  "municipio": "JESUS CARRANZA",
+  "jurisdiccion": "SAN ANDRÉS TUXTLA",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "VZIMB002675",
+  "entidad": "VERACRUZ DE IGNACIO DE LA LLAVE",
+  "nombre": "HOSPITAL GENERAL MARTÍNEZ DE LA TORRE",
+  "municipio": "MARTINEZ DE LA TORRE",
+  "jurisdiccion": "MARTÍNEZ DE LA TORRE",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "VZIMB002844",
+  "entidad": "VERACRUZ DE IGNACIO DE LA LLAVE",
+  "nombre": "HOSPITAL GENERAL DE MINATITLAN",
+  "municipio": "MINATITLAN",
+  "jurisdiccion": "COATZACOALCOS",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "VZIMB002972",
+  "entidad": "VERACRUZ DE IGNACIO DE LA LLAVE",
+  "nombre": "HOSPITAL GENERAL DE MISANTLA",
+  "municipio": "MISANTLA",
+  "jurisdiccion": "MARTÍNEZ DE LA TORRE",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "VZIMB003240",
+  "entidad": "VERACRUZ DE IGNACIO DE LA LLAVE",
+  "nombre": "HOSPITAL DE SALUD MENTAL ORIZABA, DR VÍCTOR M. CONCHA VÁSQUEZ",
+  "municipio": "ORIZABA",
+  "jurisdiccion": "ORIZABA",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "VZIMB003276",
+  "entidad": "VERACRUZ DE IGNACIO DE LA LLAVE",
+  "nombre": "HOSPITAL DE LA COMUNIDAD OZULUAMA DE MASCAREÑAS",
+  "municipio": "OZULUAMA DE MASCAREÑAS",
+  "jurisdiccion": "PÁNUCO",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "VZIMB003322",
+  "entidad": "VERACRUZ DE IGNACIO DE LA LLAVE",
+  "nombre": "HOSPITAL GENERAL PANUCO DR. MANUEL I ÁVILA",
+  "municipio": "PANUCO",
+  "jurisdiccion": "PÁNUCO",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "VZIMB003491",
+  "entidad": "VERACRUZ DE IGNACIO DE LA LLAVE",
+  "nombre": "HOSPITAL GENERAL PAPANTLA DR. JOSÉ BUILL BELENGUER",
+  "municipio": "PAPANTLA",
+  "jurisdiccion": "POZA RICA",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "VZIMB003701",
+  "entidad": "VERACRUZ DE IGNACIO DE LA LLAVE",
+  "nombre": "HOSPITAL DE LA COMUNIDAD PLAYA VICENTE",
+  "municipio": "PLAYA VICENTE",
+  "jurisdiccion": "COSAMALOAPAN",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "VZIMB003766",
+  "entidad": "VERACRUZ DE IGNACIO DE LA LLAVE",
+  "nombre": "HOSPITAL REGIONAL POZA RICA DE HIDALGO",
+  "municipio": "POZA RICA DE HIDALGO",
+  "jurisdiccion": "POZA RICA",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "VZIMB003870",
+  "entidad": "VERACRUZ DE IGNACIO DE LA LLAVE",
+  "nombre": "HOSPITAL REGIONAL RÍO BLANCO",
+  "municipio": "RIO BLANCO",
+  "jurisdiccion": "ORIZABA",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "VZIMB003911",
+  "entidad": "VERACRUZ DE IGNACIO DE LA LLAVE",
+  "nombre": "HOSPITAL GENERAL SAN ANDRÉS TUXTLA. DR. BERNARDO PEÑA",
+  "municipio": "SAN ANDRES TUXTLA",
+  "jurisdiccion": "SAN ANDRÉS TUXTLA",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "VZIMB004046",
+  "entidad": "VERACRUZ DE IGNACIO DE LA LLAVE",
+  "nombre": "HOSPITAL GENERAL DE SANTIAGO TUXTLA",
+  "municipio": "SANTIAGO TUXTLA",
+  "jurisdiccion": "SAN ANDRÉS TUXTLA",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "VZIMB004384",
+  "entidad": "VERACRUZ DE IGNACIO DE LA LLAVE",
+  "nombre": "HOSPITAL GENERAL TANTOYUCA",
+  "municipio": "TANTOYUCA",
+  "jurisdiccion": "PÁNUCO",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "VZIMB004710",
+  "entidad": "VERACRUZ DE IGNACIO DE LA LLAVE",
+  "nombre": "HOSPITAL DE LA COMUNIDAD DE TEMPOAL",
+  "municipio": "TEMPOAL",
+  "jurisdiccion": "PÁNUCO",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "VZIMB004775",
+  "entidad": "VERACRUZ DE IGNACIO DE LA LLAVE",
+  "nombre": "HOSPITAL DE LA COMUNIDAD DE TEOCELO",
+  "municipio": "TEOCELO",
+  "jurisdiccion": "XALAPA",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "VZIMB004944",
+  "entidad": "VERACRUZ DE IGNACIO DE LA LLAVE",
+  "nombre": "HOSPITAL GENERAL DE TIERRA BLANCA JESÚS GARCÍA CORONA",
+  "municipio": "TIERRA BLANCA",
+  "jurisdiccion": "COSAMALOAPAN",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "VZIMB005171",
+  "entidad": "VERACRUZ DE IGNACIO DE LA LLAVE",
+  "nombre": "HOSPITAL DE LA COMUNIDAD TLACOTALPAN",
+  "municipio": "TLACOTALPAN",
+  "jurisdiccion": "COSAMALOAPAN",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "VZIMB005306",
+  "entidad": "VERACRUZ DE IGNACIO DE LA LLAVE",
+  "nombre": "HOSPITAL DE LA COMUNIDAD TLAPACOYAN",
+  "municipio": "TLAPACOYAN",
+  "jurisdiccion": "MARTÍNEZ DE LA TORRE",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "VZIMB005393",
+  "entidad": "VERACRUZ DE IGNACIO DE LA LLAVE",
+  "nombre": "HOSPITAL GENERAL TUXPAN DR. EMILIO ALCAZAR",
+  "municipio": "TUXPAN",
+  "jurisdiccion": "TUXPAN",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "VZIMB005533",
+  "entidad": "VERACRUZ DE IGNACIO DE LA LLAVE",
+  "nombre": "HOSPITAL DE ALTA ESPECIALIDAD DE VERACRUZ",
+  "municipio": "VERACRUZ",
+  "jurisdiccion": "VERACRUZ",
+  "nivel": "TERCER NIVEL"
+},
+{
+  "clues": "VZIMB006023",
+  "entidad": "VERACRUZ DE IGNACIO DE LA LLAVE",
+  "nombre": "HOSPITAL DE LA COMUNIDAD LA LAGUNA POBLADO 6",
+  "municipio": "UXPANAPA",
+  "jurisdiccion": "COATZACOALCOS",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "VZIMB006105",
+  "entidad": "VERACRUZ DE IGNACIO DE LA LLAVE",
+  "nombre": "HOSPITAL GENERAL DE CARDEL",
+  "municipio": "LA ANTIGUA",
+  "jurisdiccion": "VERACRUZ",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "VZIMB006122",
+  "entidad": "VERACRUZ DE IGNACIO DE LA LLAVE",
+  "nombre": "HOSPITAL COMUNITARIO DE TONALAPAN",
+  "municipio": "MECAYAPAN",
+  "jurisdiccion": "COATZACOALCOS",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "VZIMB006134",
+  "entidad": "VERACRUZ DE IGNACIO DE LA LLAVE",
+  "nombre": "HOSPITAL DE LA COMUNIDAD DE TLAQUILPAN VISTA HERMOSA",
+  "municipio": "TLAQUILPA",
+  "jurisdiccion": "ORIZABA",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "VZIMB006146",
+  "entidad": "VERACRUZ DE IGNACIO DE LA LLAVE",
+  "nombre": "HOSPITAL DE LA COMUNIDAD DE TEZONAPA",
+  "municipio": "TEZONAPA",
+  "jurisdiccion": "CÓRDOBA",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "VZIMB006151",
+  "entidad": "VERACRUZ DE IGNACIO DE LA LLAVE",
+  "nombre": "HOSPITAL DE LA COMUNIDAD DE LLANO DE EN MEDIO",
+  "municipio": "IXHUATLAN DE MADERO",
+  "jurisdiccion": "POZA RICA",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "VZIMB006163",
+  "entidad": "VERACRUZ DE IGNACIO DE LA LLAVE",
+  "nombre": "HOSPITAL DE LA COMUNIDAD DE ENTABLADERO",
+  "municipio": "ESPINAL",
+  "jurisdiccion": "POZA RICA",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "VZIMB006175",
+  "entidad": "VERACRUZ DE IGNACIO DE LA LLAVE",
+  "nombre": "HOSPITAL GENERAL DE TARIMOYA (VERACRUZ)",
+  "municipio": "VERACRUZ",
+  "jurisdiccion": "VERACRUZ",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "VZIMB006180",
+  "entidad": "VERACRUZ DE IGNACIO DE LA LLAVE",
+  "nombre": "HOSPITAL DE LA COMUNIDAD DE CERRO AZUL",
+  "municipio": "CERRO AZUL",
+  "jurisdiccion": "TUXPAN",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "VZIMB006192",
+  "entidad": "VERACRUZ DE IGNACIO DE LA LLAVE",
+  "nombre": "HOSPITAL GENERAL TLALIXCOYAN",
+  "municipio": "TLALIXCOYAN",
+  "jurisdiccion": "VERACRUZ",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "VZIMB006315",
+  "entidad": "VERACRUZ DE IGNACIO DE LA LLAVE",
+  "nombre": "HOSPITAL GENERAL DE OLUTA-ACAYUCAN",
+  "municipio": "OLUTA",
+  "jurisdiccion": "SAN ANDRÉS TUXTLA",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "VZIMB007102",
+  "entidad": "VERACRUZ DE IGNACIO DE LA LLAVE",
+  "nombre": "HOSPITAL GENERAL PEROTE VERACRUZ",
+  "municipio": "PEROTE",
+  "jurisdiccion": "XALAPA",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "VZIMB007365",
+  "entidad": "VERACRUZ DE IGNACIO DE LA LLAVE",
+  "nombre": "HOSPITAL GENERAL DE BOCA DEL RIO",
+  "municipio": "BOCA DEL RIO",
+  "jurisdiccion": "VERACRUZ",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "VZIMB007575",
+  "entidad": "VERACRUZ DE IGNACIO DE LA LLAVE",
+  "nombre": "HOSPITAL GENERAL ISLA",
+  "municipio": "ISLA",
+  "jurisdiccion": "COSAMALOAPAN",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "VZIMB007592",
+  "entidad": "VERACRUZ DE IGNACIO DE LA LLAVE",
+  "nombre": "HOSPITAL DE LA COMUNIDAD DR. PEDRO CORONEL PÉREZ",
+  "municipio": "LAS CHOAPAS",
+  "jurisdiccion": "COATZACOALCOS",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "VZIMB007732",
+  "entidad": "VERACRUZ DE IGNACIO DE LA LLAVE",
+  "nombre": "HOSPITAL DE LA COMUNIDAD DE NAOLINCO",
+  "municipio": "NAOLINCO",
+  "jurisdiccion": "XALAPA",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "VZIMB007860",
+  "entidad": "VERACRUZ DE IGNACIO DE LA LLAVE",
+  "nombre": "HOSPITAL DE LA COMUNIDAD DE JOSÉ AZUETA",
+  "municipio": "JOSE AZUETA",
+  "jurisdiccion": "COSAMALOAPAN",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "VZIMB007930",
+  "entidad": "VERACRUZ DE IGNACIO DE LA LLAVE",
+  "nombre": "HOSPITAL GENERAL COSOLEACAQUE",
+  "municipio": "COSOLEACAQUE",
+  "jurisdiccion": "COATZACOALCOS",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "VZIMB008053",
+  "entidad": "VERACRUZ DE IGNACIO DE LA LLAVE",
+  "nombre": "HOSPITAL GENERAL ÁLAMO",
+  "municipio": "ALAMO TEMAPACHE",
+  "jurisdiccion": "TUXPAN",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "VZIMB008946",
+  "entidad": "VERACRUZ DE IGNACIO DE LA LLAVE",
+  "nombre": "HOSPITAL MATERNO INFANTIL DE COATZACOALCOS",
+  "municipio": "COATZACOALCOS",
+  "jurisdiccion": "COATZACOALCOS",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "YNIMB000012",
+  "entidad": "YUCATAN",
+  "nombre": "HOSPITAL REGIONAL DE ALTA ESPECIALIDAD DE LA PENÍNSULA DE YUCATÁN",
+  "municipio": "MERIDA",
+  "jurisdiccion": "MÉRIDA",
+  "nivel": "TERCER NIVEL"
+},
+{
+  "clues": "YNIMB000024",
+  "entidad": "YUCATAN",
+  "nombre": "HOSPITAL GENERAL DE TEKAX, YUCATÁN",
+  "municipio": "TEKAX",
+  "jurisdiccion": "TICUL",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "YNIMB000036",
+  "entidad": "YUCATAN",
+  "nombre": "HOSPITAL GENERAL AGUSTÍN O´HORÁN",
+  "municipio": "MERIDA",
+  "jurisdiccion": "MÉRIDA",
+  "nivel": "TERCER NIVEL"
+},
+{
+  "clues": "ZSIMB000113",
+  "entidad": "ZACATECAS",
+  "nombre": "HOSPITAL GENERAL FRESNILLO (DR. JOSÉ HARO ÁVILA)",
+  "municipio": "FRESNILLO",
+  "jurisdiccion": "FRESNILLO",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "ZSIMB000492",
+  "entidad": "ZACATECAS",
+  "nombre": "HOSPITAL COMUNITARIO JALPA (DR CALIXTO MEDINA MEDINA)",
+  "municipio": "JALPA",
+  "jurisdiccion": "JALPA",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "ZSIMB000533",
+  "entidad": "ZACATECAS",
+  "nombre": "HOSPITAL GENERAL JEREZ",
+  "municipio": "JEREZ",
+  "jurisdiccion": "TLALTENANGO",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "ZSIMB000615",
+  "entidad": "ZACATECAS",
+  "nombre": "HOSPITAL COMUNITARIO JUAN ALDAMA",
+  "municipio": "JUAN ALDAMA",
+  "jurisdiccion": "RÍO GRANDE",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "ZSIMB000620",
+  "entidad": "ZACATECAS",
+  "nombre": "HOSPITAL COMUNITARIO JUCHIPILA",
+  "municipio": "JUCHIPILA",
+  "jurisdiccion": "JALPA",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "ZSIMB000813",
+  "entidad": "ZACATECAS",
+  "nombre": "HOSPITAL COMUNITARIO NOCHISTLÁN DE MEJÍA",
+  "municipio": "NOCHISTLAN DE MEJIA",
+  "jurisdiccion": "JALPA",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "ZSIMB000900",
+  "entidad": "ZACATECAS",
+  "nombre": "HOSPITAL COMUNITARIO OJOCALIENTE",
+  "municipio": "OJOCALIENTE",
+  "jurisdiccion": "OJOCALIENTE",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "ZSIMB001233",
+  "entidad": "ZACATECAS",
+  "nombre": "HOSPITAL COMUNITARIO TABASCO",
+  "municipio": "TABASCO",
+  "jurisdiccion": "JALPA",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "ZSIMB001320",
+  "entidad": "ZACATECAS",
+  "nombre": "HOSPITAL COMUNITARIO VALPARAÍSO",
+  "municipio": "VALPARAISO",
+  "jurisdiccion": "FRESNILLO",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "ZSIMB001653",
+  "entidad": "ZACATECAS",
+  "nombre": "HOSPITAL COMUNITARIO TRANCOSO",
+  "municipio": "TRANCOSO",
+  "jurisdiccion": "ZACATECAS",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "ZSIMB001834",
+  "entidad": "ZACATECAS",
+  "nombre": "HOSPITAL COMUNITARIO VÍCTOR ROSALES",
+  "municipio": "CALERA",
+  "jurisdiccion": "ZACATECAS",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "ZSIMB001846",
+  "entidad": "ZACATECAS",
+  "nombre": "HOSPITAL COMUNITARIO VILLA DE COS",
+  "municipio": "VILLA DE COS",
+  "jurisdiccion": "CONCEPCIÓN DEL ORO",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "ZSIMB001875",
+  "entidad": "ZACATECAS",
+  "nombre": "UNIDAD DE SALUD BUCAL",
+  "municipio": "GUADALUPE",
+  "jurisdiccion": "ZACATECAS",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "ZSIMB001933",
+  "entidad": "ZACATECAS",
+  "nombre": "UNEME DEDICAM",
+  "municipio": "GUADALUPE",
+  "jurisdiccion": "ZACATECAS",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "ZSIMB002015",
+  "entidad": "ZACATECAS",
+  "nombre": "HOSPITAL COMUNITARIO SOMBRERETE",
+  "municipio": "SOMBRERETE",
+  "jurisdiccion": "FRESNILLO",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "ZSIMB002126",
+  "entidad": "ZACATECAS",
+  "nombre": "HOSPITAL DE LA MUJER",
+  "municipio": "GUADALUPE",
+  "jurisdiccion": "ZACATECAS",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "ZSIMB002131",
+  "entidad": "ZACATECAS",
+  "nombre": "CENTRO DE ATENCIÓN DE ADICCIONES DE ZACATECAS (CAAZ) EN JEREZ",
+  "municipio": "JEREZ",
+  "jurisdiccion": "TLALTENANGO",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "ZSIMB002213",
+  "entidad": "ZACATECAS",
+  "nombre": "HOSPITAL DE ESPECIALIDADES DE SALUD MENTAL",
+  "municipio": "CALERA",
+  "jurisdiccion": "ZACATECAS",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "ZSIMB002225",
+  "entidad": "ZACATECAS",
+  "nombre": "UNEME DE ONCOLOGIA GUADALUPE",
+  "municipio": "GUADALUPE",
+  "jurisdiccion": "ZACATECAS",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "ZSIMB002230",
+  "entidad": "ZACATECAS",
+  "nombre": "UNEME HEMODIALISIS GUADALUPE",
+  "municipio": "GUADALUPE",
+  "jurisdiccion": "ZACATECAS",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "ZSIMB002295",
+  "entidad": "ZACATECAS",
+  "nombre": "HOSPITAL GENERAL LORETO",
+  "municipio": "LORETO",
+  "jurisdiccion": "OJOCALIENTE",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "ZSIMB002481",
+  "entidad": "ZACATECAS",
+  "nombre": "HOSPITAL GENERAL ZACATECAS LUZ GONZÁLEZ COSIO",
+  "municipio": "ZACATECAS",
+  "jurisdiccion": "ZACATECAS",
+  "nivel": "SEGUNDO NIVEL"
+},
+{
+  "clues": "ZSIMB002510",
+  "entidad": "ZACATECAS",
+  "nombre": "UNEME DE URGENCIAS ZACATECAS",
+  "municipio": "GUADALUPE",
+  "jurisdiccion": "ZACATECAS",
+  "nivel": "SEGUNDO NIVEL"
+}
 ]
