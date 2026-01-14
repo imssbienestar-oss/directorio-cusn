@@ -90,30 +90,29 @@ function TarjetasInformativas() {
         </div>
 
         {/* --- NUEVO: TABLERO DE CONTROL (Estadísticas) --- */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8 animate-fade-in">
-          <div className="bg-white p-4 rounded-xl shadow-sm border border-gray-100 text-center">
-            <p className="text-xs text-gray-400 font-bold uppercase">Total Unidades</p>
-            <p className="text-2xl font-bold text-gray-800">{totalUnidades}</p>
-          </div>
-          <div className="bg-green-50 p-4 rounded-xl shadow-sm border border-green-100 text-center">
-            <p className="text-xs text-green-600 font-bold uppercase">Con Tarjeta Inf.</p>
-            <p className="text-2xl font-bold text-green-700">{totalConCedula}</p>
-          </div>
-          {/* Este botón funciona como tarjeta y como botón a la vez */}
-          <button
-            onClick={() => setSoloFaltantes(!soloFaltantes)}
-            className={`p-4 rounded-xl shadow-sm border transition-all transform active:scale-95 text-center ${soloFaltantes ? 'bg-red-600 text-white border-red-700 ring-2 ring-red-300' : 'bg-red-50 text-red-800 border-red-100 hover:bg-red-100'}`}
-          >
-            <p className={`text-xs font-bold uppercase ${soloFaltantes ? 'text-red-100' : 'text-red-600'}`}>Pendientes (Clic para filtrar)</p>
-            <p className="text-2xl font-bold">{totalSinCedula}</p>
-          </button>
-          <div className="bg-blue-50 p-4 rounded-xl shadow-sm border border-blue-100 text-center flex flex-col justify-center items-center">
-            <p className="text-xs text-blue-600 font-bold uppercase">Avance Global</p>
-            <div className="text-xl font-bold text-blue-700">{porcentajeAvance}%</div>
-            <div className="w-full bg-blue-200 h-1 mt-2 rounded-full overflow-hidden">
-              <div className="bg-blue-600 h-full transition-all duration-1000" style={{ width: `${porcentajeAvance}%` }}></div>
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mb-8 animate-fade-in">
+            
+            {/* 1. Total Unidades */}
+            <div className="bg-white p-4 rounded-xl shadow-sm border border-gray-100 text-center">
+                <p className="text-xs text-gray-400 font-bold uppercase">Total Unidades</p>
+                <p className="text-2xl font-bold text-gray-800">{totalUnidades}</p>
             </div>
-          </div>
+
+            {/* 2. Con Cédula */}
+            <div className="bg-green-50 p-4 rounded-xl shadow-sm border border-green-100 text-center">
+                <p className="text-xs text-green-600 font-bold uppercase">Con Cédula</p>
+                <p className="text-2xl font-bold text-green-700">{totalConCedula}</p>
+            </div>
+
+            {/* 3. Pendientes (Botón Filtro) */}
+            {/* CAMBIO: Agregué 'col-span-2 md:col-span-1' para que en celular ocupe todo el ancho de abajo */}
+            <button 
+                onClick={() => setSoloFaltantes(!soloFaltantes)}
+                className={`p-4 rounded-xl shadow-sm border transition-all transform active:scale-95 text-center col-span-2 md:col-span-1 ${soloFaltantes ? 'bg-red-600 text-white border-red-700 ring-2 ring-red-300' : 'bg-red-50 text-red-800 border-red-100 hover:bg-red-100'}`}
+            >
+                <p className={`text-xs font-bold uppercase ${soloFaltantes ? 'text-red-100' : 'text-red-600'}`}>Pendientes (Clic para filtrar)</p>
+                <p className="text-2xl font-bold">{totalSinCedula}</p>
+            </button>
         </div>
 
         {/* --- BUSCADOR --- */}
