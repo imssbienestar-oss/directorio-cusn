@@ -1,0 +1,30 @@
+[
+  {
+    "clues": "GTSSA002030",
+    "nombre": "HOSPITAL COMUNITARIO APASEO EL ALTO",
+    "municipio": "APASEO EL ALTO",
+    "jurisdiccion": "JURISDICCIÓN SANITARIA III",
+    "nivel": "Av. 16 de Septiembre S/N"
+  },
+  {
+    "clues": "GTSSA002042",
+    "nombre": "HOSPITAL GENERAL DE CELAYA",
+    "municipio": "CELAYA",
+    "jurisdiccion": "JURISDICCIÓN SANITARIA III",
+    "nivel": "Eje Vial Norponiente #120"
+  },
+  {
+    "clues": "GTSSA015005",
+    "nombre": "UMAPS SAN JUAN DE LA VEGA",
+    "municipio": "CELAYA",
+    "jurisdiccion": "JURISDICCIÓN SANITARIA III",
+    "nivel": "Calle Hidalgo #45"
+  },
+  {
+    "clues": "PLIMB006885", 
+    "nombre": "HOSPITAL GENERAL HUAUCHINANGO",
+    "municipio": "HUAUCHINANGO",
+    "jurisdiccion": "HUAUCHINANGO",
+    "nivel": "SEGUNDO NIVEL"
+  }
+]
