@@ -11,7 +11,7 @@ function TarjetasInformativas() {
 
   // --- CONFIGURACIÓN DE TU EXCEL ---
   // Pega aquí el link que obtienes en: Archivo > Compartir > Publicar en la web > CSV
-  const GOOGLE_SHEET_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRmdYQBqZYY30hQt9hU2hzpVAsBwaSdpIg0LbbFCoJ5z3ouswU6lrnihg39CQPNd62J48H6D5mDzY6F/pub?output=xlsx";
+  const GOOGLE_SHEET_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRmdYQBqZYY30hQt9hU2hzpVAsBwaSdpIg0LbbFCoJ5z3ouswU6lrnihg39CQPNd62J48H6D5mDzY6F/pub?gid=0&single=true&output=csv";
 
   // 1. Cargar los links actualizados desde Google Sheets
   useEffect(() => {
@@ -19,7 +19,7 @@ function TarjetasInformativas() {
       download: true,
       header: true,
       complete: (results) => {
-        // Convertimos el Excel en un mapa: { "GTSSA002030": "https://drive...", ... }
+        console.log("Lo que leo del Excel:", results.data);
         const mapa = {};
         if (results.data) {
           results.data.forEach(row => {
