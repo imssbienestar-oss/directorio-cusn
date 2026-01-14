@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { HashRouter, Routes, Route, Link, useParams, NavLink } from 'react-router-dom';
+import { HashRouter, Routes, Route, Link, useParams } from 'react-router-dom';
+import { NavLink } from 'react-router-dom'; // <--- IMPORTANTE: Asegúrate de importar NavLink arriba
 import personalData from './data/personal.json';
 import QRCode from "react-qr-code";
 
@@ -18,53 +19,52 @@ const HeaderOficial = () => {
 
   return (
     <header className="shadow-md sticky top-0 z-50 bg-white">
-      
+
       {/* 1. Barra Superior: Gobierno (Guinda) */}
       <div className="py-2 px-4" style={{ backgroundColor: COLORS.guinda }}>
-        <div className="container mx-auto flex items-center gap-3">
-          <img src="/fotos/gobierno.png" alt="Escudo" className="h-6 md:h-8 object-contain" />
-          <span className="text-white text-[10px] md:text-sm font-light tracking-widest uppercase">
-            Gobierno de México
-          </span>
-        </div>
+      <div className="container mx-auto flex items-center gap-3">
+        <img
+          src="/fotos/gobierno.png"
+          alt="Escudo"
+          className="h-10 md:h-12 object-contain" // Ajusta la altura (h-6 es pequeño, h-8 mediano)
+        />
       </div>
-      
+    </div>
+
       {/* 2. Barra Principal: IMSS Bienestar (Verde) */}
       <div className="relative" style={{ backgroundColor: COLORS.verde }}>
         {/* Decoración fondo */}
         <div className="absolute top-0 right-0 w-64 h-full opacity-10 bg-white transform skew-x-12 pointer-events-none"></div>
-        
+
         <div className="container mx-auto px-4 py-3 relative z-10">
           <div className="flex items-center justify-between">
-            
+
             {/* LADO IZQUIERDO: LOGO Y TEXTO */}
             <Link to="/" className="flex items-center gap-4 group">
               <div className="border-r border-white/20 pr-4 mr-2 shrink-0">
-                  <h1 className="text-white font-bold text-2xl leading-none tracking-tight group-hover:opacity-90 transition-opacity">IMSS</h1>
-                  <p className="text-white text-[10px] tracking-widest group-hover:opacity-90 transition-opacity">BIENESTAR</p>
+                <h1 className="text-white font-bold text-2xl leading-none tracking-tight group-hover:opacity-90 transition-opacity">IMSS</h1>
+                <p className="text-white text-[10px] tracking-widest group-hover:opacity-90 transition-opacity">BIENESTAR</p>
               </div>
               <div>
-                <h2 className="text-white text-xs md:text-lg font-light opacity-90 leading-tight">Coordinación de<br className="md:hidden"/> 2do Nivel</h2>
-              </div>
+                <h2 className="text-white text-sm md:text-lg font-light opacity-90">Coordinación de Unidades de Segundo Nivel</h2>
+                <p className="text-yellow-100 text-xs">Servicios Públicos de Salud</p> </div>
             </Link>
 
             {/* --- MENÚ DE ESCRITORIO (Visible solo en md o superior) --- */}
             <nav className="hidden md:flex items-center gap-3">
-              <NavLink 
-                to="/" 
-                className={({ isActive }) => 
-                  `px-4 py-2 rounded-lg text-sm font-bold uppercase tracking-wide transition-all border ${
-                    isActive ? 'bg-white text-green-900 border-white shadow-md' : 'text-white border-transparent hover:bg-white/10'
+              <NavLink
+                to="/"
+                className={({ isActive }) =>
+                  `px-4 py-2 rounded-lg text-sm font-bold uppercase tracking-wide transition-all border ${isActive ? 'bg-white text-green-900 border-white shadow-md' : 'text-white border-transparent hover:bg-white/10'
                   }`
                 }
               >
                 Directorio
               </NavLink>
-              <NavLink 
-                to="/informativas" 
-                className={({ isActive }) => 
-                  `px-4 py-2 rounded-lg text-sm font-bold uppercase tracking-wide transition-all border ${
-                    isActive ? 'bg-white text-green-900 border-white shadow-md' : 'text-white border-transparent hover:bg-white/10'
+              <NavLink
+                to="/informativas"
+                className={({ isActive }) =>
+                  `px-4 py-2 rounded-lg text-sm font-bold uppercase tracking-wide transition-all border ${isActive ? 'bg-white text-green-900 border-white shadow-md' : 'text-white border-transparent hover:bg-white/10'
                   }`
                 }
               >
@@ -73,7 +73,7 @@ const HeaderOficial = () => {
             </nav>
 
             {/* --- BOTÓN HAMBURGUESA (Visible solo en celular) --- */}
-            <button 
+            <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               className="md:hidden text-white p-2 rounded-md hover:bg-white/10 transition-colors focus:outline-none"
             >
@@ -94,24 +94,22 @@ const HeaderOficial = () => {
           {/* --- MENÚ DESPLEGABLE MÓVIL (Se muestra si isMenuOpen es true) --- */}
           {isMenuOpen && (
             <div className="md:hidden mt-4 pt-4 border-t border-white/10 flex flex-col gap-2 pb-2 animate-fade-in-down">
-              <NavLink 
-                to="/" 
+              <NavLink
+                to="/"
                 onClick={() => setIsMenuOpen(false)} // Cierra el menú al hacer click
-                className={({ isActive }) => 
-                  `block w-full text-center px-4 py-3 rounded-lg text-sm font-bold uppercase tracking-wide transition-all ${
-                    isActive ? 'bg-white text-green-900 shadow-md' : 'text-white bg-green-900/40 hover:bg-white/10'
+                className={({ isActive }) =>
+                  `block w-full text-center px-4 py-3 rounded-lg text-sm font-bold uppercase tracking-wide transition-all ${isActive ? 'bg-white text-green-900 shadow-md' : 'text-white bg-green-900/40 hover:bg-white/10'
                   }`
                 }
               >
                 Directorio
               </NavLink>
-              
-              <NavLink 
-                to="/informativas" 
+
+              <NavLink
+                to="/informativas"
                 onClick={() => setIsMenuOpen(false)}
-                className={({ isActive }) => 
-                  `block w-full text-center px-4 py-3 rounded-lg text-sm font-bold uppercase tracking-wide transition-all ${
-                    isActive ? 'bg-white text-green-900 shadow-md' : 'text-white bg-green-900/40 hover:bg-white/10'
+                className={({ isActive }) =>
+                  `block w-full text-center px-4 py-3 rounded-lg text-sm font-bold uppercase tracking-wide transition-all ${isActive ? 'bg-white text-green-900 shadow-md' : 'text-white bg-green-900/40 hover:bg-white/10'
                   }`
                 }
               >
@@ -121,7 +119,7 @@ const HeaderOficial = () => {
           )}
         </div>
       </div>
-      
+
       {/* 3. Línea Dorada */}
       <div className="h-1 w-full" style={{ backgroundColor: COLORS.dorado }}></div>
     </header>
@@ -268,7 +266,7 @@ END:VCARD`;
             <img
               src="/fotos/gobierno.png" /* <--- Cambia esto por la ruta de tu logo blanco */
               alt="Logo Institucional"
-              className="h-8 object-contain"
+              className="h-10 md:h-12 object-contain"
             />
 
             {/* Botón Compartir (Ahora alineado en la franja) */}
@@ -477,7 +475,7 @@ function TarjetasInformativas() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {avisos.map((aviso) => (
             <div key={aviso.id} className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow border border-gray-100 flex flex-col">
-              
+
               {/* Imagen (Opcional) */}
               {aviso.imagen && (
                 <div className="h-40 overflow-hidden">
@@ -492,7 +490,7 @@ function TarjetasInformativas() {
                   </span>
                   <span className="text-xs text-gray-400 font-medium">{aviso.fecha}</span>
                 </div>
-                
+
                 <h3 className="text-xl font-bold text-gray-800 mb-2 leading-tight">{aviso.titulo}</h3>
                 <p className="text-gray-600 text-sm mb-4 flex-1">{aviso.descripcion}</p>
 
