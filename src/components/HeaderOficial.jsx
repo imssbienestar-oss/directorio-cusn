@@ -9,29 +9,29 @@ const HeaderOficial = () => {
     <header className="shadow-md sticky top-0 z-50 bg-white">
       {/* Barra Superior: Gobierno */}
       <div className="py-2 px-4" style={{ backgroundColor: COLORS.guinda }}>
-      <div className="container mx-auto flex items-center gap-3">
-        <img
-          src="/fotos/gobierno.png"
-          alt="Escudo"
-          className="h-10 md:h-12 object-contain" // Ajusta la altura (h-6 es pequeño, h-8 mediano)
-        />
+        <div className="container mx-auto flex items-center gap-3">
+          <img
+            src="/fotos/gobierno.png"
+            alt="Escudo"
+            className="h-10 md:h-12 object-contain" // Ajusta la altura (h-6 es pequeño, h-8 mediano)
+          />
+        </div>
       </div>
-    </div>
-      
+
       {/* Barra Principal: IMSS Bienestar */}
       <div className="relative" style={{ backgroundColor: COLORS.verde }}>
         <div className="absolute top-0 right-0 w-64 h-full opacity-10 bg-white transform skew-x-12 pointer-events-none"></div>
-        
+
         <div className="container mx-auto px-4 py-3 relative z-10">
           <div className="flex items-center justify-between">
             {/* LOGO */}
             <Link to="/" className="flex items-center gap-4 group">
               <div className="border-r border-white/20 pr-4 mr-2 shrink-0">
-                  <h1 className="text-white font-bold text-2xl leading-none tracking-tight group-hover:opacity-90 transition-opacity">IMSS</h1>
-                  <p className="text-white text-[10px] tracking-widest group-hover:opacity-90 transition-opacity">BIENESTAR</p>
+                <h1 className="text-white font-bold text-2xl leading-none tracking-tight group-hover:opacity-90 transition-opacity">IMSS</h1>
+                <p className="text-white text-[10px] tracking-widest group-hover:opacity-90 transition-opacity">BIENESTAR</p>
               </div>
               <div>
-                 <h2 className="text-white text-sm md:text-lg font-light opacity-90">Coordinación de Unidades de Segundo Nivel</h2>
+                <h2 className="text-white text-sm md:text-lg font-light opacity-90">Coordinación de Unidades de Segundo Nivel</h2>
                 <p className="text-yellow-100 text-xs">Servicios Públicos de Salud</p> </div>
             </Link>
 
@@ -40,8 +40,8 @@ const HeaderOficial = () => {
               <NavLink to="/" className={({ isActive }) => `px-4 py-2 rounded-lg text-sm font-bold uppercase tracking-wide transition-all border ${isActive ? 'bg-white text-green-900 border-white shadow-md' : 'text-white border-transparent hover:bg-white/10'}`}>
                 Directorio Personal
               </NavLink>
-              <NavLink to="/directorio-unidades" className={({ isActive }) => `px-4 py-2 rounded-lg text-sm font-bold uppercase tracking-wide transition-all border ${isActive ? 'bg-white text-green-900 border-white shadow-md' : 'text-white border-transparent hover:bg-white/10'}`}>
-                Directorio Unidades
+              <NavLink to="/estadisticas" className={({ isActive }) => `px-4 py-2 rounded-lg text-sm font-bold uppercase tracking-wide transition-all border ${isActive ? 'bg-white text-green-900 border-white shadow-md' : 'text-white border-transparent hover:bg-white/10'}`}>
+                Estadísticas
               </NavLink>
               <NavLink to="/informativas" className={({ isActive }) => `px-4 py-2 rounded-lg text-sm font-bold uppercase tracking-wide transition-all border ${isActive ? 'bg-white text-green-900 border-white shadow-md' : 'text-white border-transparent hover:bg-white/10'}`}>
                 Tarjetas Info.
@@ -63,6 +63,9 @@ const HeaderOficial = () => {
             <div className="md:hidden mt-4 pt-4 border-t border-white/10 flex flex-col gap-2 pb-2 animate-fade-in-down">
               <NavLink to="/" onClick={() => setIsMenuOpen(false)} className={({ isActive }) => `block w-full text-center px-4 py-3 rounded-lg text-sm font-bold uppercase tracking-wide transition-all ${isActive ? 'bg-white text-green-900 shadow-md' : 'text-white bg-green-900/40 hover:bg-white/10'}`}>
                 Directorio
+              </NavLink>
+              <NavLink to="/estadisticas" onClick={() => setIsMenuOpen(false)} className={({ isActive }) => `block w-full text-center px-4 py-3 rounded-lg text-sm font-bold uppercase tracking-wide transition-all ${isActive ? 'bg-white text-green-900 shadow-md' : 'text-white bg-green-900/40 hover:bg-white/10'}`}>
+                Estadísticas
               </NavLink>
               <NavLink to="/informativas" onClick={() => setIsMenuOpen(false)} className={({ isActive }) => `block w-full text-center px-4 py-3 rounded-lg text-sm font-bold uppercase tracking-wide transition-all ${isActive ? 'bg-white text-green-900 shadow-md' : 'text-white bg-green-900/40 hover:bg-white/10'}`}>
                 Avisos y Comunicados
