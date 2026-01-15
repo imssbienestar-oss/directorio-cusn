@@ -3,16 +3,16 @@ import {
   PieChart, Pie, Cell, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer 
 } from 'recharts';
 import HeaderOficial from '../components/HeaderOficial';
-import cluesData from '../data/clues.json'; // Tu base de datos
+import cluesData from '../data/clues.json'; 
 import { COLORS } from '../utils/constants';
 
 function Estadisticas() {
   const [filtroEntidad, setFiltroEntidad] = useState('TODAS');
 
-  // 1. OBTENER LISTA DE ENTIDADES ÚNICAS (Para el Select)
+  // LISTA DE ENTIDADES ÚNICAS 
   const entidadesUnicas = [...new Set(cluesData.map(item => item.entidad))].sort();
 
-  // 2. FILTRAR DATOS (Toda la lógica se basa en esto)
+  // FILTRAR DATOS
   const datosFiltrados = useMemo(() => {
     if (filtroEntidad === 'TODAS') return cluesData;
     return cluesData.filter(item => item.entidad === filtroEntidad);
@@ -105,7 +105,7 @@ function Estadisticas() {
           {/* GRÁFICA 1: TIPOLOGÍA (PASTEL) */}
           <div className="bg-white p-6 rounded-2xl shadow-lg border border-gray-100">
             <h3 className="text-lg font-bold text-gray-700 mb-6 text-center">Distribución por Tipo de Unidad</h3>
-            <div className="h-80 w-full">
+            <div className="h-96 w-full">
               <ResponsiveContainer width="100%" height="100%">
                 <PieChart>
                   <Pie
