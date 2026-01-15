@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import Papa from 'papaparse'; // Librería para leer el Excel
+import Papa from 'papaparse';
 import HeaderOficial from '../components/HeaderOficial';
-import cluesDataEstática from '../data/clues.json'; // Tu JSON local
+import cluesDataEstática from '../data/clues.json';
 import { COLORS } from '../utils/constants';
 
 function TarjetasInformativas() {
@@ -9,15 +9,58 @@ function TarjetasInformativas() {
   const [mapaDeLinks, setMapaDeLinks] = useState({});
   const [loading, setLoading] = useState(true);
   
-  // Estados para filtros y paginación
-  const [soloFaltantes, setSoloFaltantes] = useState(false);
-  const [visibleCount, setVisibleCount] = useState(20); // Empezamos mostrando 20
+  // PAGINACIÓN
+  const [visibleCount, setVisibleCount] = useState(20);
 
-  // --- CONFIGURACIÓN DE TU EXCEL (CSV) ---
-  // Recuerda poner tu link real aquí
+  // --- FILTRO DE ESTADO ---
+  // Valores posibles: 'TODOS', 'VERDE', 'AMARILLO', 'ROJO', 'PENDIENTE'
+  const [filtroEstado, setFiltroEstado] = useState('TODOS');
+
   const GOOGLE_SHEET_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRmdYQBqZYY30hQt9hU2hzpVAsBwaSdpIg0LbbFCoJ5z3ouswU6lrnihg39CQPNd62J48H6D5mDzY6F/pub?gid=0&single=true&output=csv";
 
-  // 1. CARGA DE DATOS (EXCEL)
+  // --- FUNCIÓN DE FECHA ---
+  const parsearFecha = (fechaString) => {
+    if (!fechaString) return null;
+    const partes = fechaString.split('-'); 
+    if (partes.length === 3) {
+      return new Date(partes[2], partes[1] - 1, partes[0]);
+    }
+    return new Date(fechaString);
+  };
+
+  // --- SEMÁFORIZACIÓN ---
+  const analizarAntiguedad = (fechaString) => {
+    if (!fechaString) return null;
+
+    const fechaDoc = parsearFecha(fechaString);
+    const hoy = new Date();
+    
+    if (isNaN(fechaDoc.getTime())) return null;
+
+    const diferenciaTime = Math.abs(hoy - fechaDoc);
+    const dias = Math.ceil(diferenciaTime / (1000 * 60 * 60 * 24)); 
+
+    let tipo = 'VERDE';
+    let color = 'bg-green-100 text-green-800 border-green-200';
+    let texto = 'Actualizado';
+    let icon = '🟢';
+
+    if (dias > 30) {
+        tipo = 'ROJO';
+        color = 'bg-red-100 text-red-800 border-red-200';
+        texto = 'Desactualizado';
+        icon = '🔴';
+    } else if (dias > 15) {
+        tipo = 'AMARILLO';
+        color = 'bg-yellow-100 text-yellow-800 border-yellow-200';
+        texto = 'Atención';
+        icon = '🟡';
+    }
+
+    return { tipo, color, texto, icon, dias };
+  };
+
+  // CARGA DE DATOS
   useEffect(() => {
     Papa.parse(GOOGLE_SHEET_URL, {
       download: true,
@@ -27,60 +70,57 @@ function TarjetasInformativas() {
         if (results.data) {
           results.data.forEach(row => {
             if(row.clues) {
-              // Guardamos la CLUES en mayúsculas para evitar errores
-              mapa[row.clues.trim().toUpperCase()] = row.link_pdf;
+              mapa[row.clues.trim().toUpperCase()] = {
+                  url: row.link_pdf,
+                  fecha: row.fecha 
+              };
             }
           });
         }
         setMapaDeLinks(mapa);
         setLoading(false);
       },
-      error: (err) => {
-        console.error("Error cargando Excel:", err);
-        setLoading(false);
-      }
+      error: (err) => { console.error("Error cargando Excel:", err); setLoading(false); }
     });
   }, []);
 
-  // 2. RESETEAR PAGINACIÓN AL BUSCAR
+  // RESETEAR PAGINACIÓN AL FILTRAR
   useEffect(() => {
     setVisibleCount(20);
-  }, [searchTerm, soloFaltantes]);
+  }, [searchTerm, filtroEstado]);
 
-  // --- CÁLCULO DE ESTADÍSTICAS ---
   const totalUnidades = cluesDataEstática.length;
-  const totalConCedula = cluesDataEstática.filter(item => 
-    mapaDeLinks[item.clues ? item.clues.toUpperCase() : '']
-  ).length;
-  const totalSinCedula = totalUnidades - totalConCedula;
 
-  // --- LÓGICA DE FILTRADO MAESTRA ---
+  // --- LÓGICA DE FILTRADO
   const resultados = cluesDataEstática.filter(item => {
     const termino = searchTerm.toUpperCase();
+    const cluesKey = item.clues ? item.clues.toUpperCase() : '';
     
-    // Normalizamos los datos del JSON para evitar errores si vienen vacíos
-    const clues = item.clues ? item.clues.toUpperCase() : '';
-    const entidad = item.entidad ? item.entidad.toUpperCase() : '';
-    const nombre = item.nombre ? item.nombre.toUpperCase() : '';
-    const municipio = item.municipio ? item.municipio.toUpperCase() : '';
-    const nivel =  item.nivel ? item.nivel.toUpperCase() : '';
+    // Datos del Excel
+    const datosDrive = mapaDeLinks[cluesKey] || {};
+    const tieneArchivo = !!datosDrive.url;
+    const infoSemaforo = analizarAntiguedad(datosDrive.fecha);
 
-    // A. Filtro de Texto
+    // Filtro de Texto
     const coincideTexto = searchTerm === '' || (
-      clues.includes(termino) || 
-      nombre.includes(termino) ||
-      municipio.includes(termino) ||
-      entidad.includes(termino) ||
-      nivel.includes(termino)
+      cluesKey.includes(termino) || 
+      (item.nombre && item.nombre.toUpperCase().includes(termino)) ||
+      (item.municipio && item.municipio.toUpperCase().includes(termino))
     );
 
-    // B. Filtro de "Solo Faltantes"
-    const tieneCedula = !!mapaDeLinks[clues];
-    if (soloFaltantes && tieneCedula) {
-        return false; // Si buscamos faltantes y esta YA tiene, la ocultamos
+    // Filtro de Estado
+    let coincideEstado = true;
+    if (filtroEstado === 'PENDIENTE') {
+        coincideEstado = !tieneArchivo; // Solo los que NO tienen archivo
+    } else if (filtroEstado !== 'TODOS') {
+        if (!tieneArchivo || !infoSemaforo) {
+            coincideEstado = false;
+        } else {
+            coincideEstado = infoSemaforo.tipo === filtroEstado;
+        }
     }
 
-    return coincideTexto;
+    return coincideTexto && coincideEstado;
   });
 
   return (
@@ -90,63 +130,51 @@ function TarjetasInformativas() {
       <main className="container mx-auto px-4 py-10 max-w-5xl">
         <div className="text-center mb-8 animate-fade-in-up">
           <h1 className="text-3xl font-bold text-gray-800 mb-2">Tarjetas Informativas</h1>
-          <p className="text-gray-500">Gestión y visualización de Cédulas de Unidades Médicas.</p>
+          <p className="text-gray-500">Gestión y semaforización de Cédulas de Unidades Médicas.</p>
         </div>
 
-        {/* --- TABLERO DE CONTROL --- */}
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mb-8 animate-fade-in">
-            {/* Total */}
-            <div className="bg-white p-4 rounded-xl shadow-sm border border-gray-100 text-center">
-                <p className="text-xs text-gray-400 font-bold uppercase">Total Unidades</p>
-                <p className="text-2xl font-bold text-gray-800">{totalUnidades}</p>
-            </div>
+        {/* --- BARRA DE CONTROL Y FILTROS --- */}
+        <div className="bg-white p-4 rounded-xl shadow-sm border border-gray-100 mb-8">
+            <div className="flex flex-col md:flex-row gap-4 items-center justify-between">
+                
+                {/* BUSCADOR */}
+                <div className="relative flex-1 w-full">
+                    <input
+                      type="text"
+                      placeholder="Buscar unidad..."
+                      className="w-full p-3 pl-10 border border-gray-200 rounded-lg focus:ring-1 focus:ring-green-800 uppercase"
+                      onChange={(e) => setSearchTerm(e.target.value)}
+                    />
+                    <span className="absolute left-3 top-3.5 text-gray-400">🔍</span>
+                </div>
 
-            {/* Con Cédula */}
-            <div className="bg-green-50 p-4 rounded-xl shadow-sm border border-green-100 text-center">
-                <p className="text-xs text-green-600 font-bold uppercase">Con Cédula</p>
-                <p className="text-2xl font-bold text-green-700">{totalConCedula}</p>
-            </div>
-
-            {/* Pendientes (Botón Interactivo) */}
-            <button 
-                onClick={() => setSoloFaltantes(!soloFaltantes)}
-                className={`p-4 rounded-xl shadow-sm border transition-all transform active:scale-95 text-center col-span-2 md:col-span-1 ${soloFaltantes ? 'bg-red-600 text-white border-red-700 ring-2 ring-red-300' : 'bg-red-50 text-red-800 border-red-100 hover:bg-red-100'}`}
-            >
-                <p className={`text-xs font-bold uppercase ${soloFaltantes ? 'text-red-100' : 'text-red-600'}`}>Pendientes (Clic para filtrar)</p>
-                <p className="text-2xl font-bold">{totalSinCedula}</p>
-            </button>
-        </div>
-
-        {/* --- BUSCADOR --- */}
-        <div className="mb-8 max-w-xl mx-auto">
-            <div className="relative flex items-center shadow-lg rounded-xl overflow-hidden bg-white z-10 border border-gray-100">
-                <input
-                  type="text"
-                  placeholder="Buscar CLUES, Nombre, Municipio..."
-                  className="w-full p-4 pl-14 border-none focus:ring-0 text-lg uppercase placeholder:normal-case text-gray-700"
-                  onChange={(e) => setSearchTerm(e.target.value)}
-                  disabled={loading}
-                  autoFocus
-                />
-                <span className="absolute left-5 text-gray-400 text-xl">
-                  {loading ? '⏳' : '🔍'}
-                </span>
+                {/* FILTRO DE ESTADO */}
+                <div className="flex overflow-x-auto gap-2 pb-1 w-full md:w-auto">
+                    {[
+                        { id: 'TODOS', label: 'Todos', color: 'bg-gray-100 text-gray-600' },
+                        { id: 'VERDE', label: '🟢 Al día', color: 'bg-green-50 text-green-700 border-green-200' },
+                        { id: 'AMARILLO', label: '🟡 Atención', color: 'bg-yellow-50 text-yellow-700 border-yellow-200' },
+                        { id: 'ROJO', label: '🔴 Vencidos', color: 'bg-red-50 text-red-700 border-red-200' },
+                        { id: 'PENDIENTE', label: '⚠️ Sin Archivo', color: 'bg-gray-800 text-white' }
+                    ].map((btn) => (
+                        <button
+                            key={btn.id}
+                            onClick={() => setFiltroEstado(btn.id)}
+                            className={`px-4 py-2 rounded-lg text-xs font-bold uppercase whitespace-nowrap border transition-all ${
+                                filtroEstado === btn.id 
+                                ? 'ring-2 ring-offset-1 ring-blue-400 ' + btn.color 
+                                : 'border-gray-100 hover:bg-gray-50 text-gray-400'
+                            }`}
+                        >
+                            {btn.label}
+                        </button>
+                    ))}
+                </div>
             </div>
             
-            <div className="flex justify-between items-center px-4 py-2 text-xs font-bold uppercase tracking-wider">
-               <span>
-                 {soloFaltantes ? (
-                    <span className="text-red-600 flex items-center gap-1">
-                        <span className="w-2 h-2 rounded-full bg-red-600 animate-pulse"></span>
-                        Filtrando solo pendientes
-                    </span>
-                 ) : (
-                    <span className="text-gray-400">Mostrando todo</span>
-                 )}
-               </span>
-               <span className="text-gray-500">
-                  {resultados.length} Resultados visibles
-               </span>
+            {/* CONTADOR DE RESULTADOS */}
+            <div className="mt-3 text-xs font-bold text-gray-400 text-right uppercase">
+                Mostrando {resultados.length} de {totalUnidades} Unidades
             </div>
         </div>
 
@@ -155,18 +183,20 @@ function TarjetasInformativas() {
           
           {resultados.length === 0 && !loading && (
              <div className="text-center py-10 opacity-60">
-                <p className="text-xl font-bold">No hay coincidencias</p>
-                {soloFaltantes && <p className="text-sm text-red-500">No hay pendientes con ese criterio.</p>}
+                <p className="text-xl font-bold">No hay unidades con este criterio</p>
              </div>
           )}
 
-          {/* Mapeo con paginación (.slice) */}
           {resultados.slice(0, visibleCount).map((unidad) => {
             const cluesKey = unidad.clues ? unidad.clues.toUpperCase() : '';
-            const rawLink = mapaDeLinks[cluesKey];
+            
+            const datosDrive = mapaDeLinks[cluesKey] || {}; 
+            const rawLink = datosDrive.url;
+            const fechaArchivo = datosDrive.fecha;
 
-            // TRUCO: Convertir link de descarga a link de vista previa
-            // Cambia ".../uc?export=download&id=..." a ".../file/d/.../view"
+            // calculo de semáforo
+            const semaforo = analizarAntiguedad(fechaArchivo);
+
             const linkVisualizacion = rawLink 
                 ? rawLink.replace("uc?export=download&id=", "file/d/") + "/view"
                 : null;
@@ -179,16 +209,25 @@ function TarjetasInformativas() {
                       <span className="text-white text-xs font-bold px-2 py-1 rounded shadow-sm" style={{ backgroundColor: COLORS.verde }}>
                         {unidad.clues}
                       </span>
-                      {unidad.nivel && (
-                        <span className="text-gray-500 text-[10px] font-bold uppercase border border-gray-200 px-2 py-1 rounded">
-                            {unidad.nivel}
-                        </span>
+                      
+                      {/* ETIQUETA SEMÁFORO */}
+                      {semaforo && (
+                          <span className={`text-[10px] font-bold uppercase px-2 py-1 rounded border flex items-center gap-1 ${semaforo.color}`}>
+                             {semaforo.icon} {semaforo.texto} ({semaforo.dias} días)
+                          </span>
                       )}
                   </div>
+
                   <h3 className="text-lg font-bold text-gray-800 leading-tight mb-1">{unidad.nombre}</h3>
                   <p className="text-sm text-gray-500">
                     {unidad.municipio} {unidad.entidad ? `• ${unidad.entidad}` : ''}
                   </p>
+
+                  {fechaArchivo && (
+                      <p className="text-xs text-gray-400 mt-1">
+                          📅 Actualizado: <span className="font-medium text-gray-600">{fechaArchivo}</span>
+                      </p>
+                  )}
                 </div>
 
                 {linkVisualizacion ? (
@@ -199,7 +238,6 @@ function TarjetasInformativas() {
                     className="group flex items-center justify-center gap-2 px-6 py-3 rounded-lg font-bold text-white transition-all shadow-md transform active:scale-95 whitespace-nowrap"
                     style={{ backgroundColor: COLORS.guinda }}
                   >
-                    {/* Icono de Ojo (Ver) */}
                     <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
@@ -217,14 +255,14 @@ function TarjetasInformativas() {
           })}
         </div>
 
-        {/* --- BOTÓN MOSTRAR MÁS --- */}
+        {/* VER MÁS PAGINACIÓN */}
         {visibleCount < resultados.length && (
           <div className="text-center mt-8 pb-8">
             <button 
               onClick={() => setVisibleCount(prev => prev + 20)}
               className="px-8 py-3 bg-white border border-gray-300 rounded-full shadow-sm text-gray-600 font-bold hover:bg-gray-50 hover:border-gray-400 transition-all transform active:scale-95"
             >
-              ⬇️ Mostrar más resultados ({resultados.length - visibleCount} restantes)
+              ⬇️ Mostrar más
             </button>
           </div>
         )}
