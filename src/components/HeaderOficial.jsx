@@ -38,7 +38,10 @@ const HeaderOficial = () => {
             {/* MENÚ PC */}
             <nav className="hidden md:flex items-center gap-3">
               <NavLink to="/" className={({ isActive }) => `px-4 py-2 rounded-lg text-sm font-bold uppercase tracking-wide transition-all border ${isActive ? 'bg-white text-green-900 border-white shadow-md' : 'text-white border-transparent hover:bg-white/10'}`}>
-                Directorio
+                Directorio Personal
+              </NavLink>
+              <NavLink to="/directorio-unidades" className={({ isActive }) => `px-4 py-2 rounded-lg text-sm font-bold uppercase tracking-wide transition-all border ${isActive ? 'bg-white text-green-900 border-white shadow-md' : 'text-white border-transparent hover:bg-white/10'}`}>
+                Directorio Unidades
               </NavLink>
               <NavLink to="/informativas" className={({ isActive }) => `px-4 py-2 rounded-lg text-sm font-bold uppercase tracking-wide transition-all border ${isActive ? 'bg-white text-green-900 border-white shadow-md' : 'text-white border-transparent hover:bg-white/10'}`}>
                 Tarjetas Info.
