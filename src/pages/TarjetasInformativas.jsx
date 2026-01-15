@@ -11,6 +11,7 @@ function TarjetasInformativas() {
 
   // --- NUEVO ESTADO: EL FILTRO DE PENDIENTES ---
   const [soloFaltantes, setSoloFaltantes] = useState(false);
+  const [visibleCount, setVisibleCount] = useState(20);
 
   // Link de tu CSV publicado
   const GOOGLE_SHEET_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRmdYQBqZYY30hQt9hU2hzpVAsBwaSdpIg0LbbFCoJ5z3ouswU6lrnihg39CQPNd62J48H6D5mDzY6F/pub?gid=0&single=true&output=csv";
@@ -38,18 +39,19 @@ function TarjetasInformativas() {
     });
   }, []);
 
+  useEffect(() => {
+    setVisibleCount(20);
+  }, [searchTerm, soloFaltantes]);
+
   // --- 1. CALCULAMOS ESTADÍSTICAS GLOBALES ---
-  // Esto se hace antes de filtrar para mostrar los números reales siempre
   const totalUnidades = cluesDataEstática.length;
-  // Contamos cuántas tienen link en el mapa
   const totalConCedula = cluesDataEstática.filter(item =>
     mapaDeLinks[item.clues ? item.clues.toUpperCase() : '']
   ).length;
   const totalSinCedula = totalUnidades - totalConCedula;
-  const porcentajeAvance = Math.round((totalConCedula / totalUnidades) * 100) || 0;
 
 
-  // --- 2. LÓGICA DE FILTRADO MAESTRA ---
+  // --- 2. Filtrado ---
   const resultados = cluesDataEstática.filter(item => {
     const termino = searchTerm.toUpperCase();
     const clues = item.clues ? item.clues.toUpperCase() : '';
@@ -150,40 +152,41 @@ function TarjetasInformativas() {
         </div>
 
         {/* --- LISTA DE RESULTADOS --- */}
-        <div className="space-y-4">
-
+       <div className="space-y-4">
+          
           {resultados.length === 0 && !loading && (
-            <div className="text-center py-10 opacity-60">
-              <p className="text-xl font-bold">No hay coincidencias</p>
-              {soloFaltantes && <p className="text-sm text-red-500">¡Buenas noticias! No hay pendientes con ese criterio.</p>}
-            </div>
+             <div className="text-center py-10 opacity-60">
+                <p className="text-xl font-bold">No hay coincidencias</p>
+                {soloFaltantes && <p className="text-sm text-red-500">¡Buenas noticias! No hay pendientes con ese criterio.</p>}
+             </div>
           )}
 
-          {resultados.map((unidad) => {
+          {/* AQUI ESTÁ EL TRUCO: .slice(0, visibleCount) */}
+          {resultados.slice(0, visibleCount).map((unidad) => {
             const linkDescarga = mapaDeLinks[unidad.clues ? unidad.clues.toUpperCase() : ''];
 
             return (
               <div key={unidad.clues} className="bg-white p-6 rounded-xl shadow-sm hover:shadow-lg transition-all border border-gray-100 flex flex-col md:flex-row md:items-center justify-between gap-6 animate-fade-in">
-
+                
                 <div className="flex-1">
                   <div className="flex flex-wrap items-center gap-2 mb-2">
-                    <span className="text-white text-xs font-bold px-2 py-1 rounded shadow-sm" style={{ backgroundColor: COLORS.verde }}>
-                      {unidad.clues}
-                    </span>
-                    {unidad.nivel && (
-                      <span className="text-gray-500 text-[10px] font-bold uppercase border border-gray-200 px-2 py-1 rounded">
-                        {unidad.nivel}
+                      <span className="text-white text-xs font-bold px-2 py-1 rounded shadow-sm" style={{ backgroundColor: COLORS.verde }}>
+                        {unidad.clues}
                       </span>
-                    )}
+                      {unidad.nivel && (
+                        <span className="text-gray-500 text-[10px] font-bold uppercase border border-gray-200 px-2 py-1 rounded">
+                            {unidad.nivel}
+                        </span>
+                      )}
                   </div>
                   <h3 className="text-lg font-bold text-gray-800 leading-tight mb-1">{unidad.nombre}</h3>
                   <p className="text-sm text-gray-500">{unidad.municipio} {unidad.entidad ? `• ${unidad.entidad}` : ''}</p>
                 </div>
 
                 {linkDescarga ? (
-                  <a
-                    href={linkDescarga}
-                    target="_blank"
+                  <a 
+                    href={linkDescarga} 
+                    target="_blank" 
                     rel="noreferrer"
                     className="group flex items-center justify-center gap-2 px-6 py-3 rounded-lg font-bold text-white transition-all shadow-md transform active:scale-95 whitespace-nowrap"
                     style={{ backgroundColor: COLORS.guinda }}
@@ -201,6 +204,19 @@ function TarjetasInformativas() {
             );
           })}
         </div>
+
+        {/* --- NUEVO: BOTÓN "VER MÁS" --- */}
+        {/* Solo se muestra si hay más resultados ocultos */}
+        {visibleCount < resultados.length && (
+          <div className="text-center mt-8 pb-8">
+            <button 
+              onClick={() => setVisibleCount(prev => prev + 20)}
+              className="px-8 py-3 bg-white border border-gray-300 rounded-full shadow-sm text-gray-600 font-bold hover:bg-gray-50 hover:border-gray-400 transition-all transform active:scale-95"
+            >
+              ⬇️ Mostrar más resultados ({resultados.length - visibleCount} restantes)
+            </button>
+          </div>
+        )}
       </main>
     </div>
   );

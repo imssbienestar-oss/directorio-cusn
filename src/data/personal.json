@@ -1,45 +1,192 @@
 [
   {
     "id": 1,
-    "slug": "rodrigo-hdez",
-    "nombre": "Irving Rodrigo",
-    "apellidos": "Hernández Tesillos",
-    "cv": "/documentos/Rodrigo_hdez.pdf",
-    "puesto": "Supervisor de Procesos",
-    "area": "Equipo de Datos",
-    "foto": "https://ui-avatars.com/api/?name=Rodrigo+Hernandez&background=9D2449&color=fff",
-    "telefono": "55-4547-6654",
-    "correo": "irving.hernandez@imssbienestar.gob.mx",
-    "link_mapa": "https://maps.app.goo.gl/GoVtqX5uj4LJmfpb7",
-    "ubicacion": "Av. Insurgentes Centro 1940, Florida, Álvaro Obregón, 01020 Ciudad de México, CDMX, Piso 3"
-  },
-
-  
-  {
-    "id": 2,
-    "slug": "ned-romero",
-    "nombre": "Dr. Ned I.",
-    "apellidos": "Romero Morales",
-    "puesto": "Titular de la Division de Hospitales",
-    "area": "Coordinación Unidades Segundo Nivel",
-    "foto": "/fotos/ned_romero.jpeg",
-    "telefono": "55-5438-6861",
-    "correo": "ned.romero@imssbienestar.gob.mx",
-    "link_mapa": "https://maps.app.goo.gl/GoVtqX5uj4LJmfpb7",
-    "ubicacion": "Av. Insurgentes Centro 1940, Florida, Álvaro Obregón, 01020 Ciudad de México, CDMX, Piso 3"
-  },
-
-  {
-    "id": 3,
     "slug": "said-vazquez",
-    "nombre": "Dr. Said",
+    "nombre": "Dr. Said ",
     "apellidos": "Vázquez Valle",
-    "puesto": "Titular de la Coordinación de Unidades de Segundo Nivel",
+    "puesto": "Titular de la Coordinación de Unidades de Segundo Nivel ",
     "area": "Coordinación Unidades Segundo Nivel",
     "foto": "/fotos/said_valle.jpeg",
-    "telefono": "55-2573-6884",
+    "telefono": "55 2573 6884",
     "correo": "said.vazquez@imssbienestar.gob.mx",
     "link_mapa": "https://maps.app.goo.gl/GoVtqX5uj4LJmfpb7",
+    "ubicacion": "Av. Insurgentes Centro 1940, Florida, Álvaro Obregón, 01020 Ciudad de México, CDMX, Piso 3"
+  },
+  {
+    "id": 2,
+    "slug": "jesus-pineda",
+    "nombre": "Lic. Jesus ",
+    "apellidos": "Pineda Flores ",
+    "puesto": "Lider de Proyecto ",
+    "area": "Coordinación Unidades Segundo Nivel",
+    "foto": "https://ui-avatars.com/api/?name=Jesus+Pineda&background=9D2449&color=fff",
+    "telefono": "961 233 0162",
+    "correo": "jesus.pineda@imssbienestar.gob.mx",
+    "link_mapa": "https://maps.app.goo.gl/GoVtqX5uj4LJmfpb7",
+    "ubicacion": "Av. Insurgentes Centro 1940, Florida, Álvaro Obregón, 01020 Ciudad de México, CDMX, Piso 3"
+  },
+  { "id":3, "slug": "ned-romero", "nombre": "Dr. Ned Ignacio ", "apellidos": "Romero Morales ", "puesto": "Titular de División ", "area": "Coordinación Unidades Segundo Nivel", "foto": "/fotos/ned_romero.jpeg",
+    "telefono": "55 5438 6861", "correo": "ned.romero@imssbienestar.gob.mx", "link_mapa": "https://maps.app.goo.gl/GoVtqX5uj4LJmfpb7",
+    "ubicacion": "Av. Insurgentes Centro 1940, Florida, Álvaro Obregón, 01020 Ciudad de México, CDMX, Piso 3"
+  },
+   { "id":4, "slug": "alberto-avendano", "nombre": "Ing. Alberto", "apellidos": "Avendaño Ramirez", "puesto": "Supervisor de Procesos ", "area": "Coordinación Unidades Segundo Nivel", "foto": "https://ui-avatars.com/api/?name=Alberto+Avendano&background=9D2449&color=fff",
+    "telefono": "55 5408 1865", "correo": "alberto.avendano@imssbienestar.gob.mx", "link_mapa": "https://maps.app.goo.gl/GoVtqX5uj4LJmfpb7",
+    "ubicacion": "Av. Insurgentes Centro 1940, Florida, Álvaro Obregón, 01020 Ciudad de México, CDMX, Piso 3"
+  },
+   { "id":5, "slug": "delta-bracamonte", "nombre": "Lic. Delta", "apellidos": "Bracamonte García", "puesto": "Supervisor de Procesos ( Enlace Dr. Said Vázquez )", "area": "Coordinación Unidades Segundo Nivel", "foto": "https://ui-avatars.com/api/?name=Delta+Bracamonte&background=9D2449&color=fff",
+    "telefono": "55 2271 2128", "correo": "delta.bracamonte@imssbienestar.gob.mx", "link_mapa": "https://maps.app.goo.gl/GoVtqX5uj4LJmfpb7",
+    "ubicacion": "Av. Insurgentes Centro 1940, Florida, Álvaro Obregón, 01020 Ciudad de México, CDMX, Piso 3"
+  },
+  { "id":6, "slug": "liliana-campos", "nombre": "Dra. Liliana ", "apellidos": "Campos Rosas", "puesto": "Supervisor de Procesos ", "area": "Coordinación Unidades Segundo Nivel", "foto": "https://ui-avatars.com/api/?name=Liliana+Campos&background=9D2449&color=fff",
+    "telefono": "55 2003 3773", "correo": "liliana.campos@imssbienestar.gob.mx", "link_mapa": "https://maps.app.goo.gl/GoVtqX5uj4LJmfpb7",
+    "ubicacion": "Av. Insurgentes Centro 1940, Florida, Álvaro Obregón, 01020 Ciudad de México, CDMX, Piso 3"
+  },
+  { "id":7, "slug": "erika-cartagena", "nombre": "Lic. Erika", "apellidos": "Cartagena Ramos", "puesto": "Supervisor de Procesos ", "area": "Coordinación Unidades Segundo Nivel", "foto": "https://ui-avatars.com/api/?name=Erika+Cartagena&background=9D2449&color=fff",
+    "telefono": "961 189 0291", "correo": "erika.cartagena@imssbienestar.gob.mx", "link_mapa": "https://maps.app.goo.gl/GoVtqX5uj4LJmfpb7",
+    "ubicacion": "Av. Insurgentes Centro 1940, Florida, Álvaro Obregón, 01020 Ciudad de México, CDMX, Piso 3"
+  },
+   { "id":8, "slug": "yadhir-chanes", "nombre": "Dr. Yadhir Fernando", "apellidos": "Chanes Cuevas", "puesto": "Supervisor de Procesos ", "area": "Coordinación Unidades Segundo Nivel", "foto": "https://ui-avatars.com/api/?name=Yadhir+Chanes&background=9D2449&color=fff",
+    "telefono": "55 3261 8305", "correo": "yadhir.chanes@imssbienestar.gob.mx", "link_mapa": "https://maps.app.goo.gl/GoVtqX5uj4LJmfpb7",
+    "ubicacion": "Av. Insurgentes Centro 1940, Florida, Álvaro Obregón, 01020 Ciudad de México, CDMX, Piso 3"
+  },
+   { "id":9, "slug": "maria-contreras", "nombre": "Lic. María Fernanda", "apellidos": "Contreras Montano", "puesto": "Supervisor de Procesos ", "area": "Coordinación Unidades Segundo Nivel", "foto": "https://ui-avatars.com/api/?name=Said+Vazquez&background=9D2449&color=fff",
+    "telefono": "55 6372 5059", "correo": "maria.contreras@imssbienestar.gob.mx", "link_mapa": "https://maps.app.goo.gl/GoVtqX5uj4LJmfpb7",
+    "ubicacion": "Av. Insurgentes Centro 1940, Florida, Álvaro Obregón, 01020 Ciudad de México, CDMX, Piso 3"
+  },
+   { "id":10, "slug": "daniel-cordova", "nombre": "Dr. Daniel Ernesto ", "apellidos": "Córdova Velázquez", "puesto": "Lider de Proyecto ", "area": "Coordinación Unidades Segundo Nivel", "foto": "https://ui-avatars.com/api/?name=Daniel+Cordova&background=9D2449&color=fff",
+    "telefono": "993 130 0418", "correo": "daniel.cordova@imssbienestar.gob.mx", "link_mapa": "https://maps.app.goo.gl/GoVtqX5uj4LJmfpb7",
+    "ubicacion": "Av. Insurgentes Centro 1940, Florida, Álvaro Obregón, 01020 Ciudad de México, CDMX, Piso 3"
+  },
+   { "id":11, "slug": "juan-coronel", "nombre": "Lic. Juan Manuel  ", "apellidos": "Coronel Morales", "puesto": "Supervisor de Procesos ", "area": "Coordinación Unidades Segundo Nivel", "foto": "https://ui-avatars.com/api/?name=Juan+Coronel&background=9D2449&color=fff",
+    "telefono": "55 6089 8536", "correo": "juan.coronel@imssbienestar.gob.mx", "link_mapa": "https://maps.app.goo.gl/GoVtqX5uj4LJmfpb7",
+    "ubicacion": "Av. Insurgentes Centro 1940, Florida, Álvaro Obregón, 01020 Ciudad de México, CDMX, Piso 3"
+  },
+   { "id":12, "slug": "marlene-cruz", "nombre": "Dra. Marlene ", "apellidos": "Cruz Guzmán", "puesto": "Jefe de Área Médica ", "area": "Coordinación Unidades Segundo Nivel", "foto": "https://ui-avatars.com/api/?name=Marlene+Cruz&background=9D2449&color=fff",
+    "telefono": "951 459 5012", "correo": "marlene.cruz@imssbienestar.gob.mx", "link_mapa": "https://maps.app.goo.gl/GoVtqX5uj4LJmfpb7",
+    "ubicacion": "Av. Insurgentes Centro 1940, Florida, Álvaro Obregón, 01020 Ciudad de México, CDMX, Piso 3"
+  },
+   { "id":13, "slug": "luis-cruzm", "nombre": "Lic. Luis Iván ", "apellidos": "Cruz Martínez", "puesto": "Supervisor de Procesos ", "area": "Coordinación Unidades Segundo Nivel", "foto": "https://ui-avatars.com/api/?name=Luis+Cruz&background=9D2449&color=fff",
+    "telefono": "56 1067 7818", "correo": "luis.cruzm@imssbienestar.gob.mx", "link_mapa": "https://maps.app.goo.gl/GoVtqX5uj4LJmfpb7",
+    "ubicacion": "Av. Insurgentes Centro 1940, Florida, Álvaro Obregón, 01020 Ciudad de México, CDMX, Piso 3"
+  },
+  { "id":14, "slug": "areli-diaz", "nombre": "Mtra. Areli", "apellidos": "Diaz Jaimes ", "puesto": "Supervisor de Procesos ", "area": "Coordinación Unidades Segundo Nivel", "foto": "https://ui-avatars.com/api/?name=Areli+Diaz&background=9D2449&color=fff",
+    "telefono": "921 192 5307", "correo": "areli.diaz@imssbienestar.gob.mx", "link_mapa": "https://maps.app.goo.gl/GoVtqX5uj4LJmfpb7",
+    "ubicacion": "Av. Insurgentes Centro 1940, Florida, Álvaro Obregón, 01020 Ciudad de México, CDMX, Piso 3"
+  },
+   { "id":15, "slug": "arturo-garcia", "nombre": "Lic. Arturo Pinzilcutli", "apellidos": "García Ceballos ", "puesto": "Supervisor de Procesos ", "area": "Coordinación Unidades Segundo Nivel", "foto": "https://ui-avatars.com/api/?name=Arturo+Garcia&background=9D2449&color=fff",
+    "telefono": "55 2915 2927", "correo": "arturo.garcia@imssbienestar.gob.mx", "link_mapa": "https://maps.app.goo.gl/GoVtqX5uj4LJmfpb7",
+    "ubicacion": "Av. Insurgentes Centro 1940, Florida, Álvaro Obregón, 01020 Ciudad de México, CDMX, Piso 3"
+  },
+   { "id":16, "slug": "saul-garcia", "nombre": "Ing. Saul", "apellidos": "García Hernández", "puesto": "Supervisor de Procesos ", "area": "Coordinación Unidades Segundo Nivel", "foto": "https://ui-avatars.com/api/?name=Saul+Garcia&background=9D2449&color=fff",
+    "telefono": "55 4976 3309", "correo": "saul.garcia@imssbienestar.gob.mx", "link_mapa": "https://maps.app.goo.gl/GoVtqX5uj4LJmfpb7",
+    "ubicacion": "Av. Insurgentes Centro 1940, Florida, Álvaro Obregón, 01020 Ciudad de México, CDMX, Piso 3"
+  },
+   { "id":17, "slug": "jerome-garza", "nombre": "Ing. Jerome David", "apellidos": "Garza Colin", "puesto": "Supervisor de Procesos ", "area": "Coordinación Unidades Segundo Nivel", "foto": "https://ui-avatars.com/api/?name=Jerome+Garza&background=9D2449&color=fff",
+    "telefono": "55 2328 5020", "correo": "jerome.garza@imssbienestar.gob.mx", "link_mapa": "https://maps.app.goo.gl/GoVtqX5uj4LJmfpb7",
+    "ubicacion": "Av. Insurgentes Centro 1940, Florida, Álvaro Obregón, 01020 Ciudad de México, CDMX, Piso 3"
+  },
+   { "id":18, "slug": "elizabeth-gomez", "nombre": "Ing. Elizabeth Araceli", "apellidos": "Gómez Sansón ", "puesto": "Supervisor de Procesos ", "area": "Coordinación Unidades Segundo Nivel", "foto": "https://ui-avatars.com/api/?name=Elizabeth+Gomez&background=9D2449&color=fff",
+    "telefono": "55 1415 9467", "correo": "elizabeth.gomez@imssbienestar.gob.mx", "link_mapa": "https://maps.app.goo.gl/GoVtqX5uj4LJmfpb7",
+    "ubicacion": "Av. Insurgentes Centro 1940, Florida, Álvaro Obregón, 01020 Ciudad de México, CDMX, Piso 3"
+  },
+   { "id":19, "slug": "luis-gonzalezg", "nombre": "Mtro. Luis Manuel", "apellidos": "Gonzalez Garcia", "puesto": "Supervisor de Procesos ", "area": "Coordinación Unidades Segundo Nivel", "foto": "https://ui-avatars.com/api/?name=Luis+Gonzalez&background=9D2449&color=fff",
+    "telefono": "993 222 1811", "correo": "luis.gonzalezg@imssbienestar.gob.mx", "link_mapa": "https://maps.app.goo.gl/GoVtqX5uj4LJmfpb7",
+    "ubicacion": "Av. Insurgentes Centro 1940, Florida, Álvaro Obregón, 01020 Ciudad de México, CDMX, Piso 3"
+  },
+   { "id":20, "slug": "alicia-guzman", "nombre": "Lic. Alicia Karina", "apellidos": "Guzmán  Luna ", "puesto": "Supervisor de Procesos ", "area": "Coordinación Unidades Segundo Nivel", "foto": "https://ui-avatars.com/api/?name=Alicia+Guzman&background=9D2449&color=fff",
+    "telefono": "314 174 5006", "correo": "alicia.guzman@imssbienestar.gob.mx", "link_mapa": "https://maps.app.goo.gl/GoVtqX5uj4LJmfpb7",
+    "ubicacion": "Av. Insurgentes Centro 1940, Florida, Álvaro Obregón, 01020 Ciudad de México, CDMX, Piso 3"
+  },
+   { "id":21, "slug": "irving-hernandez", "nombre": "Ing. Irving Rodrigo", "apellidos": "Hernandez Tesillos", "puesto": "Supervisor de Procesos ", "area": "Coordinación Unidades Segundo Nivel", "foto": "https://ui-avatars.com/api/?name=Irving+Hernandez&background=9D2449&color=fff",
+    "telefono": "55 4547 6654", "correo": "irving.hernandez@imssbienestar.gob.mx", "link_mapa": "https://maps.app.goo.gl/GoVtqX5uj4LJmfpb7",
+    "ubicacion": "Av. Insurgentes Centro 1940, Florida, Álvaro Obregón, 01020 Ciudad de México, CDMX, Piso 3"
+  },
+   { "id":22, "slug": "edilberto-hernandez", "nombre": "Dr. Edilberto ", "apellidos": "Hernández Cárdenas", "puesto": "Jefe de Área Médica ", "area": "Coordinación Unidades Segundo Nivel", "foto": "https://ui-avatars.com/api/?name=Edilberto+Hernandez&background=9D2449&color=fff",
+    "telefono": "951 402 7118", "correo": "edilberto.hernandez@imssbienestar.gob.mx", "link_mapa": "https://maps.app.goo.gl/GoVtqX5uj4LJmfpb7",
+    "ubicacion": "Av. Insurgentes Centro 1940, Florida, Álvaro Obregón, 01020 Ciudad de México, CDMX, Piso 3"
+  },
+   { "id":23, "slug": "juan-islasc", "nombre": "Dr. Juan Ismael ", "apellidos": "Islas Castañeda", "puesto": "Jefe de Área Médica ", "area": "Coordinación Unidades Segundo Nivel", "foto": "https://ui-avatars.com/api/?name=Juan+Islas&background=9D2449&color=fff",
+    "telefono": "55 5454 2157", "correo": "juan.islasc@imssbienestar.gob.mx", "link_mapa": "https://maps.app.goo.gl/GoVtqX5uj4LJmfpb7",
+    "ubicacion": "Av. Insurgentes Centro 1940, Florida, Álvaro Obregón, 01020 Ciudad de México, CDMX, Piso 3"
+  },
+   { "id":24, "slug": "alejandro-lara", "nombre": "Dr. Alejandro Hermenegildo ", "apellidos": "Lara Mancilla", "puesto": "Lider de Proyecto ", "area": "Coordinación Unidades Segundo Nivel", "foto": "https://ui-avatars.com/api/?name=Alejandro+Lara&background=9D2449&color=fff",
+    "telefono": "55 1367 0272", "correo": "alejandro.lara@imssbienestar.gob.mx", "link_mapa": "https://maps.app.goo.gl/GoVtqX5uj4LJmfpb7",
+    "ubicacion": "Av. Insurgentes Centro 1940, Florida, Álvaro Obregón, 01020 Ciudad de México, CDMX, Piso 3"
+  },
+   { "id":25, "slug": "josefina-leon", "nombre": "Ing. Josefina", "apellidos": "León Cerezo", "puesto": "Supervisor de Procesos ", "area": "Coordinación Unidades Segundo Nivel", "foto": "https://ui-avatars.com/api/?name=Josefina+Leon&background=9D2449&color=fff",
+    "telefono": "55 6895 7695", "correo": "josefina.leon@imssbienestar.gob.mx", "link_mapa": "https://maps.app.goo.gl/GoVtqX5uj4LJmfpb7",
+    "ubicacion": "Av. Insurgentes Centro 1940, Florida, Álvaro Obregón, 01020 Ciudad de México, CDMX, Piso 3"
+  },
+   { "id":26, "slug": "diana-lopez", "nombre": "Dra. Diana Rosett", "apellidos": "López Blanco", "puesto": "Supervisor de Procesos ", "area": "Coordinación Unidades Segundo Nivel", "foto": "https://ui-avatars.com/api/?name=Diana+Lopez&background=9D2449&color=fff",
+    "telefono": "55 4062 3268", "correo": "diana.lopez@imssbienestar.gob.mx", "link_mapa": "https://maps.app.goo.gl/GoVtqX5uj4LJmfpb7",
+    "ubicacion": "Av. Insurgentes Centro 1940, Florida, Álvaro Obregón, 01020 Ciudad de México, CDMX, Piso 3"
+  },
+   { "id":27, "slug": "rosa-madrigal", "nombre": "Dra. Rosa Lily", "apellidos": "Madrigal Morales", "puesto": "Jefatura de departamento", "area": "Coordinación Unidades Segundo Nivel", "foto": "https://ui-avatars.com/api/?name=Rosa+Madrigal&background=9D2449&color=fff",
+    "telefono": "55 2728 8382", "correo": "rosa.madrigal@imssbienestar.gob.mx", "link_mapa": "https://maps.app.goo.gl/GoVtqX5uj4LJmfpb7",
+    "ubicacion": "Av. Insurgentes Centro 1940, Florida, Álvaro Obregón, 01020 Ciudad de México, CDMX, Piso 3"
+  },
+   { "id":28, "slug": "claudia-martinez", "nombre": "Dra. Claudia Cristina", "apellidos": "Martínez Rebollar ", "puesto": "Supervisor de Procesos ", "area": "Coordinación Unidades Segundo Nivel", "foto": "https://ui-avatars.com/api/?name=Claudia+Martinez&background=9D2449&color=fff",
+    "telefono": "55 2695 1686", "correo": "claudia.martinez@imssbienestar.gob.mx", "link_mapa": "https://maps.app.goo.gl/GoVtqX5uj4LJmfpb7",
+    "ubicacion": "Av. Insurgentes Centro 1940, Florida, Álvaro Obregón, 01020 Ciudad de México, CDMX, Piso 3"
+  },
+   { "id":29, "slug": "crista-maya", "nombre": "Lic. Crista Patricia ", "apellidos": "Maya Hernandez", "puesto": "Supervisor de Procesos ", "area": "Coordinación Unidades Segundo Nivel", "foto": "https://ui-avatars.com/api/?name=Crista+Maya&background=9D2449&color=fff",
+    "telefono": "744 335 0662", "correo": "crista.maya@imssbienestar.gob.mx", "link_mapa": "https://maps.app.goo.gl/GoVtqX5uj4LJmfpb7",
+    "ubicacion": "Av. Insurgentes Centro 1940, Florida, Álvaro Obregón, 01020 Ciudad de México, CDMX, Piso 3"
+  },
+   { "id":30, "slug": "diana-mejia", "nombre": "Lic. Diana Nayely", "apellidos": "Mejía Sánchez", "puesto": "Jefatura de departamento", "area": "Coordinación Unidades Segundo Nivel", "foto": "https://ui-avatars.com/api/?name=Diana+Mejia&background=9D2449&color=fff",
+    "telefono": "55 3656 9494", "correo": "diana.mejia@imssbienestar.gob.mx", "link_mapa": "https://maps.app.goo.gl/GoVtqX5uj4LJmfpb7",
+    "ubicacion": "Av. Insurgentes Centro 1940, Florida, Álvaro Obregón, 01020 Ciudad de México, CDMX, Piso 3"
+  },
+   { "id":31, "slug": "rosa-pantoja", "nombre": "Lic. Rosa Isela", "apellidos": "Pantoja Morales ", "puesto": "Supervisor de Procesos ", "area": "Coordinación Unidades Segundo Nivel", "foto": "https://ui-avatars.com/api/?name=Rosa+Pantoja&background=9D2449&color=fff",
+    "telefono": "744 174 5053", "correo": "rosa.pantoja@imssbienestar.gob.mx", "link_mapa": "https://maps.app.goo.gl/GoVtqX5uj4LJmfpb7",
+    "ubicacion": "Av. Insurgentes Centro 1940, Florida, Álvaro Obregón, 01020 Ciudad de México, CDMX, Piso 3"
+  },
+   { "id":32, "slug": "jeronimo-quevedo", "nombre": "Lic. Jeronimo ", "apellidos": "Quevedo Uribe", "puesto": "Lider de Proyecto ", "area": "Coordinación Unidades Segundo Nivel", "foto": "https://ui-avatars.com/api/?name=Jeronimo+Quevedo&background=9D2449&color=fff",
+    "telefono": "55 5070 8833", "correo": "jeronimo.quevedo@imssbienestar.gob.mx", "link_mapa": "https://maps.app.goo.gl/GoVtqX5uj4LJmfpb7",
+    "ubicacion": "Av. Insurgentes Centro 1940, Florida, Álvaro Obregón, 01020 Ciudad de México, CDMX, Piso 3"
+  },
+   { "id":33, "slug": "guillermo-ramirezg", "nombre": "Dr. Guillermo ", "apellidos": "Rámirez Gijon", "puesto": "Supervisor de Procesos ", "area": "Coordinación Unidades Segundo Nivel", "foto": "https://ui-avatars.com/api/?name=Guillermo+Ramirez&background=9D2449&color=fff",
+    "telefono": "55 5163 8924", "correo": "guillermo.ramirezg@imssbienestar.gob.mx", "link_mapa": "https://maps.app.goo.gl/GoVtqX5uj4LJmfpb7",
+    "ubicacion": "Av. Insurgentes Centro 1940, Florida, Álvaro Obregón, 01020 Ciudad de México, CDMX, Piso 3"
+  },
+   { "id":34, "slug": "idalia-reyes", "nombre": "Lic. Idalia Elideth ", "apellidos": "Reyes Alvarado", "puesto": "Supervisor de Procesos ", "area": "Coordinación Unidades Segundo Nivel", "foto": "https://ui-avatars.com/api/?name=Idalia+Reyes&background=9D2449&color=fff",
+    "telefono": "55 3236 8336", "correo": "idalia.reyes@imssbienestar.gob.mx", "link_mapa": "https://maps.app.goo.gl/GoVtqX5uj4LJmfpb7",
+    "ubicacion": "Av. Insurgentes Centro 1940, Florida, Álvaro Obregón, 01020 Ciudad de México, CDMX, Piso 3"
+  },
+   { "id":35, "slug": "carlos-ridaura", "nombre": "Dr.  Carlos", "apellidos": "Ridaura Valencia", "puesto": "Subdirección de área", "area": "Coordinación Unidades Segundo Nivel", "foto": "https://ui-avatars.com/api/?name=Carlos+Ridaura&background=9D2449&color=fff",
+    "telefono": "55 1893 4622", "correo": "carlos.ridaura@imssbienestar.gob.mx", "link_mapa": "https://maps.app.goo.gl/GoVtqX5uj4LJmfpb7",
+    "ubicacion": "Av. Insurgentes Centro 1940, Florida, Álvaro Obregón, 01020 Ciudad de México, CDMX, Piso 3"
+  },
+   { "id":36, "slug": "celia-riveroll", "nombre": "Lic. Celia Ramona", "apellidos": "Riveroll Diaz", "puesto": "Supervisor de Procesos ( Enlace Dr. Said Vázquez )", "area": "Coordinación Unidades Segundo Nivel", "foto": "https://ui-avatars.com/api/?name=Celia+Riveroll&background=9D2449&color=fff",
+    "telefono": "55 6182 3086", "correo": "celia.riveroll@imssbienestar.gob.mx", "link_mapa": "https://maps.app.goo.gl/GoVtqX5uj4LJmfpb7",
+    "ubicacion": "Av. Insurgentes Centro 1940, Florida, Álvaro Obregón, 01020 Ciudad de México, CDMX, Piso 3"
+  },  
+   { "id":37, "slug": "hari-romano", "nombre": "Lic. Hari Sai", "apellidos": "Romano Nájera", "puesto": "Jefatura de departamento", "area": "Coordinación Unidades Segundo Nivel", "foto": "https://ui-avatars.com/api/?name=Hari+Romano&background=9D2449&color=fff",
+    "telefono": "221 174 9777", "correo": "hari.romano@imssbienestar.gob.mx", "link_mapa": "https://maps.app.goo.gl/GoVtqX5uj4LJmfpb7",
+    "ubicacion": "Av. Insurgentes Centro 1940, Florida, Álvaro Obregón, 01020 Ciudad de México, CDMX, Piso 3"
+  },
+   { "id":38, "slug": "norma-sanchez", "nombre": "Dra. Norma  ", "apellidos": "Sanchez Castañeda", "puesto": "Jefe de Área Médica ", "area": "Coordinación Unidades Segundo Nivel", "foto": "https://ui-avatars.com/api/?name=Norma+Sanchez&background=9D2449&color=fff",
+    "telefono": "55 3433 3650", "correo": "norma.sanchez@imssbienestar.gob.mx", "link_mapa": "https://maps.app.goo.gl/GoVtqX5uj4LJmfpb7",
+    "ubicacion": "Av. Insurgentes Centro 1940, Florida, Álvaro Obregón, 01020 Ciudad de México, CDMX, Piso 3"
+  },
+   { "id":39, "slug": "berenice-trinidad", "nombre": "Ing. Berenice Almendra", "apellidos": "Trinidad Maya", "puesto": "Supervisor de Procesos ", "area": "Coordinación Unidades Segundo Nivel", "foto": "https://ui-avatars.com/api/?name=Berenice+Trinidad&background=9D2449&color=fff",
+    "telefono": "55 7527 8625", "correo": "berenice.trinidad@imssbienestar.gob.mx", "link_mapa": "https://maps.app.goo.gl/GoVtqX5uj4LJmfpb7",
+    "ubicacion": "Av. Insurgentes Centro 1940, Florida, Álvaro Obregón, 01020 Ciudad de México, CDMX, Piso 3"
+  },
+   { "id":40, "slug": "ulises-vargas", "nombre": "Lic. Ulises Adrian", "apellidos": "Vargas Osornio", "puesto": "Supervisor de Procesos ", "area": "Coordinación Unidades Segundo Nivel", "foto": "https://ui-avatars.com/api/?name=Ulises+Vargas&background=9D2449&color=fff",
+    "telefono": "55 3076 9329", "correo": "ulises.vargas@imssbienestar.gob.mx", "link_mapa": "https://maps.app.goo.gl/GoVtqX5uj4LJmfpb7",
+    "ubicacion": "Av. Insurgentes Centro 1940, Florida, Álvaro Obregón, 01020 Ciudad de México, CDMX, Piso 3"
+  },
+   { "id":41, "slug": "itzel-vazquez", "nombre": "Lic. Itzel", "apellidos": "Vázquez Bailon", "puesto": "Supervisor de Procesos ", "area": "Coordinación Unidades Segundo Nivel", "foto": "https://ui-avatars.com/api/?name=Itzel+Vazquez&background=9D2449&color=fff",
+    "telefono": "732 113 4435", "correo": "itzel.vazquez@imssbienestar.gob.mx", "link_mapa": "https://maps.app.goo.gl/GoVtqX5uj4LJmfpb7",
+    "ubicacion": "Av. Insurgentes Centro 1940, Florida, Álvaro Obregón, 01020 Ciudad de México, CDMX, Piso 3"
+  },
+   { "id":42, "slug": "georgina-volkers", "nombre": "Mtra. Georgina Suzanna", "apellidos": "Volkers Gaussmann", "puesto": "Jefatura de departamento", "area": "Coordinación Unidades Segundo Nivel", "foto": "https://ui-avatars.com/api/?name=Gerogina+Volkers&background=9D2449&color=fff",
+    "telefono": "55 2007 2433", "correo": "georgina.volkers@imssbienestar.gob.mx", "link_mapa": "https://maps.app.goo.gl/GoVtqX5uj4LJmfpb7",
+    "ubicacion": "Av. Insurgentes Centro 1940, Florida, Álvaro Obregón, 01020 Ciudad de México, CDMX, Piso 3"
+  },
+   { "id":43, "slug": "adair-zavala", "nombre": "Lic. Adair", "apellidos": "Zavala Martínez", "puesto": "Supervisor de Procesos ", "area": "Coordinación Unidades Segundo Nivel", "foto": "https://ui-avatars.com/api/?name=Adair+Zavala&background=9D2449&color=fff",
+    "telefono": "618 113 2905", "correo": "adair.zavala@imssbienestar.gob.mx", "link_mapa": "https://maps.app.goo.gl/GoVtqX5uj4LJmfpb7",
     "ubicacion": "Av. Insurgentes Centro 1940, Florida, Álvaro Obregón, 01020 Ciudad de México, CDMX, Piso 3"
   }
 ]
