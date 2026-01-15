@@ -55,8 +55,8 @@ function Estadisticas() {
         {/* ENCABEZADO Y FILTRO */}
         <div className="flex flex-col md:flex-row justify-between items-center mb-10 gap-6">
           <div>
-            <h1 className="text-3xl font-bold text-gray-800">Tablero de Mando</h1>
-            <p className="text-gray-500">Análisis estratégico de la infraestructura médica.</p>
+            <h1 className="text-3xl font-bold text-gray-800">Tablero de Control</h1>
+            <p className="text-gray-500">Unidades de Segundo y Tercer Nivel.</p>
           </div>
 
           {/* SELECTOR DE ENTIDAD (El control maestro) */}
@@ -106,7 +106,7 @@ function Estadisticas() {
           {/* GRÁFICA 1: TIPOLOGÍA (PASTEL) */}
           <div className="bg-white p-6 rounded-2xl shadow-lg border border-gray-100">
             <h3 className="text-lg font-bold text-gray-700 mb-6 text-center">Distribución por Tipo de Unidad</h3>
-            <div className="h-[500px] w-full"> 
+            <div className="h-[400px] w-full"> 
               <ResponsiveContainer width="100%" height="100%">
                 <PieChart>
                   <Pie
@@ -117,7 +117,6 @@ function Estadisticas() {
                     outerRadius={100}
                     fill="#8884d8"
                     dataKey="value"
-                    // Etiqueta interna limpia (solo % si cabe)
                     label={({ percent }) => percent > 0.05 ? `${(percent * 100).toFixed(0)}%` : null}
                   >
                     {dataTipologia.map((entry, index) => (
@@ -129,20 +128,16 @@ function Estadisticas() {
                     formatter={(value) => [value, "Unidades"]}
                     contentStyle={{ borderRadius: '12px', border: 'none', boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)' }}
                   />
-
-                  {/* AQUÍ ESTÁ EL TRUCO DEL FORMATO */}
                   <Legend 
                     layout="horizontal"
                     verticalAlign="bottom"
                     align="center"
                     iconSize={10}
-                    wrapperStyle={{ paddingTop: "20px" }} // Separación del pastel
+                    wrapperStyle={{ paddingTop: "10px" }} // Separación del pastel
                     formatter={(value, entry) => {
-                        // entry.payload.value es la cantidad (ej. 50)
                         // Calculamos el porcentaje real
                         const percent = ((entry.payload.value / totalUnidadesFiltradas) * 100).toFixed(0);
                         
-                        // Retornamos: "36% - NOMBRE" en negritas el número
                         return (
                             <span className="text-gray-600 text-xs font-medium ml-1 mr-4">
                                 <span className="font-bold text-gray-800">{percent}%</span> {value}
@@ -155,7 +150,7 @@ function Estadisticas() {
             </div>
           </div>
 
-          {/* GRÁFICA 2: NIVEL DE ATENCIÓN (BARRAS) */}
+          {/* GRÁFICA NIVEL DE ATENCIÓN */}
           <div className="bg-white p-6 rounded-2xl shadow-lg border border-gray-100">
             <h3 className="text-lg font-bold text-gray-700 mb-6 text-center">Unidades por Nivel de Atención</h3>
             <div className="h-80 w-full">
@@ -166,7 +161,6 @@ function Estadisticas() {
                   <YAxis />
                   <Tooltip cursor={{fill: 'transparent'}} />
                   <Bar dataKey="value" fill={COLORS.verde} radius={[4, 4, 0, 0]} name="Cantidad">
-                    {/* Truco: Pintar cada barra de un color distinto si quieres */}
                      {dataNivel.map((entry, index) => (
                       <Cell key={`cell-${index}`} fill={index === 0 ? COLORS.verde : COLORS.guinda} />
                     ))}
