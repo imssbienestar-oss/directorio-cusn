@@ -8,8 +8,7 @@ function Directorio() {
   const [searchTerm, setSearchTerm] = useState('');
   const [filterPuesto, setFilterPuesto] = useState('');
 
-  // --- 1. DEFINIMOS LA JERARQUÍA (EL ORDEN QUE TÚ QUIERES) ---
-  // Importante: Escríbelos EXACTAMENTE igual a como vienen en tu JSON (acentos, mayúsculas, etc.)
+  // --- Jerarquia Puestos ---
   const ordenJerarquia = [
     "Titular de la Coordinación de Unidades de Segundo Nivel",
     "Titular de División",

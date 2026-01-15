@@ -15,7 +15,7 @@ function TarjetasInformativas() {
 
   // --- CONFIGURACIÓN DE TU EXCEL (CSV) ---
   // Recuerda poner tu link real aquí
-  const GOOGLE_SHEET_URL = "https://docs.google.com/spreadsheets/d/TU_LINK_AQUI/pub?output=csv";
+  const GOOGLE_SHEET_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRmdYQBqZYY30hQt9hU2hzpVAsBwaSdpIg0LbbFCoJ5z3ouswU6lrnihg39CQPNd62J48H6D5mDzY6F/pub?gid=0&single=true&output=csv";
 
   // 1. CARGA DE DATOS (EXCEL)
   useEffect(() => {
