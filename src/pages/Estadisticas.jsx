@@ -18,21 +18,22 @@ function Estadisticas() {
     return cluesData.filter(item => item.entidad === filtroEntidad);
   }, [filtroEntidad]);
 
-  // 3. PROCESAR DATOS PARA GRÁFICA DE PASTEL (POR TIPOLOGÍA)
-  // Cuenta cuántos hay de cada tipo (Ej: 20 Hospitales, 10 UNEMES)
+  // Filtrado por Tipologia
   const dataTipologia = useMemo(() => {
     const conteo = {};
     datosFiltrados.forEach(item => {
-      // Si no tiene tipología, le ponemos "No especificado"
-      const tipo = item.tipologia || "Otros"; 
+      const tipo = item.tipologia || "NO ESPECIFICADO"; 
       conteo[tipo] = (conteo[tipo] || 0) + 1;
     });
     
-    // Convertimos a formato que le gusta a Recharts: [{name: 'H. General', value: 10}]
-    return Object.keys(conteo).map(key => ({ name: key, value: conteo[key] }));
+    return Object.keys(conteo)
+      .map(key => ({ name: key, value: conteo[key] }))
+      .sort((a, b) => b.value - a.value); // <--- ESTO ORDENA LA LISTA
   }, [datosFiltrados]);
 
-  // 4. PROCESAR DATOS PARA GRÁFICA DE BARRAS (POR NIVEL)
+  const totalUnidadesFiltradas = dataTipologia.reduce((acc, item) => acc + item.value, 0);
+
+  // 
   const dataNivel = useMemo(() => {
     const conteo = {};
     datosFiltrados.forEach(item => {
@@ -105,25 +106,50 @@ function Estadisticas() {
           {/* GRÁFICA 1: TIPOLOGÍA (PASTEL) */}
           <div className="bg-white p-6 rounded-2xl shadow-lg border border-gray-100">
             <h3 className="text-lg font-bold text-gray-700 mb-6 text-center">Distribución por Tipo de Unidad</h3>
-            <div className="h-96 w-full">
+            <div className="h-[500px] w-full"> 
               <ResponsiveContainer width="100%" height="100%">
                 <PieChart>
                   <Pie
                     data={dataTipologia}
                     cx="50%"
-                    cy="50%"
+                    cy="40%" // Subimos el pastel para dejar MUCHO espacio abajo a la lista
                     labelLine={false}
-                    label={({ name, percent }) => `${(percent * 100).toFixed(0)}%`}
                     outerRadius={100}
                     fill="#8884d8"
                     dataKey="value"
+                    // Etiqueta interna limpia (solo % si cabe)
+                    label={({ percent }) => percent > 0.05 ? `${(percent * 100).toFixed(0)}%` : null}
                   >
                     {dataTipologia.map((entry, index) => (
                       <Cell key={`cell-${index}`} fill={PALETA_GRAFICAS[index % PALETA_GRAFICAS.length]} />
                     ))}
                   </Pie>
-                  <Tooltip formatter={(value) => [value, "Unidades"]} />
-                  <Legend />
+                  
+                  <Tooltip 
+                    formatter={(value) => [value, "Unidades"]}
+                    contentStyle={{ borderRadius: '12px', border: 'none', boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)' }}
+                  />
+
+                  {/* AQUÍ ESTÁ EL TRUCO DEL FORMATO */}
+                  <Legend 
+                    layout="horizontal"
+                    verticalAlign="bottom"
+                    align="center"
+                    iconSize={10}
+                    wrapperStyle={{ paddingTop: "20px" }} // Separación del pastel
+                    formatter={(value, entry) => {
+                        // entry.payload.value es la cantidad (ej. 50)
+                        // Calculamos el porcentaje real
+                        const percent = ((entry.payload.value / totalUnidadesFiltradas) * 100).toFixed(0);
+                        
+                        // Retornamos: "36% - NOMBRE" en negritas el número
+                        return (
+                            <span className="text-gray-600 text-xs font-medium ml-1 mr-4">
+                                <span className="font-bold text-gray-800">{percent}%</span> {value}
+                            </span>
+                        );
+                    }}
+                  />
                 </PieChart>
               </ResponsiveContainer>
             </div>
