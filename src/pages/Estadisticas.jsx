@@ -13,8 +13,6 @@ function Estadisticas() {
 
   // --- 1. CONFIGURACIÓN DE CONEXIONES ---
   
-  // A. TU API DE RAILWAY (La que acabamos de crear)
-  // Ejemplo: "https://sibe-production.up.railway.app/api/unidades/publico"
   const API_SIBE_URL = "https://torre-control-production.up.railway.app/api/unidades/publico"; 
 
   // B. TU EXCEL DE PDFS (El que ya tenías)
@@ -57,7 +55,7 @@ function Estadisticas() {
         // 2. Recorremos los datos de SIBE y les pegamos la info del Excel
         const datosFusionados = dataBaseDatos.map(unidad => {
            // Normalizamos la CLUES para asegurar que coincida (mayúsculas, sin espacios)
-           const cluesLimpia = unit.clues ? unit.clues.trim().toUpperCase() : '';
+           const cluesLimpia = unidad.clues ? unidad.clues.trim().toUpperCase() : '';
            const infoExtra = mapaPDFs[cluesLimpia] || {};
 
            return {
