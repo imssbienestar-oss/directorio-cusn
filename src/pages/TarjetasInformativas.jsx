@@ -1,22 +1,31 @@
 import React, { useState, useEffect } from 'react';
 import Papa from 'papaparse';
 import HeaderOficial from '../components/HeaderOficial';
-import cluesDataEstática from '../data/clues.json';
 import { COLORS } from '../utils/constants';
+
+// YA NO IMPORTAMOS EL JSON LOCAL
+// import cluesDataEstática from '../data/clues.json'; 
 
 function TarjetasInformativas() {
   const [searchTerm, setSearchTerm] = useState('');
   const [mapaDeLinks, setMapaDeLinks] = useState({});
   const [loading, setLoading] = useState(true);
   
+  // AHORA LOS DATOS DE LAS UNIDADES VIVEN EN EL ESTADO
+  const [cluesData, setCluesData] = useState([]); 
+
   // PAGINACIÓN
   const [visibleCount, setVisibleCount] = useState(20);
 
-  // --- FILTRO DE ESTADO ---
-  // Valores posibles: 'TODOS', 'VERDE', 'AMARILLO', 'ROJO', 'PENDIENTE'
+  // FILTRO DE ESTADO
   const [filtroEstado, setFiltroEstado] = useState('TODOS');
 
-  const GOOGLE_SHEET_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRmdYQBqZYY30hQt9hU2hzpVAsBwaSdpIg0LbbFCoJ5z3ouswU6lrnihg39CQPNd62J48H6D5mDzY6F/pub?gid=0&single=true&output=csv";
+  // --- TUS 2 LINKS DE EXCEL (CSV) ---
+  // 1. EL CATÁLOGO (Hoja con clues, nombre, municipio, etc.)
+  const CATALOGO_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRmdYQBqZYY30hQt9hU2hzpVAsBwaSdpIg0LbbFCoJ5z3ouswU6lrnihg39CQPNd62J48H6D5mDzY6F/pub?gid=1927761955&single=true&output=csv"; 
+  
+  // 2. LOS LINKS (Hoja que llena el Robot con los PDFs)
+  const LINKS_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRmdYQBqZYY30hQt9hU2hzpVAsBwaSdpIg0LbbFCoJ5z3ouswU6lrnihg39CQPNd62J48H6D5mDzY6F/pub?gid=0&single=true&output=csv";
 
   // --- FUNCIÓN DE FECHA ---
   const parsearFecha = (fechaString) => {
@@ -60,28 +69,49 @@ function TarjetasInformativas() {
     return { tipo, color, texto, icon, dias };
   };
 
-  // CARGA DE DATOS
+  // --- CARGA DE DATOS MAESTRA (CATÁLOGO + LINKS) ---
   useEffect(() => {
-    Papa.parse(GOOGLE_SHEET_URL, {
-      download: true,
-      header: true,
-      complete: (results) => {
+    const cargarTodo = async () => {
+        // 1. Promesa para el Catálogo (Nombres, Municipio, etc.)
+        const promesaCatalogo = new Promise((resolve) => {
+            Papa.parse(CATALOGO_URL, {
+                download: true, header: true,
+                complete: (results) => resolve(results.data)
+            });
+        });
+
+        // 2. Promesa para los Links (PDFs y Fechas)
+        const promesaLinks = new Promise((resolve) => {
+            Papa.parse(LINKS_URL, {
+                download: true, header: true,
+                complete: (results) => resolve(results.data)
+            });
+        });
+
+        // Esperamos a que ambos terminen
+        const [dataCatalogo, dataLinks] = await Promise.all([promesaCatalogo, promesaLinks]);
+
+        // A. Guardamos el Catálogo en el estado (Filtrando filas vacías)
+        const catalogoLimpio = dataCatalogo.filter(row => row.clues && row.nombre);
+        setCluesData(catalogoLimpio);
+
+        // B. Procesamos el Mapa de Links
         const mapa = {};
-        if (results.data) {
-          results.data.forEach(row => {
-            if(row.clues) {
-              mapa[row.clues.trim().toUpperCase()] = {
-                  url: row.link_pdf,
-                  fecha: row.fecha 
-              };
-            }
-          });
+        if (dataLinks) {
+            dataLinks.forEach(row => {
+                if(row.clues) {
+                    mapa[row.clues.trim().toUpperCase()] = {
+                        url: row.link_pdf,
+                        fecha: row.fecha 
+                    };
+                }
+            });
         }
         setMapaDeLinks(mapa);
         setLoading(false);
-      },
-      error: (err) => { console.error("Error cargando Excel:", err); setLoading(false); }
-    });
+    };
+
+    cargarTodo();
   }, []);
 
   // RESETEAR PAGINACIÓN AL FILTRAR
@@ -89,14 +119,15 @@ function TarjetasInformativas() {
     setVisibleCount(20);
   }, [searchTerm, filtroEstado]);
 
-  const totalUnidades = cluesDataEstática.length;
+  // Usamos el estado 'cluesData' en lugar del json estático
+  const totalUnidades = cluesData.length;
 
   // --- LÓGICA DE FILTRADO
-  const resultados = cluesDataEstática.filter(item => {
+  const resultados = cluesData.filter(item => {
     const termino = searchTerm.toUpperCase();
     const cluesKey = item.clues ? item.clues.toUpperCase() : '';
     
-    // Datos del Excel
+    // Datos del Excel de Links
     const datosDrive = mapaDeLinks[cluesKey] || {};
     const tieneArchivo = !!datosDrive.url;
     const infoSemaforo = analizarAntiguedad(datosDrive.fecha);
@@ -111,7 +142,7 @@ function TarjetasInformativas() {
     // Filtro de Estado
     let coincideEstado = true;
     if (filtroEstado === 'PENDIENTE') {
-        coincideEstado = !tieneArchivo; // Solo los que NO tienen archivo
+        coincideEstado = !tieneArchivo; 
     } else if (filtroEstado !== 'TODOS') {
         if (!tieneArchivo || !infoSemaforo) {
             coincideEstado = false;
@@ -122,6 +153,17 @@ function TarjetasInformativas() {
 
     return coincideTexto && coincideEstado;
   });
+
+  // SI ESTÁ CARGANDO, MOSTRAMOS UN INDICADOR
+  if (loading) {
+      return (
+        <div className="min-h-screen bg-gray-50 font-sans flex items-center justify-center">
+             <div className="text-xl font-bold text-gray-500 animate-pulse">Cargando Tarjetas... 🗂️</div>
+        </div>
+      );
+  }
+
+ 
 
   return (
     <div className="min-h-screen bg-gray-50 font-sans">
