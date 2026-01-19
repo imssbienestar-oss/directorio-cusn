@@ -81,17 +81,23 @@ function Estadisticas() {
   // --- NUEVA LÓGICA: CALCULAR TOTALES DE INFRAESTRUCTURA ---
   const totalesInfraestructura = useMemo(() => {
     return datosFiltrados.reduce((acc, item) => {
-      // Sumamos ambulancias (asegurando que sea número)
+
+      //ambulancias
       acc.ambulancias += parseInt(item.ambulancias) || 0;
-      
-      // Aquí se sumarán consultorios y quirófanos cuando los tengas en BD
-      // acc.consultorios += parseInt(item.consultorios) || 0;
-      // acc.quirofanos += parseInt(item.quirofanos) || 0;
-      
+
+      // Quirófanos (Sumamos por tipo)
+      const f = parseInt(item.q_func) || 0;
+      const nf = parseInt(item.q_no_func) || 0;
+
+      acc.q_funcionales += f;
+      acc.q_no_funcionales += nf;
+      acc.q_total += (f + nf);
+
       return acc;
-    }, { ambulancias: 0, consultorios: 0, quirofanos: 0 }); 
+    }, { ambulancias: 0, consultorios: 0, q_funcionales: 0, q_no_funcionales: 0, q_total: 0 });
   }, [datosFiltrados]);
   // ---------------------------------------------------------
+
 
   const dataTipologia = useMemo(() => {
     const conteo = {};
@@ -182,33 +188,44 @@ function Estadisticas() {
         {/* --- NUEVA SECCIÓN: INFRAESTRUCTURA (SIN ICONOS) --- */}
         <h2 className="text-lg font-bold text-gray-700 mb-4 px-1">Capacidad Instalada</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10 animate-fade-in-up">
-            
-            {/* Tarjeta Ambulancias */}
-            <div className="bg-blue-50 p-6 rounded-2xl shadow-sm border border-blue-100 flex items-center">
-                <div>
-                    <p className="text-blue-400 font-bold uppercase text-xs">Total Ambulancias</p>
-                    <p className="text-4xl font-extrabold text-blue-800 mt-1">{totalesInfraestructura.ambulancias}</p>
-                    <p className="text-xs text-blue-600 mt-1">Funcionales</p>
-                </div>
-            </div>
 
-            {/* Tarjeta Consultorios (Placeholder) */}
-            <div className="bg-gray-50 p-6 rounded-2xl shadow-sm border border-gray-100 flex items-center opacity-60">
-                <div>
-                    <p className="text-gray-400 font-bold uppercase text-xs">Consultorios</p>
-                    <p className="text-4xl font-extrabold text-gray-400 mt-1">{totalesInfraestructura.consultorios || "-"}</p>
-                    <p className="text-xs text-gray-400 mt-1">Total disponible</p>
-                </div>
+          {/* Tarjeta Ambulancias */}
+          <div className="bg-white p-6 rounded-2xl shadow-sm">
+            <div>
+              <p className="text-gray-400 font-bold uppercase text-xs">Total Ambulancias</p>
+              <p className="text-4xl font-bold text-gray-800 mt-1">{totalesInfraestructura.ambulancias}</p>
+              <p className="text-sm text-gray-500 mt-2">Funcionales</p>
             </div>
+          </div>
 
-            {/* Tarjeta Quirófanos (Placeholder) */}
-            <div className="bg-gray-50 p-6 rounded-2xl shadow-sm border border-gray-100 flex items-center opacity-60">
-                <div>
-                    <p className="text-gray-400 font-bold uppercase text-xs">Quirófanos</p>
-                    <p className="text-4xl font-extrabold text-gray-400 mt-1">{totalesInfraestructura.quirofanos || "-"}</p>
-                    <p className="text-xs text-gray-400 mt-1">Salas funcionales</p>
-                </div>
+          {/* Tarjeta Consultorios (Placeholder) */}
+          <div className="bg-gray-50 p-6 rounded-2xl shadow-sm border border-gray-100 flex items-center opacity-60">
+            <div>
+              <p className="text-gray-400 font-bold uppercase text-xs">Consultorios</p>
+              <p className="text-4xl font-extrabold text-gray-400 mt-1">{totalesInfraestructura.consultorios || "-"}</p>
+              <p className="text-xs text-gray-400 mt-1">Total disponible</p>
             </div>
+          </div>
+
+          {/* Tarjeta Quirófanos (Placeholder) */}
+          <div className="bg-white p-6 rounded-2xl shadow-sm">
+            <div>
+              <p className="text-gray-400 font-bold uppercase text-xs">Total Quirófanos</p>
+              <p className="text-4xl font-bold text-gray-800 mt-1">
+                {totalesInfraestructura.q_total}
+              </p>
+
+              {/* Desglose elegante abajo del número */}
+              <div className="flex gap-4 mt-2 text-xs font-medium">
+                <span className="text-sm text-gray-500 mt-2">
+                  Operativos: <b>{totalesInfraestructura.q_funcionales}</b>
+                </span>
+                <span className="text-sm text-gray-500 mt-2">
+                  Fuera de servicio: <b>{totalesInfraestructura.q_no_funcionales}</b>
+                </span>
+              </div>
+            </div>
+          </div>
         </div>
         {/* -------------------------------------------------------- */}
 

@@ -9,6 +9,10 @@ function TarjetasInformativas() {
   const [loading, setLoading] = useState(true);
   const [unidadSeleccionada, setUnidadSeleccionada] = useState(null);
 
+  const qFunc = unidadSeleccionada ? (parseInt(unidadSeleccionada.q_func) || 0) : 0;
+  const qNoFunc = unidadSeleccionada ? (parseInt(unidadSeleccionada.q_no_func) || 0) : 0;
+  const totalQuirofanos = qFunc + qNoFunc;
+  
   // AHORA LOS DATOS DE LAS UNIDADES VIVEN EN EL ESTADO
   const [cluesData, setCluesData] = useState([]);
 
@@ -72,12 +76,12 @@ function TarjetasInformativas() {
   useEffect(() => {
     const cargarTodo = async () => {
       try {
-        // PASO 1: Pedir el catálogo maestro a Railway (API)
+        // PASO 1: Pedir el catálogo maestro a Railway
         const respuestaApi = await fetch(API_SIBE_URL);
         if (!respuestaApi.ok) throw new Error('Error al conectar con SIBE');
         const dataBaseDatos = await respuestaApi.json();
 
-        // PASO 2: Pedir los Links al Excel (CSV)
+        // PASO 2: Pedir los Links al Excel
         const promesaLinks = new Promise((resolve, reject) => {
           Papa.parse(LINKS_URL, {
             download: true,
@@ -88,7 +92,7 @@ function TarjetasInformativas() {
         });
         const dataExcel = await promesaLinks;
 
-        // PASO 3: Procesar Mapa de Links (Para búsqueda rápida)
+        // PASO 3: Procesar Mapa de Links
         const mapa = {};
         if (dataExcel) {
           dataExcel.forEach(row => {
@@ -155,7 +159,6 @@ function TarjetasInformativas() {
     return coincideTexto && coincideEstado;
   });
 
-  // SI ESTÁ CARGANDO
   if (loading) {
     return (
       <div className="min-h-screen bg-gray-50 font-sans flex items-center justify-center">
@@ -318,10 +321,10 @@ function TarjetasInformativas() {
 
       </main>
 
-     {unidadSeleccionada && (
+      {unidadSeleccionada && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black bg-opacity-50 backdrop-blur-sm animate-fade-in">
           <div className="bg-white rounded-2xl shadow-2xl w-full max-w-lg overflow-hidden transform transition-all scale-100">
-            
+
             {/* Encabezado del Modal */}
             <div className="bg-gray-800 p-6 flex justify-between items-start">
               <div>
@@ -330,7 +333,7 @@ function TarjetasInformativas() {
                   CLUES: {unidadSeleccionada.clues}
                 </span>
               </div>
-              <button 
+              <button
                 onClick={() => setUnidadSeleccionada(null)}
                 className="text-gray-400 hover:text-white text-2xl leading-none"
               >
@@ -340,46 +343,57 @@ function TarjetasInformativas() {
 
             {/* Cuerpo del Modal: La Grid de Infraestructura */}
             <div className="p-6">
-                <h3 className="text-gray-500 text-sm font-bold uppercase mb-4 border-b pb-2">
-                    Capacidad Instalada
-                </h3>
-                
-                <div className="grid grid-cols-3 gap-4 text-center">
-                    {/* Tarjeta Ambulancias */}
-                    <div className="bg-gray-100 p-4 rounded-xl border border-gray-200">
-                        {/* Icono eliminado */}
-                        <div className="text-2xl font-bold text-gray-700">{unidadSeleccionada.ambulancias || 0}</div>
-                        <div className="text-xs text-gray-600 font-medium">Ambulancias</div>
-                    </div>
+              <h3 className="text-gray-500 text-sm font-bold uppercase mb-4 border-b pb-2">
+                Capacidad Instalada
+              </h3>
 
-                    {/* Tarjeta Consultorios */}
-                    <div className="bg-gray-100 p-4 rounded-xl border border-gray-200">
-                        {/* Icono eliminado */}
-                        <div className="text-2xl font-bold text-gray-700">{unidadSeleccionada.consultorios || 0}</div>
-                        <div className="text-xs text-gray-600 font-medium">Consultorios</div>
-                    </div>
-
-                    {/* Tarjeta Quirófanos */}
-                    <div className="bg-gray-100 p-4 rounded-xl border border-gray-200">
-                        {/* Icono eliminado */}
-                        <div className="text-2xl font-bold text-gray-700">{unidadSeleccionada.quirofanos || 0}</div>
-                        <div className="text-xs text-gray-600 font-medium">Quirófanos</div>
-                    </div>
+              <div className="grid grid-cols-3 gap-4 text-center">
+                {/* Tarjeta Ambulancias */}
+                <div className="bg-gray-100 p-4 rounded-xl border border-gray-200">
+                  {/* Icono eliminado */}
+                  <div className="text-2xl font-bold text-gray-700">{unidadSeleccionada.ambulancias || 0}</div>
+                  <div className="text-xs text-gray-600 font-medium">Ambulancias</div>
                 </div>
 
-                <div className="mt-6 bg-gray-50 p-4 rounded-lg text-sm text-gray-500">
-                    <p>📍 <strong>Ubicación:</strong> {unidadSeleccionada.municipio}</p>
+                {/* Tarjeta Consultorios */}
+                <div className="bg-gray-100 p-4 rounded-xl border border-gray-200">
+                  {/* Icono eliminado */}
+                  <div className="text-2xl font-bold text-gray-700">{unidadSeleccionada.consultorios || 0}</div>
+                  <div className="text-xs text-gray-600 font-medium">Consultorios</div>
                 </div>
+
+                {/* Tarjeta Quirófanos */}
+                <div className="bg-gray-100 p-4 rounded-xl border border-gray-200">
+                  {/* Número Total Grande */}
+                  <div className="text-2xl font-bold text-gray-700">{totalQuirofanos}</div>
+                  <div className="text-xs text-gray-600 font-medium uppercase mb-2">Total Quirófanos</div>
+
+                  {/* Desglose Formal */}
+                  <div className="flex justify-center gap-3 text-[10px] font-bold border-t border-gray-300 pt-2">
+                    <span className="text-green-700">
+                      {qFunc} Funcionales
+                    </span>
+                    <span className="text-gray-400">|</span>
+                    <span className="text-red-700">
+                      {qNoFunc} No Func.
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              <div className="mt-6 bg-gray-50 p-4 rounded-lg text-sm text-gray-500">
+                <p>📍 <strong>Ubicación:</strong> {unidadSeleccionada.municipio}</p>
+              </div>
             </div>
 
             {/* Footer del Modal */}
             <div className="bg-gray-50 p-4 flex justify-end">
-                <button 
-                    onClick={() => setUnidadSeleccionada(null)}
-                    className="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg font-bold hover:bg-gray-300"
-                >
-                    Cerrar
-                </button>
+              <button
+                onClick={() => setUnidadSeleccionada(null)}
+                className="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg font-bold hover:bg-gray-300"
+              >
+                Cerrar
+              </button>
             </div>
           </div>
         </div>
