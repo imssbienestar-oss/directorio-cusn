@@ -188,7 +188,7 @@ function Estadisticas() {
                 <div>
                     <p className="text-blue-400 font-bold uppercase text-xs">Total Ambulancias</p>
                     <p className="text-4xl font-extrabold text-blue-800 mt-1">{totalesInfraestructura.ambulancias}</p>
-                    <p className="text-xs text-blue-600 mt-1">Parque vehicular</p>
+                    <p className="text-xs text-blue-600 mt-1">Funcionales</p>
                 </div>
             </div>
 
