@@ -118,7 +118,7 @@ function Estadisticas() {
   if (loading) {
     return (
       <div className="min-h-screen bg-gray-50 font-sans flex items-center justify-center">
-        <div className="text-xl font-bold text-gray-500 animate-pulse">Cargando SIBE + Directorio... 🏥</div>
+        <div className="text-xl font-bold text-gray-500 animate-pulse">Cargando Estadisticas... 🏥</div>
       </div>
     );
   }
