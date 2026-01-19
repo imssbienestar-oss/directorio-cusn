@@ -3,9 +3,6 @@ import Papa from 'papaparse';
 import HeaderOficial from '../components/HeaderOficial';
 import { COLORS } from '../utils/constants';
 
-// YA NO IMPORTAMOS EL JSON LOCAL
-// import cluesDataEstática from '../data/clues.json'; 
-
 function TarjetasInformativas() {
   const [searchTerm, setSearchTerm] = useState('');
   const [mapaDeLinks, setMapaDeLinks] = useState({});
@@ -20,11 +17,12 @@ function TarjetasInformativas() {
   // FILTRO DE ESTADO
   const [filtroEstado, setFiltroEstado] = useState('TODOS');
 
-  // --- TUS 2 LINKS DE EXCEL (CSV) ---
-  // 1. EL CATÁLOGO (Hoja con clues, nombre, municipio, etc.)
-  const CATALOGO_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRmdYQBqZYY30hQt9hU2hzpVAsBwaSdpIg0LbbFCoJ5z3ouswU6lrnihg39CQPNd62J48H6D5mDzY6F/pub?gid=1927761955&single=true&output=csv"; 
+  // --- 1. CONFIGURACIÓN DE FUENTES DE DATOS ---
   
-  // 2. LOS LINKS (Hoja que llena el Robot con los PDFs)
+  // A. BASE DE DATOS REAL (Railway) - Nombres, Municipios, Activos
+  const API_SIBE_URL = "https://torre-control-production.up.railway.app/api/unidades/publico"; 
+
+  // B. EXCEL DEL ROBOT (Links y Fechas de PDFs)
   const LINKS_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRmdYQBqZYY30hQt9hU2hzpVAsBwaSdpIg0LbbFCoJ5z3ouswU6lrnihg39CQPNd62J48H6D5mDzY6F/pub?gid=0&single=true&output=csv";
 
   // --- FUNCIÓN DE FECHA ---
@@ -69,46 +67,49 @@ function TarjetasInformativas() {
     return { tipo, color, texto, icon, dias };
   };
 
-  // --- CARGA DE DATOS MAESTRA (CATÁLOGO + LINKS) ---
+  // --- CARGA DE DATOS HÍBRIDA (API + EXCEL) ---
   useEffect(() => {
     const cargarTodo = async () => {
-        // 1. Promesa para el Catálogo (Nombres, Municipio, etc.)
-        const promesaCatalogo = new Promise((resolve) => {
-            Papa.parse(CATALOGO_URL, {
-                download: true, header: true,
-                complete: (results) => resolve(results.data)
+        try {
+            // PASO 1: Pedir el catálogo maestro a Railway (API)
+            const respuestaApi = await fetch(API_SIBE_URL);
+            if (!respuestaApi.ok) throw new Error('Error al conectar con SIBE');
+            const dataBaseDatos = await respuestaApi.json();
+
+            // PASO 2: Pedir los Links al Excel (CSV)
+            const promesaLinks = new Promise((resolve, reject) => {
+                Papa.parse(LINKS_URL, {
+                    download: true, 
+                    header: true,
+                    complete: (results) => resolve(results.data),
+                    error: (err) => reject(err)
+                });
             });
-        });
+            const dataExcel = await promesaLinks;
 
-        // 2. Promesa para los Links (PDFs y Fechas)
-        const promesaLinks = new Promise((resolve) => {
-            Papa.parse(LINKS_URL, {
-                download: true, header: true,
-                complete: (results) => resolve(results.data)
-            });
-        });
+            // PASO 3: Procesar Mapa de Links (Para búsqueda rápida)
+            const mapa = {};
+            if (dataExcel) {
+                dataExcel.forEach(row => {
+                    if(row.clues) {
+                        mapa[row.clues.trim().toUpperCase()] = {
+                            url: row.link_pdf,
+                            fecha: row.fecha 
+                        };
+                    }
+                });
+            }
+            setMapaDeLinks(mapa);
 
-        // Esperamos a que ambos terminen
-        const [dataCatalogo, dataLinks] = await Promise.all([promesaCatalogo, promesaLinks]);
+            // PASO 4: Guardar los datos de la BD en el estado
+            // La API ya devuelve { clues, nombre, municipio, entidad... }
+            setCluesData(dataBaseDatos);
+            setLoading(false);
 
-        // A. Guardamos el Catálogo en el estado (Filtrando filas vacías)
-        const catalogoLimpio = dataCatalogo.filter(row => row.clues && row.nombre);
-        setCluesData(catalogoLimpio);
-
-        // B. Procesamos el Mapa de Links
-        const mapa = {};
-        if (dataLinks) {
-            dataLinks.forEach(row => {
-                if(row.clues) {
-                    mapa[row.clues.trim().toUpperCase()] = {
-                        url: row.link_pdf,
-                        fecha: row.fecha 
-                    };
-                }
-            });
+        } catch (error) {
+            console.error("Error cargando datos:", error);
+            setLoading(false);
         }
-        setMapaDeLinks(mapa);
-        setLoading(false);
     };
 
     cargarTodo();
@@ -119,7 +120,6 @@ function TarjetasInformativas() {
     setVisibleCount(20);
   }, [searchTerm, filtroEstado]);
 
-  // Usamos el estado 'cluesData' en lugar del json estático
   const totalUnidades = cluesData.length;
 
   // --- LÓGICA DE FILTRADO
@@ -127,7 +127,7 @@ function TarjetasInformativas() {
     const termino = searchTerm.toUpperCase();
     const cluesKey = item.clues ? item.clues.toUpperCase() : '';
     
-    // Datos del Excel de Links
+    // Cruzamos con datos del Excel (Links)
     const datosDrive = mapaDeLinks[cluesKey] || {};
     const tieneArchivo = !!datosDrive.url;
     const infoSemaforo = analizarAntiguedad(datosDrive.fecha);
@@ -154,16 +154,14 @@ function TarjetasInformativas() {
     return coincideTexto && coincideEstado;
   });
 
-  // SI ESTÁ CARGANDO, MOSTRAMOS UN INDICADOR
+  // SI ESTÁ CARGANDO
   if (loading) {
       return (
         <div className="min-h-screen bg-gray-50 font-sans flex items-center justify-center">
-             <div className="text-xl font-bold text-gray-500 animate-pulse">Cargando Tarjetas... 🗂️</div>
+             <div className="text-xl font-bold text-gray-500 animate-pulse">Cargando Tarjetas (SIBE)... 🗂️</div>
         </div>
       );
   }
-
- 
 
   return (
     <div className="min-h-screen bg-gray-50 font-sans">
@@ -232,6 +230,7 @@ function TarjetasInformativas() {
           {resultados.slice(0, visibleCount).map((unidad) => {
             const cluesKey = unidad.clues ? unidad.clues.toUpperCase() : '';
             
+            // Buscamos si tiene Link de PDF
             const datosDrive = mapaDeLinks[cluesKey] || {}; 
             const rawLink = datosDrive.url;
             const fechaArchivo = datosDrive.fecha;
@@ -255,7 +254,7 @@ function TarjetasInformativas() {
                       {/* ETIQUETA SEMÁFORO */}
                       {semaforo && (
                           <span className={`text-[10px] font-bold uppercase px-2 py-1 rounded border flex items-center gap-1 ${semaforo.color}`}>
-                             {semaforo.icon} {semaforo.texto} ({semaforo.dias} días)
+                            {semaforo.icon} {semaforo.texto} ({semaforo.dias} días)
                           </span>
                       )}
                   </div>
