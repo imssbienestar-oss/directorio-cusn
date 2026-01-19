@@ -220,7 +220,7 @@ function Estadisticas() {
                 <span className="text-sm text-gray-500 mt-2">
                   Operativos: <b>{totalesInfraestructura.q_funcionales}</b>
                 </span>
-                <span className="text-sm text-gray-500 mt-2">
+                <span className="text-sm text-gray-500 mt-2 ">
                   Fuera de servicio: <b>{totalesInfraestructura.q_no_funcionales}</b>
                 </span>
               </div>

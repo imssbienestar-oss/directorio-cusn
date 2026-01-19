@@ -12,7 +12,7 @@ function TarjetasInformativas() {
   const qFunc = unidadSeleccionada ? (parseInt(unidadSeleccionada.q_func) || 0) : 0;
   const qNoFunc = unidadSeleccionada ? (parseInt(unidadSeleccionada.q_no_func) || 0) : 0;
   const totalQuirofanos = qFunc + qNoFunc;
-  
+
   // AHORA LOS DATOS DE LAS UNIDADES VIVEN EN EL ESTADO
   const [cluesData, setCluesData] = useState([]);
 
@@ -369,14 +369,15 @@ function TarjetasInformativas() {
                   <div className="text-xs text-gray-600 font-medium uppercase mb-2">Total Quirófanos</div>
 
                   {/* Desglose Formal */}
-                  <div className="flex justify-center gap-3 text-[10px] font-bold border-t border-gray-300 pt-2">
-                    <span className="text-green-700">
-                      {qFunc} Funcionales
-                    </span>
-                    <span className="text-gray-400">|</span>
-                    <span className="text-red-700">
-                      {qNoFunc} No Func.
-                    </span>
+                  <div className="border-t border-gray-300 pt-2 w-full">
+                    <div className="flex justify-between items-center px-2 text-[10px] text-gray-600 mb-1">
+                        <span>Funcionales:</span>
+                        <span className="font-bold text-gray-800">{qFunc}</span>
+                    </div>
+                    <div className="flex justify-between items-center px-2 text-[10px] text-gray-600">
+                        <span>No Func.:</span>
+                        <span className="font-bold text-gray-800">{qNoFunc}</span>
+                    </div>
                   </div>
                 </div>
               </div>
