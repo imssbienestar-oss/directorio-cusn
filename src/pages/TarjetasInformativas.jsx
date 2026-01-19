@@ -318,7 +318,7 @@ function TarjetasInformativas() {
 
       </main>
 
-      {unidadSeleccionada && (
+     {unidadSeleccionada && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black bg-opacity-50 backdrop-blur-sm animate-fade-in">
           <div className="bg-white rounded-2xl shadow-2xl w-full max-w-lg overflow-hidden transform transition-all scale-100">
             
@@ -346,30 +346,29 @@ function TarjetasInformativas() {
                 
                 <div className="grid grid-cols-3 gap-4 text-center">
                     {/* Tarjeta Ambulancias */}
-                    <div className="bg-blue-50 p-4 rounded-xl border border-blue-100">
-                        <div className="text-3xl mb-1">🚑</div>
-                        <div className="text-2xl font-bold text-blue-800">{unidadSeleccionada.ambulancias || 0}</div>
-                        <div className="text-xs text-blue-600 font-medium">Ambulancias</div>
+                    <div className="bg-gray-100 p-4 rounded-xl border border-gray-200">
+                        {/* Icono eliminado */}
+                        <div className="text-2xl font-bold text-gray-700">{unidadSeleccionada.ambulancias || 0}</div>
+                        <div className="text-xs text-gray-600 font-medium">Ambulancias</div>
                     </div>
 
                     {/* Tarjeta Consultorios */}
-                    <div className="bg-green-50 p-4 rounded-xl border border-green-100">
-                        <div className="text-3xl mb-1">🩺</div>
-                        <div className="text-2xl font-bold text-green-800">{unidadSeleccionada.consultorios || 0}</div>
-                        <div className="text-xs text-green-600 font-medium">Consultorios</div>
+                    <div className="bg-gray-100 p-4 rounded-xl border border-gray-200">
+                        {/* Icono eliminado */}
+                        <div className="text-2xl font-bold text-gray-700">{unidadSeleccionada.consultorios || 0}</div>
+                        <div className="text-xs text-gray-600 font-medium">Consultorios</div>
                     </div>
 
                     {/* Tarjeta Quirófanos */}
-                    <div className="bg-purple-50 p-4 rounded-xl border border-purple-100">
-                        <div className="text-3xl mb-1">🔪</div>
-                        <div className="text-2xl font-bold text-purple-800">{unidadSeleccionada.quirofanos || 0}</div>
-                        <div className="text-xs text-purple-600 font-medium">Quirófanos</div>
+                    <div className="bg-gray-100 p-4 rounded-xl border border-gray-200">
+                        {/* Icono eliminado */}
+                        <div className="text-2xl font-bold text-gray-700">{unidadSeleccionada.quirofanos || 0}</div>
+                        <div className="text-xs text-gray-600 font-medium">Quirófanos</div>
                     </div>
                 </div>
 
                 <div className="mt-6 bg-gray-50 p-4 rounded-lg text-sm text-gray-500">
                     <p>📍 <strong>Ubicación:</strong> {unidadSeleccionada.municipio}</p>
-                    {/* Aquí puedes agregar más datos en el futuro sin romper el diseño */}
                 </div>
             </div>
 

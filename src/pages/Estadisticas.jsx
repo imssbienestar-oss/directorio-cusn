@@ -12,35 +12,28 @@ function Estadisticas() {
   const [loading, setLoading] = useState(true);
 
   // --- 1. CONFIGURACIÓN DE CONEXIONES ---
-
   const API_SIBE_URL = "https://torre-control-production.up.railway.app/api/unidades/publico";
-  // B. TU EXCEL DE PDFS (El que ya tenías)
   const LINKS_PDF_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRmdYQBqZYY30hQt9hU2hzpVAsBwaSdpIg0LbbFCoJ5z3ouswU6lrnihg39CQPNd62J48H6D5mDzY6F/pub?gid=0&single=true&output=csv";
 
   // --- 2. CARGA DE DATOS HÍBRIDA (Backend + Excel) ---
   useEffect(() => {
     const cargarDatos = async () => {
       try {
-        // PASO A: Pedir datos a tu Base de Datos (SIBE)
         const respuestaApi = await fetch(API_SIBE_URL);
         if (!respuestaApi.ok) {
           throw new Error(`Error en API SIBE: ${respuestaApi.statusText}`);
         }
         const dataBaseDatos = await respuestaApi.json();
 
-        // PASO B: Pedir Links al Excel (CSV)
         const promesaExcel = new Promise((resolve, reject) => {
           Papa.parse(LINKS_PDF_URL, {
-            download: true,
-            header: true,
+            download: true, header: true,
             complete: (results) => resolve(results.data),
             error: (err) => reject(err)
           });
         });
         const dataExcel = await promesaExcel;
 
-        // PASO C: LA FUSIÓN (Merge) 🧬
-        // 1. Creamos un mapa rápido del Excel para buscar por CLUES
         const mapaPDFs = {};
         dataExcel.forEach(row => {
           if (row.clues) {
@@ -51,14 +44,11 @@ function Estadisticas() {
           }
         });
 
-        // 2. Recorremos los datos de SIBE y les pegamos la info del Excel
         const datosFusionados = dataBaseDatos.map(unidad => {
-          // Normalizamos la CLUES para asegurar que coincida (mayúsculas, sin espacios)
           const cluesLimpia = unidad.clues ? unidad.clues.trim().toUpperCase() : '';
           const infoExtra = mapaPDFs[cluesLimpia] || {};
-
           return {
-            ...unidad, // Trae: nombre, municipio, tipologia, nivel, entidad
+            ...unidad,
             link_pdf: infoExtra.link || null,
             fecha_pdf: infoExtra.fecha || null
           };
@@ -76,10 +66,9 @@ function Estadisticas() {
     cargarDatos();
   }, []);
 
-  // --- 3. FILTROS Y PROCESAMIENTO (Igual que antes) ---
+  // --- 3. FILTROS Y PROCESAMIENTO ---
 
   const entidadesUnicas = useMemo(() => {
-    // Filtramos nulos por seguridad
     const lista = cluesData.map(item => item.entidad).filter(e => e);
     return [...new Set(lista)].sort();
   }, [cluesData]);
@@ -89,10 +78,24 @@ function Estadisticas() {
     return cluesData.filter(item => item.entidad === filtroEntidad);
   }, [filtroEntidad, cluesData]);
 
+  // --- NUEVA LÓGICA: CALCULAR TOTALES DE INFRAESTRUCTURA ---
+  const totalesInfraestructura = useMemo(() => {
+    return datosFiltrados.reduce((acc, item) => {
+      // Sumamos ambulancias (asegurando que sea número)
+      acc.ambulancias += parseInt(item.ambulancias) || 0;
+      
+      // Aquí se sumarán consultorios y quirófanos cuando los tengas en BD
+      // acc.consultorios += parseInt(item.consultorios) || 0;
+      // acc.quirofanos += parseInt(item.quirofanos) || 0;
+      
+      return acc;
+    }, { ambulancias: 0, consultorios: 0, quirofanos: 0 }); 
+  }, [datosFiltrados]);
+  // ---------------------------------------------------------
+
   const dataTipologia = useMemo(() => {
     const conteo = {};
     datosFiltrados.forEach(item => {
-      // Usamos el campo que viene de tu DB
       const tipo = item.tipologia || "NO ESPECIFICADO";
       conteo[tipo] = (conteo[tipo] || 0) + 1;
     });
@@ -151,8 +154,8 @@ function Estadisticas() {
           </div>
         </div>
 
-        {/* --- TARJETAS KPI --- */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10 animate-fade-in-up">
+        {/* --- TARJETAS KPI GENERALES (Las que ya tenías) --- */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8 animate-fade-in-up">
           <div className="bg-white p-6 rounded-2xl shadow-sm border-l-8 border-green-800">
             <p className="text-gray-400 font-bold uppercase text-xs">Universo Total</p>
             <p className="text-4xl font-bold text-gray-800 mt-1">{totalUnidadesFiltradas}</p>
@@ -176,10 +179,42 @@ function Estadisticas() {
           </div>
         </div>
 
+        {/* --- NUEVA SECCIÓN: INFRAESTRUCTURA (SIN ICONOS) --- */}
+        <h2 className="text-lg font-bold text-gray-700 mb-4 px-1">Capacidad Instalada</h2>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10 animate-fade-in-up">
+            
+            {/* Tarjeta Ambulancias */}
+            <div className="bg-blue-50 p-6 rounded-2xl shadow-sm border border-blue-100 flex items-center">
+                <div>
+                    <p className="text-blue-400 font-bold uppercase text-xs">Total Ambulancias</p>
+                    <p className="text-4xl font-extrabold text-blue-800 mt-1">{totalesInfraestructura.ambulancias}</p>
+                    <p className="text-xs text-blue-600 mt-1">Parque vehicular</p>
+                </div>
+            </div>
+
+            {/* Tarjeta Consultorios (Placeholder) */}
+            <div className="bg-gray-50 p-6 rounded-2xl shadow-sm border border-gray-100 flex items-center opacity-60">
+                <div>
+                    <p className="text-gray-400 font-bold uppercase text-xs">Consultorios</p>
+                    <p className="text-4xl font-extrabold text-gray-400 mt-1">{totalesInfraestructura.consultorios || "-"}</p>
+                    <p className="text-xs text-gray-400 mt-1">Total disponible</p>
+                </div>
+            </div>
+
+            {/* Tarjeta Quirófanos (Placeholder) */}
+            <div className="bg-gray-50 p-6 rounded-2xl shadow-sm border border-gray-100 flex items-center opacity-60">
+                <div>
+                    <p className="text-gray-400 font-bold uppercase text-xs">Quirófanos</p>
+                    <p className="text-4xl font-extrabold text-gray-400 mt-1">{totalesInfraestructura.quirofanos || "-"}</p>
+                    <p className="text-xs text-gray-400 mt-1">Salas funcionales</p>
+                </div>
+            </div>
+        </div>
+        {/* -------------------------------------------------------- */}
+
+
         {/* --- SECCIÓN DE GRÁFICAS --- */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-
-          {/* GRÁFICA 1: TIPOLOGÍA (PASTEL) */}
           <div className="bg-white p-6 rounded-2xl shadow-lg border border-gray-100 flex flex-col min-w-0">
             <h3 className="text-lg font-bold text-gray-700 mb-6 text-center">Distribución por Tipo de Unidad</h3>
             <div className="h-[450px] w-full min-w-0">
@@ -206,7 +241,6 @@ function Estadisticas() {
             </div>
           </div>
 
-          {/* GRÁFICA 2: NIVEL (BARRAS) */}
           <div className="bg-white p-6 rounded-2xl shadow-lg border border-gray-100 min-w-0">
             <h3 className="text-lg font-bold text-gray-700 mb-6 text-center">Unidades por Nivel de Atención</h3>
             <div className="h-80 w-full min-w-0">
@@ -226,6 +260,7 @@ function Estadisticas() {
             </div>
           </div>
         </div>
+
         {/* TABLA DE DETALLE RÁPIDO */}
         <div className="mt-10 bg-white rounded-2xl shadow-md overflow-hidden border border-gray-200">
           <div className="p-4 bg-gray-50 border-b border-gray-200 font-bold text-gray-700">
