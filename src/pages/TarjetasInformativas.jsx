@@ -4,7 +4,7 @@ import HeaderOficial from '../components/HeaderOficial';
 import { COLORS } from '../utils/constants';
 
 const REGIONES = {
-  "Noroeste": ["BAJA CALIFORNIA", "BAJA CALIFORNIA SUR", "SONORA", "SINALOA", "Nayarit", "Colima"],
+  "Noroeste": ["Baja California", "Baja California Sur", "Sonora", "Sinaloa", "Nayarit", "Colima"],
   "Noreste": ["Tamaulipas", "Veracruz", "Zacatecas", "San Luis Potosí"],
   "Centro": ["Ciudad de México", "México", "Hidalgo"],
   "Suroeste": ["Michoacán", "Guerrero", "Morelos", "Puebla", "Tlaxcala"],
