@@ -253,6 +253,11 @@ function TarjetasInformativas() {
                     <span className="text-white text-xs font-bold px-2 py-1 rounded shadow-sm" style={{ backgroundColor: COLORS.verde }}>
                       {unidad.clues}
                     </span>
+                    {unidad.nivel && (
+        <span className="text-[10px] font-bold uppercase px-2 py-1 rounded border bg-indigo-50 text-indigo-700 border-indigo-200">
+            {unidad.nivel}
+        </span>
+    )}
 
                     {/* ETIQUETA SEMÁFORO */}
                     {semaforo && (
@@ -278,7 +283,7 @@ function TarjetasInformativas() {
                     onClick={() => setUnidadSeleccionada(unidad)}
                     className="px-4 py-2 bg-white border border-gray-300 text-gray-700 font-bold rounded-lg shadow-sm hover:bg-gray-50 transition-all text-sm flex items-center gap-2"
                   >
-                    📊 Detalles
+                    Detalles
                   </button>
 
                   {linkVisualizacion ? (
