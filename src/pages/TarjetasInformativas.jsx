@@ -3,6 +3,14 @@ import Papa from 'papaparse';
 import HeaderOficial from '../components/HeaderOficial';
 import { COLORS } from '../utils/constants';
 
+const REGIONES = {
+  "Noroeste": ["BAJA CALIFORNIA", "BAJA CALIFORNIA SUR", "SONORA", "SINALOA", "Nayarit", "Colima"],
+  "Noreste": ["Tamaulipas", "Veracruz", "Zacatecas", "San Luis Potosí"],
+  "Centro": ["Ciudad de México", "México", "Hidalgo"],
+  "Suroeste": ["Michoacán", "Guerrero", "Morelos", "Puebla", "Tlaxcala"],
+  "Sureste": ["Oaxaca", "Chiapas", "Tabasco", "Campeche", "Yucatán", "Quintana Roo"]
+};
+
 function TarjetasInformativas() {
   const [searchTerm, setSearchTerm] = useState('');
   const [mapaDeLinks, setMapaDeLinks] = useState({});
@@ -23,6 +31,7 @@ function TarjetasInformativas() {
   const [filtroEstado, setFiltroEstado] = useState('TODOS');
   const [filtroEntidad, setFiltroEntidad] = useState('TODAS');
   const [filtroNivel, setFiltroNivel] = useState('TODOS');
+  const [filtroRegion, setFiltroRegion] = useState('TODAS');
 
   // --- 1. CONFIGURACIÓN DE FUENTES DE DATOS ---
 
@@ -168,10 +177,16 @@ function TarjetasInformativas() {
       }
     }
 
-   const coincideEntidad = filtroEntidad === 'TODAS' || item.entidad === filtroEntidad;
-   const coincideNivel = filtroNivel === 'TODOS' || item.nivel === filtroNivel;
+    const coincideEntidad = filtroEntidad === 'TODAS' || item.entidad === filtroEntidad;
+    const coincideNivel = filtroNivel === 'TODOS' || item.nivel === filtroNivel;
 
-    return coincideTexto && coincideEstado && coincideEntidad && coincideNivel;
+    let coincideRegion = true;
+    if (filtroRegion !== 'TODAS') {
+      const estadosDeLaRegion = REGIONES[filtroRegion] || [];
+      coincideRegion = estadosDeLaRegion.includes(item.entidad);
+    }
+
+    return coincideTexto && coincideEstado && coincideEntidad && coincideNivel && coincideRegion;
   });
 
   if (loading) {
@@ -193,11 +208,11 @@ function TarjetasInformativas() {
         </div>
 
         {/* --- BARRA DE CONTROL Y FILTROS --- */}
-       <div className="bg-white p-4 rounded-xl shadow-sm border border-gray-100 mb-8">
-          
+        <div className="bg-white p-4 rounded-xl shadow-sm border border-gray-100 mb-8">
+
           {/* FILA 1: BUSCADOR Y DROPDOWNS */}
           <div className="flex flex-col md:flex-row gap-4 mb-4">
-            
+
             {/* Buscador (Más ancho) */}
             <div className="relative flex-grow">
               <input
@@ -209,35 +224,48 @@ function TarjetasInformativas() {
               <span className="absolute left-3 top-3.5 text-gray-400">🔍</span>
             </div>
 
-            {/* Select Entidad */}
-            <select 
-                className="p-3 border border-gray-200 rounded-lg text-sm text-gray-600 focus:ring-1 focus:ring-green-800 outline-none bg-white min-w-[200px]"
-                value={filtroEntidad}
-                onChange={(e) => setFiltroEntidad(e.target.value)}
+            <select
+              className="p-3 border border-gray-200 rounded-lg text-sm text-gray-600 focus:ring-1 focus:ring-green-800 outline-none bg-white min-w-[160px]"
+              value={filtroRegion}
+              onChange={(e) => {
+                setFiltroRegion(e.target.value);
+                setFiltroEntidad('TODAS'); // Tip Pro: Si cambias de región, resetea la entidad para no confundir
+              }}
             >
-                <option value="TODAS">📍 Todas las Entidades</option>
-                {opcionesEntidad.map(ent => (
-                    <option key={ent} value={ent}>{ent}</option>
-                ))}
+              <option value="TODAS">🌎 Todas las Regiones</option>
+              {Object.keys(REGIONES).map(region => (
+                <option key={region} value={region}>{region}</option>
+              ))}
+            </select>
+            {/* Select Entidad */}
+            <select
+              className="p-3 border border-gray-200 rounded-lg text-sm text-gray-600 focus:ring-1 focus:ring-green-800 outline-none bg-white min-w-[200px]"
+              value={filtroEntidad}
+              onChange={(e) => setFiltroEntidad(e.target.value)}
+            >
+              <option value="TODAS">📍 Todas las Entidades</option>
+              {opcionesEntidad.map(ent => (
+                <option key={ent} value={ent}>{ent}</option>
+              ))}
             </select>
 
             {/* Select Nivel */}
-            <select 
-                className="p-3 border border-gray-200 rounded-lg text-sm text-gray-600 focus:ring-1 focus:ring-green-800 outline-none bg-white min-w-[200px]"
-                value={filtroNivel}
-                onChange={(e) => setFiltroNivel(e.target.value)}
+            <select
+              className="p-3 border border-gray-200 rounded-lg text-sm text-gray-600 focus:ring-1 focus:ring-green-800 outline-none bg-white min-w-[200px]"
+              value={filtroNivel}
+              onChange={(e) => setFiltroNivel(e.target.value)}
             >
-                <option value="TODOS">🏥 Todos los Niveles</option>
-                {opcionesNivel.map(niv => (
-                    <option key={niv} value={niv}>{niv}</option>
-                ))}
+              <option value="TODOS">🏥 Todos los Niveles</option>
+              {opcionesNivel.map(niv => (
+                <option key={niv} value={niv}>{niv}</option>
+              ))}
             </select>
 
           </div>
 
           {/* FILA 2: BOTONES DE ESTATUS Y CONTADOR */}
           <div className="flex flex-col md:flex-row justify-between items-center gap-4 pt-4 border-t border-gray-100">
-            
+
             {/* Botones de Colores */}
             <div className="flex overflow-x-auto gap-2 pb-1 w-full md:w-auto scrollbar-hide">
               {[
@@ -262,7 +290,7 @@ function TarjetasInformativas() {
 
             {/* Contador */}
             <div className="text-xs font-bold text-gray-400 uppercase whitespace-nowrap">
-               {resultados.length} de {totalUnidades} Resultados
+              {resultados.length} de {totalUnidades} Resultados
             </div>
 
           </div>
@@ -300,10 +328,10 @@ function TarjetasInformativas() {
                       {unidad.clues}
                     </span>
                     {unidad.nivel && (
-        <span className="text-[10px] font-bold uppercase px-2 py-1 rounded border bg-indigo-50 text-indigo-700 border-indigo-200">
-            {unidad.nivel}
-        </span>
-    )}
+                      <span className="text-[10px] font-bold uppercase px-2 py-1 rounded border bg-indigo-50 text-indigo-700 border-indigo-200">
+                        {unidad.nivel}
+                      </span>
+                    )}
 
                     {/* ETIQUETA SEMÁFORO */}
                     {semaforo && (
@@ -422,12 +450,12 @@ function TarjetasInformativas() {
                   {/* Desglose Formal */}
                   <div className="border-t border-gray-300 pt-2 w-full">
                     <div className="flex justify-between items-center px-2 text-[10px] text-gray-600 mb-1">
-                        <span>Funcionales:</span>
-                        <span className="font-bold text-gray-800">{qFunc}</span>
+                      <span>Funcionales:</span>
+                      <span className="font-bold text-gray-800">{qFunc}</span>
                     </div>
                     <div className="flex justify-between items-center px-2 text-[10px] text-gray-600">
-                        <span>No Func.:</span>
-                        <span className="font-bold text-gray-800">{qNoFunc}</span>
+                      <span>No Func.:</span>
+                      <span className="font-bold text-gray-800">{qNoFunc}</span>
                     </div>
                   </div>
                 </div>
