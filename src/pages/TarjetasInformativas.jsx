@@ -20,8 +20,6 @@ function TarjetasInformativas() {
   const qFunc = unidadSeleccionada ? (parseInt(unidadSeleccionada.q_func) || 0) : 0;
   const qNoFunc = unidadSeleccionada ? (parseInt(unidadSeleccionada.q_no_func) || 0) : 0;
   const totalQuirofanos = qFunc + qNoFunc;
-
-  // AHORA LOS DATOS DE LAS UNIDADES VIVEN EN EL ESTADO
   const [cluesData, setCluesData] = useState([]);
 
   // PAGINACIÓN
@@ -35,10 +33,10 @@ function TarjetasInformativas() {
 
   // --- 1. CONFIGURACIÓN DE FUENTES DE DATOS ---
 
-  // A. BASE DE DATOS REAL (Railway) - Nombres, Municipios, Activos
+  // --- BD Railway
   const API_SIBE_URL = "https://torre-control-production.up.railway.app/api/unidades/publico";
 
-  // B. EXCEL DEL ROBOT (Links y Fechas de PDFs)
+  // --- PDFs
   const LINKS_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRmdYQBqZYY30hQt9hU2hzpVAsBwaSdpIg0LbbFCoJ5z3ouswU6lrnihg39CQPNd62J48H6D5mDzY6F/pub?gid=0&single=true&output=csv";
 
   // --- FUNCIÓN DE FECHA ---
@@ -203,7 +201,7 @@ function TarjetasInformativas() {
 
       <main className="container mx-auto px-4 py-10 max-w-5xl">
         <div className="text-center mb-8 animate-fade-in-up">
-          <h1 className="text-3xl font-bold text-gray-800 mb-2">Tarjetas Informativas</h1>
+          <h1 className="text-3xl font-bold text-gray-800 mb-2">Directorio de Unidades Médicas</h1>
           <p className="text-gray-500">Gestión y semaforización de Cédulas de Unidades Médicas.</p>
         </div>
 
@@ -221,46 +219,73 @@ function TarjetasInformativas() {
                 className="w-full p-3 pl-10 border border-gray-200 rounded-lg focus:ring-1 focus:ring-green-800 uppercase text-sm"
                 onChange={(e) => setSearchTerm(e.target.value)}
               />
-              <span className="absolute left-3 top-3.5 text-gray-400">🔍</span>
+              <span className="absolute left-3 top-3.5 text-gray-950"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
+                <path d="M8.25 10.875a2.625 2.625 0 1 1 5.25 0 2.625 2.625 0 0 1-5.25 0Z" />
+                <path fill-rule="evenodd" d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25Zm-1.125 4.5a4.125 4.125 0 1 0 2.338 7.524l2.007 2.006a.75.75 0 1 0 1.06-1.06l-2.006-2.007a4.125 4.125 0 0 0-3.399-6.463Z" clip-rule="evenodd" />
+              </svg>
+              </span>
+            </div>
+            {/* Select Región */}
+            <div className="relative">
+              <div className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-950 pointer-events-none">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
+                  <path fill-rule="evenodd" d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25ZM6.262 6.072a8.25 8.25 0 1 0 10.562-.766 4.5 4.5 0 0 1-1.318 1.357L14.25 7.5l.165.33a.809.809 0 0 1-1.086 1.085l-.604-.302a1.125 1.125 0 0 0-1.298.21l-.132.131c-.439.44-.439 1.152 0 1.591l.296.296c.256.257.622.374.98.314l1.17-.195c.323-.054.654.036.905.245l1.33 1.108c.32.267.46.694.358 1.1a8.7 8.7 0 0 1-2.288 4.04l-.723.724a1.125 1.125 0 0 1-1.298.21l-.153-.076a1.125 1.125 0 0 1-.622-1.006v-1.089c0-.298-.119-.585-.33-.796l-1.347-1.347a1.125 1.125 0 0 1-.21-1.298L9.75 12l-1.64-1.64a6 6 0 0 1-1.676-3.257l-.172-1.03Z" clip-rule="evenodd" />
+                </svg>
+              </div>
+              <select
+                className="w-full md:w-auto p-3 pl-10 border border-gray-200 rounded-lg text-sm text-gray-600 focus:ring-1 focus:ring-green-800 outline-none bg-white min-w-[180px]"
+                value={filtroRegion}
+                onChange={(e) => {
+                  setFiltroRegion(e.target.value);
+                  setFiltroEntidad('TODAS'); // Tip Pro: Si cambias de región, resetea la entidad para no confundir
+                }}
+              >
+                <option value="TODAS">
+                  Todas las Regiones</option>
+                {Object.keys(REGIONES).map(region => (
+                  <option key={region} value={region}>{region}</option>
+                ))}
+              </select>
             </div>
 
-            <select
-              className="p-3 border border-gray-200 rounded-lg text-sm text-gray-600 focus:ring-1 focus:ring-green-800 outline-none bg-white min-w-[160px]"
-              value={filtroRegion}
-              onChange={(e) => {
-                setFiltroRegion(e.target.value);
-                setFiltroEntidad('TODAS'); // Tip Pro: Si cambias de región, resetea la entidad para no confundir
-              }}
-            >
-              <option value="TODAS">🌎 Todas las Regiones</option>
-              {Object.keys(REGIONES).map(region => (
-                <option key={region} value={region}>{region}</option>
-              ))}
-            </select>
             {/* Select Entidad */}
-            <select
-              className="p-3 border border-gray-200 rounded-lg text-sm text-gray-600 focus:ring-1 focus:ring-green-800 outline-none bg-white min-w-[200px]"
-              value={filtroEntidad}
-              onChange={(e) => setFiltroEntidad(e.target.value)}
-            >
-              <option value="TODAS">📍 Todas las Entidades</option>
-              {opcionesEntidad.map(ent => (
-                <option key={ent} value={ent}>{ent}</option>
-              ))}
-            </select>
+            <div className="relative">
+              <div className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-950 pointer-events-none">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
+                  <path fill-rule="evenodd" d="m11.54 22.351.07.04.028.016a.76.76 0 0 0 .723 0l.028-.015.071-.041a16.975 16.975 0 0 0 1.144-.742 19.58 19.58 0 0 0 2.683-2.282c1.944-1.99 3.963-4.98 3.963-8.827a8.25 8.25 0 0 0-16.5 0c0 3.846 2.02 6.837 3.963 8.827a19.58 19.58 0 0 0 2.682 2.282 16.975 16.975 0 0 0 1.145.742ZM12 13.5a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" clip-rule="evenodd" />
+                </svg>
+              </div>
+              <select
+                className="w-full md:w-auto p-3 pl-10 border border-gray-200 rounded-lg text-sm text-gray-600 focus:ring-1 focus:ring-green-800 outline-none bg-white min-w-[180px]"
+                value={filtroEntidad}
+                onChange={(e) => setFiltroEntidad(e.target.value)}
+              >
+                <option value="TODAS">Todas las Entidades</option>
+                {opcionesEntidad.map(ent => (
+                  <option key={ent} value={ent}>{ent}</option>
+                ))}
+              </select>
+            </div>
 
             {/* Select Nivel */}
-            <select
-              className="p-3 border border-gray-200 rounded-lg text-sm text-gray-600 focus:ring-1 focus:ring-green-800 outline-none bg-white min-w-[200px]"
-              value={filtroNivel}
-              onChange={(e) => setFiltroNivel(e.target.value)}
-            >
-              <option value="TODOS">🏥 Todos los Niveles</option>
-              {opcionesNivel.map(niv => (
-                <option key={niv} value={niv}>{niv}</option>
-              ))}
-            </select>
-
+            <div className="relative">
+              <div className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-950 pointer-events-none">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
+                  <path d="M5.223 2.25c-.497 0-.974.198-1.325.55l-1.3 1.298A3.75 3.75 0 0 0 7.5 9.75c.627.47 1.406.75 2.25.75.844 0 1.624-.28 2.25-.75.626.47 1.406.75 2.25.75.844 0 1.623-.28 2.25-.75a3.75 3.75 0 0 0 4.902-5.652l-1.3-1.299a1.875 1.875 0 0 0-1.325-.549H5.223Z" />
+                  <path fill-rule="evenodd" d="M3 20.25v-8.755c1.42.674 3.08.673 4.5 0A5.234 5.234 0 0 0 9.75 12c.804 0 1.568-.182 2.25-.506a5.234 5.234 0 0 0 2.25.506c.804 0 1.567-.182 2.25-.506 1.42.674 3.08.675 4.5.001v8.755h.75a.75.75 0 0 1 0 1.5H2.25a.75.75 0 0 1 0-1.5H3Zm3-6a.75.75 0 0 1 .75-.75h3a.75.75 0 0 1 .75.75v3a.75.75 0 0 1-.75.75h-3a.75.75 0 0 1-.75-.75v-3Zm8.25-.75a.75.75 0 0 0-.75.75v5.25c0 .414.336.75.75.75h3a.75.75 0 0 0 .75-.75v-5.25a.75.75 0 0 0-.75-.75h-3Z" clip-rule="evenodd" />
+                </svg>
+              </div>
+              <select
+                className="w-full md:w-auto p-3 pl-10 border border-gray-200 rounded-lg text-sm text-gray-600 focus:ring-1 focus:ring-green-800 outline-none bg-white min-w-[180px]"
+                value={filtroNivel}
+                onChange={(e) => setFiltroNivel(e.target.value)}
+              >
+                <option value="TODOS">Todos los Niveles</option>
+                {opcionesNivel.map(niv => (
+                  <option key={niv} value={niv}>{niv}</option>
+                ))}
+              </select>
+            </div>
           </div>
 
           {/* FILA 2: BOTONES DE ESTATUS Y CONTADOR */}
@@ -348,7 +373,8 @@ function TarjetasInformativas() {
 
                   {fechaArchivo && (
                     <p className="text-xs text-gray-400 mt-1">
-                      📅 Actualizado: <span className="font-medium text-gray-600">{fechaArchivo}</span>
+
+                      Actualizado: <span className="font-medium text-gray-600">{fechaArchivo}</span>
                     </p>
                   )}
                 </div>
@@ -375,8 +401,11 @@ function TarjetasInformativas() {
                       <span>Ver Cédula</span>
                     </a>
                   ) : (
-                    <div className="flex items-center gap-2 px-6 py-3 rounded-lg font-bold text-red-600 bg-red-50 border border-red-100 whitespace-nowrap">
-                      ⚠️ Pendiente
+                    <div className="flex items-center gap-2 px-6 py-3 rounded-lg font-bold text-red-500 bg-red-50 border border-red-100 whitespace-nowrap">
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
+                        <path fill-rule="evenodd" d="M9.401 3.003c1.155-2 4.043-2 5.197 0l7.355 12.748c1.154 2-.29 4.5-2.599 4.5H4.645c-2.309 0-3.752-2.5-2.598-4.5L9.4 3.003ZM12 8.25a.75.75 0 0 1 .75.75v3.75a.75.75 0 0 1-1.5 0V9a.75.75 0 0 1 .75-.75Zm0 8.25a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Z" clip-rule="evenodd" />
+                      </svg>
+                      Pendiente
                     </div>
                   )}
                 </div>
