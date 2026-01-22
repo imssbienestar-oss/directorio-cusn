@@ -21,6 +21,8 @@ function TarjetasInformativas() {
 
   // FILTRO DE ESTADO
   const [filtroEstado, setFiltroEstado] = useState('TODOS');
+  const [filtroEntidad, setFiltroEntidad] = useState('TODAS');
+  const [filtroNivel, setFiltroNivel] = useState('TODOS');
 
   // --- 1. CONFIGURACIÓN DE FUENTES DE DATOS ---
 
@@ -127,6 +129,16 @@ function TarjetasInformativas() {
 
   const totalUnidades = cluesData.length;
 
+  const opcionesEntidad = React.useMemo(() => {
+    const unicos = [...new Set(cluesData.map(d => d.entidad).filter(Boolean))];
+    return unicos.sort();
+  }, [cluesData]);
+
+  const opcionesNivel = React.useMemo(() => {
+    const unicos = [...new Set(cluesData.map(d => d.nivel).filter(Boolean))];
+    return unicos.sort();
+  }, [cluesData]);
+
   // --- LÓGICA DE FILTRADO
   const resultados = cluesData.filter(item => {
     const termino = searchTerm.toUpperCase();
@@ -156,7 +168,10 @@ function TarjetasInformativas() {
       }
     }
 
-    return coincideTexto && coincideEstado;
+   const coincideEntidad = filtroEntidad === 'TODAS' || item.entidad === filtroEntidad;
+   const coincideNivel = filtroNivel === 'TODOS' || item.nivel === filtroNivel;
+
+    return coincideTexto && coincideEstado && coincideEntidad && coincideNivel;
   });
 
   if (loading) {
@@ -178,22 +193,53 @@ function TarjetasInformativas() {
         </div>
 
         {/* --- BARRA DE CONTROL Y FILTROS --- */}
-        <div className="bg-white p-4 rounded-xl shadow-sm border border-gray-100 mb-8">
-          <div className="flex flex-col md:flex-row gap-4 items-center justify-between">
-
-            {/* BUSCADOR */}
-            <div className="relative flex-1 w-full">
+       <div className="bg-white p-4 rounded-xl shadow-sm border border-gray-100 mb-8">
+          
+          {/* FILA 1: BUSCADOR Y DROPDOWNS */}
+          <div className="flex flex-col md:flex-row gap-4 mb-4">
+            
+            {/* Buscador (Más ancho) */}
+            <div className="relative flex-grow">
               <input
                 type="text"
-                placeholder="Buscar unidad..."
-                className="w-full p-3 pl-10 border border-gray-200 rounded-lg focus:ring-1 focus:ring-green-800 uppercase"
+                placeholder="Buscar por nombre, CLUES o municipio..."
+                className="w-full p-3 pl-10 border border-gray-200 rounded-lg focus:ring-1 focus:ring-green-800 uppercase text-sm"
                 onChange={(e) => setSearchTerm(e.target.value)}
               />
               <span className="absolute left-3 top-3.5 text-gray-400">🔍</span>
             </div>
 
-            {/* FILTRO DE ESTADO */}
-            <div className="flex overflow-x-auto gap-2 pb-1 w-full md:w-auto">
+            {/* Select Entidad */}
+            <select 
+                className="p-3 border border-gray-200 rounded-lg text-sm text-gray-600 focus:ring-1 focus:ring-green-800 outline-none bg-white min-w-[200px]"
+                value={filtroEntidad}
+                onChange={(e) => setFiltroEntidad(e.target.value)}
+            >
+                <option value="TODAS">📍 Todas las Entidades</option>
+                {opcionesEntidad.map(ent => (
+                    <option key={ent} value={ent}>{ent}</option>
+                ))}
+            </select>
+
+            {/* Select Nivel */}
+            <select 
+                className="p-3 border border-gray-200 rounded-lg text-sm text-gray-600 focus:ring-1 focus:ring-green-800 outline-none bg-white min-w-[200px]"
+                value={filtroNivel}
+                onChange={(e) => setFiltroNivel(e.target.value)}
+            >
+                <option value="TODOS">🏥 Todos los Niveles</option>
+                {opcionesNivel.map(niv => (
+                    <option key={niv} value={niv}>{niv}</option>
+                ))}
+            </select>
+
+          </div>
+
+          {/* FILA 2: BOTONES DE ESTATUS Y CONTADOR */}
+          <div className="flex flex-col md:flex-row justify-between items-center gap-4 pt-4 border-t border-gray-100">
+            
+            {/* Botones de Colores */}
+            <div className="flex overflow-x-auto gap-2 pb-1 w-full md:w-auto scrollbar-hide">
               {[
                 { id: 'TODOS', label: 'Todos', color: 'bg-gray-100 text-gray-600' },
                 { id: 'VERDE', label: '🟢 Al día', color: 'bg-green-50 text-green-700 border-green-200' },
@@ -213,14 +259,14 @@ function TarjetasInformativas() {
                 </button>
               ))}
             </div>
-          </div>
 
-          {/* CONTADOR DE RESULTADOS */}
-          <div className="mt-3 text-xs font-bold text-gray-400 text-right uppercase">
-            Mostrando {resultados.length} de {totalUnidades} Unidades
+            {/* Contador */}
+            <div className="text-xs font-bold text-gray-400 uppercase whitespace-nowrap">
+               {resultados.length} de {totalUnidades} Resultados
+            </div>
+
           </div>
         </div>
-
         {/* --- LISTA DE RESULTADOS --- */}
         <div className="space-y-4">
 
