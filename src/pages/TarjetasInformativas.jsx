@@ -31,8 +31,6 @@ function TarjetasInformativas() {
   const [filtroNivel, setFiltroNivel] = useState('TODOS');
   const [filtroRegion, setFiltroRegion] = useState('TODAS');
 
-  // --- 1. CONFIGURACIÓN DE FUENTES DE DATOS ---
-
   // --- BD Railway
   const API_SIBE_URL = "https://torre-control-production.up.railway.app/api/unidades/publico";
 
@@ -137,9 +135,23 @@ function TarjetasInformativas() {
   const totalUnidades = cluesData.length;
 
   const opcionesEntidad = React.useMemo(() => {
-    const unicos = [...new Set(cluesData.map(d => d.entidad).filter(Boolean))];
-    return unicos.sort();
-  }, [cluesData]);
+    // 1. Primero sacamos todas las entidades que existen en tus datos (BD)
+    const todasLasEntidades = [...new Set(cluesData.map(d => d.entidad).filter(Boolean))];
+
+    // 2. Si el usuario NO ha seleccionado región, mostramos todas
+    if (filtroRegion === 'TODAS') {
+      return todasLasEntidades.sort();
+    }
+
+    // 3. Si YA seleccionó región, filtramos la lista
+    const estadosDeLaRegion = REGIONES[filtroRegion] || [];
+
+    // Cruzamos las dos listas: Solo mostramos las entidades que (A) Existen en la BD y (B) Pertenecen a esa región
+    return todasLasEntidades
+      .filter(entidad => estadosDeLaRegion.includes(entidad))
+      .sort();
+
+  }, [cluesData, filtroRegion]);
 
   const opcionesNivel = React.useMemo(() => {
     const unicos = [...new Set(cluesData.map(d => d.nivel).filter(Boolean))];
@@ -195,6 +207,22 @@ function TarjetasInformativas() {
     );
   }
 
+  const limpiarFiltros = () => {
+    setSearchTerm('');
+    setFiltroRegion('TODAS');
+    setFiltroEntidad('TODAS');
+    setFiltroNivel('TODOS');
+    setFiltroEstado('TODOS');
+    setVisibleCount(20);
+  };
+
+  const hayFiltrosActivos =
+    searchTerm !== '' ||
+    filtroRegion !== 'TODAS' ||
+    filtroEntidad !== 'TODAS' ||
+    filtroNivel !== 'TODOS' ||
+    filtroEstado !== 'TODOS';
+
   return (
     <div className="min-h-screen bg-gray-50 font-sans">
       <HeaderOficial />
@@ -219,7 +247,7 @@ function TarjetasInformativas() {
                 className="w-full p-3 pl-10 border border-gray-200 rounded-lg focus:ring-1 focus:ring-green-800 uppercase text-sm"
                 onChange={(e) => setSearchTerm(e.target.value)}
               />
-              <span className="absolute left-3 top-3.5 text-gray-950"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
+              <span className="absolute left-3 top-2 text-gray-950"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-7">
                 <path d="M8.25 10.875a2.625 2.625 0 1 1 5.25 0 2.625 2.625 0 0 1-5.25 0Z" />
                 <path fill-rule="evenodd" d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25Zm-1.125 4.5a4.125 4.125 0 1 0 2.338 7.524l2.007 2.006a.75.75 0 1 0 1.06-1.06l-2.006-2.007a4.125 4.125 0 0 0-3.399-6.463Z" clip-rule="evenodd" />
               </svg>
@@ -312,7 +340,19 @@ function TarjetasInformativas() {
                 </button>
               ))}
             </div>
+            {hayFiltrosActivos && (
+              <button
+                onClick={limpiarFiltros}
+                className="flex items-center gap-1 px-3 py-2 ml-2 text-xs font-bold text-red-600 bg-white border border-red-200 rounded-lg shadow-sm hover:bg-red-50 transition-all animate-fade-in"
+              >
+                {/* Icono de Papelera SVG (Estilo oficial) */}
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-4">
+                  <path fill-rule="evenodd" d="M16.5 4.478v.227a48.816 48.816 0 0 1 3.878.512.75.75 0 1 1-.256 1.478l-.209-.035-1.005 13.07a3 3 0 0 1-2.991 2.77H8.084a3 3 0 0 1-2.991-2.77L4.087 6.66l-.209.035a.75.75 0 0 1-.256-1.478A48.567 48.567 0 0 1 7.5 4.705v-.227c0-1.564 1.213-2.9 2.816-2.951a52.662 52.662 0 0 1 3.369 0c1.603.051 2.815 1.387 2.815 2.951Zm-6.136-1.452a51.196 51.196 0 0 1 3.273 0C14.39 3.05 15 3.684 15 4.478v.113a49.488 49.488 0 0 0-6 0v-.113c0-.794.609-1.428 1.364-1.452Zm-.355 5.945a.75.75 0 1 0-1.5.058l.347 9a.75.75 0 1 0 1.499-.058l-.346-9Zm5.48.058a.75.75 0 1 0-1.498-.058l-.347 9a.75.75 0 0 0 1.5.058l.345-9Z" clip-rule="evenodd" />
+                </svg>
 
+                ELIMINAR FILTROS
+              </button>
+            )}
             {/* Contador */}
             <div className="text-xs font-bold text-gray-400 uppercase whitespace-nowrap">
               {resultados.length} de {totalUnidades} Resultados
@@ -402,7 +442,7 @@ function TarjetasInformativas() {
                     </a>
                   ) : (
                     <div className="flex items-center gap-2 px-6 py-3 rounded-lg font-bold text-red-500 bg-red-50 border border-red-100 whitespace-nowrap">
-                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-5">
                         <path fill-rule="evenodd" d="M9.401 3.003c1.155-2 4.043-2 5.197 0l7.355 12.748c1.154 2-.29 4.5-2.599 4.5H4.645c-2.309 0-3.752-2.5-2.598-4.5L9.4 3.003ZM12 8.25a.75.75 0 0 1 .75.75v3.75a.75.75 0 0 1-1.5 0V9a.75.75 0 0 1 .75-.75Zm0 8.25a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Z" clip-rule="evenodd" />
                       </svg>
                       Pendiente
