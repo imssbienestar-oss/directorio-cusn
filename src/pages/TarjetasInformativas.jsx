@@ -190,7 +190,7 @@ function TarjetasInformativas() {
   if (loading) {
     return (
       <div className="min-h-screen bg-gray-50 font-sans flex items-center justify-center">
-        <div className="text-xl font-bold text-gray-500 animate-pulse">Cargando Tarjetas... 🗂️</div>
+        <div className="text-xl font-bold text-gray-500 animate-pulse">Cargando Unidades... 🗂️</div>
       </div>
     );
   }
