@@ -26,10 +26,11 @@ const HeaderOficial = () => {
           <div className="flex items-center justify-between">
             {/* LOGO */}
             <Link to="/" className="flex items-center gap-4 group">
-              <div className="border-r border-white/20 pr-4 mr-2 shrink-0">
-                <h1 className="text-white font-bold text-2xl leading-none tracking-tight group-hover:opacity-90 transition-opacity">IMSS</h1>
-                <p className="text-white text-[10px] tracking-widest group-hover:opacity-90 transition-opacity">BIENESTAR</p>
-              </div>
+              <img
+                src="/fotos/imss-bienestar-blanco.png"
+                alt="IMSS Bienestar"
+                className="h-10 md:h-12 w-auto object-contain border-r border-white/20 pr-4 mr-2 hidden sm:block"
+              />
               <div>
                 <h2 className="text-white text-sm md:text-lg font-light opacity-90">Coordinación de Unidades de Segundo Nivel</h2>
                 <p className="text-yellow-100 text-xs">Servicios Públicos de Salud</p> </div>
