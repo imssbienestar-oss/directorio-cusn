@@ -172,7 +172,9 @@ function TarjetasInformativas() {
     const coincideTexto = searchTerm === '' || (
       cluesKey.includes(termino) ||
       (item.nombre && item.nombre.toUpperCase().includes(termino)) ||
-      (item.municipio && item.municipio.toUpperCase().includes(termino))
+      (item.municipio && item.municipio.toUpperCase().includes(termino)) ||
+      (item.plan_clave && item.plan_clave.toUpperCase().includes(termino)) ||
+      (item.plan_desc && item.plan_desc.toUpperCase().includes(termino))
     );
 
     // Filtro de Estado
