@@ -82,7 +82,6 @@ function TarjetasInformativas() {
     return { tipo, color, texto, icon, dias };
   };
 
-  // --- CARGA DE DATOS HÍBRIDA (API + EXCEL) ---
   useEffect(() => {
     const cargarTodo = async () => {
       try {
@@ -117,7 +116,6 @@ function TarjetasInformativas() {
         setMapaDeLinks(mapa);
 
         // PASO 4: Guardar los datos de la BD en el estado
-        // La API ya devuelve { clues, nombre, municipio, entidad... }
         setCluesData(dataBaseDatos);
         setLoading(false);
 
@@ -138,18 +136,13 @@ function TarjetasInformativas() {
   const totalUnidades = cluesData.length;
 
   const opcionesEntidad = React.useMemo(() => {
-    // 1. Primero sacamos todas las entidades que existen en tus datos (BD)
     const todasLasEntidades = [...new Set(cluesData.map(d => d.entidad).filter(Boolean))];
 
-    // 2. Si el usuario NO ha seleccionado región, mostramos todas
     if (filtroRegion === 'TODAS') {
       return todasLasEntidades.sort();
     }
 
-    // 3. Si YA seleccionó región, filtramos la lista
     const estadosDeLaRegion = REGIONES[filtroRegion] || [];
-
-    // Cruzamos las dos listas: Solo mostramos las entidades que (A) Existen en la BD y (B) Pertenecen a esa región
     return todasLasEntidades
       .filter(entidad => estadosDeLaRegion.includes(entidad))
       .sort();
@@ -161,7 +154,6 @@ function TarjetasInformativas() {
     return unicos.sort();
   }, [cluesData]);
 
-  // --- LÓGICA DE FILTRADO
   const resultados = cluesData.filter(item => {
     const termino = searchTerm.toUpperCase();
     const cluesKey = item.clues ? item.clues.toUpperCase() : '';

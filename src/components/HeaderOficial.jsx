@@ -47,6 +47,9 @@ const HeaderOficial = () => {
               <NavLink to="/informativas" className={({ isActive }) => `px-4 py-2 rounded-lg text-sm font-bold uppercase tracking-wide transition-all border ${isActive ? 'bg-white text-green-900 border-white shadow-md' : 'text-white border-transparent hover:bg-white/10'}`}>
                 Unidades
               </NavLink>
+              <NavLink to="/inspeccion/nueva" className={({ isActive }) =>`px-4 py-2 rounded-lg text-sm font-bold uppercase tracking-wide transition-all border ${isActive ? 'bg-white text-green-900 border-white shadow-md' : 'text-white border-transparent hover:bg-white/10'}` }>
+                Nueva Inspección
+              </NavLink>
             </nav>
 
             {/* BOTÓN HAMBURGUESA MOVIL */}
@@ -63,13 +66,16 @@ const HeaderOficial = () => {
           {isMenuOpen && (
             <div className="md:hidden mt-4 pt-4 border-t border-white/10 flex flex-col gap-2 pb-2 animate-fade-in-down">
               <NavLink to="/" onClick={() => setIsMenuOpen(false)} className={({ isActive }) => `block w-full text-center px-4 py-3 rounded-lg text-sm font-bold uppercase tracking-wide transition-all ${isActive ? 'bg-white text-green-900 shadow-md' : 'text-white bg-green-900/40 hover:bg-white/10'}`}>
-                Directorio
+                Directorio Personal
               </NavLink>
               <NavLink to="/estadisticas" onClick={() => setIsMenuOpen(false)} className={({ isActive }) => `block w-full text-center px-4 py-3 rounded-lg text-sm font-bold uppercase tracking-wide transition-all ${isActive ? 'bg-white text-green-900 shadow-md' : 'text-white bg-green-900/40 hover:bg-white/10'}`}>
                 Estadísticas
               </NavLink>
               <NavLink to="/informativas" onClick={() => setIsMenuOpen(false)} className={({ isActive }) => `block w-full text-center px-4 py-3 rounded-lg text-sm font-bold uppercase tracking-wide transition-all ${isActive ? 'bg-white text-green-900 shadow-md' : 'text-white bg-green-900/40 hover:bg-white/10'}`}>
-                Avisos y Comunicados
+                Unidades
+              </NavLink>
+              <NavLink to="/inspeccion/nueva" onClick={() => setIsMenuOpen(false)} className={({ isActive }) => `block w-full text-center px-4 py-3 rounded-lg text-sm font-bold uppercase tracking-wide transition-all ${isActive ? 'bg-white text-green-900 shadow-md' : 'text-white bg-green-900/40 hover:bg-white/10'}`}>
+                Nueva Inspección
               </NavLink>
             </div>
           )}
