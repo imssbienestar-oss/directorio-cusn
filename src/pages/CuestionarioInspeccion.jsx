@@ -210,6 +210,60 @@ const CuestionarioInspeccion = () => {
 
         // --- CASOS ESTÁNDAR ---
         switch (pregunta.tipo) {
+
+            case 'cumple':
+            return (
+                <div className="flex flex-col sm:flex-row w-full gap-3">
+                    {/* Contenedor tipo 'Grid' para móviles, se ve como una botonera técnica */}
+                    <div className="grid grid-cols-4 gap-0 w-full rounded-md border border-gray-300 overflow-hidden shadow-sm divide-x divide-gray-300">
+                        
+                        {/* 1. OPCIÓN CUMPLE */}
+                        <button
+                            onClick={() => handleRespuesta(pregunta.id, 'Cumple')}
+                            className={`py-3 px-1 text-xs md:text-sm font-bold uppercase tracking-wide transition-colors
+                                ${valorActual === 'Cumple' 
+                                    ? 'bg-green-700 text-white' 
+                                    : 'bg-white text-gray-600 hover:bg-gray-50'}`}
+                        >
+                            CUMPLE
+                        </button>
+
+                        {/* 2. OPCIÓN PARCIAL */}
+                        <button
+                            onClick={() => handleRespuesta(pregunta.id, 'En Proceso')}
+                            className={`py-3 px-1 text-xs md:text-sm font-bold uppercase tracking-wide transition-colors
+                                ${valorActual === 'En Proceso' 
+                                    ? 'bg-yellow-600 text-white' 
+                                    : 'bg-white text-gray-600 hover:bg-gray-50'}`}
+                        >
+                            PARCIAL
+                        </button>
+
+                        {/* 3. OPCIÓN NO CUMPLE */}
+                        <button
+                            onClick={() => handleRespuesta(pregunta.id, 'No Cumple')}
+                            className={`py-3 px-1 text-xs md:text-sm font-bold uppercase tracking-wide transition-colors
+                                ${valorActual === 'No Cumple' 
+                                    ? 'bg-red-700 text-white' 
+                                    : 'bg-white text-gray-600 hover:bg-gray-50'}`}
+                        >
+                            NO
+                        </button>
+
+                        {/* 4. OPCIÓN N/A */}
+                        <button
+                            onClick={() => handleRespuesta(pregunta.id, 'No Aplica')}
+                            className={`py-3 px-1 text-xs md:text-sm font-bold uppercase tracking-wide transition-colors
+                                ${valorActual === 'No Aplica' 
+                                    ? 'bg-gray-600 text-white' 
+                                    : 'bg-white text-gray-400 hover:bg-gray-50'}`}
+                        >
+                            N/A
+                        </button>
+                    </div>
+                </div>
+            );
+                
             case 'TRICOLOR':
                 return (
                     <div className="flex gap-2">
