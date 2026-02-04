@@ -373,14 +373,13 @@ function TarjetasInformativas() {
             const datosDrive = mapaDeLinks[cluesKey] || {};
             const rawLink = datosDrive.url;
             const fechaArchivo = datosDrive.fecha;
-
-            // calculo de semáforo
             const semaforo = analizarAntiguedad(fechaArchivo);
 
             const linkVisualizacion = rawLink
               ? rawLink.replace("uc?export=download&id=", "file/d/") + "/view"
               : null;
-
+            const linkInspeccion = unidad.drive_link;
+            
             return (
               <div key={unidad.clues} className="bg-white p-6 rounded-xl shadow-sm hover:shadow-lg transition-all border border-gray-100 flex flex-col md:flex-row md:items-center justify-between gap-6 animate-fade-in">
 
@@ -415,20 +414,21 @@ function TarjetasInformativas() {
                     </p>
                   )}
                 </div>
-                <div className="flex gap-2 mt-4 md:mt-0">
+                <div className="flex flex-col gap-2 min-w-[200px]">
                   <button
                     onClick={() => setUnidadSeleccionada(unidad)}
-                    className="px-4 py-2 bg-white border border-gray-300 text-gray-700 font-bold rounded-lg shadow-sm hover:bg-gray-50 transition-all text-sm flex items-center gap-2"
+                    className="flex items-center justify-center gap-2 px-6 py-2.5 bg-white border border-gray-300 text-gray-700 font-bold rounded-lg shadow-sm hover:bg-gray-50 transition-all text-sm transform active:scale-95"
                   >
                     Detalles
                   </button>
 
+                  <div className="flex flex-col gap-2">
                   {linkVisualizacion ? (
                     <a
                       href={linkVisualizacion}
                       target="_blank"
                       rel="noreferrer"
-                      className="group flex items-center justify-center gap-2 px-6 py-3 rounded-lg font-bold text-white transition-all shadow-md transform active:scale-95 whitespace-nowrap"
+                      className="flex items-center justify-center gap-2 px-6 py-2.5 rounded-lg font-bold text-white transition-all shadow-md transform active:scale-95 text-sm"
                       style={{ backgroundColor: COLORS.guinda }}
                     >
                       <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -438,15 +438,32 @@ function TarjetasInformativas() {
                       <span>Ver Cédula</span>
                     </a>
                   ) : (
-                    <div className="flex items-center gap-2 px-6 py-3 rounded-lg font-bold text-red-500 bg-red-50 border border-red-100 whitespace-nowrap">
+                    <div className="flex items-center justify-center gap-2 px-6 py-2.5 rounded-lg font-bold text-red-500 bg-red-50 border border-red-100 text-sm italic">
                       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="size-5">
                         <path fillRule="evenodd" d="M9.401 3.003c1.155-2 4.043-2 5.197 0l7.355 12.748c1.154 2-.29 4.5-2.599 4.5H4.645c-2.309 0-3.752-2.5-2.598-4.5L9.4 3.003ZM12 8.25a.75.75 0 0 1 .75.75v3.75a.75.75 0 0 1-1.5 0V9a.75.75 0 0 1 .75-.75Zm0 8.25a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Z" clipRule="evenodd" />
                       </svg>
                       Pendiente
                     </div>
                   )}
+                  {linkInspeccion ? (
+            <a
+              href={linkInspeccion}
+              target="_blank"
+              rel="noreferrer"
+              className="group flex items-center justify-center gap-2 px-4 py-2 rounded-lg font-bold text-white transition-all shadow-md transform active:scale-95 text-xs bg-blue-700 hover:bg-blue-800"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              Ver Inspección
+            </a>
+          ) : (
+            <div className="flex items-center justify-center gap-2 px-4 py-2 rounded-lg font-bold text-amber-600 bg-amber-50 border border-amber-100 text-[10px] uppercase">
+              Insp. Pendiente
+            </div>
+          )}
                 </div>
-
+</div>
               </div>
             );
           })}
