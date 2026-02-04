@@ -7,6 +7,7 @@ import PerfilFuncionario from './pages/PerfilFuncionario';
 import TarjetasInformativas from './pages/TarjetasInformativas';
 import Estadisticas from './pages/Estadisticas';
 import NuevaInspeccion from './pages/NuevaInspeccion';
+import CuestionarioInspeccion from './pages/CuestionarioInspeccion';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route path="/perfil/:slug" element={<PerfilFuncionario />} />
         <Route path="/estadisticas" element={<Estadisticas />} />
         <Route path="/inspeccion/nueva" element={<NuevaInspeccion />} />
+        <Route path="/inspeccion/cuestionario" element={<CuestionarioInspeccion />} />
       </Routes>
     </HashRouter>
   );
