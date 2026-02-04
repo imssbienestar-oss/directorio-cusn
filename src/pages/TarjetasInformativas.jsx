@@ -414,7 +414,7 @@ function TarjetasInformativas() {
                     </p>
                   )}
                 </div>
-                <div className="flex gap-2 mt-4 md:mt-0">
+                <div className="flex flex-col gap-2 min-w-[200px]">
                   <button
                     onClick={() => setUnidadSeleccionada(unidad)}
                     className="px-4 py-2 bg-white border border-gray-300 text-gray-700 font-bold rounded-lg shadow-sm hover:bg-gray-50 transition-all text-sm flex items-center gap-2"
@@ -422,6 +422,7 @@ function TarjetasInformativas() {
                     Detalles
                   </button>
 
+                  <div className="flex flex-col gap-2">
                   {linkVisualizacion ? (
                     <a
                       href={linkVisualizacion}
@@ -462,7 +463,7 @@ function TarjetasInformativas() {
             </div>
           )}
                 </div>
-
+</div>
               </div>
             );
           })}
