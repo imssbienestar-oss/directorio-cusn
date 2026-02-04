@@ -212,23 +212,57 @@ const CuestionarioInspeccion = () => {
         switch (pregunta.tipo) {
 
             case 'cumple':
-                return (
-                    <select
-                        className={`w-full p-2.5 border rounded-lg font-bold outline-none focus:ring-2 focus:ring-blue-500 transition-colors
-                            ${valorActual === 'Cumple' ? 'bg-green-50 border-green-500 text-green-700' : 
-                              valorActual === 'En Proceso' ? 'bg-yellow-50 border-yellow-500 text-yellow-700' :
-                              valorActual === 'No Cumple' ? 'bg-red-50 border-red-500 text-red-700' :
-                              'bg-white border-gray-300 text-gray-700'}`}
-                        onChange={(e) => handleRespuesta(pregunta.id, e.target.value)}
-                        value={valorActual || ""}
+            return (
+                <div className="flex flex-wrap gap-2 w-full">
+                    {/* OPCIÓN: CUMPLE (VERDE) */}
+                    <button
+                        onClick={() => handleRespuesta(pregunta.id, 'Cumple')}
+                        className={`flex-1 py-3 px-2 rounded-lg font-bold text-xs sm:text-sm transition-all shadow-sm border flex flex-col items-center justify-center gap-1
+                            ${valorActual === 'Cumple' 
+                                ? 'bg-green-600 text-white border-green-700 ring-2 ring-green-300 transform scale-95' 
+                                : 'bg-white text-gray-500 border-gray-200 hover:bg-green-50'}`}
                     >
-                        <option value="" disabled>Selecciona una opción...</option>
-                        <option value="Cumple">✅ Cumple (1.0)</option>
-                        <option value="En Proceso">⚠️ En Proceso (0.5)</option>
-                        <option value="No Cumple">❌ No Cumple (0.0)</option>
-                        <option value="No Aplica">⚪ No Aplica</option>
-                    </select>
-                );
+                        <span className="text-lg">✅</span>
+                        <span>CUMPLE</span>
+                    </button>
+
+                    {/* OPCIÓN: EN PROCESO (AMARILLO) */}
+                    <button
+                        onClick={() => handleRespuesta(pregunta.id, 'En Proceso')}
+                        className={`flex-1 py-3 px-2 rounded-lg font-bold text-xs sm:text-sm transition-all shadow-sm border flex flex-col items-center justify-center gap-1
+                            ${valorActual === 'En Proceso' 
+                                ? 'bg-yellow-500 text-white border-yellow-600 ring-2 ring-yellow-300 transform scale-95' 
+                                : 'bg-white text-gray-500 border-gray-200 hover:bg-yellow-50'}`}
+                    >
+                        <span className="text-lg">⚠️</span>
+                        <span>PARCIAL</span>
+                    </button>
+
+                    {/* OPCIÓN: NO CUMPLE (ROJO) */}
+                    <button
+                        onClick={() => handleRespuesta(pregunta.id, 'No Cumple')}
+                        className={`flex-1 py-3 px-2 rounded-lg font-bold text-xs sm:text-sm transition-all shadow-sm border flex flex-col items-center justify-center gap-1
+                            ${valorActual === 'No Cumple' 
+                                ? 'bg-red-600 text-white border-red-700 ring-2 ring-red-300 transform scale-95' 
+                                : 'bg-white text-gray-500 border-gray-200 hover:bg-red-50'}`}
+                    >
+                        <span className="text-lg">❌</span>
+                        <span>NO</span>
+                    </button>
+
+                    {/* OPCIÓN: NO APLICA (GRIS) */}
+                    <button
+                        onClick={() => handleRespuesta(pregunta.id, 'No Aplica')}
+                        className={`py-3 px-4 rounded-lg font-bold text-xs sm:text-sm transition-all shadow-sm border flex flex-col items-center justify-center gap-1
+                            ${valorActual === 'No Aplica' 
+                                ? 'bg-gray-500 text-white border-gray-600 ring-2 ring-gray-300 transform scale-95' 
+                                : 'bg-white text-gray-400 border-gray-200 hover:bg-gray-100'}`}
+                    >
+                        <span className="text-lg">⚪</span>
+                        <span>N/A</span>
+                    </button>
+                </div>
+            );
                 
             case 'TRICOLOR':
                 return (
