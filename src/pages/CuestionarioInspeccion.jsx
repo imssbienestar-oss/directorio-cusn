@@ -210,6 +210,26 @@ const CuestionarioInspeccion = () => {
 
         // --- CASOS ESTÁNDAR ---
         switch (pregunta.tipo) {
+
+            case 'cumple':
+                return (
+                    <select
+                        className={`w-full p-2.5 border rounded-lg font-bold outline-none focus:ring-2 focus:ring-blue-500 transition-colors
+                            ${valorActual === 'Cumple' ? 'bg-green-50 border-green-500 text-green-700' : 
+                              valorActual === 'En Proceso' ? 'bg-yellow-50 border-yellow-500 text-yellow-700' :
+                              valorActual === 'No Cumple' ? 'bg-red-50 border-red-500 text-red-700' :
+                              'bg-white border-gray-300 text-gray-700'}`}
+                        onChange={(e) => handleRespuesta(pregunta.id, e.target.value)}
+                        value={valorActual || ""}
+                    >
+                        <option value="" disabled>Selecciona una opción...</option>
+                        <option value="Cumple">✅ Cumple (1.0)</option>
+                        <option value="En Proceso">⚠️ En Proceso (0.5)</option>
+                        <option value="No Cumple">❌ No Cumple (0.0)</option>
+                        <option value="No Aplica">⚪ No Aplica</option>
+                    </select>
+                );
+                
             case 'TRICOLOR':
                 return (
                     <div className="flex gap-2">
