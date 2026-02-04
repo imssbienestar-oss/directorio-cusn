@@ -213,54 +213,54 @@ const CuestionarioInspeccion = () => {
 
             case 'cumple':
             return (
-                <div className="flex flex-wrap gap-2 w-full">
-                    {/* OPCIÓN: CUMPLE (VERDE) */}
-                    <button
-                        onClick={() => handleRespuesta(pregunta.id, 'Cumple')}
-                        className={`flex-1 py-3 px-2 rounded-lg font-bold text-xs sm:text-sm transition-all shadow-sm border flex flex-col items-center justify-center gap-1
-                            ${valorActual === 'Cumple' 
-                                ? 'bg-green-600 text-white border-green-700 ring-2 ring-green-300 transform scale-95' 
-                                : 'bg-white text-gray-500 border-gray-200 hover:bg-green-50'}`}
-                    >
-                        <span className="text-lg">✅</span>
-                        <span>CUMPLE</span>
-                    </button>
+                <div className="flex flex-col sm:flex-row w-full gap-3">
+                    {/* Contenedor tipo 'Grid' para móviles, se ve como una botonera técnica */}
+                    <div className="grid grid-cols-4 gap-0 w-full rounded-md border border-gray-300 overflow-hidden shadow-sm divide-x divide-gray-300">
+                        
+                        {/* 1. OPCIÓN CUMPLE */}
+                        <button
+                            onClick={() => handleRespuesta(pregunta.id, 'Cumple')}
+                            className={`py-3 px-1 text-xs md:text-sm font-bold uppercase tracking-wide transition-colors
+                                ${valorActual === 'Cumple' 
+                                    ? 'bg-green-700 text-white' 
+                                    : 'bg-white text-gray-600 hover:bg-gray-50'}`}
+                        >
+                            CUMPLE
+                        </button>
 
-                    {/* OPCIÓN: EN PROCESO (AMARILLO) */}
-                    <button
-                        onClick={() => handleRespuesta(pregunta.id, 'En Proceso')}
-                        className={`flex-1 py-3 px-2 rounded-lg font-bold text-xs sm:text-sm transition-all shadow-sm border flex flex-col items-center justify-center gap-1
-                            ${valorActual === 'En Proceso' 
-                                ? 'bg-yellow-500 text-white border-yellow-600 ring-2 ring-yellow-300 transform scale-95' 
-                                : 'bg-white text-gray-500 border-gray-200 hover:bg-yellow-50'}`}
-                    >
-                        <span className="text-lg">⚠️</span>
-                        <span>PARCIAL</span>
-                    </button>
+                        {/* 2. OPCIÓN PARCIAL */}
+                        <button
+                            onClick={() => handleRespuesta(pregunta.id, 'En Proceso')}
+                            className={`py-3 px-1 text-xs md:text-sm font-bold uppercase tracking-wide transition-colors
+                                ${valorActual === 'En Proceso' 
+                                    ? 'bg-yellow-600 text-white' 
+                                    : 'bg-white text-gray-600 hover:bg-gray-50'}`}
+                        >
+                            PARCIAL
+                        </button>
 
-                    {/* OPCIÓN: NO CUMPLE (ROJO) */}
-                    <button
-                        onClick={() => handleRespuesta(pregunta.id, 'No Cumple')}
-                        className={`flex-1 py-3 px-2 rounded-lg font-bold text-xs sm:text-sm transition-all shadow-sm border flex flex-col items-center justify-center gap-1
-                            ${valorActual === 'No Cumple' 
-                                ? 'bg-red-600 text-white border-red-700 ring-2 ring-red-300 transform scale-95' 
-                                : 'bg-white text-gray-500 border-gray-200 hover:bg-red-50'}`}
-                    >
-                        <span className="text-lg">❌</span>
-                        <span>NO</span>
-                    </button>
+                        {/* 3. OPCIÓN NO CUMPLE */}
+                        <button
+                            onClick={() => handleRespuesta(pregunta.id, 'No Cumple')}
+                            className={`py-3 px-1 text-xs md:text-sm font-bold uppercase tracking-wide transition-colors
+                                ${valorActual === 'No Cumple' 
+                                    ? 'bg-red-700 text-white' 
+                                    : 'bg-white text-gray-600 hover:bg-gray-50'}`}
+                        >
+                            NO
+                        </button>
 
-                    {/* OPCIÓN: NO APLICA (GRIS) */}
-                    <button
-                        onClick={() => handleRespuesta(pregunta.id, 'No Aplica')}
-                        className={`py-3 px-4 rounded-lg font-bold text-xs sm:text-sm transition-all shadow-sm border flex flex-col items-center justify-center gap-1
-                            ${valorActual === 'No Aplica' 
-                                ? 'bg-gray-500 text-white border-gray-600 ring-2 ring-gray-300 transform scale-95' 
-                                : 'bg-white text-gray-400 border-gray-200 hover:bg-gray-100'}`}
-                    >
-                        <span className="text-lg">⚪</span>
-                        <span>N/A</span>
-                    </button>
+                        {/* 4. OPCIÓN N/A */}
+                        <button
+                            onClick={() => handleRespuesta(pregunta.id, 'No Aplica')}
+                            className={`py-3 px-1 text-xs md:text-sm font-bold uppercase tracking-wide transition-colors
+                                ${valorActual === 'No Aplica' 
+                                    ? 'bg-gray-600 text-white' 
+                                    : 'bg-white text-gray-400 hover:bg-gray-50'}`}
+                        >
+                            N/A
+                        </button>
+                    </div>
                 </div>
             );
                 
