@@ -1,9 +1,19 @@
-import React, { useState, useEffect, useRef} from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Papa from 'papaparse';
 import HeaderOficial from '../components/HeaderOficial';
 import { useNavigate } from 'react-router-dom';
 import { COLORS } from '../utils/constants';
 import ModalExpedienteSibe from './ModalExpedienteSibe';
+
+const limpiarTexto = (str) => {
+  if (!str) return "";
+  return str
+    .normalize("NFD")                  
+    .replace(/[\u0300-\u036f]/g, "")   
+    .toUpperCase()                     
+    .trim();                          
+};
+
 
 const REGIONES = {
   "Noroeste": ["Baja California", "Baja California Sur", "Sonora", "Sinaloa", "Nayarit", "Colima"],
@@ -50,38 +60,6 @@ function TarjetasInformativas() {
     return new Date(fechaString);
   };
 
-  // --- SEMÁFORIZACIÓN ---
-  const analizarAntiguedad = (fechaString) => {
-    if (!fechaString) return null;
-
-    const fechaDoc = parsearFecha(fechaString);
-    const hoy = new Date();
-
-    if (isNaN(fechaDoc.getTime())) return null;
-
-    const diferenciaTime = Math.abs(hoy - fechaDoc);
-    const dias = Math.ceil(diferenciaTime / (1000 * 60 * 60 * 24));
-
-    let tipo = 'VERDE';
-    let color = 'bg-green-100 text-green-800 border-green-200';
-    let texto = 'Actualizado';
-    let icon = '🟢';
-
-    if (dias > 30) {
-      tipo = 'ROJO';
-      color = 'bg-red-100 text-red-800 border-red-200';
-      texto = 'Desactualizado';
-      icon = '🔴';
-    } else if (dias > 15) {
-      tipo = 'AMARILLO';
-      color = 'bg-yellow-100 text-yellow-800 border-yellow-200';
-      texto = 'Atención';
-      icon = '🟡';
-    }
-
-    return { tipo, color, texto, icon, dias };
-  };
-
   useEffect(() => {
     const cargarTodo = async () => {
       try {
@@ -118,6 +96,21 @@ function TarjetasInformativas() {
         // PASO 4: Guardar los datos de la BD en el estado
         setCluesData(dataBaseDatos);
         setLoading(false);
+        const cluesReales = new Set(dataBaseDatos.map(u => u.clues.trim().toUpperCase()));
+
+        // 2. Revisamos el Excel (mapaDeLinks)
+        const sobranEnExcel = [];
+        Object.keys(mapa).forEach(cluesExcel => {
+          if (!cluesReales.has(cluesExcel)) {
+            sobranEnExcel.push({
+              clues: cluesExcel,
+              link: mapa[cluesExcel].url
+            });
+          }
+        });
+
+        //console.log(`%c 🚨 ALERTA: Hay ${sobranEnExcel.length} links en Excel que NO tienen unidad en Railway`, 'color: orange; font-weight: bold; font-size: 14px');
+        //console.table(sobranEnExcel); // Esto te mostrará una tabla hermosa con los culpables
 
       } catch (error) {
         console.error("Error cargando datos:", error);
@@ -134,6 +127,10 @@ function TarjetasInformativas() {
   }, [searchTerm, filtroEstado]);
 
   const totalUnidades = cluesData.length;
+  const totalOperativas = cluesData.filter(u => {
+    const est = (u.estatus_operacion || '').toUpperCase();
+    return est === 'ACTIVO' || est === 'EN OPERACIÓN' || est === 'EN OPERACION';
+  }).length;
 
   const opcionesEntidad = React.useMemo(() => {
     const todasLasEntidades = [...new Set(cluesData.map(d => d.entidad).filter(Boolean))];
@@ -155,33 +152,39 @@ function TarjetasInformativas() {
   }, [cluesData]);
 
   const resultados = cluesData.filter(item => {
-    const termino = searchTerm.toUpperCase();
-    const cluesKey = item.clues ? item.clues.toUpperCase() : '';
+    const t = limpiarTexto(searchTerm);
+    const palabras = t.split(/\s+/).filter(Boolean);
 
-    // Cruzamos con datos del Excel (Links)
-    const datosDrive = mapaDeLinks[cluesKey] || {};
-    const tieneArchivo = !!datosDrive.url;
-    const infoSemaforo = analizarAntiguedad(datosDrive.fecha);
+    const cluesKey = (item.clues || '').toUpperCase();
+    const estatusNorm = limpiarTexto(item.estatus_operacion);
+    const esOperativa = estatusNorm === 'ACTIVO' || estatusNorm === 'EN OPERACION';
 
-    // Filtro de Texto
-    const coincideTexto = searchTerm === '' || (
-      cluesKey.includes(termino) ||
-      (item.nombre && item.nombre.toUpperCase().includes(termino)) ||
-      (item.municipio && item.municipio.toUpperCase().includes(termino)) ||
-      (item.plan_clave && item.plan_clave.toUpperCase().includes(termino)) ||
-      (item.plan_desc && item.plan_desc.toUpperCase().includes(termino))
+    const cumpleBusqueda = (textoObjetivo) => {
+      if (!textoObjetivo) return false;
+      const objetivo = limpiarTexto(textoObjetivo);
+      return palabras.every(p => objetivo.includes(p));
+    };
+
+    // 1. Filtro de Texto
+    const coincideTexto = t === '' || (
+      cluesKey.includes(t) ||
+      cumpleBusqueda(item.nombre) ||
+      cumpleBusqueda(item.municipio) ||
+      cumpleBusqueda(item.plan_clave) ||
+      cumpleBusqueda(item.plan_desc) ||
+      estatusNorm.includes(t)
     );
 
-    // Filtro de Estado
+    const coincideVisibilidad = esOperativa || t.length > 0;
+
+    // 3. Filtro de Archivo (Excel)
+    const datosDrive = mapaDeLinks[cluesKey] || {};
+    const tieneArchivo = !!datosDrive.url;
     let coincideEstado = true;
     if (filtroEstado === 'PENDIENTE') {
       coincideEstado = !tieneArchivo;
-    } else if (filtroEstado !== 'TODOS') {
-      if (!tieneArchivo || !infoSemaforo) {
-        coincideEstado = false;
-      } else {
-        coincideEstado = infoSemaforo.tipo === filtroEstado;
-      }
+    } else if (filtroEstado === 'CON_ARCHIVO') {
+      coincideEstado = tieneArchivo;
     }
 
     const coincideEntidad = filtroEntidad === 'TODAS' || item.entidad === filtroEntidad;
@@ -193,7 +196,8 @@ function TarjetasInformativas() {
       coincideRegion = estadosDeLaRegion.includes(item.entidad);
     }
 
-    return coincideTexto && coincideEstado && coincideEntidad && coincideNivel && coincideRegion;
+    // AGREGAMOS coincideVisibilidad al return final
+    return coincideTexto && coincideVisibilidad && coincideEstado && coincideEntidad && coincideNivel && coincideRegion;
   });
 
   if (loading) {
@@ -205,7 +209,7 @@ function TarjetasInformativas() {
   }
 
   const limpiarFiltros = () => {
-    setSearchTerm('');
+    setSearchTerm("");
     setFiltroRegion('TODAS');
     setFiltroEntidad('TODAS');
     setFiltroNivel('TODOS');
@@ -219,6 +223,33 @@ function TarjetasInformativas() {
     filtroEntidad !== 'TODAS' ||
     filtroNivel !== 'TODOS' ||
     filtroEstado !== 'TODOS';
+
+
+  const obtenerEtiquetaFiltro = () => {
+    if (!hayFiltrosActivos) return "Unidades Operativas";
+
+    const partes = [];
+
+    // Prioridad 1: Si hay búsqueda de texto (ej. "Fuera de operación")
+    if (searchTerm) {
+      // Si el término coincide exactamente con un estatus conocido, lo usamos como etiqueta
+      const t = searchTerm.toUpperCase();
+      if (t.includes("FUERA")) return "En Fuera de Operación";
+      if (t.includes("CONSTRUC")) return "En Construcción";
+      return `Coincidencias con "${searchTerm}"`;
+    }
+
+    // Prioridad 2: Filtros de botones (Archivo)
+    if (filtroEstado === 'PENDIENTE') partes.push("Sin Tarjera Inf.");
+    if (filtroEstado === 'CON_ARCHIVO') partes.push("Con Tarjeta Inf.");
+
+    // Prioridad 3: Geografía y Nivel
+    if (filtroEntidad !== 'TODAS') partes.push(filtroEntidad);
+    if (filtroRegion !== 'TODAS') partes.push(`Región ${filtroRegion}`);
+    if (filtroNivel !== 'TODOS') partes.push(filtroNivel);
+
+    return partes.join(' • ');
+  };
 
   return (
     <div className="min-h-screen bg-gray-50 font-sans">
@@ -320,10 +351,8 @@ function TarjetasInformativas() {
             <div className="flex overflow-x-auto gap-2 pb-1 w-full md:w-auto scrollbar-hide">
               {[
                 { id: 'TODOS', label: 'Todos', color: 'bg-gray-100 text-gray-600' },
-                { id: 'VERDE', label: '🟢 Al día', color: 'bg-green-50 text-green-700 border-green-200' },
-                { id: 'AMARILLO', label: '🟡 Atención', color: 'bg-yellow-50 text-yellow-700 border-yellow-200' },
-                { id: 'ROJO', label: '🔴 Vencidos', color: 'bg-red-50 text-red-700 border-red-200' },
-                { id: 'PENDIENTE', label: '⚠️ Sin Archivo', color: 'bg-gray-800 text-white' }
+                { id: 'CON_ARCHIVO', label: '📄 Con Archivo', color: 'bg-blue-50 text-blue-700 border-blue-200' },
+                { id: 'PENDIENTE', label: '⚠️ Sin Archivo', color: 'bg-red-50 text-red-700 border-red-200' }
               ].map((btn) => (
                 <button
                   key={btn.id}
@@ -351,8 +380,22 @@ function TarjetasInformativas() {
               </button>
             )}
             {/* Contador */}
-            <div className="text-xs font-bold text-gray-400 uppercase whitespace-nowrap">
-              {resultados.length} de {totalUnidades} Resultados
+            <div className="flex flex-col items-end">
+              <div className="flex items-center gap-2">
+                <span className="text-lg font-black text-gray-800">
+                  {resultados.length}
+                </span>
+                <span className="text-[10px] font-bold text-gray-400 uppercase tracking-widest border-l pl-2 border-gray-200">
+                  {obtenerEtiquetaFiltro()}
+                </span>
+              </div>
+
+              {/* Solo mostrar el total de referencia si hay filtros, para dar contexto */}
+              {hayFiltrosActivos && (
+                <span className="text-[9px] text-gray-400 italic">
+                  de un universo de {cluesData.length} registros
+                </span>
+              )}
             </div>
 
           </div>
@@ -373,21 +416,23 @@ function TarjetasInformativas() {
             const datosDrive = mapaDeLinks[cluesKey] || {};
             const rawLink = datosDrive.url;
             const fechaArchivo = datosDrive.fecha;
-            const semaforo = analizarAntiguedad(fechaArchivo);
 
             const linkVisualizacion = rawLink
               ? rawLink.replace("uc?export=download&id=", "file/d/") + "/view"
               : null;
             const linkInspeccion = unidad.drive_link;
-            
+
             return (
-              <div key={unidad.clues} className="bg-white p-6 rounded-xl shadow-sm hover:shadow-lg transition-all border border-gray-100 flex flex-col md:flex-row md:items-center justify-between gap-6 animate-fade-in">
+              <div key={unidad.clues} className={`bg-white p-6 rounded-xl shadow-sm border transition-all flex flex-col md:flex-row md:items-center justify-between gap-6 animate-fade-in
+              ${!unidad.activo ? ' border-gray-300 bg-gray-50' : 'hover:shadow-lg border-gray-100'}`}
+              >
 
                 <div className="flex-1">
                   <div className="flex flex-wrap items-center gap-2 mb-2">
                     <span className="text-white text-xs font-bold px-2 py-1 rounded shadow-sm" style={{ backgroundColor: COLORS.verde }}>
                       {unidad.clues}
                     </span>
+
                     {unidad.nivel && (
                       <span className="text-[10px] font-bold uppercase px-2 py-1 rounded border bg-indigo-50 text-indigo-700 border-indigo-200">
                         {unidad.nivel}
@@ -395,11 +440,26 @@ function TarjetasInformativas() {
                     )}
 
                     {/* ETIQUETA SEMÁFORO */}
-                    {semaforo && (
-                      <span className={`text-[10px] font-bold uppercase px-2 py-1 rounded border flex items-center gap-1 ${semaforo.color}`}>
-                        {semaforo.icon} {semaforo.texto} ({semaforo.dias} días)
-                      </span>
-                    )}
+                    {unidad.estatus_operacion && (() => {
+                      const estatus = unidad.estatus_operacion.toUpperCase().trim();
+                      const esActivo = estatus === 'ACTIVO' || estatus === 'EN OPERACIÓN' || estatus === 'EN OPERACION';
+                      const esBaja = estatus === 'FUERA DE OPERACIÓN' || estatus === 'FUERA DE OPERACION' || estatus === 'BAJA';
+                      const esConstruccion = estatus.includes('CONSTRUCCIÓN') || estatus.includes('CONSTRUCCION') || estatus.includes('PROCESO');
+
+                      return (
+                        <span className={`text-[10px] font-bold uppercase px-2 py-1 rounded border flex items-center gap-1 transition-colors
+      ${esActivo ? 'bg-green-50 text-green-700 border-green-200' :
+                            esBaja ? 'bg-red-50 text-red-700 border-red-200' :
+                              esConstruccion ? 'bg-blue-50 text-blue-700 border-blue-200' :
+                                'bg-gray-50 text-gray-600 border-gray-200'}`}>
+                          <span className={`text-[12px] 
+        ${esActivo ? 'text-green-500' : esBaja ? 'text-red-500' : esConstruccion ? 'text-blue-500' : 'text-gray-400'}`}>
+                            ●
+                          </span>
+                          {unidad.estatus_operacion}
+                        </span>
+                      );
+                    })()}
                   </div>
 
                   <h3 className="text-lg font-bold text-gray-800 leading-tight mb-1">{unidad.nombre}</h3>
@@ -408,9 +468,9 @@ function TarjetasInformativas() {
                   </p>
 
                   {fechaArchivo && (
-                    <p className="text-xs text-gray-400 mt-1">
+                    <p className="text-xs text-green-800we mt-1">
 
-                      Actualizado: <span className="font-medium text-gray-600">{fechaArchivo}</span>
+                      Actualizado: <span className="font-medium text-gray-900">{fechaArchivo}</span>
                     </p>
                   )}
                 </div>
@@ -423,47 +483,47 @@ function TarjetasInformativas() {
                   </button>
 
                   <div className="flex flex-col gap-2">
-                  {linkVisualizacion ? (
-                    <a
-                      href={linkVisualizacion}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="flex items-center justify-center gap-2 px-6 py-2.5 rounded-lg font-bold text-white transition-all shadow-md transform active:scale-95 text-sm"
-                      style={{ backgroundColor: COLORS.guinda }}
-                    >
-                      <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-                      </svg>
-                      <span>Ver Cédula</span>
-                    </a>
-                  ) : (
-                    <div className="flex items-center justify-center gap-2 px-6 py-2.5 rounded-lg font-bold text-red-500 bg-red-50 border border-red-100 text-sm italic">
-                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="size-5">
-                        <path fillRule="evenodd" d="M9.401 3.003c1.155-2 4.043-2 5.197 0l7.355 12.748c1.154 2-.29 4.5-2.599 4.5H4.645c-2.309 0-3.752-2.5-2.598-4.5L9.4 3.003ZM12 8.25a.75.75 0 0 1 .75.75v3.75a.75.75 0 0 1-1.5 0V9a.75.75 0 0 1 .75-.75Zm0 8.25a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Z" clipRule="evenodd" />
-                      </svg>
-                      Pendiente
-                    </div>
-                  )}
-                  {linkInspeccion ? (
-            <a
-              href={linkInspeccion}
-              target="_blank"
-              rel="noreferrer"
-              className="group flex items-center justify-center gap-2 px-4 py-2 rounded-lg font-bold text-white transition-all shadow-md transform active:scale-95 text-xs bg-blue-700 hover:bg-blue-800"
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-              </svg>
-              Ver Inspección
-            </a>
-          ) : (
-            <div className="flex items-center justify-center gap-2 px-4 py-2 rounded-lg font-bold text-amber-600 bg-amber-50 border border-amber-100 text-[10px] uppercase">
-              Insp. Pendiente
-            </div>
-          )}
+                    {linkVisualizacion ? (
+                      <a
+                        href={linkVisualizacion}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="flex items-center justify-center gap-2 px-6 py-2.5 rounded-lg font-bold text-white transition-all shadow-md transform active:scale-95 text-sm"
+                        style={{ backgroundColor: COLORS.guinda }}
+                      >
+                        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                        </svg>
+                        <span>Ver Tarjera Inf.</span>
+                      </a>
+                    ) : (
+                      <div className="flex items-center justify-center gap-2 px-6 py-2.5 rounded-lg font-bold text-red-500 bg-red-50 border border-red-100 text-sm italic">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="size-5">
+                          <path fillRule="evenodd" d="M9.401 3.003c1.155-2 4.043-2 5.197 0l7.355 12.748c1.154 2-.29 4.5-2.599 4.5H4.645c-2.309 0-3.752-2.5-2.598-4.5L9.4 3.003ZM12 8.25a.75.75 0 0 1 .75.75v3.75a.75.75 0 0 1-1.5 0V9a.75.75 0 0 1 .75-.75Zm0 8.25a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Z" clipRule="evenodd" />
+                        </svg>
+                        Pendiente
+                      </div>
+                    )}
+                    {linkInspeccion ? (
+                      <a
+                        href={linkInspeccion}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="group flex items-center justify-center gap-2 px-4 py-2 rounded-lg font-bold text-white transition-all shadow-md transform active:scale-95 text-xs bg-blue-700 hover:bg-blue-800"
+                      >
+                        <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        Ver Inspección
+                      </a>
+                    ) : (
+                      <div className="flex items-center justify-center gap-2 px-4 py-2 rounded-lg font-bold text-amber-600 bg-amber-50 border border-amber-100 text-[10px] uppercase">
+                        Insp. Pendiente
+                      </div>
+                    )}
+                  </div>
                 </div>
-</div>
               </div>
             );
           })}
@@ -481,7 +541,7 @@ function TarjetasInformativas() {
           </div>
         )}
 
-  {unidadSeleccionada && (
+        {unidadSeleccionada && (
           <ModalExpedienteSibe
             unidadId={unidadSeleccionada.clues} // Pasamos la CLUES como ID
             onClose={() => setUnidadSeleccionada(null)}
