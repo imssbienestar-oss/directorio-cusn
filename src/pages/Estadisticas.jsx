@@ -6,23 +6,50 @@ import {
 import HeaderOficial from '../components/HeaderOficial';
 import { COLORS } from '../utils/constants';
 
+const limpiarTexto = (str) =>
+  (str || "").normalize("NFD").replace(/[\u0300-\u036f]/g, "").toUpperCase().trim();
+
 function Estadisticas() {
   const [filtroEntidad, setFiltroEntidad] = useState('TODAS');
   const [cluesData, setCluesData] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  // --- 1. CONFIGURACIÓN DE CONEXIONES ---
+  // --- CONFIGURACIÓN DE CONEXIONES ---
   const API_SIBE_URL = "https://torre-control-production.up.railway.app/api/unidades/publico";
   const LINKS_PDF_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRmdYQBqZYY30hQt9hU2hzpVAsBwaSdpIg0LbbFCoJ5z3ouswU6lrnihg39CQPNd62J48H6D5mDzY6F/pub?gid=0&single=true&output=csv";
 
-  // --- 2. CARGA DE DATOS HÍBRIDA (Backend + Excel) ---
+  //DescargaPDF
+  const descargarReportePDF = async () => {
+    try {
+      const response = await fetch(`https://torre-control-production.up.railway.app/api/reportes/generar-pdf?entidad=${filtroEntidad}`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+
+      if (!response.ok) throw new Error("No se pudo generar el reporte");
+
+      // Se convierte la respuesta en un archivo descargable 
+      const blob = await response.blob();
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `Reporte_Unidades_${filtroEntidad}_${new Date().toLocaleDateString()}.pdf`;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+    } catch (error) {
+      console.error("Error al descargar el PDF:", error);
+      alert("Hubo un error al generar el PDF. Verifica que el servidor de reportes esté activo.");
+    }
+  };
+
+  // --- Carga de datos
   useEffect(() => {
     const cargarDatos = async () => {
       try {
         const respuestaApi = await fetch(API_SIBE_URL);
-        if (!respuestaApi.ok) {
-          throw new Error(`Error en API SIBE: ${respuestaApi.statusText}`);
-        }
         const dataBaseDatos = await respuestaApi.json();
 
         const promesaExcel = new Promise((resolve, reject) => {
@@ -36,101 +63,96 @@ function Estadisticas() {
 
         const mapaPDFs = {};
         dataExcel.forEach(row => {
-          if (row.clues) {
-            mapaPDFs[row.clues.trim().toUpperCase()] = {
-              link: row.link_pdf,
-              fecha: row.fecha
-            };
-          }
+          if (row.clues) mapaPDFs[row.clues.trim().toUpperCase()] = { link: row.link_pdf, fecha: row.fecha };
         });
 
-        const datosFusionados = dataBaseDatos.map(unidad => {
-          const cluesLimpia = unidad.clues ? unidad.clues.trim().toUpperCase() : '';
-          const infoExtra = mapaPDFs[cluesLimpia] || {};
-          return {
-            ...unidad,
-            link_pdf: infoExtra.link || null,
-            fecha_pdf: infoExtra.fecha || null
-          };
-        });
+        const datosFusionados = dataBaseDatos.map(unidad => ({
+          ...unidad,
+          link_pdf: mapaPDFs[unidad.clues?.trim().toUpperCase()]?.link || null
+        }));
 
         setCluesData(datosFusionados);
         setLoading(false);
-
       } catch (error) {
-        console.error("Error cargando datos:", error);
+        console.error("Error:", error);
         setLoading(false);
       }
     };
-
     cargarDatos();
   }, []);
 
-  // --- 3. FILTROS Y PROCESAMIENTO ---
-
   const entidadesUnicas = useMemo(() => {
-    const lista = cluesData.map(item => item.entidad).filter(e => e);
-    return [...new Set(lista)].sort();
+    return [...new Set(cluesData.map(item => item.entidad).filter(Boolean))].sort();
   }, [cluesData]);
 
-  const datosFiltrados = useMemo(() => {
+  // Filtro por entidad
+  const porEntidad = useMemo(() => {
     if (filtroEntidad === 'TODAS') return cluesData;
     return cluesData.filter(item => item.entidad === filtroEntidad);
   }, [filtroEntidad, cluesData]);
 
-  // --- NUEVA LÓGICA: CALCULAR TOTALES DE INFRAESTRUCTURA ---
+  // Filtro unidades en operación
+  const unidadesOperativas = useMemo(() => {
+    return porEntidad.filter(item => {
+      const est = limpiarTexto(item.estatus_operacion);
+      return est === 'ACTIVO' || est === 'EN OPERACION';
+    });
+  }, [porEntidad]);
+
+  // Conteo de unidades
+  const conteosGlobales = useMemo(() => {
+    return porEntidad.reduce((acc, item) => {
+      const est = limpiarTexto(item.estatus_operacion);
+      if (est === 'ACTIVO' || est === 'EN OPERACION') acc.operativas++;
+      else if (est.includes('CONSTRUC') || est.includes('PROCESO')) acc.enObra++;
+      else acc.bajas++;
+      return acc;
+    }, { operativas: 0, enObra: 0, bajas: 0 });
+  }, [porEntidad]);
+
+  const fueraservicio = useMemo(() => {
+  })
+
+  // Totales de Infraestructura
   const totalesInfraestructura = useMemo(() => {
-    return datosFiltrados.reduce((acc, item) => {
-
-      //ambulancias
+    return unidadesOperativas.reduce((acc, item) => {
       acc.ambulancias += parseInt(item.ambulancias) || 0;
-
-      // Quirófanos (Sumamos por tipo)
       const f = parseInt(item.q_func) || 0;
       const nf = parseInt(item.q_no_func) || 0;
-
       acc.q_funcionales += f;
       acc.q_no_funcionales += nf;
       acc.q_total += (f + nf);
-
       return acc;
-    }, { ambulancias: 0, consultorios: 0, q_funcionales: 0, q_no_funcionales: 0, q_total: 0 });
-  }, [datosFiltrados]);
-  // ---------------------------------------------------------
+    }, { ambulancias: 0, q_funcionales: 0, q_no_funcionales: 0, q_total: 0 });
+  }, [unidadesOperativas]);
 
-
+  // Datos para Gráficas
   const dataTipologia = useMemo(() => {
     const conteo = {};
-    datosFiltrados.forEach(item => {
-      const tipo = item.tipologia || "NO ESPECIFICADO";
+    unidadesOperativas.forEach(item => {
+      const tipo = item.tipologia || "S/D";
       conteo[tipo] = (conteo[tipo] || 0) + 1;
     });
-    return Object.keys(conteo)
-      .map(key => ({ name: key, value: conteo[key] }))
-      .sort((a, b) => b.value - a.value)
-      .filter(item => item.value > 0);
-  }, [datosFiltrados]);
+    return Object.keys(conteo).map(k => ({ name: k, value: conteo[k] })).sort((a, b) => b.value - a.value);
+  }, [unidadesOperativas]);
 
-  const totalUnidadesFiltradas = datosFiltrados.length;
-
+  //Filtro por nivel
   const dataNivel = useMemo(() => {
     const conteo = {};
-    datosFiltrados.forEach(item => {
-      const nivel = item.nivel || "Sin Nivel";
+    unidadesOperativas.forEach(item => {
+      const nivel = item.nivel || "S/D";
       conteo[nivel] = (conteo[nivel] || 0) + 1;
     });
-    return Object.keys(conteo).map(key => ({ name: key, value: conteo[key] }));
-  }, [datosFiltrados]);
+    return Object.keys(conteo).map(k => ({ name: k, value: conteo[k] }));
+  }, [unidadesOperativas]);
 
   const PALETA_GRAFICAS = [COLORS.guinda, COLORS.verde, '#DDC9A3', '#2C3E50', '#E67E22', '#8E44AD'];
 
-  if (loading) {
-    return (
-      <div className="min-h-screen bg-gray-50 font-sans flex items-center justify-center">
-        <div className="text-xl font-bold text-gray-500 animate-pulse">Cargando Estadisticas... 🏥</div>
-      </div>
-    );
-  }
+  if (loading) return (
+    <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+      <div className="text-xl font-bold text-gray-500 animate-pulse">Cargando Estadísticas... 🏥</div>
+    </div>
+  );
 
   return (
     <div className="min-h-screen bg-gray-50 font-sans">
@@ -138,42 +160,52 @@ function Estadisticas() {
 
       <main className="container mx-auto px-4 py-10 max-w-7xl">
 
-        {/* ENCABEZADO */}
+        {/* Encabezado */}
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-10 gap-6">
           <div>
-            <h1 className="text-3xl font-bold text-gray-800">Tablero de Control</h1>
-            <p className="text-gray-500">Unidades de Segundo y Tercer Nivel.</p>
+            <h1 className="text-3xl font-black text-gray-800">Tablero de Control</h1>
+            <p className="text-gray-500 font-medium">Capacidad Operativa Real</p>
           </div>
 
-          <div className="w-full md:w-64">
-            <label className="text-xs font-bold text-gray-400 uppercase ml-1">Filtrar por Entidad:</label>
+          <div className="flex flex-col md:flex-row gap-3 w-full md:w-auto">
+            {/* Botón descarga reporte */}
+            <button
+              onClick={descargarReportePDF}
+              className="flex items-center justify-center gap-2 px-6 py-3 bg-gray-800 text-white font-bold rounded-xl shadow-lg hover:bg-black transition-all transform active:scale-95 text-sm"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="size-5">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m.75 12 3 3m0 0 3-3m-3 3v-6m-1.5-9H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z" />
+              </svg>
+              Descargar PDF
+            </button>
+
+            {/* Selección de Entidad */}
+
             <select
-              className="w-full p-3 border border-gray-300 rounded-xl shadow-sm focus:ring-2 focus:ring-green-800 outline-none font-bold text-gray-700"
+              className="p-3 border border-gray-300 rounded-xl shadow-sm focus:ring-2 focus:ring-green-800 outline-none font-bold text-gray-700 bg-white"
               value={filtroEntidad}
               onChange={(e) => setFiltroEntidad(e.target.value)}
             >
-              <option value="TODAS">NIVEL NACIONAL (TODO)</option>
-              {entidadesUnicas.map(ent => (
-                <option key={ent} value={ent}>{ent}</option>
-              ))}
+              <option value="TODAS">NIVEL NACIONAL</option>
+              {entidadesUnicas.map(ent => <option key={ent} value={ent}>{ent}</option>)}
             </select>
           </div>
         </div>
 
-        {/* --- TARJETAS KPI GENERALES (Las que ya tenías) --- */}
+        {/* --- Tarjetas KPI --- */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8 animate-fade-in-up">
           <div className="bg-white p-6 rounded-2xl shadow-sm border-l-8 border-green-800">
-            <p className="text-gray-400 font-bold uppercase text-xs">Universo Total</p>
-            <p className="text-4xl font-bold text-gray-800 mt-1">{totalUnidadesFiltradas}</p>
+            <p className="text-gray-400 font-bold uppercase text-xs">En Operación</p>
+            <p className="text-4xl font-bold text-gray-800 mt-1">{conteosGlobales.operativas}</p>
             <p className="text-sm text-gray-500 mt-2">Unidades Activas</p>
           </div>
 
           <div className="bg-white p-6 rounded-2xl shadow-sm border-l-8 border-red-800">
-            <p className="text-gray-400 font-bold uppercase text-xs">Entidad Seleccionada</p>
-            <p className="text-2xl font-bold text-gray-800 mt-1 truncate">
-              {filtroEntidad === 'TODAS' ? 'Nacional' : filtroEntidad}
+            <p className="text-gray-400 font-bold uppercase text-xs">En Construcción</p>
+            <p className="text-4xl font-bold text-gray-800 mt-1">
+              {conteosGlobales.enObra}
             </p>
-            <p className="text-sm text-gray-500 mt-2">Zona Geográfica</p>
+            <p className="text-sm text-gray-500 mt-2">Proyectos en proceso</p>
           </div>
 
           <div className="bg-white p-6 rounded-2xl shadow-sm border-l-8" style={{ borderColor: COLORS.dorado }}>
@@ -185,7 +217,7 @@ function Estadisticas() {
           </div>
         </div>
 
-        {/* --- NUEVA SECCIÓN: INFRAESTRUCTURA (SIN ICONOS) --- */}
+        {/* --- Sección Infraestructura --- */}
         <h2 className="text-lg font-bold text-gray-700 mb-4 px-1">Capacidad Instalada</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10 animate-fade-in-up">
 
@@ -198,7 +230,7 @@ function Estadisticas() {
             </div>
           </div>
 
-          {/* Tarjeta Consultorios (Placeholder) */}
+          {/* Tarjeta Consultorios */}
           <div className="bg-gray-50 p-6 rounded-2xl shadow-sm border border-gray-100 flex items-center opacity-60">
             <div>
               <p className="text-gray-400 font-bold uppercase text-xs">Consultorios</p>
@@ -207,7 +239,7 @@ function Estadisticas() {
             </div>
           </div>
 
-          {/* Tarjeta Quirófanos (Placeholder) */}
+          {/* Tarjeta Quirófanos */}
           <div className="bg-white p-6 rounded-2xl shadow-sm">
             <div>
               <p className="text-gray-400 font-bold uppercase text-xs">Total Quirófanos</p>
@@ -215,7 +247,7 @@ function Estadisticas() {
                 {totalesInfraestructura.q_total}
               </p>
 
-              {/* Desglose elegante abajo del número */}
+              {/* Desglose información */}
               <div className="flex gap-4 mt-2 text-xs font-medium">
                 <span className="text-sm text-gray-500 mt-2">
                   Operativos: <b>{totalesInfraestructura.q_funcionales}</b>
@@ -229,8 +261,7 @@ function Estadisticas() {
         </div>
         {/* -------------------------------------------------------- */}
 
-
-        {/* --- SECCIÓN DE GRÁFICAS --- */}
+        {/* --- Sección de Gráficas --- */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           <div className="bg-white p-6 rounded-2xl shadow-lg border border-gray-100 flex flex-col min-w-0">
             <h3 className="text-lg font-bold text-gray-700 mb-6 text-center">Distribución por Tipo de Unidad</h3>
@@ -258,6 +289,7 @@ function Estadisticas() {
             </div>
           </div>
 
+          {/* Grafica de Unidades por Nivel de Atención*/}
           <div className="bg-white p-6 rounded-2xl shadow-lg border border-gray-100 min-w-0">
             <h3 className="text-lg font-bold text-gray-700 mb-6 text-center">Unidades por Nivel de Atención</h3>
             <div className="h-80 w-full min-w-0">
@@ -278,10 +310,10 @@ function Estadisticas() {
           </div>
         </div>
 
-        {/* TABLA DE DETALLE RÁPIDO */}
+        {/* Tabla de Tipología */}
         <div className="mt-10 bg-white rounded-2xl shadow-md overflow-hidden border border-gray-200">
           <div className="p-4 bg-gray-50 border-b border-gray-200 font-bold text-gray-700">
-            Desglose Numérico - {filtroEntidad === 'TODAS' ? 'Nacional' : filtroEntidad}
+            Tipología - {filtroEntidad === 'TODAS' ? 'Nacional' : filtroEntidad}
           </div>
           <div className="p-6 grid grid-cols-2 md:grid-cols-4 gap-4">
             {dataTipologia.map((item) => (
