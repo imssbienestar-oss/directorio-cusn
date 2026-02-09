@@ -475,12 +475,12 @@ function TarjetasInformativas() {
                   )}
                 </div>
                 <div className="flex flex-col gap-2 min-w-[200px]">
-                  <button
+                {/*  <button
                     onClick={() => setUnidadSeleccionada(unidad)}
                     className="flex items-center justify-center gap-2 px-6 py-2.5 bg-white border border-gray-300 text-gray-700 font-bold rounded-lg shadow-sm hover:bg-gray-50 transition-all text-sm transform active:scale-95"
                   >
                     Detalles
-                  </button>
+                  </button> */}
 
                   <div className="flex flex-col gap-2">
                     {linkVisualizacion ? (
@@ -505,6 +505,8 @@ function TarjetasInformativas() {
                         Pendiente
                       </div>
                     )}
+
+                    {/*
                     {linkInspeccion ? (
                       <a
                         href={linkInspeccion}
@@ -521,7 +523,7 @@ function TarjetasInformativas() {
                       <div className="flex items-center justify-center gap-2 px-4 py-2 rounded-lg font-bold text-amber-600 bg-amber-50 border border-amber-100 text-[10px] uppercase">
                         Insp. Pendiente
                       </div>
-                    )}
+                    )}*/}
                   </div>
                 </div>
               </div>
