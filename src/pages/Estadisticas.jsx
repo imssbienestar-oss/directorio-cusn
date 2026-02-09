@@ -19,31 +19,27 @@ function Estadisticas() {
   const LINKS_PDF_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRmdYQBqZYY30hQt9hU2hzpVAsBwaSdpIg0LbbFCoJ5z3ouswU6lrnihg39CQPNd62J48H6D5mDzY6F/pub?gid=0&single=true&output=csv";
 
   //DescargaPDF
-  const descargarReportePDF = async () => {
+  const descargarReporteEjecutivo = async () => {
     try {
-      const response = await fetch(`https://torre-control-production.up.railway.app/api/reportes/generar-pdf?entidad=${filtroEntidad}`, {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
+        // Llamamos al nuevo endpoint de totales
+        const url = `https://torre-control-production.up.railway.app/api/reportes/ejecutivo?entidad=${filtroEntidad}`;
+        
+        const response = await fetch(url);
+        if (!response.ok) throw new Error("Error al generar reporte");
 
-      if (!response.ok) throw new Error("No se pudo generar el reporte");
-
-      // Se convierte la respuesta en un archivo descargable 
-      const blob = await response.blob();
-      const url = window.URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = `Reporte_Unidades_${filtroEntidad}_${new Date().toLocaleDateString()}.pdf`;
-      document.body.appendChild(a);
-      a.click();
-      a.remove();
+        const blob = await response.blob();
+        const downloadUrl = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = downloadUrl;
+        a.download = `Reporte_Ejecutivo_${filtroEntidad}_${new Date().toLocaleDateString()}.pdf`;
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
     } catch (error) {
-      console.error("Error al descargar el PDF:", error);
-      alert("Hubo un error al generar el PDF. Verifica que el servidor de reportes esté activo.");
+        console.error("Error:", error);
+        alert("No se pudo descargar el reporte ejecutivo.");
     }
-  };
+};
 
   // --- Carga de datos
   useEffect(() => {
@@ -170,7 +166,7 @@ function Estadisticas() {
           <div className="flex flex-col md:flex-row gap-3 w-full md:w-auto">
             {/* Botón descarga reporte */}
             <button
-              onClick={descargarReportePDF}
+              onClick={descargarReporteEjecutivo}
               className="flex items-center justify-center gap-2 px-6 py-3 bg-gray-800 text-white font-bold rounded-xl shadow-lg hover:bg-black transition-all transform active:scale-95 text-sm"
             >
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="size-5">
