@@ -240,7 +240,7 @@ function TarjetasInformativas() {
     }
 
     // Prioridad 2: Filtros de botones (Archivo)
-    if (filtroEstado === 'PENDIENTE') partes.push("Sin Tarjera Inf.");
+    if (filtroEstado === 'PENDIENTE') partes.push("Sin Tarjeta Inf.");
     if (filtroEstado === 'CON_ARCHIVO') partes.push("Con Tarjeta Inf.");
 
     // Prioridad 3: Geografía y Nivel
@@ -495,7 +495,7 @@ function TarjetasInformativas() {
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
                         </svg>
-                        <span>Ver Tarjera Inf.</span>
+                        <span>Ver Tarjeta Inf.</span>
                       </a>
                     ) : (
                       <div className="flex items-center justify-center gap-2 px-6 py-2.5 rounded-lg font-bold text-red-500 bg-red-50 border border-red-100 text-sm italic">
