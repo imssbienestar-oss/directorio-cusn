@@ -218,10 +218,10 @@ function TarjetasInformativasPublicas() {
               <select className="w-full p-3 border border-gray-200 rounded-lg text-sm text-gray-600 focus:ring-1 focus:ring-indigo-500 outline-none bg-white cursor-pointer" value={filtroEstatusOp} onChange={(e) => setFiltroEstatusOp(e.target.value)}>
                 <option value="TODOS">Todos los Estatus</option>
                 <option value="ACTIVO">En Operación</option>
-                <option value="CONSTRUCCION">En Construcción</option>
+                {/*<option value="CONSTRUCCION">En Construcción</option>*/}
                 <option value="BAJA">Fuera de Operación</option>
-                <option value="NO_CORRESPONDE">No corresponde</option>
-                <option value="PROCESO_TRANSFERENCIA">En proceso de transferencia</option>
+                {/*<option value="NO_CORRESPONDE">No corresponde</option>*/}
+                {/*<option value="PROCESO_TRANSFERENCIA">En proceso de transferencia</option>*/}
               </select>
             </div>
 
