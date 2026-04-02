@@ -395,8 +395,8 @@ function TarjetasInformativasPublicas() {
                     return (
                       <div key={index} className="flex items-center justify-between p-3 border border-gray-200 rounded-lg hover:bg-gray-50 hover:border-indigo-300 transition-all">
                         <div>
-                          <p className="text-sm font-bold text-gray-800">Versión {index + 1}</p>
-                          <p className="text-xs text-gray-500">Subido el: {archivo.fecha}</p>
+                          <p className="text-sm font-bold text-gray-800">Archivo {index + 1}</p>
+                          <p className="text-xs text-gray-500">Actualizado el: {archivo.fecha}</p>
                         </div>
                         <a 
                           href={linkVisualizacion} 
