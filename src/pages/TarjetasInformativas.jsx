@@ -37,6 +37,11 @@ function TarjetasInformativasPublicas() {
   const [filtroNivel, setFiltroNivel] = useState('TODOS');
   const [filtroRegion, setFiltroRegion] = useState('TODAS');
 
+  //Multiples PDF
+  const [modalArchivosOpen, setModalArchivosOpen] = useState(false);
+  const [archivosModal, setArchivosModal] = useState([]);
+  const [unidadSeleccionada, setUnidadSeleccionada] = useState(null);
+
   // --- RUTAS PÚBLICAS ---
   const API_SIBE_URL = "https://torre-control-production.up.railway.app/api/unidades/publico";
   const LINKS_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRmdYQBqZYY30hQt9hU2hzpVAsBwaSdpIg0LbbFCoJ5z3ouswU6lrnihg39CQPNd62J48H6D5mDzY6F/pub?gid=0&single=true&output=csv";
@@ -44,7 +49,7 @@ function TarjetasInformativasPublicas() {
   useEffect(() => {
     const cargarTodo = async () => {
       try {
-        // 1. Obtener datos de la base de datos (Sin Auth)
+        // 1. Obtener datos de la base de datos
         const respuestaApi = await fetch(API_SIBE_URL);
         if (!respuestaApi.ok) throw new Error('Error al conectar con SIBE');
         const dataBaseDatos = await respuestaApi.json();
@@ -64,15 +69,19 @@ function TarjetasInformativasPublicas() {
         const mapa = {};
         if (dataExcel) {
           dataExcel.forEach(row => {
-            if (row.clues) {
-              mapa[row.clues.trim().toUpperCase()] = {
+            const cluesKey = row.clues ? row.clues.trim().toUpperCase() : null;
+            if (cluesKey && row.link_pdf) {
+              if (!mapa[cluesKey]) {
+                mapa[cluesKey] = [];
+              }
+              mapa[cluesKey].push({
                 url: row.link_pdf,
-                fecha: row.fecha
-              };
+                fecha: row.fecha || 'Fecha desconocida'
+              });
             }
           });
         }
-        
+
         setMapaDeLinks(mapa);
         setCluesData(dataBaseDatos);
         setLoading(false);
@@ -101,9 +110,7 @@ function TarjetasInformativasPublicas() {
     return [...new Set(cluesData.map(d => d.nivel).filter(Boolean))].sort();
   }, [cluesData]);
 
-  // ==========================================
-  // ✨ SISTEMA DE FILTRADO ROBUSTO ✨
-  // ==========================================
+  //Filtrado
   const resultados = cluesData.filter(item => {
     const t = limpiarTexto(searchTerm);
     const palabras = t.split(/\s+/).filter(Boolean);
@@ -185,6 +192,21 @@ function TarjetasInformativasPublicas() {
     return partes.join(' • ');
   };
 
+  const handleVerTarjeta = (unidad, archivos) => {
+    if (!archivos || archivos.length === 0) return;
+
+    if (archivos.length === 1) {
+      // Si solo hay uno, abrir directo
+      const linkVisualizacion = archivos[0].url.replace("uc?export=download&id=", "file/d/") + "/view";
+      window.open(linkVisualizacion, "_blank");
+    } else {
+      // Si hay varios, ordenar por fecha (opcional, si el formato lo permite) y abrir modal
+      setUnidadSeleccionada(unidad);
+      setArchivosModal(archivos);
+      setModalArchivosOpen(true);
+    }
+  };
+
   return (
     <div className="min-h-screen bg-gray-50 font-sans relative">
       <HeaderOficial />
@@ -198,7 +220,7 @@ function TarjetasInformativasPublicas() {
         {/* --- PANEL DE FILTROS --- */}
         <div className="bg-white p-5 rounded-xl shadow-sm border border-gray-100 mb-8 flex flex-col gap-5">
           <div className="flex flex-col md:flex-row gap-4 items-center justify-between">
-            
+
             <div className="relative w-full md:flex-1">
               <input type="text" placeholder="Buscar por nombre, CLUES o municipio..." className="w-full p-3 pl-10 border border-gray-200 rounded-lg focus:ring-1 focus:ring-green-800 uppercase text-sm bg-gray-50 hover:bg-white transition-colors" value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} />
               <span className="absolute left-3 top-2.5 text-gray-400">
@@ -277,9 +299,9 @@ function TarjetasInformativasPublicas() {
           {resultados.slice(0, visibleCount).map((unidad) => {
             const cluesKey = unidad.clues ? unidad.clues.toUpperCase() : '';
             const datosDrive = mapaDeLinks[cluesKey] || {};
-            const rawLink = datosDrive.url;
-            const fechaArchivo = datosDrive.fecha;
-            const linkVisualizacion = rawLink ? rawLink.replace("uc?export=download&id=", "file/d/") + "/view" : null;
+            const archivosUnidad = mapaDeLinks[cluesKey] || [];
+            const tieneArchivos = archivosUnidad.length > 0;
+            const fechaArchivo = tieneArchivos ? archivosUnidad[archivosUnidad.length - 1].fecha : null;
 
             return (
               <div key={unidad.clues} className={`bg-white p-6 rounded-xl shadow-sm border transition-all flex flex-col md:flex-row md:items-center justify-between gap-6 hover:shadow-lg border-gray-100`}>
@@ -324,13 +346,13 @@ function TarjetasInformativasPublicas() {
 
                 <div className="flex flex-col gap-2 min-w-[200px]">
                   {/* ✨ BOTÓN DE TARJETA: Lo único que quedó ✨ */}
-                  {linkVisualizacion ? (
-                    <a href={linkVisualizacion} target="_blank" rel="noreferrer" style={{ backgroundColor: COLORS.guinda }} className="flex items-center justify-center gap-2 px-6 py-2.5 rounded-lg font-bold text-white transition-all shadow-md transform active:scale-95 text-sm">
+                  {tieneArchivos ? (
+                    <button onClick={() => handleVerTarjeta(unidad, archivosUnidad)} style={{ backgroundColor: COLORS.guinda }} className="flex items-center justify-center gap-2 px-6 py-2.5 rounded-lg font-bold text-white transition-all shadow-md transform active:scale-95 text-sm w-full">
                       <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" /></svg>
-                      <span>Ver Tarjeta Inf.</span>
-                    </a>
+                      <span>{archivosUnidad.length > 1 ? 'Ver Tarjetas (Varias)' : 'Ver Tarjeta Inf.'}</span>
+                    </button>
                   ) : (
-                    <div className="flex items-center justify-center gap-2 px-6 py-2.5 rounded-lg font-bold text-red-500 bg-red-50 border border-red-100 text-sm italic">
+                    <div className="flex items-center justify-center gap-2 px-6 py-2.5 rounded-lg font-bold text-red-500 bg-red-50 border border-red-100 text-sm italic w-full">
                       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="size-5"><path fillRule="evenodd" d="M9.401 3.003c1.155-2 4.043-2 5.197 0l7.355 12.748c1.154 2-.29 4.5-2.599 4.5H4.645c-2.309 0-3.752-2.5-2.598-4.5L9.4 3.003ZM12 8.25a.75.75 0 0 1 .75.75v3.75a.75.75 0 0 1-1.5 0V9a.75.75 0 0 1 .75-.75Zm0 8.25a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Z" clipRule="evenodd" /></svg>
                       Pendiente Tarjeta
                     </div>
@@ -349,8 +371,60 @@ function TarjetasInformativasPublicas() {
           </div>
         )}
       </main>
+      {modalArchivosOpen && (
+          <div className="fixed inset-0 bg-gray-900 bg-opacity-60 flex items-center justify-center z-50 p-4 animate-fade-in">
+            <div className="bg-white rounded-xl shadow-2xl max-w-lg w-full overflow-hidden">
+              <div className="bg-[#10312B] p-4 flex justify-between items-center">
+                <h3 className="text-white font-bold text-lg flex items-center gap-2">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path fillRule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4zm2 6a1 1 0 011-1h6a1 1 0 110 2H7a1 1 0 01-1-1zm1 3a1 1 0 100 2h6a1 1 0 100-2H7z" clipRule="evenodd" /></svg>
+                  Archivos Disponibles
+                </h3>
+                <button onClick={() => setModalArchivosOpen(false)} className="text-white hover:text-red-400 transition-colors">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /></svg>
+                </button>
+              </div>
+              
+              <div className="p-5">
+                <p className="text-sm text-gray-600 mb-4">
+                  Se encontraron <span className="font-bold">{archivosModal.length}</span> tarjetas informativas para <span className="font-bold text-[#691C32]">{unidadSeleccionada?.nombre}</span>. Selecciona la que deseas visualizar:
+                </p>
+
+                <div className="space-y-3 max-h-60 overflow-y-auto pr-2">
+                  {archivosModal.map((archivo, index) => {
+                    const linkVisualizacion = archivo.url.replace("uc?export=download&id=", "file/d/") + "/view";
+                    return (
+                      <div key={index} className="flex items-center justify-between p-3 border border-gray-200 rounded-lg hover:bg-gray-50 hover:border-indigo-300 transition-all">
+                        <div>
+                          <p className="text-sm font-bold text-gray-800">Versión {index + 1}</p>
+                          <p className="text-xs text-gray-500">Subido el: {archivo.fecha}</p>
+                        </div>
+                        <a 
+                          href={linkVisualizacion} 
+                          target="_blank" 
+                          rel="noopener noreferrer"
+                          className="bg-[#BC955C] hover:bg-[#9f7d4a] text-white px-4 py-2 rounded-md text-xs font-bold shadow-sm flex items-center gap-1"
+                        >
+                          <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /></svg>
+                          Abrir PDF
+                        </a>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+              
+              <div className="bg-gray-50 p-4 border-t border-gray-100 flex justify-end">
+                <button onClick={() => setModalArchivosOpen(false)} className="px-4 py-2 text-sm font-bold text-gray-600 hover:text-gray-900">
+                  Cerrar
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
     </div>
   );
 }
+
+
 
 export default TarjetasInformativasPublicas;
