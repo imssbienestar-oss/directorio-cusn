@@ -145,8 +145,8 @@ function TarjetasInformativasPublicas() {
       }
     }
 
-    const datosDrive = mapaDeLinks[cluesKey] || {};
-    const tieneArchivo = !!datosDrive.url;
+     const archivosUnidad = mapaDeLinks[cluesKey] || [];
+    const tieneArchivo = archivosUnidad.length > 0;
     let coincideEstado = true;
     if (filtroEstado === 'PENDIENTE') coincideEstado = !tieneArchivo;
     else if (filtroEstado === 'CON_ARCHIVO') coincideEstado = tieneArchivo;
