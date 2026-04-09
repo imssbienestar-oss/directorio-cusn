@@ -54,6 +54,12 @@ function TarjetasInformativasPublicas() {
         if (!respuestaApi.ok) throw new Error('Error al conectar con SIBE');
         const dataBaseDatos = await respuestaApi.json();
 
+        // ✨ AQUÍ ESTÁ EL FILTRO PARA QUITAR LAS CLUES CON CUSN ✨
+        const datosLimpios = dataBaseDatos.filter(unidad => {
+          const cluesTemp = unidad.clues ? unidad.clues.toUpperCase().trim() : '';
+          return !cluesTemp.includes('CUSN0000000') && !cluesTemp.includes('CUSN');
+        });
+
         // 2. Obtener links del Excel
         const promesaLinks = new Promise((resolve, reject) => {
           Papa.parse(LINKS_URL, {
@@ -83,7 +89,8 @@ function TarjetasInformativasPublicas() {
         }
 
         setMapaDeLinks(mapa);
-        setCluesData(dataBaseDatos);
+        // ✨ AHORA GUARDAMOS LOS DATOS LIMPIOS EN VEZ DE TODA LA BD ✨
+        setCluesData(datosLimpios);
         setLoading(false);
       } catch (error) {
         console.error("Error cargando datos:", error);
@@ -114,7 +121,7 @@ function TarjetasInformativasPublicas() {
   const resultados = cluesData.filter(item => {
     const t = limpiarTexto(searchTerm);
     const palabras = t.split(/\s+/).filter(Boolean);
-    const cluesKey = (item.clues || '').toUpperCase();
+    const cluesKey = (item.clues || '').trim().toUpperCase();
     const estatusOriginal = item.estatus_operacion || '';
     const estatusNorm = limpiarTexto(estatusOriginal);
 
@@ -126,26 +133,27 @@ function TarjetasInformativasPublicas() {
 
     const coincideTexto = t === '' || (cluesKey.includes(t) || cumpleBusqueda(item.nombre) || cumpleBusqueda(item.municipio) || cumpleBusqueda(item.plan_clave) || cumpleBusqueda(item.plan_desc) || estatusNorm.includes(t));
 
-    // Lógica de Estatus
+    // ✨ LÓGICA DE 3 ESTATUS AGRUPADA ✨
     let coincideEstatusOp = true;
     if (filtroEstatusOp !== 'TODOS') {
-      const esTransferencia = estatusNorm.includes('TRANSFERENCIA') || estatusNorm.includes('TRASFERENCIA');
-      const esCorresponde = estatusNorm.includes('CORRESPONDE');
+      const esPendiente = estatusNorm.includes('PENDIENTE') || 
+                          estatusNorm.includes('TRANSFERENCIA') || 
+                          estatusNorm.includes('TRASFERENCIA') || 
+                          estatusNorm.includes('CONSTRUCCI') || 
+                          estatusNorm.includes('PROCESO');
+      
       const esBaja = estatusNorm.includes('BAJA') || estatusNorm.includes('FUERA');
-      const esConstruccion = (estatusNorm.includes('CONSTRUCCI') || estatusNorm.includes('PROCESO')) && !esTransferencia;
-      const esActivo = estatusNorm.includes('ACTIVO') || (estatusNorm.includes('OPERACION') && !esBaja);
+      const esOperacion = (estatusNorm.includes('ACTIVO') || estatusNorm.includes('OPERACION')) && !esBaja && !esPendiente;
 
       switch (filtroEstatusOp) {
-        case 'ACTIVO': coincideEstatusOp = esActivo; break;
-        case 'CONSTRUCCION': coincideEstatusOp = esConstruccion; break;
-        case 'BAJA': coincideEstatusOp = esBaja; break;
-        case 'NO_CORRESPONDE': coincideEstatusOp = esCorresponde; break;
-        case 'PROCESO_TRANSFERENCIA': coincideEstatusOp = esTransferencia; break;
+        case 'OPERACION': coincideEstatusOp = esOperacion; break;
+        case 'FUERA': coincideEstatusOp = esBaja; break;
+        case 'PENDIENTE': coincideEstatusOp = esPendiente; break;
         default: coincideEstatusOp = true;
       }
     }
 
-     const archivosUnidad = mapaDeLinks[cluesKey] || [];
+    const archivosUnidad = mapaDeLinks[cluesKey] || [];
     const tieneArchivo = archivosUnidad.length > 0;
     let coincideEstado = true;
     if (filtroEstado === 'PENDIENTE') coincideEstado = !tieneArchivo;
@@ -237,13 +245,12 @@ function TarjetasInformativasPublicas() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             <div className="relative w-full">
+              {/* ✨ NUEVO DESPLEGABLE DE 3 ESTATUS ✨ */}
               <select className="w-full p-3 border border-gray-200 rounded-lg text-sm text-gray-600 focus:ring-1 focus:ring-indigo-500 outline-none bg-white cursor-pointer" value={filtroEstatusOp} onChange={(e) => setFiltroEstatusOp(e.target.value)}>
                 <option value="TODOS">Todos los Estatus</option>
-                <option value="ACTIVO">En Operación</option>
-                {/*<option value="CONSTRUCCION">En Construcción</option>*/}
-                <option value="BAJA">Fuera de Operación</option>
-                {/*<option value="NO_CORRESPONDE">No corresponde</option>*/}
-                {/*<option value="PROCESO_TRANSFERENCIA">En proceso de transferencia</option>*/}
+                <option value="OPERACION">En Operación</option>
+                <option value="FUERA">Fuera de Operación</option>
+                <option value="PENDIENTE">Pendiente</option>
               </select>
             </div>
 
@@ -297,8 +304,7 @@ function TarjetasInformativasPublicas() {
           )}
 
           {resultados.slice(0, visibleCount).map((unidad) => {
-            const cluesKey = unidad.clues ? unidad.clues.toUpperCase() : '';
-            const datosDrive = mapaDeLinks[cluesKey] || {};
+            const cluesKey = unidad.clues ? unidad.clues.trim().toUpperCase() : '';
             const archivosUnidad = mapaDeLinks[cluesKey] || [];
             const tieneArchivos = archivosUnidad.length > 0;
             const fechaArchivo = tieneArchivos ? archivosUnidad[archivosUnidad.length - 1].fecha : null;
@@ -310,25 +316,31 @@ function TarjetasInformativasPublicas() {
                     <span className="text-white text-xs font-bold px-2 py-1 rounded shadow-sm" style={{ backgroundColor: COLORS.verde }}>{unidad.clues}</span>
                     {unidad.nivel && (<span className="text-[10px] font-bold uppercase px-2 py-1 rounded border bg-indigo-50 text-indigo-700 border-indigo-200">{unidad.nivel}</span>)}
 
-                    {/* ✨ ESTATUS: Solo visual, sin función de clic ✨ */}
                     {(() => {
                       const estatusOriginal = unidad.estatus_operacion ? unidad.estatus_operacion : '';
                       const estatus = limpiarTexto(estatusOriginal);
 
-                      const esTransferencia = estatus.includes('TRANSFERENCIA') || estatus.includes('TRASFERENCIA');
+                      const esPendiente = estatus.includes('PENDIENTE') || 
+                                          estatus.includes('TRANSFERENCIA') || 
+                                          estatus.includes('TRASFERENCIA') || 
+                                          estatus.includes('CONSTRUCCI') || 
+                                          estatus.includes('PROCESO');
+
                       const esBaja = estatus.includes('BAJA') || estatus.includes('FUERA');
-                      const esConstruccion = (estatus.includes('CONSTRUCCI') || estatus.includes('PROCESO')) && !esTransferencia;
-                      const esActivo = estatus.includes('ACTIVO') || (estatus.includes('OPERACION') && !esBaja);
+                      const esOperacion = (estatus.includes('ACTIVO') || estatus.includes('OPERACION')) && !esBaja && !esPendiente;
 
                       let bgColor = 'bg-gray-50';
                       let textColor = 'text-gray-600';
                       let borderColor = 'border-gray-200';
                       let dotColor = 'text-gray-400';
 
-                      if (esTransferencia) { bgColor = 'bg-purple-50'; textColor = 'text-purple-700'; borderColor = 'border-purple-200'; dotColor = 'text-purple-500'; }
-                      else if (esBaja) { bgColor = 'bg-red-50'; textColor = 'text-red-700'; borderColor = 'border-red-200'; dotColor = 'text-red-500'; }
-                      else if (esConstruccion) { bgColor = 'bg-blue-50'; textColor = 'text-blue-700'; borderColor = 'border-blue-200'; dotColor = 'text-blue-500'; }
-                      else if (esActivo) { bgColor = 'bg-green-50'; textColor = 'text-green-700'; borderColor = 'border-green-200'; dotColor = 'text-green-500'; }
+                      if (esBaja) {
+                        bgColor = 'bg-red-50'; textColor = 'text-red-700'; borderColor = 'border-red-200'; dotColor = 'text-red-500';
+                      } else if (esPendiente) {
+                        bgColor = 'bg-orange-50'; textColor = 'text-orange-700'; borderColor = 'border-orange-200'; dotColor = 'text-orange-500';
+                      } else if (esOperacion) {
+                        bgColor = 'bg-green-50'; textColor = 'text-green-700'; borderColor = 'border-green-200'; dotColor = 'text-green-500';
+                      }
 
                       return (
                         <span className={`text-[10px] font-bold uppercase px-2 py-1 rounded border flex items-center gap-1 ${bgColor} ${textColor} ${borderColor}`}>
@@ -372,59 +384,57 @@ function TarjetasInformativasPublicas() {
         )}
       </main>
       {modalArchivosOpen && (
-          <div className="fixed inset-0 bg-gray-900 bg-opacity-60 flex items-center justify-center z-50 p-4 animate-fade-in">
-            <div className="bg-white rounded-xl shadow-2xl max-w-lg w-full overflow-hidden">
-              <div className="bg-[#10312B] p-4 flex justify-between items-center">
-                <h3 className="text-white font-bold text-lg flex items-center gap-2">
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path fillRule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4zm2 6a1 1 0 011-1h6a1 1 0 110 2H7a1 1 0 01-1-1zm1 3a1 1 0 100 2h6a1 1 0 100-2H7z" clipRule="evenodd" /></svg>
-                  Archivos Disponibles
-                </h3>
-                <button onClick={() => setModalArchivosOpen(false)} className="text-white hover:text-red-400 transition-colors">
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /></svg>
-                </button>
-              </div>
-              
-              <div className="p-5">
-                <p className="text-sm text-gray-600 mb-4">
-                  Se encontraron <span className="font-bold">{archivosModal.length}</span> tarjetas informativas para <span className="font-bold text-[#691C32]">{unidadSeleccionada?.nombre}</span>. Selecciona la que deseas visualizar:
-                </p>
+        <div className="fixed inset-0 bg-gray-900 bg-opacity-60 flex items-center justify-center z-50 p-4 animate-fade-in">
+          <div className="bg-white rounded-xl shadow-2xl max-w-lg w-full overflow-hidden">
+            <div className="bg-[#10312B] p-4 flex justify-between items-center">
+              <h3 className="text-white font-bold text-lg flex items-center gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path fillRule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4zm2 6a1 1 0 011-1h6a1 1 0 110 2H7a1 1 0 01-1-1zm1 3a1 1 0 100 2h6a1 1 0 100-2H7z" clipRule="evenodd" /></svg>
+                Archivos Disponibles
+              </h3>
+              <button onClick={() => setModalArchivosOpen(false)} className="text-white hover:text-red-400 transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /></svg>
+              </button>
+            </div>
 
-                <div className="space-y-3 max-h-60 overflow-y-auto pr-2">
-                  {archivosModal.map((archivo, index) => {
-                    const linkVisualizacion = archivo.url.replace("uc?export=download&id=", "file/d/") + "/view";
-                    return (
-                      <div key={index} className="flex items-center justify-between p-3 border border-gray-200 rounded-lg hover:bg-gray-50 hover:border-indigo-300 transition-all">
-                        <div>
-                          <p className="text-sm font-bold text-gray-800">Archivo {index + 1}</p>
-                          <p className="text-xs text-gray-500">Actualizado el: {archivo.fecha}</p>
-                        </div>
-                        <a 
-                          href={linkVisualizacion} 
-                          target="_blank" 
-                          rel="noopener noreferrer"
-                          className="bg-[#BC955C] hover:bg-[#9f7d4a] text-white px-4 py-2 rounded-md text-xs font-bold shadow-sm flex items-center gap-1"
-                        >
-                          <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /></svg>
-                          Abrir PDF
-                        </a>
+            <div className="p-5">
+              <p className="text-sm text-gray-600 mb-4">
+                Se encontraron <span className="font-bold">{archivosModal.length}</span> tarjetas informativas para <span className="font-bold text-[#691C32]">{unidadSeleccionada?.nombre}</span>. Selecciona la que deseas visualizar:
+              </p>
+
+              <div className="space-y-3 max-h-60 overflow-y-auto pr-2">
+                {archivosModal.map((archivo, index) => {
+                  const linkVisualizacion = archivo.url.replace("uc?export=download&id=", "file/d/") + "/view";
+                  return (
+                    <div key={index} className="flex items-center justify-between p-3 border border-gray-200 rounded-lg hover:bg-gray-50 hover:border-indigo-300 transition-all">
+                      <div>
+                        <p className="text-sm font-bold text-gray-800">Archivo {index + 1}</p>
+                        <p className="text-xs text-gray-500">Actualizado el: {archivo.fecha}</p>
                       </div>
-                    );
-                  })}
-                </div>
-              </div>
-              
-              <div className="bg-gray-50 p-4 border-t border-gray-100 flex justify-end">
-                <button onClick={() => setModalArchivosOpen(false)} className="px-4 py-2 text-sm font-bold text-gray-600 hover:text-gray-900">
-                  Cerrar
-                </button>
+                      <a
+                        href={linkVisualizacion}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="bg-[#BC955C] hover:bg-[#9f7d4a] text-white px-4 py-2 rounded-md text-xs font-bold shadow-sm flex items-center gap-1"
+                      >
+                        <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /></svg>
+                        Abrir PDF
+                      </a>
+                    </div>
+                  );
+                })}
               </div>
             </div>
+
+            <div className="bg-gray-50 p-4 border-t border-gray-100 flex justify-end">
+              <button onClick={() => setModalArchivosOpen(false)} className="px-4 py-2 text-sm font-bold text-gray-600 hover:text-gray-900">
+                Cerrar
+              </button>
+            </div>
           </div>
-        )}
+        </div>
+      )}
     </div>
   );
 }
-
-
 
 export default TarjetasInformativasPublicas;
