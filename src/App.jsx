@@ -12,7 +12,7 @@ function App() {
   return (
     <HashRouter>
       <Routes>
-        <Route path="/informativas" element={<TarjetasInformativas />} />
+        <Route path="/" element={<TarjetasInformativas />} />
         <Route path="/perfil/:slug" element={<PerfilFuncionario />} />
         <Route path="/estadisticas" element={<Estadisticas />} />
         <Route path="/inspeccion/nueva" element={<NuevaInspeccion />} />
