@@ -43,7 +43,7 @@ function TarjetasInformativasPublicas() {
   const [unidadSeleccionada, setUnidadSeleccionada] = useState(null);
 
   // --- RUTAS PÚBLICAS ---
-  const API_SIBE_URL = "https://torre-control-production.up.railway.app/api/unidades/publico";
+  const API_SIBE_URL = "https://torre-control-production-34fc.up.railway.app/api/unidades/publico";
   const LINKS_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRmdYQBqZYY30hQt9hU2hzpVAsBwaSdpIg0LbbFCoJ5z3ouswU6lrnihg39CQPNd62J48H6D5mDzY6F/pub?gid=0&single=true&output=csv";
 
   useEffect(() => {
