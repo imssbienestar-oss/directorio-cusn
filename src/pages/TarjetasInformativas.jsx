@@ -36,6 +36,7 @@ function TarjetasInformativasPublicas() {
   const [filtroEntidad, setFiltroEntidad] = useState('TODAS');
   const [filtroNivel, setFiltroNivel] = useState('TODOS');
   const [filtroRegion, setFiltroRegion] = useState('TODAS');
+  const [filtroTipologia, setFiltroTipologia] = useState('TODAS');
 
   //Multiples PDF
   const [modalArchivosOpen, setModalArchivosOpen] = useState(false);
@@ -117,6 +118,13 @@ function TarjetasInformativasPublicas() {
     return [...new Set(cluesData.map(d => d.nivel).filter(Boolean))].sort();
   }, [cluesData]);
 
+  const opcionesTipologia = React.useMemo(() => {
+    const tiposLimpios = cluesData
+      .map(d => d.tipologia ? d.tipologia.trim().toUpperCase() : null)
+      .filter(Boolean);
+    return [...new Set(tiposLimpios)].sort();
+  }, [cluesData]);
+
   //Filtrado
   const resultados = cluesData.filter(item => {
     const t = limpiarTexto(searchTerm);
@@ -131,17 +139,17 @@ function TarjetasInformativasPublicas() {
       return palabras.every(p => objetivo.includes(p));
     };
 
-    const coincideTexto = t === '' || (cluesKey.includes(t) || cumpleBusqueda(item.nombre) || cumpleBusqueda(item.municipio) || cumpleBusqueda(item.plan_clave) || cumpleBusqueda(item.plan_desc) || estatusNorm.includes(t));
+    const coincideTexto = t === '' || (cluesKey.includes(t) || cumpleBusqueda(item.nombre) || cumpleBusqueda(item.municipio) || cumpleBusqueda(item.plan_clave) || cumpleBusqueda(item.plan_desc) || estatusNorm.includes(t) || cumpleBusqueda(item.tipologia));
 
     // ✨ LÓGICA DE 3 ESTATUS AGRUPADA ✨
     let coincideEstatusOp = true;
     if (filtroEstatusOp !== 'TODOS') {
-      const esPendiente = estatusNorm.includes('PENDIENTE') || 
-                          estatusNorm.includes('TRANSFERENCIA') || 
-                          estatusNorm.includes('TRASFERENCIA') || 
-                          estatusNorm.includes('CONSTRUCCI') || 
-                          estatusNorm.includes('PROCESO');
-      
+      const esPendiente = estatusNorm.includes('PENDIENTE') ||
+        estatusNorm.includes('TRANSFERENCIA') ||
+        estatusNorm.includes('TRASFERENCIA') ||
+        estatusNorm.includes('CONSTRUCCI') ||
+        estatusNorm.includes('PROCESO');
+
       const esBaja = estatusNorm.includes('BAJA') || estatusNorm.includes('FUERA');
       const esOperacion = (estatusNorm.includes('ACTIVO') || estatusNorm.includes('OPERACION')) && !esBaja && !esPendiente;
 
@@ -168,7 +176,9 @@ function TarjetasInformativasPublicas() {
       coincideRegion = estadosDeLaRegion.includes(item.entidad);
     }
 
-    return coincideTexto && coincideEstatusOp && coincideEstado && coincideEntidad && coincideNivel && coincideRegion;
+    const tipologiaUnidad = item.tipologia ? item.tipologia.trim().toUpperCase() : '';
+    const coincideTipologia = filtroTipologia === 'TODAS' || tipologiaUnidad === filtroTipologia;
+    return coincideTexto && coincideEstatusOp && coincideEstado && coincideEntidad && coincideNivel && coincideRegion && coincideTipologia;
   });
 
   if (loading) {
@@ -182,10 +192,11 @@ function TarjetasInformativasPublicas() {
   const limpiarFiltros = () => {
     setSearchTerm(""); setFiltroRegion('TODAS'); setFiltroEntidad('TODAS');
     setFiltroNivel('TODOS'); setFiltroEstado('TODOS'); setFiltroEstatusOp('TODOS');
+    setFiltroTipologia('TODAS');
     setVisibleCount(20);
   };
 
-  const hayFiltrosActivos = searchTerm !== '' || filtroRegion !== 'TODAS' || filtroEntidad !== 'TODAS' || filtroNivel !== 'TODOS' || filtroEstado !== 'TODOS' || filtroEstatusOp !== 'TODOS';
+  const hayFiltrosActivos = searchTerm !== '' || filtroRegion !== 'TODAS' || filtroEntidad !== 'TODAS' || filtroNivel !== 'TODOS' || filtroEstado !== 'TODOS' || filtroEstatusOp !== 'TODOS' || filtroTipologia !== 'TODAS';
 
   const obtenerEtiquetaFiltro = () => {
     if (!hayFiltrosActivos) return "Unidades Operativas";
@@ -197,6 +208,7 @@ function TarjetasInformativasPublicas() {
     if (filtroEntidad !== 'TODAS') partes.push(filtroEntidad);
     if (filtroRegion !== 'TODAS') partes.push(`Región ${filtroRegion}`);
     if (filtroNivel !== 'TODOS') partes.push(filtroNivel);
+    if (filtroTipologia !== 'TODAS') partes.push(filtroTipologia);
     return partes.join(' • ');
   };
 
@@ -245,7 +257,6 @@ function TarjetasInformativasPublicas() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             <div className="relative w-full">
-              {/* ✨ NUEVO DESPLEGABLE DE 3 ESTATUS ✨ */}
               <select className="w-full p-3 border border-gray-200 rounded-lg text-sm text-gray-600 focus:ring-1 focus:ring-indigo-500 outline-none bg-white cursor-pointer" value={filtroEstatusOp} onChange={(e) => setFiltroEstatusOp(e.target.value)}>
                 <option value="TODOS">Todos los Estatus</option>
                 <option value="OPERACION">En Operación</option>
@@ -275,6 +286,15 @@ function TarjetasInformativasPublicas() {
               <select className="w-full md:w-auto p-3 pl-10 border border-gray-200 rounded-lg text-sm text-gray-600 focus:ring-1 focus:ring-green-800 outline-none bg-white min-w-[180px]" value={filtroNivel} onChange={(e) => setFiltroNivel(e.target.value)}>
                 <option value="TODOS">Todos los Niveles</option>
                 {opcionesNivel.map(niv => (<option key={niv} value={niv}>{niv}</option>))}
+              </select>
+            </div>
+
+            <div className="relative">
+              <select className="w-full p-3 border border-gray-200 rounded-lg text-sm text-gray-600 focus:ring-1 focus:ring-green-800 outline-none bg-white cursor-pointer" value={filtroTipologia} onChange={(e) => setFiltroTipologia(e.target.value)}>
+                <option value="TODAS">Todas las Tipologías</option>
+                {opcionesTipologia.map(tipo => (
+                  <option key={tipo} value={tipo}>{tipo}</option>
+                ))}
               </select>
             </div>
           </div>
@@ -320,11 +340,11 @@ function TarjetasInformativasPublicas() {
                       const estatusOriginal = unidad.estatus_operacion ? unidad.estatus_operacion : '';
                       const estatus = limpiarTexto(estatusOriginal);
 
-                      const esPendiente = estatus.includes('PENDIENTE') || 
-                                          estatus.includes('TRANSFERENCIA') || 
-                                          estatus.includes('TRASFERENCIA') || 
-                                          estatus.includes('CONSTRUCCI') || 
-                                          estatus.includes('PROCESO');
+                      const esPendiente = estatus.includes('PENDIENTE') ||
+                        estatus.includes('TRANSFERENCIA') ||
+                        estatus.includes('TRASFERENCIA') ||
+                        estatus.includes('CONSTRUCCI') ||
+                        estatus.includes('PROCESO');
 
                       const esBaja = estatus.includes('BAJA') || estatus.includes('FUERA');
                       const esOperacion = (estatus.includes('ACTIVO') || estatus.includes('OPERACION')) && !esBaja && !esPendiente;
@@ -352,7 +372,10 @@ function TarjetasInformativasPublicas() {
 
                   </div>
                   <h3 className="text-lg font-bold text-gray-800 leading-tight mb-1">{unidad.nombre}</h3>
-                  <p className="text-sm text-gray-500">{unidad.municipio} {unidad.entidad ? `• ${unidad.entidad}` : ''}</p>
+                  <p className="text-sm text-gray-500">
+                    {unidad.municipio} {unidad.entidad ? `• ${unidad.entidad}` : ''}
+                    {unidad.tipologia && <span className="block text-xs font-bold text-indigo-800 mt-1 uppercase">{unidad.tipologia}</span>}
+                  </p>
                   {fechaArchivo && (<p className="text-xs text-green-800 mt-1">Actualizado: <span className="font-medium text-gray-900">{fechaArchivo}</span></p>)}
                 </div>
 
