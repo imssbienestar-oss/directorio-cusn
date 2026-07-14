@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Papa from 'papaparse';
 import HeaderOficial from '../components/HeaderOficial';
 import { COLORS } from '../utils/constants';
+import * as XLSX from 'xlsx';
 
 // Función para normalizar texto en las búsquedas
 const limpiarTexto = (str) => {
@@ -12,6 +13,8 @@ const limpiarTexto = (str) => {
     .toUpperCase()
     .trim();
 };
+
+
 
 const REGIONES = {
   "Noroeste": ["Baja California", "Baja California Sur", "Sonora", "Sinaloa", "Nayarit", "Colima"],
@@ -180,6 +183,36 @@ function TarjetasInformativasPublicas() {
     const coincideTipologia = filtroTipologia === 'TODAS' || tipologiaUnidad === filtroTipologia;
     return coincideTexto && coincideEstatusOp && coincideEstado && coincideEntidad && coincideNivel && coincideRegion && coincideTipologia;
   });
+  const descargarExcel = () => {
+
+    const datosParaExcel = resultados.map(unidad => ({
+      "CLUES": unidad.clues || "S/D",
+      "Nombre de la Unidad": unidad.nombre || "S/D",
+      "Tipología": unidad.tipologia || "S/D",
+      "Nivel de Atención": unidad.nivel || "S/D",
+      "Entidad": unidad.entidad || "S/D",
+      "Municipio": unidad.municipio || "S/D",
+      "Estatus Operativo": unidad.estatus_operacion || "S/D"
+    }));
+
+    const hojaDeCalculo = XLSX.utils.json_to_sheet(datosParaExcel);
+    const wscols = [
+      { wch: 15 }, // CLUES
+      { wch: 45 }, // Nombre
+      { wch: 30 }, // Tipología
+      { wch: 20 }, // Nivel
+      { wch: 20 }, // Entidad
+      { wch: 20 }, // Municipio
+      { wch: 25 }  // Estatus
+    ];
+    hojaDeCalculo['!cols'] = wscols;
+
+    const libro = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(libro, hojaDeCalculo, "Unidades");
+
+    XLSX.writeFile(libro, "Reporte_Unidades_CUSN.xlsx");
+  };
+
 
   if (loading) {
     return (
@@ -297,6 +330,20 @@ function TarjetasInformativasPublicas() {
                 ))}
               </select>
             </div>
+
+            {resultados.length > 0 && (
+              <div className="relative w-full">
+                <button 
+                  onClick={descargarExcel}
+                  className="w-full flex items-center justify-center gap-2 p-3 text-sm font-bold text-green-700 bg-green-50 border border-green-200 rounded-lg shadow-sm hover:bg-green-100 transition-colors h-full"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5">
+                    <path fillRule="evenodd" d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25Zm-.53 14.03a.75.75 0 0 0 1.06 0l3-3a.75.75 0 1 0-1.06-1.06l-1.72 1.72V8.25a.75.75 0 0 0-1.5 0v5.66l-1.72-1.72a.75.75 0 0 0-1.06 1.06l3 3Z" clipRule="evenodd" />
+                  </svg>
+                  Descargar Excel
+                </button>
+              </div>
+            )}
           </div>
 
           <div className="flex flex-col md:flex-row justify-between items-center pt-2 border-t border-gray-100 gap-4">
