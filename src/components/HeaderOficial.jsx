@@ -25,7 +25,7 @@ const HeaderOficial = () => {
         <div className="container mx-auto px-4 py-3 relative z-10">
           <div className="flex items-center justify-between">
             {/* LOGO */}
-            <Link to="/" className="flex items-center gap-4 group">
+            <Link to="#" className="flex items-center gap-4 group">
               <img
                 src="/fotos/imss-bienestar-blanco.png"
                 alt="IMSS Bienestar"
@@ -45,9 +45,11 @@ const HeaderOficial = () => {
               {/* <NavLink to="/estadisticas" className={({ isActive }) => `px-4 py-2 rounded-lg text-sm font-bold uppercase tracking-wide transition-all border ${isActive ? 'bg-white text-green-900 border-white shadow-md' : 'text-white border-transparent hover:bg-white/10'}`}>
                 Estadísticas
               </NavLink>*/}
+              {/* 
               <NavLink to="/informativas" className={({ isActive }) => `px-4 py-2 rounded-lg text-sm font-bold uppercase tracking-wide transition-all border ${isActive ? 'bg-white text-green-900 border-white shadow-md' : 'text-white border-transparent hover:bg-white/10'}`}>
                 Unidades
               </NavLink>
+              */}
               {/* 
               <NavLink to="/inspeccion/nueva" className={({ isActive }) =>`px-4 py-2 rounded-lg text-sm font-bold uppercase tracking-wide transition-all border ${isActive ? 'bg-white text-green-900 border-white shadow-md' : 'text-white border-transparent hover:bg-white/10'}` }>
                 Nueva Inspección
