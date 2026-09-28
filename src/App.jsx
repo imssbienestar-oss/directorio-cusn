@@ -1,5 +1,5 @@
 import React from 'react';
-import { HashRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 // Importamos las páginas desde sus nuevas carpetas
 import PerfilFuncionario from './pages/PerfilFuncionario';
@@ -11,7 +11,7 @@ import DiagnosticoUasForm from './pages/DiagnosticoUasForm';
 
 function App() {
   return (
-    <HashRouter>
+    <BrowserRouter>
       <Routes>
         <Route path="/" element={<TarjetasInformativas />} />
         <Route path="/informativas" element={<TarjetasInformativas />} />
@@ -21,7 +21,7 @@ function App() {
         <Route path="/inspeccion/cuestionario" element={<CuestionarioInspeccion />} />
         <Route path='/diagnostico/formulario' element={<DiagnosticoUasForm /> } />
       </Routes>
-    </HashRouter>
+    </BrowserRouter>
   );
 }
 
