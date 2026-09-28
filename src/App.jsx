@@ -7,6 +7,7 @@ import TarjetasInformativas from './pages/TarjetasInformativas';
 import Estadisticas from './pages/Estadisticas';
 import NuevaInspeccion from './pages/NuevaInspeccion';
 import CuestionarioInspeccion from './pages/CuestionarioInspeccion';
+import DiagnosticoUasForm from './pages/DiagnosticoUasForm';
 
 function App() {
   return (
