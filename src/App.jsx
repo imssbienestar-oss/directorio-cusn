@@ -18,6 +18,7 @@ function App() {
         <Route path="/estadisticas" element={<Estadisticas />} />
         <Route path="/inspeccion/nueva" element={<NuevaInspeccion />} />
         <Route path="/inspeccion/cuestionario" element={<CuestionarioInspeccion />} />
+        <Route path='/diagnostico/formulario' element={<DiagnosticoUasForm /> } />
       </Routes>
     </HashRouter>
   );
