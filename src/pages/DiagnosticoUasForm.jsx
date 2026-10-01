@@ -147,8 +147,17 @@ export default function DiagnosticoUasForm({ user, onLogout }) {
                                     required
                                 >
                                     <option value="">Seleccione una coordinación...</option>
+                                    <option value="Unidad de Atención a la Salud">Unidad de Atención a la Salud</option>
+                                    <option value="Coordinación de Unidades de Primer Nivel">Coordinación de Unidades de Primer Nivel</option>
                                     <option value="Coordinación de Unidades de Segundo Nivel">Coordinación de Unidades de Segundo Nivel</option>
-                                    <option value="Coordinación Médica">Coordinación Médica</option>
+                                    <option value="Coordinación de Hospitales de Alta Especialidad y Programas Especiales">Coordinación de Hospitales de Alta Especialidad y Programas Especiales</option>
+                                    <option value="Coordinación de Enfermería">Coordinación de Enfermería</option>
+                                    <option value="Coordinación de Supervisión">Coordinación de Supervisión</option>
+                                    <option value="Coordinación de Epidemiología">Coordinación de Epidemiología</option>
+                                    <option value="Coordinación de Educación e Investigación">Coordinación de Educación e Investigación</option>
+                                    <option value="Coordinación de Programas Preventivos">Coordinación de Programas Preventivos</option>
+                                    <option value="Coordinación de Normatividad y Planeación Médica">Coordinación de Normatividad y Planeación Médica</option>
+                                    <option value="Coordinaciones de los Hospitales Regionales de Alta Especialidad">Coordinaciones de los Hospitales Regionales de Alta Especialidad</option>
                                     <option value="Otra">Otra</option>
                                 </select>
                                 {formData.seccion_a.a01 === 'Otra' && (
@@ -202,9 +211,18 @@ export default function DiagnosticoUasForm({ user, onLogout }) {
                                     required
                                 >
                                     <option value="">Seleccione el puesto nominal...</option>
-                                    <option value="Analista de Sistemas">Analista de Sistemas</option>
+                                    <option value="Titular de Coordinación">Titular de Coordinación</option>
+                                    <option value="Titular de Coordinación Técnica">Titular de Coordinación Técnica</option>
+                                    <option value="Titular de División">Titular de División</option>
+                                    <option value="Jefe Área Médica">Jefe Área Médica</option>
+                                    <option value="Jefe Área Enfermería">Jefe Área Enfermería</option>
+                                    <option value="Líder de Proyecto Médico">Líder de Proyecto Médico</option>
+                                    <option value="Líder de Proyecto de Enfermería">Líder de Proyecto de Enfermería</option>
+                                    <option value="Subdirección de Área">Subdirección de Área</option>
                                     <option value="Supervisor de Procesos">Supervisor de Procesos</option>
-                                    <option value="Administrador de Base de Datos">Administrador de Base de Datos</option>
+                                    <option value="Jefatura de Departamento">Jefatura de Departamento</option>
+                                    <option value="Enlace">Enlace</option>
+                                    <option value="Soporte Administrativo 'C'">Soporte Administrativo "C"</option>
                                     <option value="Otra">Otra</option>
                                 </select>
                                 {formData.seccion_a.a03 === 'Otra' && (
