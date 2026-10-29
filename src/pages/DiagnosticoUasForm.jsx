@@ -147,8 +147,17 @@ export default function DiagnosticoUasForm({ user, onLogout }) {
                                     required
                                 >
                                     <option value="">Seleccione una coordinación...</option>
+                                    <option value="Unidad de Atención a la Salud">Unidad de Atención a la Salud</option>
+                                    <option value="Coordinación de Unidades de Primer Nivel">Coordinación de Unidades de Primer Nivel</option>
                                     <option value="Coordinación de Unidades de Segundo Nivel">Coordinación de Unidades de Segundo Nivel</option>
-                                    <option value="Coordinación Médica">Coordinación Médica</option>
+                                    <option value="Coordinación de Hospitales de Alta Especialidad y Programas Especiales">Coordinación de Hospitales de Alta Especialidad y Programas Especiales</option>
+                                    <option value="Coordinación de Enfermería">Coordinación de Enfermería</option>
+                                    <option value="Coordinación de Supervisión">Coordinación de Supervisión</option>
+                                    <option value="Coordinación de Epidemiología">Coordinación de Epidemiología</option>
+                                    <option value="Coordinación de Educación e Investigación">Coordinación de Educación e Investigación</option>
+                                    <option value="Coordinación de Programas Preventivos">Coordinación de Programas Preventivos</option>
+                                    <option value="Coordinación de Normatividad y Planeación Médica">Coordinación de Normatividad y Planeación Médica</option>
+                                    <option value="Coordinaciones de los Hospitales Regionales de Alta Especialidad">Coordinaciones de los Hospitales Regionales de Alta Especialidad</option>
                                     <option value="Otra">Otra</option>
                                 </select>
                                 {formData.seccion_a.a01 === 'Otra' && (
@@ -173,10 +182,29 @@ export default function DiagnosticoUasForm({ user, onLogout }) {
                                     onChange={e => handleChange('seccion_a', 'a02', e.target.value)}
                                     required
                                 >
+
                                     <option value="">Seleccione el área o división...</option>
-                                    <option value="Sistemas y Estadística">Sistemas y Estadística</option>
-                                    <option value="Recursos Humanos">Recursos Humanos</option>
-                                    <option value="Operación y Mejora Continua">Operación y Mejora Continua</option>
+                                    <option value="División de Atención a la Salud de Primer Nivel">División de Atención a la Salud de Primer Nivel</option>
+                                    <option value="División de Atención a la Salud de Segundo Nivel">División de Atención a la Salud de Segundo Nivel</option>
+                                    <option value="División de Hospitales Regionales de Alta Especialidad y Tercer Nivel">División de Hospitales Regionales de Alta Especialidad y Tercer Nivel</option>
+                                    <option value="División de Salud Mental y Adicciones">División de Salud Mental y Adicciones</option>
+                                    <option value="División de Salud Materna y Perinatal">División de Salud Materna y Perinatal</option>
+                                    <option value="División de Programas Médicos Prioritarios">División de Programas Médicos Prioritarios</option>
+                                    <option value="División de Gestión y Operación de Servicios de Enfermería">División de Gestión y Operación de Servicios de Enfermería</option>
+                                    <option value="División de Educación e Investigación en Enfermería">División de Educación e Investigación en Enfermería</option>
+                                    <option value="División de Normatividad y Calidad de Enfermería">División de Normatividad y Calidad de Enfermería</option>
+                                    <option value="División de Supervisión a Unidades Médicas">División de Supervisión a Unidades Médicas</option>
+                                    <option value="División de Evaluación de Procesos y Calidad de la Atención">División de Evaluación de Procesos y Calidad de la Atención</option>
+                                    <option value="División de Seguimiento a Planes de Mejora y Auditoría Médica">División de Seguimiento a Planes de Mejora y Auditoría Médica</option>
+                                    <option value="División de Planeación de la Oferta y Demanda de Servicios">División de Planeación de la Oferta y Demanda de Servicios</option>
+                                    <option value="División de Programación de Equipamiento e Insumos Médicos">División de Programación de Equipamiento e Insumos Médicos</option>
+                                    <option value="División de Infraestructura y Mantenimiento de Unidades de Salud">División de Infraestructura y Mantenimiento de Unidades de Salud</option>
+                                    <option value="División de Vigilancia Epidemiológica">División de Vigilancia Epidemiológica</option>
+                                    <option value="División de Salud Pública y Prevención de Enfermedades">División de Salud Pública y Prevención de Enfermedades</option>
+                                    <option value="División de Control de Brotes y Emergencias Sanitarias">División de Control de Brotes y Emergencias Sanitarias</option>
+                                    <option value="División de Capacitación y Formación de Recursos Humanos en Salud">División de Capacitación y Formación de Recursos Humanos en Salud</option>
+                                    <option value="División de Investigación Clínica y Salud Comunitaria">División de Investigación Clínica y Salud Comunitaria</option>
+                                    <option value="División de Residencias Médicas e Internado de Pregrado">División de Residencias Médicas e Internado de Pregrado</option>
                                     <option value="Otra">Otra</option>
                                 </select>
                                 {formData.seccion_a.a02 === 'Otra' && (
@@ -202,9 +230,18 @@ export default function DiagnosticoUasForm({ user, onLogout }) {
                                     required
                                 >
                                     <option value="">Seleccione el puesto nominal...</option>
-                                    <option value="Analista de Sistemas">Analista de Sistemas</option>
+                                    <option value="Titular de Coordinación">Titular de Coordinación</option>
+                                    <option value="Titular de Coordinación Técnica">Titular de Coordinación Técnica</option>
+                                    <option value="Titular de División">Titular de División</option>
+                                    <option value="Jefe Área Médica">Jefe Área Médica</option>
+                                    <option value="Jefe Área Enfermería">Jefe Área Enfermería</option>
+                                    <option value="Líder de Proyecto Médico">Líder de Proyecto Médico</option>
+                                    <option value="Líder de Proyecto de Enfermería">Líder de Proyecto de Enfermería</option>
+                                    <option value="Subdirección de Área">Subdirección de Área</option>
                                     <option value="Supervisor de Procesos">Supervisor de Procesos</option>
-                                    <option value="Administrador de Base de Datos">Administrador de Base de Datos</option>
+                                    <option value="Jefatura de Departamento">Jefatura de Departamento</option>
+                                    <option value="Enlace">Enlace</option>
+                                    <option value="Soporte Administrativo 'C'">Soporte Administrativo "C"</option>
                                     <option value="Otra">Otra</option>
                                 </select>
                                 {formData.seccion_a.a03 === 'Otra' && (
