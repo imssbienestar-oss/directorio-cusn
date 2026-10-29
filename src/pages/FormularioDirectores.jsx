@@ -2,11 +2,14 @@ import React, { useEffect, useMemo, useRef, useState } from 'react';
 import HeaderOficial from '../components/HeaderOficial';
 import Swal from 'sweetalert2';
 import API_URL from '../config/api';
+import { generarPDFDirectores } from '../utils/generarPDFDirectores';
 import {
     Search, Building2, CheckCircle2, X, Plus, Trash2,
     Camera, Mail, Save, Loader2, ShieldCheck, RotateCcw
 } from 'lucide-react';
 
+// El backend permanece en SIBE (Railway); esta página pertenece a Directorio.
+// Funciona tanto si API_URL termina en /api como si contiene solo el dominio.
 const API_BASE = String(API_URL || '').replace(/\/+$/, '');
 const API = `${API_BASE}${API_BASE.endsWith('/api') ? '' : '/api'}/formulario`;
 
@@ -246,6 +249,14 @@ export default function FormularioDirectores() {
             datos.append('datos', JSON.stringify({ ...form, clues }));
             if (foto) datos.append('foto', foto);
 
+            const { archivo, nombreArchivo } = await generarPDFDirectores({
+                ...form,
+                clues,
+                nombre_hospital: hospitalSeleccionado?.nombre || busqueda,
+                foto_nueva: foto
+            });
+            datos.append('archivoPdf', archivo, nombreArchivo);
+
             const esEdicion = modo === 'editar';
             const endpoint = esEdicion
                 ? `${API}/registro/${encodeURIComponent(clues)}`
@@ -261,6 +272,10 @@ export default function FormularioDirectores() {
             if (!response.ok) throw new Error(data.error || 'No se pudo guardar la información.');
 
             setFoto(null);
+
+            if (data.pdf_drive === false) {
+                await Swal.fire('Registro guardado', 'La información se guardó, pero el PDF no pudo sincronizarse con Google Drive. Contacta al administrador para reintentar.', 'warning');
+            }
 
             if (esEdicion) {
                 await Swal.fire('Información actualizada', 'Los cambios fueron guardados correctamente.', 'success');
