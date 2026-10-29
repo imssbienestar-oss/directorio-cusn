@@ -8,6 +8,10 @@ import Estadisticas from './pages/Estadisticas';
 import NuevaInspeccion from './pages/NuevaInspeccion';
 import CuestionarioInspeccion from './pages/CuestionarioInspeccion';
 import DiagnosticoUasForm from './pages/DiagnosticoUasForm';
+import ChecklistIntervencion from './pages/ChecklistIntervencion';
+import HomeCheck from './pages/HomeChecklist';
+import Directorio from './pages/Directorio';
+import FormularioDirectores from './pages/FormularioDirectores';
 
 function App() {
   return (
@@ -20,6 +24,9 @@ function App() {
         <Route path="/inspeccion/nueva" element={<NuevaInspeccion />} />
         <Route path="/inspeccion/cuestionario" element={<CuestionarioInspeccion />} />
         <Route path='/diagnostico/formulario' element={<DiagnosticoUasForm /> } />
+        <Route path='/intervencion/formulario' element={<ChecklistIntervencion /> } />
+        <Route path='/intervencion/inicio' element={<HomeCheck /> } />
+        <Route path="/formulario-directores" element={<FormularioDirectores />} />
       </Routes>
     </BrowserRouter>
   );
