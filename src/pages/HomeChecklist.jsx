@@ -44,7 +44,7 @@ const Home = () => {
                 </span>
               </div>
               <h1 className="text-4xl lg:text-5xl font-black tracking-tight mb-3 text-[#10312B] leading-[1.1]">
-                Diagnóstico de Puestos y Procedimientos
+                Diagnóstico de Puestos y Procedimientos 
               </h1>
               <h2 className="text-xl text-gray-500 font-medium border-l-4 pl-4 border-[#BC955C]">
                 IMSS-BIENESTAR
