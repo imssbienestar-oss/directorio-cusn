@@ -105,36 +105,47 @@ export async function generarPDFDirectores(datos) {
     dibujarMembrete();
     doc.internal.events.subscribe('addPage', dibujarMembrete);
 
-    // Encabezado principal: solamente en la primera página.
+    const nombreHospital = datos.nombre_hospital || 'UNIDAD MÉDICA';
+    const fechaGeneracion = fechaMX();
+
+    // Título principal
     doc.setFont('helvetica', 'bold');
     doc.setFontSize(12);
     doc.setTextColor(...COLORES.guinda);
-    doc.text('INFORMACIÓN DIRECTIVA HOSPITALARIA', anchoPagina / 2, 39, {
-        align: 'center'
-    });
 
-    doc.setFont('helvetica', 'normal');
-    doc.setFontSize(8);
-    doc.setTextColor(...COLORES.gris);
-    doc.text('CIUDAD DE MÉXICO', anchoPagina / 2, 45, { align: 'center' });
+    doc.text(
+        'INFORMACIÓN DIRECTIVA HOSPITALARIA',
+        anchoPagina / 2,
+        39,
+        { align: 'center' }
+    );
 
-    // Nombre del hospital y fecha: se imprimen solo en la primera hoja.
-    const nombreHospital = String(datos.nombre_hospital || 'UNIDAD MÉDICA').trim();
-    const lineasHospital = doc.splitTextToSize(nombreHospital, 180);
+    // Ciudad de México: mismo estilo que tenía el hospital
     doc.setFont('helvetica', 'bold');
-    doc.setFontSize(10);
+    doc.setFontSize(13);
     doc.setTextColor(...COLORES.verde);
-    doc.text(lineasHospital, anchoPagina / 2, 52, { align: 'center' });
 
-    const yFecha = 52 + (lineasHospital.length - 1) * 4.5 + 6;
+    doc.text(
+        'CIUDAD DE MÉXICO',
+        anchoPagina / 2,
+        47,
+        { align: 'center' }
+    );
+
+    // Fecha únicamente en la primera página
     doc.setFont('helvetica', 'normal');
     doc.setFontSize(8);
     doc.setTextColor(...COLORES.gris);
-    doc.text(`Fecha de generación: ${fechaMX()}`, anchoPagina / 2, yFecha, {
-        align: 'center'
-    });
 
-    const inicioDatos = yFecha + 9;
+    doc.text(
+        `Fecha de generación: ${fechaGeneracion}`,
+        anchoPagina / 2,
+        54,
+        { align: 'center' }
+    );
+
+    // Inicio de la tabla y de la fotografía
+    const inicioDatos = 63;
     const anchoFoto = 30;
     const altoFoto = 38;
     const separacion = 7;

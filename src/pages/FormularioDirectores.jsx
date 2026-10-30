@@ -13,6 +13,20 @@ import {
 const API_BASE = String(API_URL || '').replace(/\/+$/, '');
 const API = `${API_BASE}${API_BASE.endsWith('/api') ? '' : '/api'}/formulario`;
 
+const convertirMayusculas = (valor) =>
+    String(valor || '').toLocaleUpperCase('es-MX');
+
+// Permite únicamente letras, acentos y espacios.
+const validarNombre = (valor) =>
+    convertirMayusculas(valor)
+        .replace(/[^A-ZÁÉÍÓÚÜÑ\s]/g, '');
+
+// Permite solamente números.
+const soloNumeros = (valor, longitud = 10) =>
+    String(valor || '')
+        .replace(/\D/g, '')
+        .slice(0, longitud);
+
 const crearFormularioVacio = () => ({
     nombre_director: '',
     cargo: 'Director(a) de Unidad Médica',
@@ -620,22 +634,34 @@ export default function FormularioDirectores() {
                                 <label className={LABEL_CLASS} htmlFor="nombre-director">Nombre completo *</label>
                                 <input
                                     id="nombre-director"
+                                    type="text"
                                     required
                                     maxLength={200}
                                     className={INPUT_CLASS}
                                     value={form.nombre_director}
-                                    onChange={(e) => cambiarCampo('nombre_director', e.target.value)}
+                                    onChange={(e) =>
+                                        cambiarCampo(
+                                            'nombre_director',
+                                            validarNombre(e.target.value)
+                                        )
+                                    }
                                 />
                             </div>
                             <div>
                                 <label className={LABEL_CLASS} htmlFor="cargo-director">Cargo *</label>
                                 <input
                                     id="cargo-director"
+                                    type="text"
                                     required
                                     maxLength={150}
                                     className={INPUT_CLASS}
                                     value={form.cargo}
-                                    onChange={(e) => cambiarCampo('cargo', e.target.value)}
+                                    onChange={(e) =>
+                                        cambiarCampo(
+                                            'cargo',
+                                            convertirMayusculas(e.target.value)
+                                        )
+                                    }
                                 />
                             </div>
                             <div>
@@ -728,21 +754,40 @@ export default function FormularioDirectores() {
                                     <input
                                         id="telefono-director"
                                         type="tel"
-                                        maxLength={30}
+                                        inputMode="numeric"
+                                        pattern="[0-9]{10}"
+                                        title="Introduce un número telefónico de 10 dígitos."
+                                        maxLength={10}
                                         className={INPUT_CLASS}
+                                        placeholder="Ej. 5512345678"
                                         value={form.telefono}
-                                        onChange={(e) => cambiarCampo('telefono', e.target.value)}
+                                        onChange={(e) =>
+                                            cambiarCampo(
+                                                'telefono',
+                                                soloNumeros(e.target.value, 10)
+                                            )
+                                        }
                                     />
                                 </div>
                                 <div>
                                     <label className={LABEL_CLASS} htmlFor="extension-director">Extensión</label>
+
                                     <input
                                         id="extension-director"
                                         type="text"
-                                        maxLength={15}
+                                        inputMode="numeric"
+                                        pattern="[0-9]{1,6}"
+                                        title="Introduce una extensión de hasta 6 dígitos."
+                                        maxLength={6}
                                         className={INPUT_CLASS}
+                                        placeholder="Ej. 1234"
                                         value={form.extension}
-                                        onChange={(e) => cambiarCampo('extension', e.target.value)}
+                                        onChange={(e) =>
+                                            cambiarCampo(
+                                                'extension',
+                                                soloNumeros(e.target.value, 6)
+                                            )
+                                        }
                                     />
                                 </div>
                             </div>
