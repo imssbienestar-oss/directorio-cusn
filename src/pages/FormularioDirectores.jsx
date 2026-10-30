@@ -442,18 +442,16 @@ export default function FormularioDirectores() {
                     <button
                         type="button"
                         onClick={() => reiniciar('nuevo')}
-                        className={`rounded-lg px-3 py-3 text-xs font-bold transition-colors sm:text-sm ${
-                            esRegistro ? 'bg-[#10312B] text-white shadow-sm' : 'text-gray-600 hover:bg-gray-50'
-                        }`}
+                        className={`rounded-lg px-3 py-3 text-xs font-bold transition-colors sm:text-sm ${esRegistro ? 'bg-[#10312B] text-white shadow-sm' : 'text-gray-600 hover:bg-gray-50'
+                            }`}
                     >
                         Nuevo registro
                     </button>
                     <button
                         type="button"
                         onClick={() => reiniciar('actualizar')}
-                        className={`rounded-lg px-3 py-3 text-xs font-bold transition-colors sm:text-sm ${
-                            !esRegistro ? 'bg-[#10312B] text-white shadow-sm' : 'text-gray-600 hover:bg-gray-50'
-                        }`}
+                        className={`rounded-lg px-3 py-3 text-xs font-bold transition-colors sm:text-sm ${!esRegistro ? 'bg-[#10312B] text-white shadow-sm' : 'text-gray-600 hover:bg-gray-50'
+                            }`}
                     >
                         Actualizar formulario
                     </button>
@@ -474,7 +472,7 @@ export default function FormularioDirectores() {
                                 <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400" />
                                 <input
                                     id="buscar-hospital"
-                                    type="search"
+                                    type="text"
                                     autoComplete="off"
                                     className={`${INPUT_CLASS} pl-10 pr-10`}
                                     placeholder={cargandoHospitales ? 'Cargando hospitales...' : 'Escribe el nombre o la CLUES...'}
