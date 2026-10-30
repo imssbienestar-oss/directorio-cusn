@@ -666,7 +666,7 @@ export default function FormularioDirectores() {
                             </div>
                             <div>
                                 <label className={LABEL_CLASS} htmlFor="foto-director">
-                                    Fotografía actualizada {modo === 'nuevo' ? '*' : ''}
+                                    Fotografía actual del director(a) de la unidad médica {modo === 'nuevo' ? '*' : ''}
                                 </label>
                                 <p className="mb-2 text-xs text-gray-500">JPG, PNG o WebP · máximo 3 MB.</p>
                                 <div className="flex flex-col gap-4 rounded-xl border border-gray-200 bg-gray-50 p-4 sm:flex-row sm:items-center">
