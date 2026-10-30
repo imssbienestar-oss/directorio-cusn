@@ -72,7 +72,7 @@ export async function generarPDFDirectores(datos) {
         ],
         headStyles: { fillColor: [16, 49, 43] },
         bodyStyles: { fontSize: 9, overflow: 'linebreak' },
-        columnStyles: { 0: { cellWidth: 48 } }
+        columnStyles: { 0: { cellWidth: 48 } } 
     });
 
     const secciones = [
