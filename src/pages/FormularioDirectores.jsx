@@ -46,6 +46,8 @@ export default function FormularioDirectores() {
     const [token, setToken] = useState('');
     const [cargando, setCargando] = useState(false);
     const buscadorRef = useRef(null);
+    const consultaCluesRef = useRef(0);
+    const [estadoClues, setEstadoClues] = useState('sin_seleccion'); // consultando, disponible, registrada, error
 
     // 2. CARGA DEL CATÁLOGO DE HOSPITALES (UNA SOLA CONSULTA)
     useEffect(() => {
@@ -116,6 +118,8 @@ export default function FormularioDirectores() {
 
     // 4. FUNCIONES DE FORMULARIO
     const reiniciar = (nuevoModo) => {
+        consultaCluesRef.current += 1;
+        setEstadoClues('sin_seleccion');
         setModo(nuevoModo);
         setClues('');
         setHospitalSeleccionado(null);
@@ -169,14 +173,56 @@ export default function FormularioDirectores() {
         }).slice(0, 8);
     }, [hospitales, busquedaDebounce, hospitalSeleccionado]);
 
-    const seleccionarHospital = (hospital) => {
+    const seleccionarHospital = async (hospital) => {
+        const idConsulta = ++consultaCluesRef.current;
         setClues(hospital.clues);
         setHospitalSeleccionado(hospital);
         setBusqueda(`${hospital.nombre} (${hospital.clues})`);
         setMostrarSugerencias(false);
+
+        // Al actualizar solo se solicita el código; no hace falta consultar el estado.
+        if (modo !== 'nuevo') return;
+
+        setEstadoClues('consultando');
+        try {
+            const response = await fetch(`${API}/estado/${encodeURIComponent(hospital.clues)}`);
+            if (!response.ok) throw new Error('No fue posible verificar si la unidad está registrada.');
+            const data = await response.json();
+            if (typeof data.registrado !== 'boolean') throw new Error('Respuesta inválida.');
+            if (idConsulta !== consultaCluesRef.current) return;
+
+            setEstadoClues(data.registrado ? 'registrada' : 'disponible');
+            if (!data.registrado) return;
+
+            const decision = await Swal.fire({
+                icon: 'info',
+                title: 'Esta unidad ya cuenta con un registro',
+                text: 'Para modificar su información, utiliza Actualizar formulario e introduce el código enviado al correo registrado.',
+                showCancelButton: true,
+                confirmButtonText: 'Ir a Actualizar formulario',
+                cancelButtonText: 'Elegir otro hospital',
+                confirmButtonColor: '#10312B'
+            });
+            if (idConsulta !== consultaCluesRef.current) return;
+            if (decision.isConfirmed) {
+                setModo('actualizar');
+                setCodigo('');
+                setToken('');
+                setFoto(null);
+                setForm(crearFormularioVacio());
+            } else {
+                limpiarHospital();
+            }
+        } catch (error) {
+            if (idConsulta !== consultaCluesRef.current) return;
+            setEstadoClues('error');
+            Swal.fire('No se pudo verificar', 'Intenta seleccionar el hospital nuevamente. No se enviará el registro sin comprobar su disponibilidad.', 'warning');
+        }
     };
 
     const limpiarHospital = () => {
+        consultaCluesRef.current += 1;
+        setEstadoClues('sin_seleccion');
         setClues('');
         setHospitalSeleccionado(null);
         setBusqueda('');
@@ -232,6 +278,9 @@ export default function FormularioDirectores() {
 
         if (!clues) {
             return Swal.fire('Falta hospital', 'Selecciona una unidad médica.', 'warning');
+        }
+        if (modo === 'nuevo' && estadoClues !== 'disponible') {
+            return Swal.fire('Verifica el hospital', 'Selecciona una unidad sin registro previo y espera a que se confirme su disponibilidad.', 'warning');
         }
         if (modo === 'nuevo' && !foto) {
             return Swal.fire('Falta fotografía', 'Adjunta una fotografía actualizada del director.', 'warning');
@@ -435,6 +484,8 @@ export default function FormularioDirectores() {
                                         setBusqueda(e.target.value);
                                         setClues('');
                                         setHospitalSeleccionado(null);
+                                        consultaCluesRef.current += 1;
+                                        setEstadoClues('sin_seleccion');
                                         setMostrarSugerencias(true);
                                     }}
                                     onFocus={() => {
@@ -502,6 +553,15 @@ export default function FormularioDirectores() {
                                 </div>
                             </div>
                         )}
+                        {modo === 'nuevo' && estadoClues === 'consultando' && (
+                            <p role="status" className="text-sm text-gray-600">Verificando si esta unidad ya tiene un registro...</p>
+                        )}
+                        {modo === 'nuevo' && estadoClues === 'disponible' && (
+                            <p role="status" className="text-sm text-green-700">Unidad disponible para nuevo registro.</p>
+                        )}
+                        {modo === 'nuevo' && estadoClues === 'error' && (
+                            <p role="alert" className="text-sm text-red-700">No fue posible consultar el estado. Selecciona nuevamente la unidad.</p>
+                        )}
                         <p className="text-xs text-gray-500">
                             Escribe al menos 2 caracteres. Selecciona un resultado de la lista para continuar.
                         </p>
@@ -544,7 +604,7 @@ export default function FormularioDirectores() {
                             <button
                                 type="button"
                                 onClick={recuperarCodigo}
-                                disabled={cargando || !clues}
+                                disabled={cargando || !clues || (modo === 'nuevo' && estadoClues !== 'disponible')}
                                 className="flex w-full items-center justify-center gap-2 text-sm font-semibold text-[#691C32] underline disabled:opacity-50"
                             >
                                 <RotateCcw className="h-4 w-4" />
@@ -695,7 +755,7 @@ export default function FormularioDirectores() {
 
                         <button
                             type="submit"
-                            disabled={cargando || !clues}
+                            disabled={cargando || !clues || (modo === 'nuevo' && estadoClues !== 'disponible')}
                             className="flex w-full items-center justify-center gap-2 rounded-xl bg-[#10312B] px-6 py-4 font-bold text-white shadow-md transition-colors hover:bg-[#17483F] disabled:cursor-not-allowed disabled:opacity-50"
                         >
                             {cargando ? <Loader2 className="h-5 w-5 animate-spin" /> : <Save className="h-5 w-5" />}
