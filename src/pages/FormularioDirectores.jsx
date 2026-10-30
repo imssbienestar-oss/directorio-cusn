@@ -330,12 +330,7 @@ export default function FormularioDirectores() {
                 await Swal.fire('Información actualizada', 'Los cambios fueron guardados correctamente.', 'success');
                 reiniciar('actualizar');
             } else {
-                setModo('confirmar');
-                await Swal.fire(
-                    'Registro recibido',
-                    'Revisa tu correo institucional. Utiliza el código para confirmar el registro y actualizarlo después.',
-                    'success'
-                );
+                setModo('confirmado');
             }
         } catch (error) {
             mostrarError(error);
@@ -381,6 +376,7 @@ export default function FormularioDirectores() {
                         <textarea
                             rows={2}
                             maxLength={1000}
+                            required
                             className={INPUT_CLASS}
                             placeholder={ayuda}
                             value={valor}
@@ -685,6 +681,7 @@ export default function FormularioDirectores() {
                                 <textarea
                                     id="datos-relevantes"
                                     rows={4}
+                                    required
                                     maxLength={4000}
                                     className={INPUT_CLASS}
                                     placeholder="Indicadores, logros, necesidades o información institucional relevante..."
@@ -767,11 +764,37 @@ export default function FormularioDirectores() {
                 {/* CONFIRMACIÓN FINAL */}
                 {modo === 'confirmado' && (
                     <section className={`${SECTION_CLASS} text-center`}>
-                        <CheckCircle2 className="mx-auto h-12 w-12 text-green-700" />
-                        <h2 className="text-xl font-black text-[#10312B]">Registro confirmado</h2>
+
+                        <CheckCircle2
+                            className="mx-auto h-14 w-14 text-green-700"
+                        />
+
+                        <h2 className="text-xl font-black text-[#10312B]">
+                            Registro recibido correctamente
+                        </h2>
+
                         <p className="text-sm text-gray-600">
-                            El correo institucional fue verificado. Conserva el código para futuras actualizaciones.
+                            La información de la unidad médica se guardó
+                            correctamente.
                         </p>
+
+                        <div className="rounded-xl border border-green-200 bg-green-50 p-5 text-left">
+                            <p className="text-sm text-green-900">
+                                Hemos enviado un código de acceso al correo
+                                electrónico registrado.
+                            </p>
+
+                            <p className="mt-3 text-sm font-semibold text-green-900">
+                                Conserva este código, ya que será necesario
+                                para realizar futuras actualizaciones.
+                            </p>
+
+                            <p className="mt-3 text-xs text-gray-600">
+                                Si no encuentras el mensaje, revisa la carpeta
+                                de Correo no deseado o Spam.
+                            </p>
+                        </div>
+
                         <button
                             type="button"
                             onClick={() => reiniciar('actualizar')}
@@ -779,6 +802,7 @@ export default function FormularioDirectores() {
                         >
                             Actualizar formulario
                         </button>
+
                     </section>
                 )}
             </main>

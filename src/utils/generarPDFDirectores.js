@@ -1,509 +1,238 @@
-
 import jsPDF from 'jspdf';
 import autoTable from 'jspdf-autotable';
 
-// ============================================================
-// 1. CONFIGURACIÓN GENERAL DEL DOCUMENTO
-// ============================================================
-
-const CONFIG = {
-    margenIzquierdo: 15,
-    margenDerecho: 15,
-    margenSuperior: 65,
-    margenInferior: 35,
-    inicioContenido: 65,
-    hojaMembretada: '/hoja_membretada.jpg',
-
-    colores: {
-        guinda: [105, 28, 50],
-        verde: [16, 49, 43],
-        gris: [80, 80, 80],
-        grisClaro: [248, 249, 250]
-    }
+// Archivo público de Directorio: public/hoja_membretada.jpg
+const MEMBRETE = '/hoja_membretada.jpg';
+const COLORES = {
+    verde: [16, 49, 43],
+    guinda: [105, 28, 50],
+    gris: [85, 85, 85],
+    claro: [248, 249, 250]
 };
 
-
-// ============================================================
-// 2. FUNCIONES AUXILIARES
-// ============================================================
-
-// Normaliza el texto utilizado en nombres de archivo.
-const limpiar = (valor) => String(valor || '')
+const limpiarArchivo = (valor) => String(valor || '')
     .normalize('NFD')
     .replace(/[\u0300-\u036f]/g, '')
     .replace(/[^a-zA-Z0-9_-]+/g, '_')
     .replace(/^_+|_+$/g, '')
     .toUpperCase();
 
+const lista = (valor) => Array.isArray(valor)
+    ? valor.map(item => String(item || '').trim()).filter(Boolean)
+    : [];
 
-// Convierte un archivo o Blob en una imagen Data URL.
-const dataURLImagen = (archivo) => new Promise((resolve, reject) => {
+const leerComoDataURL = (blob) => new Promise((resolve, reject) => {
     const lector = new FileReader();
-
     lector.onload = () => resolve(lector.result);
-    lector.onerror = reject;
-
-    lector.readAsDataURL(archivo);
+    lector.onerror = () => reject(new Error('No se pudo leer la fotografía.'));
+    lector.readAsDataURL(blob);
 });
 
-
-// Carga la hoja membretada desde public.
-const cargarHojaMembretada = () => new Promise((resolve) => {
+const cargarImagen = (src) => new Promise((resolve, reject) => {
     const imagen = new Image();
-
     imagen.onload = () => resolve(imagen);
-
-    imagen.onerror = () => {
-        console.warn(
-            'No se pudo cargar la hoja membretada:',
-            CONFIG.hojaMembretada
-        );
-
-        resolve(null);
-    };
-
-    imagen.src = CONFIG.hojaMembretada;
+    imagen.onerror = () => reject(new Error(`No se pudo cargar la imagen: ${src}`));
+    imagen.src = src;
 });
 
-
-// Obtiene la fotografía que se enviará al PDF.
-async function cargarFotografia(datos) {
-    // Prioridad: fotografía nueva seleccionada en el formulario.
-    if (datos.foto_nueva) {
-        try {
-            return await dataURLImagen(datos.foto_nueva);
-        } catch (error) {
-            console.warn('No se pudo cargar la fotografía nueva:', error);
-            return null;
-        }
-    }
-
-    // Si no existe fotografía nueva, utilizar la registrada.
-    if (!datos.foto_url) {
-        return null;
-    }
+// Convierte cualquier imagen admitida por el navegador en JPEG y recorta
+// el centro para una fotografía vertical, sin deformar la cara.
+const fotografiaJpeg = async (datos) => {
+    let dataURL;
 
     try {
-        const respuesta = await fetch(datos.foto_url);
-
-        if (!respuesta.ok) {
+        if (datos.foto_nueva) {
+            dataURL = await leerComoDataURL(datos.foto_nueva);
+        } else if (datos.foto_url) {
+            const respuesta = await fetch(datos.foto_url);
+            if (!respuesta.ok) throw new Error('No se pudo descargar la fotografía.');
+            dataURL = await leerComoDataURL(await respuesta.blob());
+        } else {
             return null;
         }
 
-        const imagen = await respuesta.blob();
+        const imagen = await cargarImagen(dataURL);
+        const ancho = 300;
+        const alto = 380;
+        const canvas = document.createElement('canvas');
+        canvas.width = ancho;
+        canvas.height = alto;
+        const ctx = canvas.getContext('2d');
+        if (!ctx) return null;
 
-        return await dataURLImagen(imagen);
-
+        const escala = Math.max(ancho / imagen.width, alto / imagen.height);
+        const w = imagen.width * escala;
+        const h = imagen.height * escala;
+        ctx.fillStyle = '#FFFFFF';
+        ctx.fillRect(0, 0, ancho, alto);
+        ctx.drawImage(imagen, (ancho - w) / 2, (alto - h) / 2, w, h);
+        return canvas.toDataURL('image/jpeg', 0.88);
     } catch (error) {
-        console.warn(
-            'No se pudo recuperar la fotografía del director:',
-            error
-        );
-
+        console.warn('El PDF se generará sin fotografía:', error);
         return null;
     }
-}
-
-
-// Normaliza los arreglos de acciones y proyectos.
-const normalizarLista = (valor) => {
-    if (!Array.isArray(valor)) {
-        return [];
-    }
-
-    return valor
-        .map(item => String(item || '').trim())
-        .filter(Boolean);
 };
 
-
-// Da formato a las fechas para México.
-const formatearFecha = (fecha) => {
-    if (!fecha) {
-        return new Date().toLocaleDateString('es-MX');
+const cargarMembrete = async () => {
+    try {
+        return await cargarImagen(MEMBRETE);
+    } catch (error) {
+        console.warn('El PDF se generará sin hoja membretada:', error);
+        return null;
     }
-
-    const valor = new Date(fecha);
-
-    if (Number.isNaN(valor.getTime())) {
-        return String(fecha);
-    }
-
-    return valor.toLocaleDateString('es-MX');
 };
 
-
-// ============================================================
-// 3. GENERADOR PRINCIPAL DEL PDF
-// ============================================================
+const fechaMX = () => new Intl.DateTimeFormat('es-MX', {
+    timeZone: 'America/Mexico_City',
+    day: '2-digit', month: '2-digit', year: 'numeric'
+}).format(new Date());
 
 export async function generarPDFDirectores(datos) {
-
-    const doc = new jsPDF({
-        orientation: 'portrait',
-        unit: 'mm',
-        format: 'letter'
-    });
-
+    const doc = new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'letter' });
     const anchoPagina = doc.internal.pageSize.getWidth();
     const altoPagina = doc.internal.pageSize.getHeight();
+    const margen = 15;
+    const margenSuperiorContinuacion = 39;
+    const margenInferior = 32;
 
-    const {
-        margenIzquierdo,
-        margenDerecho,
-        margenSuperior,
-        margenInferior,
-        colores
-    } = CONFIG;
-
-
-    // ========================================================
-    // 4. HOJA MEMBRETADA INSTITUCIONAL
-    // ========================================================
-
-    const hojaMembretada = await cargarHojaMembretada();
-
-    // Dibuja el fondo institucional en una página.
-    const aplicarMembrete = () => {
-        if (!hojaMembretada) {
-            return;
+    // El membrete se imprime primero, como fondo de cada página.
+    const membrete = await cargarMembrete();
+    const dibujarMembrete = () => {
+        if (membrete) {
+            doc.addImage(membrete, 'JPEG', 0, 0, anchoPagina, altoPagina, undefined, 'FAST');
         }
-
-        doc.addImage(
-            hojaMembretada,
-            'JPEG',
-            0,
-            0,
-            anchoPagina,
-            altoPagina,
-            undefined,
-            'FAST'
-        );
     };
+    dibujarMembrete();
+    doc.internal.events.subscribe('addPage', dibujarMembrete);
 
-    // Aplicar a la primera página.
-    aplicarMembrete();
-
-    // Aplicar automáticamente a las siguientes páginas.
-    doc.internal.events.subscribe('addPage', aplicarMembrete);
-
-
-    // ========================================================
-    // 5. ENCABEZADO DEL FORMULARIO
-    // ========================================================
-
+    // Encabezado principal: solamente en la primera página.
     doc.setFont('helvetica', 'bold');
-    doc.setFontSize(13);
-    doc.setTextColor(...colores.guinda);
-
-    doc.text(
-        'INFORMACIÓN DIRECTIVA HOSPITALARIA',
-        anchoPagina / 2,
-        43,
-        { align: 'center' }
-    );
+    doc.setFontSize(12);
+    doc.setTextColor(...COLORES.guinda);
+    doc.text('INFORMACIÓN DIRECTIVA HOSPITALARIA', anchoPagina / 2, 39, {
+        align: 'center'
+    });
 
     doc.setFont('helvetica', 'normal');
     doc.setFontSize(8);
-    doc.setTextColor(...colores.gris);
+    doc.setTextColor(...COLORES.gris);
+    doc.text('CIUDAD DE MÉXICO', anchoPagina / 2, 45, { align: 'center' });
 
-    doc.text(
-        'CIUDAD DE MÉXICO',
-        anchoPagina / 2,
-        49,
-        { align: 'center' }
-    );
+    // Nombre del hospital y fecha: se imprimen solo en la primera hoja.
+    const nombreHospital = String(datos.nombre_hospital || 'UNIDAD MÉDICA').trim();
+    const lineasHospital = doc.splitTextToSize(nombreHospital, 180);
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(10);
+    doc.setTextColor(...COLORES.verde);
+    doc.text(lineasHospital, anchoPagina / 2, 52, { align: 'center' });
 
+    const yFecha = 52 + (lineasHospital.length - 1) * 4.5 + 6;
+    doc.setFont('helvetica', 'normal');
+    doc.setFontSize(8);
+    doc.setTextColor(...COLORES.gris);
+    doc.text(`Fecha de generación: ${fechaMX()}`, anchoPagina / 2, yFecha, {
+        align: 'center'
+    });
 
-    // ========================================================
-    // 6. FOTOGRAFÍA DEL DIRECTOR
-    // ========================================================
+    const inicioDatos = yFecha + 9;
+    const anchoFoto = 30;
+    const altoFoto = 38;
+    const separacion = 7;
+    const xFoto = anchoPagina - margen - anchoFoto;
+    const anchoTabla = xFoto - separacion - margen;
 
-    const fotografia = await cargarFotografia(datos);
-
-    let filaInicial = CONFIG.inicioContenido;
-
+    // La fotografía va al lado de los datos, no encima de toda la tabla.
+    const fotografia = await fotografiaJpeg(datos);
     if (fotografia) {
-        try {
-            // Detecta el formato de la fotografía.
-            const formato = fotografia.startsWith('data:image/png')
-                ? 'PNG'
-                : fotografia.startsWith('data:image/webp')
-                    ? 'WEBP'
-                    : 'JPEG';
-
-            // Fotografía con dimensiones aproximadas de credencial.
-            const anchoFoto = 28;
-            const altoFoto = 36;
-
-            const posicionX = anchoPagina
-                - margenDerecho
-                - anchoFoto;
-
-            const posicionY = 57;
-
-            doc.addImage(
-                fotografia,
-                formato,
-                posicionX,
-                posicionY,
-                anchoFoto,
-                altoFoto,
-                undefined,
-                'FAST'
-            );
-
-            // Reservar espacio para la fotografía.
-            filaInicial = 98;
-
-        } catch (error) {
-            console.warn(
-                'No se pudo insertar la fotografía en el PDF:',
-                error
-            );
-
-            filaInicial = CONFIG.inicioContenido;
-        }
+        doc.setDrawColor(220, 220, 220);
+        doc.rect(xFoto - 0.4, inicioDatos - 0.4, anchoFoto + 0.8, altoFoto + 0.8);
+        doc.addImage(fotografia, 'JPEG', xFoto, inicioDatos, anchoFoto, altoFoto, undefined, 'FAST');
     }
 
-
-    // ========================================================
-    // 7. ESTILOS DE TABLAS
-    // ========================================================
-
-    const estilosTabla = {
+    const estiloTabla = {
         theme: 'grid',
-
         margin: {
-            left: margenIzquierdo,
-            right: margenDerecho,
-            top: margenSuperior,
+            left: margen,
+            right: margen,
+            top: margenSuperiorContinuacion,
             bottom: margenInferior
         },
-
         headStyles: {
-            fillColor: colores.verde,
+            fillColor: COLORES.verde,
             textColor: [255, 255, 255],
             fontSize: 9,
             fontStyle: 'bold',
-            valign: 'middle',
-            cellPadding: 3
+            cellPadding: 2.5
         },
-
         bodyStyles: {
             fontSize: 8.5,
             textColor: [45, 45, 45],
-            valign: 'middle',
             overflow: 'linebreak',
-            cellPadding: 3
+            valign: 'middle',
+            cellPadding: 2.5
         },
-
-        styles: {
-            lineColor: [220, 220, 220],
-            lineWidth: 0.1
-        }
+        styles: { lineColor: [220, 220, 220], lineWidth: 0.1 },
+        showHead: 'everyPage'
     };
 
-
-    // ========================================================
-    // 8. DATOS GENERALES DEL HOSPITAL Y DIRECTOR
-    // ========================================================
-
     autoTable(doc, {
-        ...estilosTabla,
-
-        startY: filaInicial,
-
-        head: [[
-            'DATOS GENERALES',
-            'INFORMACIÓN'
-        ]],
-
+        ...estiloTabla,
+        startY: inicioDatos,
+        tableWidth: anchoTabla,
+        head: [['DATOS GENERALES', 'INFORMACIÓN']],
         body: [
-            [
-                'CLUES',
-                datos.clues || 'N/A'
-            ],
-            [
-                'Unidad médica',
-                datos.nombre_hospital || 'N/A'
-            ],
-            [
-                'Nombre del director(a)',
-                datos.nombre_director || 'N/A'
-            ],
-            [
-                'Cargo',
-                datos.cargo || 'N/A'
-            ],
-            [
-                'Correo institucional',
-                datos.correo_institucional || 'N/A'
-            ],
-            [
-                'Teléfono',
-                datos.telefono || 'N/A'
-            ],
-            [
-                'Extensión',
-                datos.extension || 'N/A'
-            ]
+            ['CLUES', datos.clues || 'N/A'],
+            ['Unidad médica', nombreHospital],
+            ['Director(a)', datos.nombre_director || 'N/A'],
+            ['Cargo', datos.cargo || 'N/A'],
+            ['Correo institucional', datos.correo_institucional || 'N/A'],
+            ['Teléfono', datos.telefono || 'N/A'],
+            ['Extensión', datos.extension || 'N/A']
         ],
-
         columnStyles: {
-            0: {
-                cellWidth: 48,
-                fontStyle: 'bold',
-                fillColor: colores.grisClaro
-            }
+            0: { cellWidth: 38, fontStyle: 'bold', fillColor: COLORES.claro }
         }
     });
 
-
-    // ========================================================
-    // 9. ACCIONES RELEVANTES
-    // ========================================================
-
-    const acciones = normalizarLista(
-        datos.acciones_relevantes
-    );
-
-    autoTable(doc, {
-        ...estilosTabla,
-
-        startY: doc.lastAutoTable.finalY + 8,
-
-        head: [[
-            'ACCIONES RELEVANTES PARA IMSS-BIENESTAR'
-        ]],
-
-        body: acciones.length > 0
-            ? acciones.map((accion, indice) => [
-                `${indice + 1}. ${accion}`
-            ])
-            : [['Sin información registrada']],
-
-        headStyles: {
-            ...estilosTabla.headStyles,
-            fillColor: colores.guinda
-        }
-    });
-
-
-    // ========================================================
-    // 10. DATOS RELEVANTES
-    // ========================================================
-
-    const datosRelevantes = String(
-        datos.datos_relevantes || ''
-    ).trim();
-
-    autoTable(doc, {
-        ...estilosTabla,
-
-        startY: doc.lastAutoTable.finalY + 8,
-
-        head: [[
-            'DATOS RELEVANTES'
-        ]],
-
-        body: [[
-            datosRelevantes || 'Sin información registrada'
-        ]],
-
-        headStyles: {
-            ...estilosTabla.headStyles,
-            fillColor: colores.guinda
-        }
-    });
-
-
-    // ========================================================
-    // 11. COMPROMISOS Y PROYECTOS
-    // ========================================================
-
-    const compromisos = normalizarLista(
-        datos.compromisos_proyectos
-    );
-
-    autoTable(doc, {
-        ...estilosTabla,
-
-        startY: doc.lastAutoTable.finalY + 8,
-
-        head: [[
-            'COMPROMISOS Y PROYECTOS DEL HOSPITAL'
-        ]],
-
-        body: compromisos.length > 0
-            ? compromisos.map((proyecto, indice) => [
-                `${indice + 1}. ${proyecto}`
-            ])
-            : [['Sin información registrada']],
-
-        headStyles: {
-            ...estilosTabla.headStyles,
-            fillColor: colores.guinda
-        }
-    });
-
-
-    // ========================================================
-    // 12. PIE DE PÁGINA Y NUMERACIÓN
-    // ========================================================
-
-    const totalPaginas = doc.internal.getNumberOfPages();
-
-    const fechaDocumento = formatearFecha(
-        datos.fecha_actualizacion ||
-        datos.fecha_registro
-    );
-
-    for (
-        let numeroPagina = 1;
-        numeroPagina <= totalPaginas;
-        numeroPagina++
-    ) {
-        doc.setPage(numeroPagina);
-
-        doc.setFont('helvetica', 'normal');
-        doc.setFontSize(8);
-        doc.setTextColor(...colores.gris);
-
-        // Fecha del documento.
-        doc.text(
-            `Fecha de generación: ${fechaDocumento}`,
-            margenIzquierdo,
-            altoPagina - 18
-        );
-
-        // Número de página.
-        doc.text(
-            `Página ${numeroPagina} de ${totalPaginas}`,
-            anchoPagina - margenDerecho,
-            altoPagina - 18,
-            { align: 'right' }
-        );
+    // Si la tabla es corta, dejamos que la fotografía termine antes
+    // de iniciar las secciones de ancho completo.
+    let siguienteY = doc.lastAutoTable.finalY + 7;
+    if (doc.internal.getCurrentPageInfo().pageNumber === 1) {
+        siguienteY = Math.max(siguienteY, inicioDatos + (fotografia ? altoFoto : 0) + 7);
     }
 
+    const secciones = [
+        ['ACCIONES RELEVANTES PARA IMSS-BIENESTAR', lista(datos.acciones_relevantes), true],
+        ['DATOS RELEVANTES', datos.datos_relevantes ? [String(datos.datos_relevantes).trim()] : [], false],
+        ['COMPROMISOS Y PROYECTOS DEL HOSPITAL', lista(datos.compromisos_proyectos), true]
+    ];
 
-    // ========================================================
-    // 13. NOMBRE Y SALIDA DEL ARCHIVO
-    // ========================================================
+    for (const [titulo, elementos, numerados] of secciones) {
+        const contenido = elementos.filter(Boolean);
+        autoTable(doc, {
+            ...estiloTabla,
+            startY: siguienteY,
+            head: [[titulo]],
+            body: contenido.length
+                ? contenido.map((valor, i) => [numerados ? `${i + 1}. ${valor}` : valor])
+                : [['Sin información registrada']],
+            headStyles: { ...estiloTabla.headStyles, fillColor: COLORES.guinda }
+        });
+        siguienteY = doc.lastAutoTable.finalY + 7;
+    }
 
-    const cluesLimpia = limpiar(
-        datos.clues || 'SIN_CLUES'
-    );
+    // Solo numeración, sin fecha en el pie para evitar los logotipos.
+    const paginas = doc.internal.getNumberOfPages();
+    for (let pagina = 1; pagina <= paginas; pagina++) {
+        doc.setPage(pagina);
+        doc.setFont('helvetica', 'normal');
+        doc.setFontSize(7.5);
+        doc.setTextColor(...COLORES.gris);
+        doc.text(`Página ${pagina} de ${paginas}`, anchoPagina - margen, altoPagina - 25, {
+            align: 'right'
+        });
+    }
 
-    const hospitalLimpio = limpiar(
-        datos.nombre_hospital || 'UNIDAD_MEDICA'
-    );
-
-    const nombreArchivo =
-        `${cluesLimpia}_${hospitalLimpio}.pdf`;
-
-    return {
-        archivo: doc.output('blob'),
-        nombreArchivo
-    };
+    const nombreArchivo = `${limpiarArchivo(datos.clues || 'SIN_CLUES')}_${limpiarArchivo(nombreHospital)}.pdf`;
+    return { archivo: doc.output('blob'), nombreArchivo };
 }
